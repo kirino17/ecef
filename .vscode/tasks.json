@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Automate",
+			"command": "powershell .\\vc98\\init.ps1",
+			"args": [
+				"ecef",
+				"Release",
+				"'${workspaceFolder}\\src'",
+				"'${workspaceFolder}\\build'"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

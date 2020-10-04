@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{85B48766-C847-4B30-A0C0-A344C3CA897B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>aquarius2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\out\runtime</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>E:\Wanna\Github\cef_binary_80.1.15+g7b802c9+chromium-80.0.3987.163_windows32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;AQUARIUS_SRC;_INTERNAL_VER_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\cef\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\cef\release;$(ProjectDir)..\..\cef\build\libcef_dll_wrapper\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcef.lib;libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>setlocal
+mt.exe -nologo -manifest "E:/Wanna/Github/cef_binary_80.1.15+g7b802c9+chromium-80.0.3987.163_windows32/tests/cefsimple/cefsimple.exe.manifest" "E:/Wanna/Github/cef_binary_80.1.15+g7b802c9+chromium-80.0.3987.163_windows32/tests/cefsimple/compatibility.manifest" -outputresource:"$(OutDir)$(TargetFileName)";#1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="aquarius2.cpp" />
+    <ClCompile Include="client\InternalCalculationVisitor.cpp" />
+    <ClCompile Include="client\InternalClient.cpp" />
+    <ClCompile Include="client\InternalCreateBrowser.cpp" />
+    <ClCompile Include="client\InternalDevToolsClient.cpp" />
+    <ClCompile Include="client\InternalResponseFilter.cpp" />
+    <ClCompile Include="client\InternalStringVisitor.cpp" />
+    <ClCompile Include="client\InternalProgram.cpp" />
+    <ClCompile Include="client\InternalTaskVisitor.cpp" />
+    <ClCompile Include="client\InternalV8Interceptor.cpp" />
+    <ClCompile Include="def\def.cpp" />
+    <ClCompile Include="def\internalDef.cpp" />
+    <ClCompile Include="def\utilityDef.cpp" />
+    <ClCompile Include="proxy\ProxyResponseFilter.cpp" />
+    <ClCompile Include="proxy\ProxyTaskRunner.cpp" />
+    <ClCompile Include="proxy\ProxyAuthCallback.cpp" />
+    <ClCompile Include="proxy\ProxyBase.cpp" />
+    <ClCompile Include="proxy\ProxyBeforeDownloadCallback.cpp" />
+    <ClCompile Include="proxy\ProxyBrowser.cpp" />
+    <ClCompile Include="proxy\ProxyBrowserHost.cpp" />
+    <ClCompile Include="proxy\ProxyBrowserSettings.cpp" />
+    <ClCompile Include="proxy\ProxyClient.cpp" />
+    <ClCompile Include="proxy\ProxyCommandLine.cpp" />
+    <ClCompile Include="proxy\ProxyContextMenuParams.cpp" />
+    <ClCompile Include="proxy\ProxyCookie.cpp" />
+    <ClCompile Include="proxy\ProxyCookieManager.cpp" />
+    <ClCompile Include="proxy\ProxyDictionaryValue.cpp" />
+    <ClCompile Include="proxy\ProxyDownloadItem.cpp" />
+    <ClCompile Include="proxy\ProxyDownloadItemCallback.cpp" />
+    <ClCompile Include="proxy\ProxyFileDialogCallback.cpp" />
+    <ClCompile Include="proxy\ProxyFrame.cpp" />
+    <ClCompile Include="proxy\ProxyJSDialogCallback.cpp" />
+    <ClCompile Include="proxy\ProxyKeyEvent.cpp" />
+    <ClCompile Include="proxy\ProxyListValue.cpp" />
+    <ClCompile Include="proxy\ProxyMenuModel.cpp" />
+    <ClCompile Include="proxy\ProxyMouseEvent.cpp" />
+    <ClCompile Include="proxy\ProxyPopupFeatures.cpp" />
+    <ClCompile Include="proxy\ProxyPostData.cpp" />
+    <ClCompile Include="proxy\ProxyPostDataElement.cpp" />
+    <ClCompile Include="proxy\ProxyRequest.cpp" />
+    <ClCompile Include="proxy\ProxyRequestCallback.cpp" />
+    <ClCompile Include="proxy\ProxyRequestContext.cpp" />
+    <ClCompile Include="proxy\ProxyRequestContextSettings.cpp" />
+    <ClCompile Include="proxy\ProxyResponse.cpp" />
+    <ClCompile Include="proxy\ProxyRunContextMenuCallback.cpp" />
+    <ClCompile Include="proxy\ProxySettings.cpp" />
+    <ClCompile Include="proxy\ProxyTime.cpp" />
+    <ClCompile Include="proxy\ProxyTouchEvent.cpp" />
+    <ClCompile Include="proxy\ProxyValue.cpp" />
+    <ClCompile Include="proxy\ProxyWindowInfo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="client\InternalCalculationVisitor.h" />
+    <ClInclude Include="client\InternalClient.h" />
+    <ClInclude Include="client\InternalCreateBrowser.h" />
+    <ClInclude Include="client\InternalDevToolsClient.h" />
+    <ClInclude Include="client\InternalResponseFilter.h" />
+    <ClInclude Include="client\InternalStringVisitor.h" />
+    <ClInclude Include="client\InternalProgram.h" />
+    <ClInclude Include="client\InternalTaskVisitor.h" />
+    <ClInclude Include="client\InternalV8Interceptor.h" />
+    <ClInclude Include="def\def.h" />
+    <ClInclude Include="def\internalDef.h" />
+    <ClInclude Include="def\refcounted.h" />
+    <ClInclude Include="def\utilityDef.h" />
+    <ClInclude Include="proxy\ProxyAuthCallback.h" />
+    <ClInclude Include="proxy\ProxyBase.h" />
+    <ClInclude Include="proxy\ProxyBeforeDownloadCallback.h" />
+    <ClInclude Include="proxy\ProxyBrowser.h" />
+    <ClInclude Include="proxy\ProxyBrowserHost.h" />
+    <ClInclude Include="proxy\ProxyBrowserSettings.h" />
+    <ClInclude Include="proxy\ProxyClient.h" />
+    <ClInclude Include="proxy\ProxyCommandLine.h" />
+    <ClInclude Include="proxy\ProxyContextMenuParams.h" />
+    <ClInclude Include="proxy\ProxyCookie.h" />
+    <ClInclude Include="proxy\ProxyCookieManager.h" />
+    <ClInclude Include="proxy\ProxyDictionaryValue.h" />
+    <ClInclude Include="proxy\ProxyDownloadItem.h" />
+    <ClInclude Include="proxy\ProxyDownloadItemCallback.h" />
+    <ClInclude Include="proxy\ProxyFileDialogCallback.h" />
+    <ClInclude Include="proxy\ProxyFrame.h" />
+    <ClInclude Include="proxy\ProxyJSDialogCallback.h" />
+    <ClInclude Include="proxy\ProxyKeyEvent.h" />
+    <ClInclude Include="proxy\ProxyListValue.h" />
+    <ClInclude Include="proxy\ProxyMenuModel.h" />
+    <ClInclude Include="proxy\ProxyMouseEvent.h" />
+    <ClInclude Include="proxy\ProxyPopupFeatures.h" />
+    <ClInclude Include="proxy\ProxyPostData.h" />
+    <ClInclude Include="proxy\ProxyPostDataElement.h" />
+    <ClInclude Include="proxy\ProxyRequest.h" />
+    <ClInclude Include="proxy\ProxyRequestCallback.h" />
+    <ClInclude Include="proxy\ProxyRequestContext.h" />
+    <ClInclude Include="proxy\ProxyRequestContextSettings.h" />
+    <ClInclude Include="proxy\ProxyResponse.h" />
+    <ClInclude Include="proxy\ProxyResponseFilter.h" />
+    <ClInclude Include="proxy\ProxyRunContextMenuCallback.h" />
+    <ClInclude Include="proxy\ProxySettings.h" />
+    <ClInclude Include="proxy\ProxyTaskRunner.h" />
+    <ClInclude Include="proxy\ProxyTime.h" />
+    <ClInclude Include="proxy\ProxyTouchEvent.h" />
+    <ClInclude Include="proxy\ProxyValue.h" />
+    <ClInclude Include="proxy\ProxyWindowInfo.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

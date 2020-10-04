@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{43742d7c-e51e-4a04-88f4-fc8e426e6393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\client">
+      <UniqueIdentifier>{ec8894a1-0df4-4b60-99e9-5a93887acdd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\def">
+      <UniqueIdentifier>{a0367ca9-01a5-42d3-a4a1-239069f81127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\proxy">
+      <UniqueIdentifier>{7d426a01-c7ba-4633-af02-6aefd5a5de18}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aquarius2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="def\def.cpp">
+      <Filter>src\def</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalClient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalProgram.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyBrowser.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyBrowserHost.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyFrame.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyRequest.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyCommandLine.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="def\internalDef.cpp">
+      <Filter>src\def</Filter>
+    </ClCompile>
+    <ClCompile Include="def\utilityDef.cpp">
+      <Filter>src\def</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyPostData.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyPostDataElement.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyResponse.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyBase.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxySettings.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyWindowInfo.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyBrowserSettings.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyRequestContext.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyCookieManager.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyCookie.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyTime.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalStringVisitor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyValue.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyListValue.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyDictionaryValue.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalCalculationVisitor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyPopupFeatures.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyRequestContextSettings.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyKeyEvent.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyMouseEvent.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyTouchEvent.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyClient.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyJSDialogCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyAuthCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyRequestCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalCreateBrowser.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyFileDialogCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyContextMenuParams.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyMenuModel.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyDownloadItemCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyDownloadItem.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyRunContextMenuCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyBeforeDownloadCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyTaskRunner.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalTaskVisitor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyResponseFilter.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalResponseFilter.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalV8Interceptor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalDevToolsClient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="def\refcounted.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="def\def.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalClient.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalProgram.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyBrowser.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyBrowserHost.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyFrame.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyRequest.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyCommandLine.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="def\internalDef.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="def\utilityDef.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyPostData.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyPostDataElement.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyResponse.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyBase.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxySettings.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyWindowInfo.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyBrowserSettings.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyRequestContext.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyCookieManager.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyCookie.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyTime.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalStringVisitor.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyValue.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyListValue.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyDictionaryValue.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalCalculationVisitor.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyPopupFeatures.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyRequestContextSettings.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyKeyEvent.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyMouseEvent.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyTouchEvent.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyClient.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyJSDialogCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyAuthCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyRequestCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalCreateBrowser.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyFileDialogCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyContextMenuParams.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyMenuModel.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyDownloadItemCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyDownloadItem.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyRunContextMenuCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyBeforeDownloadCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyTaskRunner.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalTaskVisitor.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyResponseFilter.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalResponseFilter.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalV8Interceptor.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalDevToolsClient.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

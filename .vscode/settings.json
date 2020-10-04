@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "*.vert": "glsl",
+        "*.frag": "glsl",
+        "*.ps": "powershell",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "*.idl": "cpp",
+        "type_traits": "cpp",
+        "xtree": "cpp",
+        "map": "cpp",
+        "codecvt": "cpp",
+        "xlocale": "cpp"
+    }
+}
