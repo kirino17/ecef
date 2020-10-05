@@ -62,6 +62,7 @@ void ProxyCookie::SetDomain(const char* domain) {
 	}
 	CefString(&((CefCookie*)_rawptr)->domain) = domain;
 }
+
 char* ProxyCookie::GetDomain() {
 	ASSERTQ(NULL);
 	return ToAnsi(((CefCookie*)_rawptr)->domain.str, ((CefCookie*)_rawptr)->domain.length);
@@ -78,9 +79,10 @@ void ProxyCookie::SetPath(const char* path) {
 	}
 	CefString(&((CefCookie*)_rawptr)->path) = path;
 }
+
 char* ProxyCookie::GetPath() {
 	ASSERTQ(NULL);
-	return ToAnsi(((CefCookie*)_rawptr)->domain.str, ((CefCookie*)_rawptr)->domain.length);
+	return ToAnsi(((CefCookie*)_rawptr)->path.str, ((CefCookie*)_rawptr)->path.length);
 }
 
 ///

@@ -1,7 +1,7 @@
 #include "ProxyCookieManager.h"
 #include "include/cef_cookie.h"
 #include "../def/internalDef.h"
-#include "../client/InternalClient.h"
+#include "../client/InternalCookieVisitor.h"
 #include <atlconv.h>
 
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyCookieManager,CefCookieManager);
@@ -50,8 +50,8 @@ void ProxyCookieManager::SetSupportedSchemes(const char* schemes, bool include_d
 /*--cef()--*/
 bool ProxyCookieManager::VisitAllCookies() {
     ASSERTQ(false);
-    CefRefPtr<InternalClient> client = InternalClient::GetShareInatance();
-    return FORWARD(CefCookieManager)->VisitAllCookies(client);
+    CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor();
+    return FORWARD(CefCookieManager)->VisitAllCookies(visitor);
 }
 
 ///
@@ -67,12 +67,9 @@ bool ProxyCookieManager::VisitUrlCookies(const char* url, bool includeHttpOnly) 
     if (!url) {
         return false;
     }
-    bool result = false;
-    {
-        CefRefPtr<InternalClient> client = InternalClient::GetShareInatance();
-        result = FORWARD(CefCookieManager)->VisitUrlCookies(url, includeHttpOnly, client);
-    }
-    return result;
+    USES_CONVERSION;
+    CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor();
+    return FORWARD(CefCookieManager)->VisitUrlCookies(A2W(url), includeHttpOnly, visitor);
 }
 
 ///
@@ -112,15 +109,22 @@ bool ProxyCookieManager::DeleteCookies(const char* url, const char* cookie_name)
     const wchar_t* tempName = L"";
     USES_CONVERSION;
     
-    if (url || strlen(url) > 0) {
+    if (url && strlen(url) > 0) {
         tempUrl = A2W(url);
     }
 
-    if (cookie_name || strlen(cookie_name) > 0) {
+    if (cookie_name && strlen(cookie_name) > 0) {
         tempName = A2W(cookie_name);
     }
 
-    return FORWARD(CefCookieManager)->DeleteCookies(L"", L"", nullptr);
+    if (!cookie_name) {
+        CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor(true);
+        return FORWARD(CefCookieManager)->VisitUrlCookies(tempUrl, true, visitor);
+    }
+    else {
+        return FORWARD(CefCookieManager)->DeleteCookies(tempUrl, tempName, nullptr);
+    }
+    
 }
 
 ///

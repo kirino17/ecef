@@ -9,7 +9,6 @@ class InternalClient : public CefClient,
 	public CefLifeSpanHandler,
     public CefLoadHandler,
     public CefDisplayHandler,
-    public CefCookieVisitor,
     public CefFocusHandler,
     public CefJSDialogHandler,
     public CefRequestHandler,
@@ -254,9 +253,6 @@ public:
     virtual void OnDownloadUpdated(CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefDownloadItem> download_item,
         CefRefPtr<CefDownloadItemCallback> callback) OVERRIDE;
-
-public:
-    virtual bool Visit(const CefCookie& cookie, int count, int total, bool& deleteCookie);
 
 public:
     virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,

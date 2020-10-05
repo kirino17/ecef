@@ -1130,13 +1130,13 @@ static EVENT_ARG_INFO2 s_ChromiumEventArgInfo [] =
 	},
 	{	/*EPLClient_OnCookieVisitor*/ 
 	/*name*/	_WT("cookie序号"), 
-	/*explain*/	_WT("从0开始, 返回的cookie按照最长路径排序, 然后是最早的创建日期排序。"), 
+	/*explain*/	_WT("从0开始, 返回的cookie按照最长路径排序, 然后是最早的创建日期排序。 此参数为-1时表示所有的cookie均以传递。"), 
 	/*state*/	NULL, 
 	/*DataType*/	SDT_INT, 
 	},
 	{	/*EPLClient_OnCookieVisitor*/ 
 	/*name*/	_WT("cookie总数"), 
-	/*explain*/	_WT("返回当前符合要求的cookie总数"), 
+	/*explain*/	_WT("返回当前符合要求的cookie总数。此参数为-1时表示所有的cookie均以传递。"), 
 	/*state*/	NULL, 
 	/*DataType*/	SDT_INT, 
 	},

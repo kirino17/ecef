@@ -177,6 +177,9 @@
     <ClCompile Include="client\InternalDevToolsClient.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
+    <ClCompile Include="client\InternalCookieVisitor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def\refcounted.h">
@@ -327,6 +330,9 @@
       <Filter>src\client</Filter>
     </ClInclude>
     <ClInclude Include="client\InternalDevToolsClient.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalCookieVisitor.h">
       <Filter>src\client</Filter>
     </ClInclude>
   </ItemGroup>

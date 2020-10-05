@@ -170,6 +170,7 @@ if %errorlevel% neq 0 goto :VCEnd
     <ClCompile Include="aquarius2.cpp" />
     <ClCompile Include="client\InternalCalculationVisitor.cpp" />
     <ClCompile Include="client\InternalClient.cpp" />
+    <ClCompile Include="client\InternalCookieVisitor.cpp" />
     <ClCompile Include="client\InternalCreateBrowser.cpp" />
     <ClCompile Include="client\InternalDevToolsClient.cpp" />
     <ClCompile Include="client\InternalResponseFilter.cpp" />
@@ -221,6 +222,7 @@ if %errorlevel% neq 0 goto :VCEnd
   <ItemGroup>
     <ClInclude Include="client\InternalCalculationVisitor.h" />
     <ClInclude Include="client\InternalClient.h" />
+    <ClInclude Include="client\InternalCookieVisitor.h" />
     <ClInclude Include="client\InternalCreateBrowser.h" />
     <ClInclude Include="client\InternalDevToolsClient.h" />
     <ClInclude Include="client\InternalResponseFilter.h" />

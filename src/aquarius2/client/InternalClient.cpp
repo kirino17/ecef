@@ -615,15 +615,6 @@ void InternalClient::OnProtocolExecution(CefRefPtr<CefBrowser> browser,
     }
  }
 
-bool InternalClient::Visit(const CefCookie& cookie, int count, int total, bool& deleteCookie) {
-    bool result = false;
-    if(_proxyClient) {
-        shrewd_ptr<ProxyCookie> temp_cookie = new ProxyCookie(new CefCookie(cookie));
-        result = _proxyClient->OnCookieVisitor(temp_cookie, count, total);
-    }
-    return result;
-}
-
 bool InternalClient::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
     CefRefPtr<CefFrame> frame,
     CefProcessId source_process,
