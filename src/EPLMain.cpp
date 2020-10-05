@@ -1165,14 +1165,14 @@ static EVENT_ARG_INFO2 s_ChromiumEventArgInfo [] =
 	/*DataType*/	MAKELONG(19,0), 
 	},
 	{	/*EPLClient_OnResourceFilter*/ 
-	/*name*/	_WT("browser"), 
-	/*explain*/	_WT(""), 
+	/*name*/	_WT("浏览器"), 
+	/*explain*/	_WT("与此资源过滤器相关的浏览器"), 
 	/*state*/	EAS_BY_REF, 
 	/*DataType*/	MAKELONG(5,0), 
 	},
 	{	/*EPLClient_OnResourceFilter*/ 
-	/*name*/	_WT("filter"), 
-	/*explain*/	_WT(""), 
+	/*name*/	_WT("过滤器"), 
+	/*explain*/	_WT("用于进行资源可选化设置。"), 
 	/*state*/	EAS_BY_REF, 
 	/*DataType*/	MAKELONG(30,0), 
 	},
@@ -1408,7 +1408,7 @@ EVENT_INFO2 s_ChromiumEvent [] =
 	},
 	{
 	/*szName*/	_WT("浏览器资源请求处理器"),
-	/*szExplain*/	_WT("在浏览器发生资源请求之前调用此事件以决定是否将该项资源请求放入资源请求处理器回调例程, 如果允许浏览器将该请求通过资源请求处理器回调例程则应返回真, 在通过资源请求处理器中会依次调用 \"浏览器即将加载资源\",\"浏览器资源请求收到回应\",\"浏览器资源加载完毕\"等事件。"),
+	/*szExplain*/	_WT("在浏览器发生资源请求之前调用此事件以决定是否将该项资源请求放入资源请求处理器回调例程, 如果允许浏览器将该请求通过资源请求处理器回调例程则应返回真, 在通过资源请求处理器中会依次调用 \"浏览器即将加载资源\",\"浏览器资源请求收到响应\",\"浏览器资源加载完毕\"等事件。"),
 	/*dwState*/	EV_IS_VER2,
 	/*nArgCount*/	6,
 	/*pBeginArgInfo*/	&s_ChromiumEventArgInfo[81],
@@ -1471,7 +1471,7 @@ EVENT_INFO2 s_ChromiumEvent [] =
 	/*nRet*/	_SDT_NULL,
 	},
 	{
-	/*szName*/	_WT("浏览器资源请求收到回应"),
+	/*szName*/	_WT("浏览器资源请求收到响应"),
 	/*szExplain*/	_WT("此事件为资源处理器回调例程事件, 需在\"资源请求处理器\"事件中返回真后此事件才会被调用。 浏览器收到资源响应时调用此事件。若要允许资源加载而无需修改则应返回假, 要重定向或重试资源负载, 可以选择修改|请求|参数并返回真, 对请求URL的修改将被视为重定向。"),
 	/*dwState*/	EV_IS_VER2,
 	/*nArgCount*/	4,
@@ -1583,8 +1583,8 @@ EVENT_INFO2 s_ChromiumEvent [] =
 	/*nRet*/	_SDT_NULL,
 	},
 	{
-	/*szName*/	_WT("OnResourceFilter"),
-	/*szExplain*/	_WT(""),
+	/*szName*/	_WT("浏览器资源过滤器已就绪"),
+	/*szExplain*/	_WT("该事件仅在启用资源过滤器后才会发生, 资源过滤器初始化完毕时调用此事件。"),
 	/*dwState*/	EV_IS_VER2,
 	/*nArgCount*/	2,
 	/*pBeginArgInfo*/	&s_ChromiumEventArgInfo[168],

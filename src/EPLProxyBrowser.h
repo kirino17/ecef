@@ -311,7 +311,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
 	{ /*18*/ \
-		/*ccname*/	_WT("取首要框架"),\
+		/*ccname*/	_WT("取主框架"),\
 		/*egname*/	_WT("GetMainFrame"), \
 		/*explain*/	_WT("获取第一个加载的(Top-Level)框架。"), \
 		/*category*/	-1, \
