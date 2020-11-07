@@ -27,10 +27,10 @@
 > 装有2.0测试版本的电脑需要在系统环境变量"Path"中将测试版本运行时目录删除。
 
 安装须知, 执行安装程序时应选择将支持库安装到易语言客户端目录下,如:
-![安装位置](\image\Install-02.png)
+![安装位置](https://github.com/kirino17/ecef/raw/master/image/Install-02.png)
 
 并在安装完成时勾选"启用水星浏览器支持库"以安装支持库文件到易语言中。
-![安装支持库文件](\image\Install-03.png)
+![安装支持库文件](https://github.com/kirino17/ecef/raw/master/image/Install-03.png)
 
 
 ### 授权
@@ -66,7 +66,7 @@
 ```
 
 可以通过支持库快捷命令 "工具"->"水星 发布应用程序" 一次性将这些文件复制到你的安装资源文件夹中:
-![发布应用程序](\image\Release-01.png)
+![发布应用程序](https://github.com/kirino17/ecef/raw/master/image/Release-01.png)
 
 
 
@@ -75,12 +75,12 @@
 #### 创建应用程序
 创建使用水星浏览器的应用程序没有什么特别的, 从启动窗口或者从启动子程序开始应用程序并执行第一个浏览器方法:
 <br/><br/>
-![初始化设置](\image\readme-02.png)
+![初始化设置](https://github.com/kirino17/ecef/raw/master/image/readme-02.png)
 <br/><br/>
 
 类型 [水星初始化设置](\manual\ProxySettings.md) 提供了浏览器的初始化参数设置, 执行方法 <a href="ProxyBase.md#Initialize" style="color:rgb(128,0,0)">进程初始化</a> 初始化浏览器, 缺省参数浏览器将使用默认设置。
 <br/><br/>
-![缺省初始化](\image\readme-66.png)
+![缺省初始化](https://github.com/kirino17/ecef/raw/master/image/readme-66.png)
 <br/>
 
 一些常用到的初始化配置项如下:
@@ -95,7 +95,7 @@
 #### 浏览器组件
 将 [水星铬浏览框](\manual\ProxyClient.md) 拖入设计窗口中以创建浏览器组件。
 <br/><br/>
-![浏览器组件](\image\readme-67.png)
+![浏览器组件](https://github.com/kirino17/ecef/raw/master/image/readme-67.png)
 <br/><br/>
 
 水星铬浏览框是浏览器的父窗口组件, 除了提供一共浏览器窗口管理能力外, 它还复制浏览器的事件分发与生命周期管理。
@@ -104,7 +104,7 @@
 #### 命令行
 执行 <a href="ProxyBase.md#Initialize" style="color:rgb(128,0,0)">进程初始化</a> 方法后第一个事件 `进程即将初始化` 将会触发。
 <br/><br/>
-![水星铬浏览框.进程即将初始化](\image\readme-01.png)
+![水星铬浏览框.进程即将初始化](https://github.com/kirino17/ecef/raw/master/image/readme-01.png)
 <br/>
 水星浏览器中的许多特性可以使用命令行参数进行配置。 这些参数参数采用 `--some-argument[-optional-param]` 的形式设置。 如果像将指定的命令行参数传入浏览器, 则应该在此事件中进行。<br/>
 参数 `命令行` 类型对象提供了修改、设置命令行的能力。
@@ -121,7 +121,7 @@
     --ppapi-flash-version = "29.0.0.140" --ppapi-flash-path="d:\flash\pepflashplayer32_29_0_0_140.dll"
 ```
 <br/>
-![flash播放器插件](\image\readme-68.png)
+![flash播放器插件](https://github.com/kirino17/ecef/raw/master/image/readme-68.png)
 <br/><br/>
 
 ##### 加载ppapi
@@ -148,26 +148,26 @@
     的描述信息#第二个插件的版本;application/x-ppapi-test-xxxx#第二个插件的扩展信息,..."
 ```
 <br/>
-![ppapi插件](\image\readme-69.png)
+![ppapi插件](https://github.com/kirino17/ecef/raw/master/image/readme-69.png)
 <br/><br/>
 
 #### 浏览器生命周期
 ##### 创建
 浏览器生命周期从执行 水星铬浏览框<a href="ProxyClient.md#CreateBrowser" style="color:rgb(128,0,0)">.创建浏览器()</a> 开始。可以在 <a href="ProxyClient.md#Initialize" style="color:rgb(128)">进程初始化完毕</a> 事件或者在这个事件之后的任意方便的位置添加创建代码。
 <br/><br/>
-![创建浏览器](\image\readme-70.png)
+![创建浏览器](https://github.com/kirino17/ecef/raw/master/image/readme-70.png)
 <br/><br/>
 浏览器创建完成后事件 `浏览器创建完毕` 将会被触发。宿主程序可以在这个事件中获取并保存浏览器对象的引用。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-13.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-13.png)
 <br/><br/>
 
 ##### 打开
 如果用户在浏览器内点击了具有"target=_blank"的链接将将会触发 `浏览器将要打开` 事件。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-71.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-71.png)
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-72.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-72.png)
 <br/>
 
 ##### 关闭
@@ -247,7 +247,7 @@
 ```
 如果代理请求授权,事件 `浏览器请求用户身份验证` 会被调用。 如果 `是否为代理服务器` 参数为真, 则需要使用`认证回调`参数返回用户名和密码。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-20.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-20.png)
 <br/><br/>
 网络内容加载可能会因为代理而有延迟。为了更好的用户体验, 可以考虑让你的应用程序先显示一个闪屏, 等内容加载好了再通过meta refresh显示真实网页。可以指定`--no-proxy-server`禁用代理并做相关测试。代理延迟也可以通过Chrome浏览器重现, 方式是使用命令行参数 `--chrome-url=....`
 
@@ -255,38 +255,38 @@
 运行Javascript脚本通过 `水星框架` 支持。执行没有返回值的Javascript表达式使用方法 水星框架<a href="ProxyFrame.md#ExecuteJavaScript" style="color:rgb(128,0,0)">.执行脚本()</a> , 具有返回值的Javascript表达式则应当使用方法 水星框架<a href="ProxyFrame.md#ExecuteJavaScript2" style="color:rgb(128,0,0)">.执行脚本2()</a> 。<br/>
 运行没有返回值的Javascript表达式:
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-21.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-21.png)
 <br/><br/>
 
 运行具有返回值的Javascript表达式:
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-22.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-22.png)
 <br/><br/>
 
 ##### 下载(Download)
 当浏览器产生下载请求时( 可能是调用了方法 水星浏览器<a href="ProxyBrowser.md#StartDownload" style="color:rgb(128,0,0)">.启动下载</a> 或是 用户点击了资源URL ) 回调事件 <a href="ProxyClient.md#OnBeforeDownload" style="color:blue">浏览器即将下载</a> 将会被触发。执行参数回调 `下载项.保存到()` 方法允许下载资源并提供资源存储位置, 如果不希望浏览器下载此资源则忽略此下载请求。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-23.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-23.png)
 <br/><br/>
 如果下载请求被允许浏览器将会每隔一秒调用一次事件回调 `浏览器下载进度已更新` 以告知当前资源的下载状态。通过参数回调方法 `下载项.取消下载()` , `下载项.暂停下载()` , `下载项.恢复下载()` 提供资源下载管理。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-24.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-24.png)
 <br/><br/>
 
 ##### 上下文菜单(Context Menu)
 上下文菜单请求产生时由事件 `菜单即将打开` 传递, 如果希望实现自定义菜单则应该实现事件 `显示自定义菜单` 。参数类型 水星菜单信息 提供了菜单上下文信息这包括请求来源的框架信息以及期望创建的菜单类型等等。水星菜单 类型对象提供了一组菜单功能实现, 详细信息见类型说明。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-25.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-25.png)
 <br/><br/>
 如果希望使用自定义菜单则应实现 `显示自定义菜单` 事件
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-26.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-26.png)
 <br/><br/>
 
 ##### DOM
 水星浏览器提供HTML页面DOM结构查询支持。DOM结构的访问操作被包装在 水星网页文档对象 和 水星网页文档元素 类型中, 并由 水星框架<a href="ProxyFrame.md#VisitDOM" style="color:rgb(128,0,0)">.取文档对象()</a> 方法提供DOM结构访问入口。 
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-27.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-27.png)
 <br/><br/>
 水星浏览器除支持标准的DOM结构遍外还提供了一种更加简便的DOM结构访问方法, CSS 选择器。可以使用的选择器如下:<br/>
 
@@ -321,24 +321,24 @@
 
 一些例子:
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-28.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-28.png)
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-29.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-29.png)
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-30.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-30.png)
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-31.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-31.png)
 <br/><br/>
 
 ##### 隐身模式
 水星浏览器支持隐身模式访问, 隐身模式为不同浏览器对象间不共享同一个缓存设置和cookies存储, 并且浏览器缓存数据(除临时文件外)仅会保留在内存中, 不会写出到磁盘上, 也不会从磁盘中装载。隐身模式的使用非常的简单, 因为它只是一个开关参数, 在创建浏览器时提供。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-64.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-64.png)
 <br/><br/>
 隐身模式下所有的浏览器彼此隔离使用单独的缓存设置和cookies存储, 但是有例外情况, 如果一个浏览器是由另一个浏览器创建的则它们彼此共享一个缓存设置和cookis存储, 何为浏览器创建的浏览器呢? 比方说有 浏览器A 和 浏览器B , 浏览器A 是通过 水星铬浏览框<a href="ProxyClient.md#CreateBrowser" style="color:blue">.创建浏览器()</a> 函数创建的并使用了隐身模式, 而浏览器B则是由用户在浏览器A中点击连接后产生的浏览器, 则 浏览器B 共享 浏览器A 的缓存设置与cookies存储, 它们是同源的!
 如果希望获得某个浏览器的其它同源浏览器可使用方法 水星铬浏览框<a href="ProxyClient.md#GetSameOriginBrowser" style="color:blue">.取同源浏览器()</a> 获得。
 <br/><br/>
-![水星铬浏览框.浏览器将要加载资源](\image\readme-65.png)
+![水星铬浏览框.浏览器将要加载资源](https://github.com/kirino17/ecef/raw/master/image/readme-65.png)
 <br/><br/>
 
 ##### 偏好/首选项(Preference)
