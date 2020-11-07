@@ -10,14 +10,6 @@ public:
 	~ProxyValue();
 
 public:
-
-	///
-	// Creates a new object.
-	///
-	/*--cef()--*/
-	static shrewd_ptr<ProxyValue> Create();
-
-public:
     ///
     // Returns true if the underlying data is valid. This will always be true for
     // simple types. For complex types (binary, dictionary and list) the

@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyMenuModel.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyMenuModel.h>
 
 
@@ -32,18 +32,6 @@ void EDITIONF(ProxyMenuModel_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount
 	shrewd_ptr<ProxyMenuModel> ptr = (ProxyMenuModel*)*pArgInf[1].m_ppCompoundData;
 	if(ptr){ ptr->retain(); *pArgInf->m_ppCompoundData = ptr.get(); }
 	else { *pArgInf->m_ppCompoundData = NULL; }
-}
-
-extern "C"
-void EDITIONF(ProxyMenuModel_CreateMenuModel) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyMenuModel> result = ProxyMenuModel::CreateMenuModel();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
 }
 
 extern "C"
@@ -126,7 +114,7 @@ void EDITIONF(ProxyMenuModel_AddRadioItem) (PMDATA_INF pRetData, INT nArgCount, 
 extern "C"
 void EDITIONF(ProxyMenuModel_AddSubMenu) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyMenuModel> self = (ProxyMenuModel*)*pArgInf->m_ppCompoundData;
@@ -198,7 +186,7 @@ void EDITIONF(ProxyMenuModel_InsertRadioItemAt) (PMDATA_INF pRetData, INT nArgCo
 extern "C"
 void EDITIONF(ProxyMenuModel_InsertSubMenuAt) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyMenuModel> self = (ProxyMenuModel*)*pArgInf->m_ppCompoundData;
@@ -390,7 +378,7 @@ void EDITIONF(ProxyMenuModel_SetGroupIdAt) (PMDATA_INF pRetData, INT nArgCount, 
 extern "C"
 void EDITIONF(ProxyMenuModel_GetSubMenu) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyMenuModel> self = (ProxyMenuModel*)*pArgInf->m_ppCompoundData;
@@ -410,7 +398,7 @@ void EDITIONF(ProxyMenuModel_GetSubMenu) (PMDATA_INF pRetData, INT nArgCount, PM
 extern "C"
 void EDITIONF(ProxyMenuModel_GetSubMenuAt) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyMenuModel> self = (ProxyMenuModel*)*pArgInf->m_ppCompoundData;

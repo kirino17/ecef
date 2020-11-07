@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyContextMenuParams.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyContextMenuParams.h>
 
 
@@ -187,7 +187,10 @@ void EDITIONF(ProxyContextMenuParams_GetMisspelledWord) (PMDATA_INF pRetData, IN
 extern "C"
 void EDITIONF(ProxyContextMenuParams_GetDictionarySuggestions) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC, 8, 0);
+		InternalPointer[0] = 1;
+		InternalPointer[1] = 0;
+		pRetData->m_pCompoundData = InternalPointer;
 		return ;
 	}
 	shrewd_ptr<ProxyContextMenuParams> self = (ProxyContextMenuParams*)*pArgInf->m_ppCompoundData;

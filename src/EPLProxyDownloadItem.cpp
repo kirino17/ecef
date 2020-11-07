@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyDownloadItem.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyDownloadItem.h>
 
 
@@ -117,39 +117,21 @@ void EDITIONF(ProxyDownloadItem_GetReceivedBytes) (PMDATA_INF pRetData, INT nArg
 extern "C"
 void EDITIONF(ProxyDownloadItem_GetStartTime) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		pRetData->m_double = 0.0f;
 		return ;
 	}
 	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> result = self->GetStartTime();
-	if(result){
-	result->retain();
-	DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC,4,0);
-	*InternalPointer = (DWORD)result.get();
-	pRetData->m_pCompoundData = InternalPointer;
-}
-	else{
-	pRetData->m_pCompoundData=NULL;
-}
+	pRetData->m_double = self->GetStartTime();
 }
 
 extern "C"
 void EDITIONF(ProxyDownloadItem_GetEndTime) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		pRetData->m_double = 0.0f;
 		return ;
 	}
 	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> result = self->GetEndTime();
-	if(result){
-	result->retain();
-	DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC,4,0);
-	*InternalPointer = (DWORD)result.get();
-	pRetData->m_pCompoundData = InternalPointer;
-}
-	else{
-	pRetData->m_pCompoundData=NULL;
-}
+	pRetData->m_double = self->GetEndTime();
 }
 
 extern "C"
@@ -220,6 +202,44 @@ void EDITIONF(ProxyDownloadItem_GetMimeType) (PMDATA_INF pRetData, INT nArgCount
 	}
 	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
 	pRetData->m_pText = self->GetMimeType();
+}
+
+extern "C"
+void EDITIONF(ProxyDownloadItem_SaveTo) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
+	const char* argDownload_Path = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
+	bool argShow_Dialog = pArgInf[2].m_bool;
+	self->SaveTo(argDownload_Path,argShow_Dialog);
+}
+
+extern "C"
+void EDITIONF(ProxyDownloadItem_CancelDownload) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
+	self->CancelDownload();
+}
+
+extern "C"
+void EDITIONF(ProxyDownloadItem_PauseDownload) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
+	self->PauseDownload();
+}
+
+extern "C"
+void EDITIONF(ProxyDownloadItem_ResumeDownload) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyDownloadItem> self = (ProxyDownloadItem*)*pArgInf->m_ppCompoundData;
+	self->ResumeDownload();
 }
 
 

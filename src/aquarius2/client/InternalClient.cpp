@@ -5,17 +5,24 @@
 #include "../def/internalDef.h"
 #include "InternalCalculationVisitor.h"
 #include "InternalResponseFilter.h"
+#include "InternalDOMDocument.h"
+#include "InternalMessageRouterHandler.h"
 
 #pragma comment(lib,"user32.lib")
 
 namespace Local {
     CefRefPtr<InternalClient> shareInstance = nullptr;
+    InternalMessageRouterHandler messageRouterHandler;
 }
 
 InternalClient::InternalClient(shrewd_ptr<ProxyClient> client):
 	_proxyClient(client)
 {
-
+    CefMessageRouterConfig config;
+    config.js_query_function = L"cefQuery";
+    config.js_cancel_function = L"cefQueryCancel";
+    _messageRouter = CefMessageRouterBrowserSide::Create(config);
+    _messageRouter->AddHandler(&Local::messageRouterHandler, true);
 }
 
 InternalClient::~InternalClient() {
@@ -80,16 +87,15 @@ bool InternalClient::OnBeforePopup(CefRefPtr<CefBrowser> browser,
             tempTargetName,
             target_disposition,
             user_gesture,
-            new ProxyPopupFeatures(new CefPopupFeatures(popupFeatures)),
             winInfo,
             browserSetting,
-            new ProxyDictionaryValue(extra_info),
             nNoJavaScriptAccess);
-        if (nNoJavaScriptAccess) {
-            *no_javascript_access = true;
-        }
+
+        if (nNoJavaScriptAccess) *no_javascript_access = true;
         windowInfo.Set(*(CefWindowInfo*)winInfo->OriginPointer(), true);
         settings.Set(*(CefBrowserSettings*)browserSetting->OriginPointer(), true);
+    
+        _proxyClient->OnInternalOnBeforePopup(browser, (void**)&extra_info);
     }
 
     return result;
@@ -104,9 +110,8 @@ void InternalClient::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 bool InternalClient::DoClose(CefRefPtr<CefBrowser> browser) {
     bool result = false;
     if (_proxyClient) {
-        result = !(_proxyClient->DoClose(new ProxyBrowser(browser)));
+        result = _proxyClient->DoClose(new ProxyBrowser(browser));
     }
-
     if (result == false) {
         CefRefPtr<CefBrowserHost> host = browser->GetHost();
         HWND hWnd = host->GetWindowHandle();
@@ -117,6 +122,9 @@ bool InternalClient::DoClose(CefRefPtr<CefBrowser> browser) {
 }
 
 void InternalClient::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
+    
+    _messageRouter->OnBeforeClose(browser);
+    
     if (_proxyClient) {
         _proxyClient->OnBeforeClose(new ProxyBrowser(browser));
     }
@@ -196,24 +204,7 @@ void InternalClient::OnTitleChange(CefRefPtr<CefBrowser> browser,
 
 void InternalClient::OnFaviconURLChange(CefRefPtr<CefBrowser> browser,
     const std::vector<CefString>& icon_urls){
-    if (_proxyClient) {
-        assert(NewBuffer);
-        char* buffer = NULL;
-        if (icon_urls.size() > 0) {
-            buffer = StringArrayToBuffer(icon_urls, L"\r\n");
-        }
-        _proxyClient->OnFaviconURLChange(new ProxyBrowser(browser), buffer);
-        if(buffer) {
-            DeleteBuffer(buffer);
-        }
-    }
-}
 
-void InternalClient::OnFullscreenModeChange(CefRefPtr<CefBrowser> browser,
-    bool fullscreen){
-    if (_proxyClient) {
-        _proxyClient->OnFullscreenModeChange(new ProxyBrowser(browser), fullscreen);
-    }
 }
 
 bool InternalClient::OnTooltip(CefRefPtr<CefBrowser> browser, CefString& text){
@@ -252,14 +243,21 @@ bool InternalClient::OnConsoleMessage(CefRefPtr<CefBrowser> browser,
         const char* tempSource = NULL;
         USES_CONVERSION;
 
-        if (message.length() > 0) {
+        if (message.length() > 0 && message.length() <= 200) {
             tempMessage = W2A(message.c_str());
+        }
+        else if(message.length() > 200) {
+            tempMessage = ToAnsi(message.c_str(), message.length());
         }
         if (source.length() > 0) {
             tempSource = W2A(source.c_str());
         }
         result = _proxyClient->OnConsoleMessage(new ProxyBrowser(browser),
             (int)level, tempMessage, tempSource, line);
+
+        if (message.length() > 200) {
+            DeleteBuffer((void*)tempMessage); 
+        }
     }
     return result;
 }
@@ -267,9 +265,6 @@ bool InternalClient::OnConsoleMessage(CefRefPtr<CefBrowser> browser,
 bool InternalClient::OnAutoResize(CefRefPtr<CefBrowser> browser,
     const CefSize& new_size){
     bool result = false;
-    if (_proxyClient) {
-        result = _proxyClient->OnAutoResize(new ProxyBrowser(browser), new_size.width, new_size.height);
-    }
     return result;
 }
 
@@ -277,26 +272,6 @@ void InternalClient::OnLoadingProgressChange(CefRefPtr<CefBrowser> browser,
     double progress){
     if (_proxyClient) {
         _proxyClient->OnLoadingProgressChange(new ProxyBrowser(browser), progress);
-    }
-}
-
-void InternalClient::OnTakeFocus(CefRefPtr<CefBrowser> browser, bool next) {
-    if (_proxyClient) {
-        _proxyClient->OnTakeFocus(new ProxyBrowser(browser), next);
-    }
-}
-
-bool InternalClient::OnSetFocus(CefRefPtr<CefBrowser> browser, FocusSource source) {
-    bool result = false;
-    if (_proxyClient) {
-        result = _proxyClient->OnSetFocus(new ProxyBrowser(browser), source);
-    }
-    return result;
-}
-
-void InternalClient::OnGotFocus(CefRefPtr<CefBrowser> browser) {
-    if (_proxyClient) {
-        _proxyClient->OnGotFocus(new ProxyBrowser(browser));
     }
 }
 
@@ -369,43 +344,6 @@ void InternalClient::OnDialogClosed(CefRefPtr<CefBrowser> browser) {
     }
 }
 
-bool InternalClient::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
-    CefRefPtr<CefFrame> frame,
-    CefRefPtr<CefRequest> request,
-    bool user_gesture,
-    bool is_redirect) {
-    bool result = false;
-    if (_proxyClient) {
-        result = _proxyClient->OnBeforeBrowse(
-            new ProxyBrowser(browser),
-            new ProxyFrame(frame),
-            new ProxyRequest(request),
-            user_gesture, is_redirect);
-    }
-    return result;
- }
-
-bool InternalClient::OnOpenURLFromTab(CefRefPtr<CefBrowser> browser,
-    CefRefPtr<CefFrame> frame,
-    const CefString& target_url,
-    CefRequestHandler::WindowOpenDisposition target_disposition,
-    bool user_gesture) {
-    bool result = false;
-    if (_proxyClient) {
-        const char* strValue = NULL;
-        USES_CONVERSION;
-        if (!target_url.empty()) {
-            strValue = W2A(target_url.c_str());
-        }
-
-        result = _proxyClient->OnOpenURLFromTab(
-            new ProxyBrowser(browser),
-            new ProxyFrame(frame),
-            strValue,target_disposition, user_gesture);
-    }
-    return result;
- }
-
 CefRefPtr<CefResourceRequestHandler> InternalClient::GetResourceRequestHandler(
      CefRefPtr<CefBrowser> browser,
      CefRefPtr<CefFrame> frame,
@@ -414,21 +352,24 @@ CefRefPtr<CefResourceRequestHandler> InternalClient::GetResourceRequestHandler(
      bool is_download,
      const CefString& request_initiator,
      bool& disable_default_handling) {
-    bool result = false;
-    if (_proxyClient) {
-        const char* strValue = NULL;
-        USES_CONVERSION;
-        if (!request_initiator.empty()) {
-            strValue = W2A(request_initiator.c_str());
-        }
+    //bool result = false;
+    //if (_proxyClient) {
+    //    const char* strValue = NULL;
+    //    USES_CONVERSION;
+    //    if (!request_initiator.empty()) {
+    //        strValue = W2A(request_initiator.c_str());
+    //    }
 
-        result = _proxyClient->GetResourceRequestHandler(
-            new ProxyBrowser(browser),
-            new ProxyFrame(frame),
-            new ProxyRequest(request),
-            is_navigation, is_download, strValue);
-    }
-    return result ? this : nullptr;
+    //    result = _proxyClient->GetResourceRequestHandler(
+    //        new ProxyBrowser(browser),
+    //        new ProxyFrame(frame),
+    //        new ProxyRequest(request),
+    //        is_navigation, is_download, strValue);
+
+
+    //}
+    //return result ? this : nullptr;
+    return this;
 }
 
 bool InternalClient::GetAuthCredentials(CefRefPtr<CefBrowser> browser,
@@ -471,46 +412,40 @@ bool InternalClient::OnQuotaRequest(CefRefPtr<CefBrowser> browser,
     const CefString& origin_url,
     int64 new_size,
     CefRefPtr<CefRequestCallback> callback) {
+    return false;
+}
+
+void InternalClient::OnPluginCrashed(CefRefPtr<CefBrowser> browser,
+    const CefString& plugin_path) {
+
+}
+
+void InternalClient::OnRenderViewReady(CefRefPtr<CefBrowser> browser) {
+}
+
+bool InternalClient::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
+    CefRefPtr<CefFrame> frame,
+    CefRefPtr<CefRequest> request,
+    bool user_gesture,
+    bool is_redirect) {
+    _messageRouter->OnBeforeBrowse(browser, frame);
+
     bool result = false;
     if (_proxyClient) {
-        const char* strValue0 = NULL;
-        USES_CONVERSION;
-        if (!origin_url.empty()) {
-            strValue0 = W2A(origin_url.c_str());
-        }
-
-        result = _proxyClient->OnQuotaRequest(
+        result = _proxyClient->OnBeforeBrowse(
             new ProxyBrowser(browser),
-            strValue0, new_size, 
-            new ProxyRequestCallback(callback));
+            new ProxyFrame(frame),
+            new ProxyRequest(request),
+            user_gesture,
+            is_redirect
+        );
     }
     return result;
 }
 
-
-void InternalClient::OnPluginCrashed(CefRefPtr<CefBrowser> browser,
-    const CefString& plugin_path) {
-    if (_proxyClient) {
-        const char* strValue0 = NULL;
-        USES_CONVERSION;
-        if (!plugin_path.empty()) {
-            strValue0 = W2A(plugin_path.c_str());
-        }
-        _proxyClient->OnPluginCrashed(new ProxyBrowser(browser), strValue0);
-    }
-}
-
-void InternalClient::OnRenderViewReady(CefRefPtr<CefBrowser> browser) {
-    if (_proxyClient) {
-        _proxyClient->OnRenderViewReady(new ProxyBrowser(browser));
-    }
-}
-
 void InternalClient::OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser,
     TerminationStatus status) {
-    if (_proxyClient) {
-        _proxyClient->OnRenderProcessTerminated(new ProxyBrowser(browser), status);
-    }
+    _messageRouter->OnRenderProcessTerminated(browser);
 }
 
 CefResourceRequestHandler::ReturnValue InternalClient::OnBeforeResourceLoad(
@@ -523,8 +458,18 @@ CefResourceRequestHandler::ReturnValue InternalClient::OnBeforeResourceLoad(
         result = (ReturnValue)_proxyClient->OnBeforeResourceLoad(
             new ProxyBrowser(browser),
             new ProxyFrame(frame),
-            new ProxyRequest(request),
-            new ProxyRequestCallback(callback));
+            new ProxyRequest(request));
+
+        if (result == RV_CANCEL || result == RV_CONTINUE) {
+            result =(ReturnValue)(1 - result);
+        }
+
+        if (result != RV_CANCEL) {
+            const wchar_t* useragent = _proxyClient->GetUserAgentOverride(browser);
+            if (useragent != nullptr && lstrlenW(useragent) > 0) {
+                request->SetHeaderByName(L"User-Agent", useragent, true);
+            }
+        }
     }
     return result;
  }
@@ -536,15 +481,27 @@ void InternalClient::OnResourceRedirect(CefRefPtr<CefBrowser> browser,
     CefString& new_url) {
     if (_proxyClient) {
         char* setUrl = NULL;
+
+        if (!new_url.empty()) {
+            setUrl = ToAnsi(new_url.c_str(), new_url.length());
+        }
+
         _proxyClient->OnResourceRedirect(
             new ProxyBrowser(browser),
             new ProxyFrame(frame),
             new ProxyRequest(request),
             new ProxyResponse( response ), setUrl);
+
         if (setUrl) {
-            USES_CONVERSION;
-            new_url = A2W(setUrl);
+            wchar_t* buffer = ToUnicode(setUrl, strlen(setUrl));
+            CefString target = buffer;
+
+            if (target != new_url) {
+                new_url = target;
+            }
+
             DeleteBuffer(setUrl);
+            DeleteBuffer(buffer);
         }
     }
  }
@@ -577,6 +534,13 @@ CefRefPtr<CefResponseFilter> InternalClient::GetResourceResponseFilter(
             new ProxyRequest(request),
             new ProxyResponse(response)
         );
+       //TCHAR text[2048];
+       //CefString url = request->GetURL();
+
+       //wsprintf(text, L"GetResourceResponseFilter %s", url.c_str());
+       //OutputDebugString(text);
+
+
        if (enable) {
            result = new InternalResponseFilter(browser, request->GetURL(), response->GetMimeType());
        }
@@ -591,6 +555,14 @@ void InternalClient::OnResourceLoadComplete(CefRefPtr<CefBrowser> browser,
     CefRefPtr<CefResponse> response,
     URLRequestStatus status,
     int64 received_content_length) {
+
+    //TCHAR text[260];
+    //CefString url = request->GetURL();
+    //OutputDebugString(url.c_str());
+    //wsprintf(text, L"OnResourceLoadComplete /// status = %d, length = %I64d", status, received_content_length);
+    //OutputDebugString(text);
+
+
     if (_proxyClient) {
         _proxyClient->OnResourceLoadComplete(
             new ProxyBrowser(browser),
@@ -605,44 +577,46 @@ void InternalClient::OnProtocolExecution(CefRefPtr<CefBrowser> browser,
     CefRefPtr<CefFrame> frame,
     CefRefPtr<CefRequest> request,
     bool& allow_os_execution) {
-    if (_proxyClient) {
-        int nAllowOsExecution = (int)allow_os_execution;
-        _proxyClient->OnProtocolExecution(
-            new ProxyBrowser(browser),
-            new ProxyFrame(frame),
-            new ProxyRequest(request),
-            nAllowOsExecution);
-    }
  }
 
 bool InternalClient::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
     CefRefPtr<CefFrame> frame,
     CefProcessId source_process,
     CefRefPtr<CefProcessMessage> message) {
-    CefString string = message->GetName();
-    if (string == L"IPC_V8_RESULT") {
+    CefString name = message->GetName();
+
+    if (_messageRouter->OnProcessMessageReceived(browser, frame, source_process, message)) {
+        return true;
+    }
+
+    if (name == L"IPC_V8_RESULT") {
         CefRefPtr<CefListValue> arguments = message->GetArgumentList();
-        if (arguments->GetSize() < 4) {
+        if (arguments->GetSize() < 3) {
             return false;
         }
-        DispatchResult(browser, frame, arguments);
+        DispatchJsResult(browser, frame, arguments);
+        return true;
+    }
+    else if (name == L"IPC_DOM_RESULT") {
+        CefRefPtr<CefListValue> arguments = message->GetArgumentList();
+        InternalDOMDocument::OnDomMessageReceived(frame, arguments);
         return true;
     }
     return false;
 }
 
-void InternalClient::DispatchResult(CefRefPtr<CefBrowser> browser,
+void InternalClient::DispatchJsResult(CefRefPtr<CefBrowser> browser,
     CefRefPtr<CefFrame> frame,
     CefRefPtr<CefListValue> arguments) {
-    CefRefPtr<InternalCalculationVisitior> calculation = (InternalCalculationVisitior*)arguments->GetInt(1);
+    CefRefPtr<InternalCalculationVisitior> calculation = (InternalCalculationVisitior*)arguments->GetInt(0);
     CefRefPtr<CefValue> value = nullptr;
     if (calculation) { 
-        if (arguments->GetBool(2)) {
-            calculation->SetResult(arguments->GetValue(3));
+        if (arguments->GetBool(1)) {
+            calculation->SetResult(arguments->GetValue(2));
         }
         else {
             value = CefValue::Create();
-            value->SetString(arguments->GetString(3));
+            value->SetString(arguments->GetString(2));
             calculation->SetException(value);
         }
         calculation->Awake();
@@ -690,6 +664,47 @@ bool InternalClient::OnFileDialog(CefRefPtr<CefBrowser> browser,
     return result;
 }
 
+void InternalClient::OnBeforeDownload(
+    CefRefPtr<CefBrowser> browser,
+    CefRefPtr<CefDownloadItem> download_item,
+    const CefString& suggested_name,
+    CefRefPtr<CefBeforeDownloadCallback> callback) {
+    if (_proxyClient) {
+        const char* szSuggestedName = NULL;
+
+        USES_CONVERSION;
+        if (!suggested_name.empty()) {
+            szSuggestedName = W2A(suggested_name.c_str());
+        }
+
+        shrewd_ptr<ProxyDownloadItem> download = new ProxyDownloadItem(download_item);
+        download->SetBeforeDownloadCallback(callback);
+
+        _proxyClient->OnBeforeDownload(
+            new ProxyBrowser(browser),
+            download,
+            szSuggestedName);
+
+        download->SetBeforeDownloadCallback(nullptr);
+    }
+}
+
+void InternalClient::OnDownloadUpdated(CefRefPtr<CefBrowser> browser,
+    CefRefPtr<CefDownloadItem> download_item,
+    CefRefPtr<CefDownloadItemCallback> callback) {
+    if (_proxyClient) {
+
+        shrewd_ptr<ProxyDownloadItem> download = new ProxyDownloadItem(download_item);
+        download->SetDownloadCallback(callback);
+
+        _proxyClient->OnDownloadUpdated(
+            new ProxyBrowser(browser),
+            download);
+
+        download->SetDownloadCallback(nullptr);
+    }
+}
+
 void InternalClient::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
     CefRefPtr<CefFrame> frame,
     CefRefPtr<CefContextMenuParams> params,
@@ -698,8 +713,8 @@ void InternalClient::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
         _proxyClient->OnBeforeContextMenu(
             new ProxyBrowser(browser),
             new ProxyFrame(frame),
-            new ProxyContextMenuParams( params ),
-            new ProxyMenuModel( model )
+            new ProxyContextMenuParams(params),
+            new ProxyMenuModel(model)
         );
     }
 }
@@ -733,9 +748,7 @@ bool InternalClient::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
             new ProxyBrowser(browser),
             new ProxyFrame(frame),
             new ProxyContextMenuParams(params),
-            command_id,
-            event_flags
-        );
+            command_id,event_flags);
     }
     return result;
 }
@@ -749,33 +762,9 @@ void InternalClient::OnContextMenuDismissed(CefRefPtr<CefBrowser> browser,
     }
 }
 
-void InternalClient::OnBeforeDownload(
-    CefRefPtr<CefBrowser> browser,
-    CefRefPtr<CefDownloadItem> download_item,
-    const CefString& suggested_name,
-    CefRefPtr<CefBeforeDownloadCallback> callback) {
+void InternalClient::OnFullscreenModeChange(CefRefPtr<CefBrowser> browser,
+    bool fullscreen) {
     if (_proxyClient) {
-        const char* szSuggestedName = NULL;
-        USES_CONVERSION;
-        if (!suggested_name.empty()) {
-            szSuggestedName = W2A(suggested_name.c_str());
-        }
-
-        _proxyClient->OnBeforeDownload(
-            new ProxyBrowser(browser),
-            new ProxyDownloadItem(browser),
-            szSuggestedName,
-            new ProxyBeforeDownloadCallback( callback ));
-    }
-}
-
-void InternalClient::OnDownloadUpdated(CefRefPtr<CefBrowser> browser,
-    CefRefPtr<CefDownloadItem> download_item,
-    CefRefPtr<CefDownloadItemCallback> callback) {
-    if (_proxyClient) {
-        _proxyClient->OnDownloadUpdated(
-            new ProxyBrowser(browser),
-            new ProxyDownloadItem(browser),
-            new ProxyDownloadItemCallback(callback));
+        _proxyClient->OnFullscreenModeChange(new ProxyBrowser(browser), fullscreen);
     }
 }

@@ -7,11 +7,6 @@ public:
 	~ProxyMenuModel();
 
 public:
-    ///
-     // Create a new MenuModel with the specified |delegate|.
-     ///
-     /*--cef()--*/
-    static shrewd_ptr<ProxyMenuModel> CreateMenuModel();
 
     ///
     // Returns true if this menu is a submenu.

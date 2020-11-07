@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cmake-toolchains(7) &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="next" title="cmake-variables(7)" href="cmake-variables.7.html" />
+    <link rel="prev" title="cmake-qt(7)" href="cmake-qt.7.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cmake-variables.7.html" title="cmake-variables(7)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmake-qt.7.html" title="cmake-qt(7)"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="manual:cmake-toolchains(7)"></span><div class="section" id="cmake-toolchains-7">
+<h1><a class="toc-backref" href="#id1">cmake-toolchains(7)</a><a class="headerlink" href="#cmake-toolchains-7" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cmake-toolchains-7" id="id1">cmake-toolchains(7)</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#languages" id="id3">Languages</a></li>
+<li><a class="reference internal" href="#variables-and-properties" id="id4">Variables and Properties</a></li>
+<li><a class="reference internal" href="#toolchain-features" id="id5">Toolchain Features</a></li>
+<li><a class="reference internal" href="#cross-compiling" id="id6">Cross Compiling</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>CMake uses a toolchain of utilities to compile, link libraries and create
+archives, and other tasks to drive the build. The toolchain utilities available
+are determined by the languages enabled. In normal builds, CMake automatically
+determines the toolchain for host builds based on system introspection and
+defaults. In cross-compiling scenarios, a toolchain file may be specified
+with information about compiler and utility paths.</p>
+</div>
+<div class="section" id="languages">
+<h2><a class="toc-backref" href="#id3">Languages</a><a class="headerlink" href="#languages" title="Permalink to this headline">¶</a></h2>
+<p>Languages are enabled by the <a class="reference internal" href="../command/project.html#command:project" title="project"><tt class="xref cmake cmake-command docutils literal"><span class="pre">project()</span></tt></a> command.  Language-specific
+built-in variables, such as
+<a class="reference internal" href="../variable/CMAKE_LANG_COMPILER.html#variable:CMAKE_&lt;LANG&gt;_COMPILER" title="CMAKE_&lt;LANG&gt;_COMPILER"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_CXX_COMPILER</span></tt></a>,
+<a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_ID.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_ID" title="CMAKE_&lt;LANG&gt;_COMPILER_ID"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_CXX_COMPILER_ID</span></tt></a> etc are set by
+invoking the <a class="reference internal" href="../command/project.html#command:project" title="project"><tt class="xref cmake cmake-command docutils literal"><span class="pre">project()</span></tt></a> command.  If no project command
+is in the top-level CMakeLists file, one will be implicitly generated. By default
+the enabled languages are C and CXX:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">project</span><span class="p">(</span><span class="s">C_Only</span> <span class="s">C</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A special value of NONE can also be used with the <a class="reference internal" href="../command/project.html#command:project" title="project"><tt class="xref cmake cmake-command docutils literal"><span class="pre">project()</span></tt></a> command
+to enable no languages:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">project</span><span class="p">(</span><span class="s">MyProject</span> <span class="s">NONE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../command/enable_language.html#command:enable_language" title="enable_language"><tt class="xref cmake cmake-command docutils literal"><span class="pre">enable_language()</span></tt></a> command can be used to enable languages after the
+<a class="reference internal" href="../command/project.html#command:project" title="project"><tt class="xref cmake cmake-command docutils literal"><span class="pre">project()</span></tt></a> command:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">enable_language</span><span class="p">(</span><span class="s">CXX</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When a language is enabled, CMake finds a compiler for that language, and
+determines some information, such as the vendor and version of the compiler,
+the target architecture and bitwidth, the location of corresponding utilities
+etc.</p>
+<p>The <a class="reference internal" href="../prop_gbl/ENABLED_LANGUAGES.html#prop_gbl:ENABLED_LANGUAGES" title="ENABLED_LANGUAGES"><tt class="xref cmake cmake-prop_gbl docutils literal"><span class="pre">ENABLED_LANGUAGES</span></tt></a> global property contains the languages which
+are currently enabled.</p>
+</div>
+<div class="section" id="variables-and-properties">
+<h2><a class="toc-backref" href="#id4">Variables and Properties</a><a class="headerlink" href="#variables-and-properties" title="Permalink to this headline">¶</a></h2>
+<p>Several variables relate to the language components of a toolchain which are
+enabled. <a class="reference internal" href="../variable/CMAKE_LANG_COMPILER.html#variable:CMAKE_&lt;LANG&gt;_COMPILER" title="CMAKE_&lt;LANG&gt;_COMPILER"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER</span></tt></a> is the full path to the compiler used
+for <tt class="docutils literal"><span class="pre">&lt;LANG&gt;</span></tt>. <a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_ID.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_ID" title="CMAKE_&lt;LANG&gt;_COMPILER_ID"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER_ID</span></tt></a> is the identifier used
+by CMake for the compiler and <a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_VERSION.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_VERSION" title="CMAKE_&lt;LANG&gt;_COMPILER_VERSION"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER_VERSION</span></tt></a> is the
+version of the compiler.</p>
+<p>The <a class="reference internal" href="../variable/CMAKE_LANG_FLAGS.html#variable:CMAKE_&lt;LANG&gt;_FLAGS" title="CMAKE_&lt;LANG&gt;_FLAGS"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_FLAGS</span></tt></a> variables and the configuration-specific
+equivalents contain flags that will be added to the compile command when
+compiling a file of a particular language.</p>
+<p>As the linker is invoked by the compiler driver, CMake needs a way to determine
+which compiler to use to invoke the linker. This is calculated by the
+<a class="reference internal" href="../prop_sf/LANGUAGE.html#prop_sf:LANGUAGE" title="LANGUAGE"><tt class="xref cmake cmake-prop_sf docutils literal"><span class="pre">LANGUAGE</span></tt></a> of source files in the target, and in the case of static
+libraries, the language of the dependent libraries. The choice CMake makes may
+be overridden with the <a class="reference internal" href="../prop_tgt/LINKER_LANGUAGE.html#prop_tgt:LINKER_LANGUAGE" title="LINKER_LANGUAGE"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINKER_LANGUAGE</span></tt></a> target property.</p>
+</div>
+<div class="section" id="toolchain-features">
+<h2><a class="toc-backref" href="#id5">Toolchain Features</a><a class="headerlink" href="#toolchain-features" title="Permalink to this headline">¶</a></h2>
+<p>CMake provides the <a class="reference internal" href="../command/try_compile.html#command:try_compile" title="try_compile"><tt class="xref cmake cmake-command docutils literal"><span class="pre">try_compile()</span></tt></a> command and wrapper macros such as
+<a class="reference internal" href="../module/CheckCXXSourceCompiles.html#module:CheckCXXSourceCompiles" title="CheckCXXSourceCompiles"><tt class="xref cmake cmake-module docutils literal"><span class="pre">CheckCXXSourceCompiles</span></tt></a>, <a class="reference internal" href="../module/CheckCXXSymbolExists.html#module:CheckCXXSymbolExists" title="CheckCXXSymbolExists"><tt class="xref cmake cmake-module docutils literal"><span class="pre">CheckCXXSymbolExists</span></tt></a> and
+<a class="reference internal" href="../module/CheckIncludeFile.html#module:CheckIncludeFile" title="CheckIncludeFile"><tt class="xref cmake cmake-module docutils literal"><span class="pre">CheckIncludeFile</span></tt></a> to test capability and availability of various
+toolchain features. These APIs test the toolchain in some way and cache the
+result so that the test does not have to be performed again the next time
+CMake runs.</p>
+<p>Some toolchain features have built-in handling in CMake, and do not require
+compile-tests. For example, <a class="reference internal" href="../prop_tgt/POSITION_INDEPENDENT_CODE.html#prop_tgt:POSITION_INDEPENDENT_CODE" title="POSITION_INDEPENDENT_CODE"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">POSITION_INDEPENDENT_CODE</span></tt></a> allows
+specifying that a target should be built as position-independent code, if
+the compiler supports that feature. The <a class="reference internal" href="../prop_tgt/LANG_VISIBILITY_PRESET.html#prop_tgt:&lt;LANG&gt;_VISIBILITY_PRESET" title="&lt;LANG&gt;_VISIBILITY_PRESET"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">&lt;LANG&gt;_VISIBILITY_PRESET</span></tt></a>
+and <a class="reference internal" href="../prop_tgt/VISIBILITY_INLINES_HIDDEN.html#prop_tgt:VISIBILITY_INLINES_HIDDEN" title="VISIBILITY_INLINES_HIDDEN"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">VISIBILITY_INLINES_HIDDEN</span></tt></a> target properties add flags for
+hidden visibility, if supported by the compiler.</p>
+</div>
+<div class="section" id="cross-compiling">
+<span id="cross-compiling-toolchain"></span><h2><a class="toc-backref" href="#id6">Cross Compiling</a><a class="headerlink" href="#cross-compiling" title="Permalink to this headline">¶</a></h2>
+<p>If <a class="reference internal" href="cmake.1.html#manual:cmake(1)" title="cmake(1)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake(1)</span></tt></a> is invoked with the command line parameter
+<tt class="docutils literal"><span class="pre">-DCMAKE_TOOLCHAIN_FILE=path/to/file</span></tt>, the file will be loaded early to set
+values for the compilers. A typical cross-compiling toolchain has content such
+as:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSTEM_NAME</span> <span class="s">Linux</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSROOT</span> <span class="s">/home/devel/rasp-pi-rootfs</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_STAGING_PREFIX</span> <span class="s">/home/devel/stage</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER</span> <span class="s">/home/devel/gcc-4.7-linaro-rpi-gnueabihf/bin/arm-linux-gnueabihf-gcc</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER</span> <span class="s">/home/devel/gcc-4.7-linaro-rpi-gnueabihf/bin/arm-linux-gnueabihf-g++</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_PROGRAM</span> <span class="s">NEVER</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_LIBRARY</span> <span class="s">ONLY</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_INCLUDE</span> <span class="s">ONLY</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_PACKAGE</span> <span class="s">ONLY</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../variable/CMAKE_SYSTEM_NAME.html#variable:CMAKE_SYSTEM_NAME" title="CMAKE_SYSTEM_NAME"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_SYSTEM_NAME</span></tt></a> is the CMake-identifier of the target platform
+to build for.</p>
+<p>The <a class="reference internal" href="../variable/CMAKE_SYSROOT.html#variable:CMAKE_SYSROOT" title="CMAKE_SYSROOT"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_SYSROOT</span></tt></a> is optional, and may be specified if a sysroot
+is available.</p>
+<p>The <a class="reference internal" href="../variable/CMAKE_STAGING_PREFIX.html#variable:CMAKE_STAGING_PREFIX" title="CMAKE_STAGING_PREFIX"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_STAGING_PREFIX</span></tt></a> is also optional. It may be used to specify
+a path on the host to install to. The <a class="reference internal" href="../variable/CMAKE_INSTALL_PREFIX.html#variable:CMAKE_INSTALL_PREFIX" title="CMAKE_INSTALL_PREFIX"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_INSTALL_PREFIX</span></tt></a> is always
+the runtime installation location, even when cross-compiling.</p>
+<p>The <a class="reference internal" href="../variable/CMAKE_LANG_COMPILER.html#variable:CMAKE_&lt;LANG&gt;_COMPILER" title="CMAKE_&lt;LANG&gt;_COMPILER"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER</span></tt></a> variables may be set to full paths, or to
+names of compilers to search for in standard locations. In cases where CMake does
+not have enough information to extract information from the compiler, the
+<a class="reference internal" href="../module/CMakeForceCompiler.html#module:CMakeForceCompiler" title="CMakeForceCompiler"><tt class="xref cmake cmake-module docutils literal"><span class="pre">CMakeForceCompiler</span></tt></a> module can be used to bypass some of the checks.</p>
+<p>CMake <tt class="docutils literal"><span class="pre">find_*</span></tt> commands will look in the sysroot, and the <a class="reference internal" href="../variable/CMAKE_FIND_ROOT_PATH.html#variable:CMAKE_FIND_ROOT_PATH" title="CMAKE_FIND_ROOT_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_FIND_ROOT_PATH</span></tt></a>
+entries by default in all cases, as well as looking in the host system root prefix.
+Although this can be controlled on a case-by-case basis, when cross-compiling, it
+can be useful to exclude looking in either the host or the target for particular
+artifacts. Generally, includes, libraries and packages should be found in the
+target system prefixes, whereas executables which must be run as part of the build
+should be found only on the host and not on the target. This is the purpose of
+the <tt class="docutils literal"><span class="pre">CMAKE_FIND_ROOT_PATH_MODE_*</span></tt> variables.</p>
+<p>Some compilers are inherently cross compilers, such as Clang and the QNX QCC
+compiler. The <a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_TARGET.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_TARGET" title="CMAKE_&lt;LANG&gt;_COMPILER_TARGET"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER_TARGET</span></tt></a> can be set to pass a
+value to those supported compilers when compiling:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSTEM_NAME</span> <span class="s">Linux</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">triple</span> <span class="s">arm-linux-gnueabihf</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER</span> <span class="s">clang</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER_TARGET</span> <span class="o">${</span><span class="nv">triple</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER</span> <span class="s">clang++</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER_TARGET</span> <span class="o">${</span><span class="nv">triple</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or, for QCC:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSTEM_NAME</span> <span class="s">QNX</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">arch</span> <span class="s">gcc_ntoarmv7le</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER</span> <span class="s">qcc</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER_TARGET</span> <span class="o">${</span><span class="nv">arch</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER</span> <span class="s">QCC</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER_TARGET</span> <span class="o">${</span><span class="nv">arch</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly, some compilers do not ship their own supplementary utilities
+such as linkers, but provide a way to specify the location of the external
+toolchain which will be used by the compiler driver. The
+<a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_EXTERNAL_TOOLCHAIN.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_EXTERNAL_TOOLCHAIN" title="CMAKE_&lt;LANG&gt;_COMPILER_EXTERNAL_TOOLCHAIN"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER_EXTERNAL_TOOLCHAIN</span></tt></a> variable can be set in a
+toolchain file to pass the path to the compiler driver.</p>
+<p>The <a class="reference internal" href="../variable/CMAKE_CROSSCOMPILING.html#variable:CMAKE_CROSSCOMPILING" title="CMAKE_CROSSCOMPILING"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_CROSSCOMPILING</span></tt></a> variable is set to true when CMake is
+cross-compiling.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cmake-toolchains(7)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#languages">Languages</a></li>
+<li><a class="reference internal" href="#variables-and-properties">Variables and Properties</a></li>
+<li><a class="reference internal" href="#toolchain-features">Toolchain Features</a></li>
+<li><a class="reference internal" href="#cross-compiling">Cross Compiling</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmake-qt.7.html"
+                        title="previous chapter">cmake-qt(7)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cmake-variables.7.html"
+                        title="next chapter">cmake-variables(7)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/manual/cmake-toolchains.7.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cmake-variables.7.html" title="cmake-variables(7)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmake-qt.7.html" title="cmake-qt(7)"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

@@ -6,10 +6,10 @@
 
 #define DECL_DATA_TYPE_ProxyCookie \
 	{ /*9*/ \
-		/*m_szName*/		 _WT("ChromiumCOOKIE"), \
+		/*m_szName*/		 _WT("水星会话凭证"), \
 		/*m_szEgName*/		 _WT("ProxyCookie"), \
 		/*m_szExplain*/		 _WT("cookie 信息"), \
-		/*m_nCmdCount*/		 25, \
+		/*m_nCmdCount*/		 24, \
 		/*m_pnCmdsIndex*/		 s_nProxyCookieElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -33,7 +33,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetValue ** 1 **/ \
 		/*name*/	 _WT("值"), \
@@ -42,7 +42,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetDomain ** 2 **/ \
 		/*name*/	 _WT("域值"), \
@@ -51,7 +51,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetPath ** 3 **/ \
 		/*name*/	 _WT("路径"), \
@@ -60,7 +60,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetSecure ** 4 **/ \
 		/*name*/	 _WT("安全性"), \
@@ -69,7 +69,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetHttponly ** 5 **/ \
 		/*name*/	 _WT("httponly"), \
@@ -78,25 +78,25 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetCreation ** 6 **/ \
 		/*name*/	 _WT("创建时间"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*type*/	 SDT_DOUBLE, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetLastAccess ** 7 **/ \
 		/*name*/	 _WT("最后访问时间"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*type*/	 SDT_DOUBLE, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetHasExpires ** 8 **/ \
 		/*name*/	 _WT("值"), \
@@ -105,16 +105,16 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyCookie::SetExpires ** 9 **/ \
 		/*name*/	 _WT("过期时间"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*type*/	 SDT_DOUBLE, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -164,20 +164,6 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("创建对象"),\
-		/*egname*/	_WT("Create"), \
-		/*explain*/	_WT("创建对象实例, 非静态对象, 需要调用此函数后才能够有效访问。"), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	MAKELONG(10,0),  /*shrewd_ptr<ProxyCookie>*/ \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	0, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
-	},\
-	{ /*4*/ \
 		/*ccname*/	_WT("是否有效"),\
 		/*egname*/	_WT("IsValid"), \
 		/*explain*/	_WT("此函数检查本类中的对象实例是否有效。"), \
@@ -191,8 +177,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*5*/ \
-		/*ccname*/	_WT("设置名称"),\
+	{ /*4*/ \
+		/*ccname*/	_WT("置名称"),\
 		/*egname*/	_WT("SetName"), \
 		/*explain*/	_WT("设置 cookie 名称。"), \
 		/*category*/	-1, \
@@ -205,10 +191,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*6*/ \
-		/*ccname*/	_WT("获取名称"),\
+	{ /*5*/ \
+		/*ccname*/	_WT("取名称"),\
 		/*egname*/	_WT("GetName"), \
-		/*explain*/	_WT("获取 cookie 名称。"), \
+		/*explain*/	_WT("取 cookie 名称。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -219,8 +205,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*7*/ \
-		/*ccname*/	_WT("设置值"),\
+	{ /*6*/ \
+		/*ccname*/	_WT("置值"),\
 		/*egname*/	_WT("SetValue"), \
 		/*explain*/	_WT("设置 cookie 值。"), \
 		/*category*/	-1, \
@@ -233,10 +219,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*8*/ \
-		/*ccname*/	_WT("获取值"),\
+	{ /*7*/ \
+		/*ccname*/	_WT("取值"),\
 		/*egname*/	_WT("GetValue"), \
-		/*explain*/	_WT("获取 cookie 值。"), \
+		/*explain*/	_WT("取 cookie 值。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -247,8 +233,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*9*/ \
-		/*ccname*/	_WT("设置域"),\
+	{ /*8*/ \
+		/*ccname*/	_WT("置域"),\
 		/*egname*/	_WT("SetDomain"), \
 		/*explain*/	_WT("如果域值为空, 将创建主机cookie 而不是域cookie。域cookie应该以\".\"开头进行设置。并且对子域可见, 而对主机cookie则不可见。"), \
 		/*category*/	-1, \
@@ -261,8 +247,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*10*/ \
-		/*ccname*/	_WT("获取域"),\
+	{ /*9*/ \
+		/*ccname*/	_WT("取域"),\
 		/*egname*/	_WT("GetDomain"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -275,10 +261,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*11*/ \
-		/*ccname*/	_WT("设置路径"),\
+	{ /*10*/ \
+		/*ccname*/	_WT("置路径"),\
 		/*egname*/	_WT("SetPath"), \
-		/*explain*/	_WT("如果路径值不为空, 则只有此路径中或路径以下的URL会获取cookie值。"), \
+		/*explain*/	_WT("如果路径值不为空, 则只有此路径中或路径以下的URL会取cookie值。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -289,8 +275,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*12*/ \
-		/*ccname*/	_WT("获取路径"),\
+	{ /*11*/ \
+		/*ccname*/	_WT("取路径"),\
 		/*egname*/	_WT("GetPath"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -303,8 +289,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*13*/ \
-		/*ccname*/	_WT("设置安全性"),\
+	{ /*12*/ \
+		/*ccname*/	_WT("置安全性"),\
 		/*egname*/	_WT("SetSecure"), \
 		/*explain*/	_WT("设置此值为1, 将仅针对HTTPS请求才发送此cookie。"), \
 		/*category*/	-1, \
@@ -317,8 +303,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*14*/ \
-		/*ccname*/	_WT("获取安全性"),\
+	{ /*13*/ \
+		/*ccname*/	_WT("取安全性"),\
 		/*egname*/	_WT("GetSecure"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -331,8 +317,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+5] \
 	},\
-	{ /*15*/ \
-		/*ccname*/	_WT("设置仅限HTTP属性"),\
+	{ /*14*/ \
+		/*ccname*/	_WT("置仅限HTTP属性"),\
 		/*egname*/	_WT("SetHttponly"), \
 		/*explain*/	_WT("设置此值为1, cookie将仅在HTTP会话中使用。"), \
 		/*category*/	-1, \
@@ -345,8 +331,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+5] \
 	},\
-	{ /*16*/ \
-		/*ccname*/	_WT("获取仅限HTTP属性"),\
+	{ /*15*/ \
+		/*ccname*/	_WT("取仅限HTTP属性"),\
 		/*egname*/	_WT("GetHttponly"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -359,8 +345,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+6] \
 	},\
-	{ /*17*/ \
-		/*ccname*/	_WT("设置创建时间"),\
+	{ /*16*/ \
+		/*ccname*/	_WT("置创建时间"),\
 		/*egname*/	_WT("SetCreation"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -373,13 +359,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+6] \
 	},\
-	{ /*18*/ \
-		/*ccname*/	_WT("获取创建时间"),\
+	{ /*17*/ \
+		/*ccname*/	_WT("取创建时间"),\
 		/*egname*/	_WT("GetCreation"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*ret*/	SDT_DOUBLE, \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -387,8 +373,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+7] \
 	},\
-	{ /*19*/ \
-		/*ccname*/	_WT("设置最后访问时间"),\
+	{ /*18*/ \
+		/*ccname*/	_WT("置最后访问时间"),\
 		/*egname*/	_WT("SetLastAccess"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -401,13 +387,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+7] \
 	},\
-	{ /*20*/ \
-		/*ccname*/	_WT("获取最后访问时间"),\
+	{ /*19*/ \
+		/*ccname*/	_WT("取最后访问时间"),\
 		/*egname*/	_WT("GetLastAccess"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*ret*/	SDT_DOUBLE, \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -415,8 +401,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+8] \
 	},\
-	{ /*21*/ \
-		/*ccname*/	_WT("设置使用有效期"),\
+	{ /*20*/ \
+		/*ccname*/	_WT("置使用有效期"),\
 		/*egname*/	_WT("SetHasExpires"), \
 		/*explain*/	_WT("设置此值为1, cookie 将具有有效期。"), \
 		/*category*/	-1, \
@@ -429,8 +415,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+8] \
 	},\
-	{ /*22*/ \
-		/*ccname*/	_WT("获取使用有效期"),\
+	{ /*21*/ \
+		/*ccname*/	_WT("取使用有效期"),\
 		/*egname*/	_WT("GetHasExpires"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -443,8 +429,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*23*/ \
-		/*ccname*/	_WT("设置过期时间"),\
+	{ /*22*/ \
+		/*ccname*/	_WT("置过期时间"),\
 		/*egname*/	_WT("SetExpires"), \
 		/*explain*/	_WT("设置 cookie 过期时间。"), \
 		/*category*/	-1, \
@@ -457,13 +443,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*24*/ \
-		/*ccname*/	_WT("获取过期时间"),\
+	{ /*23*/ \
+		/*ccname*/	_WT("取过期时间"),\
 		/*egname*/	_WT("GetExpires"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*ret*/	SDT_DOUBLE, \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -479,7 +465,6 @@
 	EDITIONS("ProxyCookie_Constructor"),\
 	EDITIONS("ProxyCookie_Destructor"),\
 	EDITIONS("ProxyCookie_CopyConstructor"),\
-	EDITIONS("ProxyCookie_Create"),\
 	EDITIONS("ProxyCookie_IsValid"),\
 	EDITIONS("ProxyCookie_SetName"),\
 	EDITIONS("ProxyCookie_GetName"),\
@@ -509,7 +494,6 @@
 	EDITIONF(ProxyCookie_Constructor),\
 	EDITIONF(ProxyCookie_Destructor),\
 	EDITIONF(ProxyCookie_CopyConstructor),\
-	EDITIONF(ProxyCookie_Create),\
 	EDITIONF(ProxyCookie_IsValid),\
 	EDITIONF(ProxyCookie_SetName),\
 	EDITIONF(ProxyCookie_GetName),\
@@ -541,8 +525,6 @@ extern "C"
 void EDITIONF(ProxyCookie_Destructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyCookie_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
-void EDITIONF(ProxyCookie_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyCookie_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"

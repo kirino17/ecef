@@ -5,11 +5,11 @@
 
 
 #define DECL_DATA_TYPE_ProxyListValue \
-	{ /*18*/ \
-		/*m_szName*/		 _WT("Chromium列表值"), \
+	{ /*20*/ \
+		/*m_szName*/		 _WT("水星列表型"), \
 		/*m_szEgName*/		 _WT("ProxyListValue"), \
 		/*m_szExplain*/		 _WT("表示列表值(ListValue)的类。"), \
-		/*m_nCmdCount*/		 32, \
+		/*m_nCmdCount*/		 31, \
 		/*m_pnCmdsIndex*/		 s_nProxyListValueElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -27,283 +27,283 @@
 
 #define DECL_DATA_TYPE_ProxyListValue_ARGINFO \
 	{ /****** ProxyListValue::IsSame ** 0 **/ \
-		/*name*/	 _WT("that"), \
+		/*name*/	 _WT("比较类型"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*type*/	 MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::IsEqual ** 1 **/ \
-		/*name*/	 _WT("that"), \
+		/*name*/	 _WT("是否相等"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*type*/	 MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetSize ** 2 **/ \
-		/*name*/	 _WT("size"), \
+		/*name*/	 _WT("大小"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::Remove ** 3 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetType ** 4 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetValue ** 5 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetBool ** 6 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetInt ** 7 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetDouble ** 8 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetString ** 9 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetBinary ** 10 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetDictionary ** 11 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::GetList ** 12 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetValue ** 13 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetValue ** 14 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("预设值的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(36,0),  /*shrewd_ptr<ProxyValue>*/ \
+		/*type*/	 MAKELONG(31,0),  /*shrewd_ptr<ProxyValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetNull ** 15 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetBool ** 16 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetBool ** 17 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetInt ** 18 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetInt ** 19 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetDouble ** 20 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetDouble ** 21 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_DOUBLE, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetString ** 22 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetString ** 23 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetBinary ** 24 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetBinary ** 25 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BIN, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetBinary ** 26 **/ \
-		/*name*/	 _WT("length"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("长度"), \
+		/*explain*/	 _WT("数据长度"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetDictionary ** 27 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetDictionary ** 28 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*type*/	 MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetList ** 29 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("索引"), \
+		/*explain*/	 _WT("类型索引, 从0开始"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyListValue::SetList ** 30 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*type*/	 MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -353,20 +353,6 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("创建对象"),\
-		/*egname*/	_WT("Create"), \
-		/*explain*/	_WT("创建对象实例, 非静态对象, 需要调用此函数后才能够有效访问。"), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	0, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
-	},\
-	{ /*4*/ \
 		/*ccname*/	_WT("是否有效"),\
 		/*egname*/	_WT("IsValid"), \
 		/*explain*/	_WT("此函数检查本类中的对象实例是否有效。"), \
@@ -380,8 +366,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*5*/ \
-		/*ccname*/	_WT("IsOwned"),\
+	{ /*4*/ \
+		/*ccname*/	_WT("是否拥有"),\
 		/*egname*/	_WT("IsOwned"), \
 		/*explain*/	_WT("如果基础数据由另一个对象拥有，则返回true。"), \
 		/*category*/	-1, \
@@ -394,8 +380,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*6*/ \
-		/*ccname*/	_WT("IsReadOnly"),\
+	{ /*5*/ \
+		/*ccname*/	_WT("是否为只读"),\
 		/*egname*/	_WT("IsReadOnly"), \
 		/*explain*/	_WT("如果对象是只读的返回真。"), \
 		/*category*/	-1, \
@@ -408,8 +394,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*7*/ \
-		/*ccname*/	_WT("IsSame"),\
+	{ /*6*/ \
+		/*ccname*/	_WT("是否相同"),\
 		/*egname*/	_WT("IsSame"), \
 		/*explain*/	_WT("比较两个对象是否相同"), \
 		/*category*/	-1, \
@@ -422,8 +408,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*8*/ \
-		/*ccname*/	_WT("IsEqual"),\
+	{ /*7*/ \
+		/*ccname*/	_WT("是否相等"),\
 		/*egname*/	_WT("IsEqual"), \
 		/*explain*/	_WT("比较两个对象是否为同一个"), \
 		/*category*/	-1, \
@@ -436,13 +422,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*9*/ \
-		/*ccname*/	_WT("Copy"),\
+	{ /*8*/ \
+		/*ccname*/	_WT("创建副本"),\
 		/*egname*/	_WT("Copy"), \
 		/*explain*/	_WT("为此对象创建一个新的副本"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -450,10 +436,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*10*/ \
-		/*ccname*/	_WT("SetSize"),\
+	{ /*9*/ \
+		/*ccname*/	_WT("置大小"),\
 		/*egname*/	_WT("SetSize"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置列表类型大小"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -464,10 +450,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*11*/ \
-		/*ccname*/	_WT("GetSize"),\
+	{ /*10*/ \
+		/*ccname*/	_WT("取大小"),\
 		/*egname*/	_WT("GetSize"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回列表大小"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -478,10 +464,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*12*/ \
-		/*ccname*/	_WT("Clear"),\
+	{ /*11*/ \
+		/*ccname*/	_WT("清空"),\
 		/*egname*/	_WT("Clear"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("清空类型"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -492,10 +478,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*13*/ \
-		/*ccname*/	_WT("Remove"),\
+	{ /*12*/ \
+		/*ccname*/	_WT("移除"),\
 		/*egname*/	_WT("Remove"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("移除类型"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -506,10 +492,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*14*/ \
-		/*ccname*/	_WT("GetType"),\
+	{ /*13*/ \
+		/*ccname*/	_WT("取类型"),\
 		/*egname*/	_WT("GetType"), \
-		/*explain*/	_WT("获取该对象中存储的基础数据值类型, 有关定义在枚举常量: #值类型.* 中。"), \
+		/*explain*/	_WT("取该对象中存储的基础数据值类型, 有关定义在枚举常量: #值类型.* 中。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -520,13 +506,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*15*/ \
-		/*ccname*/	_WT("GetValue"),\
+	{ /*14*/ \
+		/*ccname*/	_WT("取通用型"),\
 		/*egname*/	_WT("GetValue"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回通用型类型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(36,0),  /*shrewd_ptr<ProxyValue>*/ \
+		/*ret*/	MAKELONG(31,0),  /*shrewd_ptr<ProxyValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -534,10 +520,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+5] \
 	},\
-	{ /*16*/ \
-		/*ccname*/	_WT("GetBool"),\
+	{ /*15*/ \
+		/*ccname*/	_WT("取逻辑型"),\
 		/*egname*/	_WT("GetBool"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取逻辑型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -548,10 +534,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+6] \
 	},\
-	{ /*17*/ \
-		/*ccname*/	_WT("GetInt"),\
+	{ /*16*/ \
+		/*ccname*/	_WT("取整数型"),\
 		/*egname*/	_WT("GetInt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取整数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -562,10 +548,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+7] \
 	},\
-	{ /*18*/ \
-		/*ccname*/	_WT("GetDouble"),\
+	{ /*17*/ \
+		/*ccname*/	_WT("取双精度小数型"),\
 		/*egname*/	_WT("GetDouble"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取双精度小数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_DOUBLE, \
@@ -576,10 +562,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+8] \
 	},\
-	{ /*19*/ \
-		/*ccname*/	_WT("GetString"),\
+	{ /*18*/ \
+		/*ccname*/	_WT("取文本型"),\
 		/*egname*/	_WT("GetString"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取文本型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -590,10 +576,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*20*/ \
-		/*ccname*/	_WT("GetBinary"),\
+	{ /*19*/ \
+		/*ccname*/	_WT("取字节集型"),\
 		/*egname*/	_WT("GetBinary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取字节集类型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BIN, \
@@ -604,13 +590,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+10] \
 	},\
-	{ /*21*/ \
-		/*ccname*/	_WT("GetDictionary"),\
+	{ /*20*/ \
+		/*ccname*/	_WT("取字典型"),\
 		/*egname*/	_WT("GetDictionary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取字典型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*ret*/	MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -618,13 +604,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+11] \
 	},\
-	{ /*22*/ \
-		/*ccname*/	_WT("GetList"),\
+	{ /*21*/ \
+		/*ccname*/	_WT("取列表型"),\
 		/*egname*/	_WT("GetList"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取列表型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -632,10 +618,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+12] \
 	},\
-	{ /*23*/ \
-		/*ccname*/	_WT("SetValue"),\
+	{ /*22*/ \
+		/*ccname*/	_WT("置通用型"),\
 		/*egname*/	_WT("SetValue"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置通用型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -646,10 +632,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+13] \
 	},\
-	{ /*24*/ \
-		/*ccname*/	_WT("SetNull"),\
+	{ /*23*/ \
+		/*ccname*/	_WT("置为空"),\
 		/*egname*/	_WT("SetNull"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为空类型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -660,10 +646,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+15] \
 	},\
-	{ /*25*/ \
-		/*ccname*/	_WT("SetBool"),\
+	{ /*24*/ \
+		/*ccname*/	_WT("置逻辑型"),\
 		/*egname*/	_WT("SetBool"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置逻辑型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -674,10 +660,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+16] \
 	},\
-	{ /*26*/ \
-		/*ccname*/	_WT("SetInt"),\
+	{ /*25*/ \
+		/*ccname*/	_WT("置整数型"),\
 		/*egname*/	_WT("SetInt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置整数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -688,10 +674,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+18] \
 	},\
-	{ /*27*/ \
-		/*ccname*/	_WT("SetDouble"),\
+	{ /*26*/ \
+		/*ccname*/	_WT("置双精度小数型"),\
 		/*egname*/	_WT("SetDouble"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置双精度小数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -702,10 +688,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+20] \
 	},\
-	{ /*28*/ \
-		/*ccname*/	_WT("SetString"),\
+	{ /*27*/ \
+		/*ccname*/	_WT("置文本型"),\
 		/*egname*/	_WT("SetString"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置文本型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -716,10 +702,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+22] \
 	},\
-	{ /*29*/ \
-		/*ccname*/	_WT("SetBinary"),\
+	{ /*28*/ \
+		/*ccname*/	_WT("类型值"),\
 		/*egname*/	_WT("SetBinary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置的类型值"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -730,10 +716,10 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+24] \
 	},\
-	{ /*30*/ \
-		/*ccname*/	_WT("SetDictionary"),\
+	{ /*29*/ \
+		/*ccname*/	_WT("置字典型"),\
 		/*egname*/	_WT("SetDictionary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置字典型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -744,10 +730,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+27] \
 	},\
-	{ /*31*/ \
-		/*ccname*/	_WT("SetList"),\
+	{ /*30*/ \
+		/*ccname*/	_WT("置列表型"),\
 		/*egname*/	_WT("SetList"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置列表型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -766,7 +752,6 @@
 	EDITIONS("ProxyListValue_Constructor"),\
 	EDITIONS("ProxyListValue_Destructor"),\
 	EDITIONS("ProxyListValue_CopyConstructor"),\
-	EDITIONS("ProxyListValue_Create"),\
 	EDITIONS("ProxyListValue_IsValid"),\
 	EDITIONS("ProxyListValue_IsOwned"),\
 	EDITIONS("ProxyListValue_IsReadOnly"),\
@@ -803,7 +788,6 @@
 	EDITIONF(ProxyListValue_Constructor),\
 	EDITIONF(ProxyListValue_Destructor),\
 	EDITIONF(ProxyListValue_CopyConstructor),\
-	EDITIONF(ProxyListValue_Create),\
 	EDITIONF(ProxyListValue_IsValid),\
 	EDITIONF(ProxyListValue_IsOwned),\
 	EDITIONF(ProxyListValue_IsReadOnly),\
@@ -842,8 +826,6 @@ extern "C"
 void EDITIONF(ProxyListValue_Destructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyListValue_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
-void EDITIONF(ProxyListValue_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyListValue_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"

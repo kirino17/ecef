@@ -7,13 +7,6 @@ public:
 	~ProxyPostDataElement();
 
 public:
-	///
-	// Create a new CefPostDataElement object.
-	///
-	/*--cef()--*/
-	static shrewd_ptr<ProxyPostDataElement> Create();
-
-public:
     // is valid
     bool IsValid();
 
@@ -65,7 +58,7 @@ public:
     // actually read.
     ///
     /*--cef()--*/
-     size_t GetBytes(size_t size, unsigned char* bytes);
+     unsigned char* GetBytes();
 
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyPostDataElement);

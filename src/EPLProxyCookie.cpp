@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyCookie.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyCookie.h>
 
 
@@ -32,18 +32,6 @@ void EDITIONF(ProxyCookie_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, P
 	shrewd_ptr<ProxyCookie> ptr = (ProxyCookie*)*pArgInf[1].m_ppCompoundData;
 	if(ptr){ ptr->retain(); *pArgInf->m_ppCompoundData = ptr.get(); }
 	else { *pArgInf->m_ppCompoundData = NULL; }
-}
-
-extern "C"
-void EDITIONF(ProxyCookie_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyCookie> result = ProxyCookie::Create();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
 }
 
 extern "C"
@@ -182,27 +170,18 @@ void EDITIONF(ProxyCookie_SetCreation) (PMDATA_INF pRetData, INT nArgCount, PMDA
 		return ;
 	}
 	shrewd_ptr<ProxyCookie> self = (ProxyCookie*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> argCreation = (ProxyTime*)*pArgInf[1].m_ppCompoundData;
+	double argCreation = pArgInf[1].m_double;
 	self->SetCreation(argCreation);
 }
 
 extern "C"
 void EDITIONF(ProxyCookie_GetCreation) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		pRetData->m_double = 0.0f;
 		return ;
 	}
 	shrewd_ptr<ProxyCookie> self = (ProxyCookie*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> result = self->GetCreation();
-	if(result){
-	result->retain();
-	DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC,4,0);
-	*InternalPointer = (DWORD)result.get();
-	pRetData->m_pCompoundData = InternalPointer;
-}
-	else{
-	pRetData->m_pCompoundData=NULL;
-}
+	pRetData->m_double = self->GetCreation();
 }
 
 extern "C"
@@ -211,27 +190,18 @@ void EDITIONF(ProxyCookie_SetLastAccess) (PMDATA_INF pRetData, INT nArgCount, PM
 		return ;
 	}
 	shrewd_ptr<ProxyCookie> self = (ProxyCookie*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> argLast_Access = (ProxyTime*)*pArgInf[1].m_ppCompoundData;
+	double argLast_Access = pArgInf[1].m_double;
 	self->SetLastAccess(argLast_Access);
 }
 
 extern "C"
 void EDITIONF(ProxyCookie_GetLastAccess) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		pRetData->m_double = 0.0f;
 		return ;
 	}
 	shrewd_ptr<ProxyCookie> self = (ProxyCookie*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> result = self->GetLastAccess();
-	if(result){
-	result->retain();
-	DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC,4,0);
-	*InternalPointer = (DWORD)result.get();
-	pRetData->m_pCompoundData = InternalPointer;
-}
-	else{
-	pRetData->m_pCompoundData=NULL;
-}
+	pRetData->m_double = self->GetLastAccess();
 }
 
 extern "C"
@@ -260,27 +230,18 @@ void EDITIONF(ProxyCookie_SetExpires) (PMDATA_INF pRetData, INT nArgCount, PMDAT
 		return ;
 	}
 	shrewd_ptr<ProxyCookie> self = (ProxyCookie*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> argExpires = (ProxyTime*)*pArgInf[1].m_ppCompoundData;
+	double argExpires = pArgInf[1].m_double;
 	self->SetExpires(argExpires);
 }
 
 extern "C"
 void EDITIONF(ProxyCookie_GetExpires) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		pRetData->m_double = 0.0f;
 		return ;
 	}
 	shrewd_ptr<ProxyCookie> self = (ProxyCookie*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyTime> result = self->GetExpires();
-	if(result){
-	result->retain();
-	DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC,4,0);
-	*InternalPointer = (DWORD)result.get();
-	pRetData->m_pCompoundData = InternalPointer;
-}
-	else{
-	pRetData->m_pCompoundData=NULL;
-}
+	pRetData->m_double = self->GetExpires();
 }
 
 

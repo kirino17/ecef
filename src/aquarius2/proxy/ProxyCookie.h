@@ -1,14 +1,10 @@
 #pragma once
 #include "../def/def.h"
-#include "ProxyTime.h"
 
 class AQUADLL ProxyCookie : public refcounted {
 public:
 	ProxyCookie(void* ptr);
 	~ProxyCookie();
-
-public:
-    static shrewd_ptr<ProxyCookie> Create();
 
 public:
     // is valid
@@ -18,6 +14,7 @@ public:
     // The cookie name.
     ///
     void SetName(const char* name);
+
     /*--cef()--*/
     char* GetName();
 
@@ -25,6 +22,7 @@ public:
     // The cookie value.
     ///
     void SetValue(const char* value);
+
     /*--cef()--*/
     char* GetValue();
 
@@ -34,6 +32,7 @@ public:
     // sub-domains whereas host cookies are not.
     ///
     void SetDomain(const char* domain);
+
     /*--cef()--*/
     char* GetDomain();
 
@@ -42,6 +41,7 @@ public:
     // value.
     ///
     void SetPath(const char* path);
+
     /*--cef()--*/
     char* GetPath();
 
@@ -49,6 +49,7 @@ public:
     // If |secure| is true the cookie will only be sent for HTTPS requests.
     ///
     void SetSecure(int secure);
+
     /*--cef()--*/
     int GetSecure();
 
@@ -56,6 +57,7 @@ public:
     // If |httponly| is true the cookie will only be sent for HTTP requests.
     ///
     void SetHttponly(int httponly);
+
     /*--cef()--*/
     int GetHttponly();
 
@@ -63,28 +65,33 @@ public:
     // The cookie creation date. This is automatically populated by the system on
     // cookie creation.
     ///
-    void SetCreation(shrewd_ptr<ProxyTime> creation);
+    void SetCreation(double creation);
+
     /*--cef()--*/
-    shrewd_ptr<ProxyTime> GetCreation();
+    double GetCreation();
 
     ///
     // The cookie last access date. This is automatically populated by the system
     // on access.
     ///
-    void SetLastAccess(shrewd_ptr<ProxyTime> last_access);
+    void SetLastAccess(double last_access);
+
     /*--cef()--*/
-    shrewd_ptr<ProxyTime> GetLastAccess();
+    double GetLastAccess();
 
     ///
     // The cookie expiration date is only valid if |has_expires| is true.
     ///
     void SetHasExpires(int has_expires);
+
     /*--cef()--*/
     int GetHasExpires();
 
-    void SetExpires(shrewd_ptr<ProxyTime> expires);
     /*--cef()--*/
-    shrewd_ptr<ProxyTime> GetExpires();
+    void SetExpires(double expires);
+
+    /*--cef()--*/
+    double GetExpires();
 
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyCookie);

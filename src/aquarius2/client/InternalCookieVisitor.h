@@ -1,10 +1,19 @@
 #pragma once
 #include "include/cef_cookie.h"
 #include <string>
+#include "include/cef_waitable_event.h"
+#include <vector>
+#include "../proxy/ProxyCookie.h"
+
+//»ñÈ¡cookie
+#define COOKIE_VISIT_MODE_FETCH		(0)
+
+//É¾³ýcookie
+#define COOKIE_VISIT_MODE_DELETE	(1)
 
 class InternalCookieVisitor : public CefCookieVisitor {
 public:
-	InternalCookieVisitor(bool is_delete = false);
+	InternalCookieVisitor(int mode, CefRefPtr<CefWaitableEvent> waitable);
 	~InternalCookieVisitor();
 
 public:
@@ -14,8 +23,13 @@ public:
 		bool& deleteCookie) OVERRIDE;
 
 public:
+	shrewd_ptr<ProxyCookie>** GetCookieArray(void);
+
+public:
 	IMPLEMENT_REFCOUNTING(InternalCookieVisitor);
 
 private:
-	bool _isDelete;
+	int _visitMode;
+	CefRefPtr<CefWaitableEvent> _waitable;
+	std::vector<CefCookie> _cookieArray;
 };

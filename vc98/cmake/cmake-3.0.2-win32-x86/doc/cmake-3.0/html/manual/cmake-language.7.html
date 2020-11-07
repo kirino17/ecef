@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cmake-language(7) &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="next" title="cmake-modules(7)" href="cmake-modules.7.html" />
+    <link rel="prev" title="Sublime Text 2" href="../generator/Sublime Text 2.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cmake-modules.7.html" title="cmake-modules(7)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../generator/Sublime Text 2.html" title="Sublime Text 2"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="manual:cmake-language(7)"></span><div class="section" id="cmake-language-7">
+<h1><a class="toc-backref" href="#id7">cmake-language(7)</a><a class="headerlink" href="#cmake-language-7" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cmake-language-7" id="id7">cmake-language(7)</a><ul>
+<li><a class="reference internal" href="#organization" id="id8">Organization</a><ul>
+<li><a class="reference internal" href="#directories" id="id9">Directories</a></li>
+<li><a class="reference internal" href="#scripts" id="id10">Scripts</a></li>
+<li><a class="reference internal" href="#modules" id="id11">Modules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#syntax" id="id12">Syntax</a><ul>
+<li><a class="reference internal" href="#encoding" id="id13">Encoding</a></li>
+<li><a class="reference internal" href="#source-files" id="id14">Source Files</a></li>
+<li><a class="reference internal" href="#command-invocations" id="id15">Command Invocations</a></li>
+<li><a class="reference internal" href="#command-arguments" id="id16">Command Arguments</a><ul>
+<li><a class="reference internal" href="#bracket-argument" id="id17">Bracket Argument</a></li>
+<li><a class="reference internal" href="#quoted-argument" id="id18">Quoted Argument</a></li>
+<li><a class="reference internal" href="#unquoted-argument" id="id19">Unquoted Argument</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#escape-sequences" id="id20">Escape Sequences</a></li>
+<li><a class="reference internal" href="#variable-references" id="id21">Variable References</a></li>
+<li><a class="reference internal" href="#comments" id="id22">Comments</a><ul>
+<li><a class="reference internal" href="#bracket-comment" id="id23">Bracket Comment</a></li>
+<li><a class="reference internal" href="#line-comment" id="id24">Line Comment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#control-structures" id="id25">Control Structures</a><ul>
+<li><a class="reference internal" href="#conditional-blocks" id="id26">Conditional Blocks</a></li>
+<li><a class="reference internal" href="#loops" id="id27">Loops</a></li>
+<li><a class="reference internal" href="#command-definitions" id="id28">Command Definitions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variables" id="id29">Variables</a></li>
+<li><a class="reference internal" href="#lists" id="id30">Lists</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="organization">
+<h2><a class="toc-backref" href="#id8">Organization</a><a class="headerlink" href="#organization" title="Permalink to this headline">¶</a></h2>
+<p>CMake input files are written in the &#8220;CMake Language&#8221; in source files
+named <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> or ending in a <tt class="docutils literal"><span class="pre">.cmake</span></tt> file name extension.</p>
+<p>CMake Language source files in a project are organized into:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#directories">Directories</a> (<tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt>),</li>
+<li><a class="reference internal" href="#scripts">Scripts</a> (<tt class="docutils literal"><span class="pre">&lt;script&gt;.cmake</span></tt>), and</li>
+<li><a class="reference internal" href="#modules">Modules</a> (<tt class="docutils literal"><span class="pre">&lt;module&gt;.cmake</span></tt>).</li>
+</ul>
+<div class="section" id="directories">
+<h3><a class="toc-backref" href="#id9">Directories</a><a class="headerlink" href="#directories" title="Permalink to this headline">¶</a></h3>
+<p>When CMake processes a project source tree, the entry point is
+a source file called <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> in the top-level source
+directory.  This file may contain the entire build specification
+or use the <a class="reference internal" href="../command/add_subdirectory.html#command:add_subdirectory" title="add_subdirectory"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_subdirectory()</span></tt></a> command to add subdirectories
+to the build.  Each subdirectory added by the command must also
+contain a <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> file as the entry point to that
+directory.  For each source directory whose <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> file
+is processed CMake generates a corresponding directory in the build
+tree to act as the default working and output directory.</p>
+</div>
+<div class="section" id="scripts">
+<h3><a class="toc-backref" href="#id10">Scripts</a><a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
+<p>An individual <tt class="docutils literal"><span class="pre">&lt;script&gt;.cmake</span></tt> source file may be processed
+in <em>script mode</em> by using the <a class="reference internal" href="cmake.1.html#manual:cmake(1)" title="cmake(1)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake(1)</span></tt></a> command-line tool
+with the <tt class="docutils literal"><span class="pre">-P</span></tt> option.  Script mode simply runs the commands in
+the given CMake Language source file and does not generate a
+build system.  It does not allow CMake commands that define build
+targets or actions.</p>
+</div>
+<div class="section" id="modules">
+<h3><a class="toc-backref" href="#id11">Modules</a><a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
+<p>CMake Language code in either <a class="reference internal" href="#directories">Directories</a> or <a class="reference internal" href="#scripts">Scripts</a> may
+use the <a class="reference internal" href="../command/include.html#command:include" title="include"><tt class="xref cmake cmake-command docutils literal"><span class="pre">include()</span></tt></a> command to load a <tt class="docutils literal"><span class="pre">&lt;module&gt;.cmake</span></tt>
+source file in the scope of the including context.
+See the <a class="reference internal" href="cmake-modules.7.html#manual:cmake-modules(7)" title="cmake-modules(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-modules(7)</span></tt></a> manual page for documentation
+of modules included with the CMake distribution.
+Project source trees may also provide their own modules and
+specify their location(s) in the <a class="reference internal" href="../variable/CMAKE_MODULE_PATH.html#variable:CMAKE_MODULE_PATH" title="CMAKE_MODULE_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_MODULE_PATH</span></tt></a>
+variable.</p>
+</div>
+</div>
+<div class="section" id="syntax">
+<h2><a class="toc-backref" href="#id12">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="encoding">
+<h3><a class="toc-backref" href="#id13">Encoding</a><a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
+<p>A CMake Language source file must be written in 7-bit ASCII text
+to be portable across all supported platforms.  Newlines may be
+encoded as either <tt class="docutils literal"><span class="pre">\n</span></tt> or <tt class="docutils literal"><span class="pre">\r\n</span></tt> but will be converted to <tt class="docutils literal"><span class="pre">\n</span></tt>
+as input files are read.</p>
+<p>Note that the implementation is 8-bit clean so source files may
+be encoded as UTF-8 on platforms with system APIs supporting this
+encoding.  Furthermore, CMake 3.0 and above allow a leading UTF-8
+<a class="reference external" href="http://en.wikipedia.org/wiki/Byte_order_mark">Byte-Order Mark</a> in source files.</p>
+</div>
+<div class="section" id="source-files">
+<h3><a class="toc-backref" href="#id14">Source Files</a><a class="headerlink" href="#source-files" title="Permalink to this headline">¶</a></h3>
+<p>A CMake Language source file consists of zero or more
+<a class="reference internal" href="#command-invocations">Command Invocations</a> separated by newlines and optionally
+spaces and <a class="reference internal" href="#comments">Comments</a>:</p>
+<pre>
+<strong id="grammar-token-file">file        </strong> ::=  <a class="reference internal" href="#grammar-token-file_element"><tt class="xref docutils literal"><span class="pre">file_element</span></tt></a>*
+<strong id="grammar-token-file_element">file_element</strong> ::=  <a class="reference internal" href="#grammar-token-command_invocation"><tt class="xref docutils literal"><span class="pre">command_invocation</span></tt></a> <a class="reference internal" href="#grammar-token-line_ending"><tt class="xref docutils literal"><span class="pre">line_ending</span></tt></a> |
+                  (<a class="reference internal" href="#grammar-token-bracket_comment"><tt class="xref docutils literal"><span class="pre">bracket_comment</span></tt></a>|<a class="reference internal" href="#grammar-token-space"><tt class="xref docutils literal"><span class="pre">space</span></tt></a>)* <a class="reference internal" href="#grammar-token-line_ending"><tt class="xref docutils literal"><span class="pre">line_ending</span></tt></a>
+<strong id="grammar-token-line_ending">line_ending </strong> ::=  <a class="reference internal" href="#grammar-token-line_comment"><tt class="xref docutils literal"><span class="pre">line_comment</span></tt></a>? <a class="reference internal" href="#grammar-token-newline"><tt class="xref docutils literal"><span class="pre">newline</span></tt></a>
+<strong id="grammar-token-space">space       </strong> ::=  &lt;match '[ \t]+'&gt;
+<strong id="grammar-token-newline">newline     </strong> ::=  &lt;match '\n'&gt;
+</pre>
+<p>Note that any source file line not inside <a class="reference internal" href="#command-arguments">Command Arguments</a> or
+a <a class="reference internal" href="#bracket-comment">Bracket Comment</a> can end in a <a class="reference internal" href="#line-comment">Line Comment</a>.</p>
+</div>
+<div class="section" id="command-invocations">
+<span id="id1"></span><h3><a class="toc-backref" href="#id15">Command Invocations</a><a class="headerlink" href="#command-invocations" title="Permalink to this headline">¶</a></h3>
+<p>A <em>command invocation</em> is a name followed by paren-enclosed arguments
+separated by whitespace:</p>
+<pre>
+<strong id="grammar-token-command_invocation">command_invocation </strong> ::=  <a class="reference internal" href="#grammar-token-space"><tt class="xref docutils literal"><span class="pre">space</span></tt></a>* <a class="reference internal" href="#grammar-token-identifier"><tt class="xref docutils literal"><span class="pre">identifier</span></tt></a> <a class="reference internal" href="#grammar-token-space"><tt class="xref docutils literal"><span class="pre">space</span></tt></a>* '(' <a class="reference internal" href="#grammar-token-arguments"><tt class="xref docutils literal"><span class="pre">arguments</span></tt></a> ')'
+<strong id="grammar-token-identifier">identifier         </strong> ::=  &lt;match '[A-Za-z_][A-Za-z0-9_]*'&gt;
+<strong id="grammar-token-arguments">arguments          </strong> ::=  <a class="reference internal" href="#grammar-token-argument"><tt class="xref docutils literal"><span class="pre">argument</span></tt></a>? <a class="reference internal" href="#grammar-token-separated_arguments"><tt class="xref docutils literal"><span class="pre">separated_arguments</span></tt></a>*
+<strong id="grammar-token-separated_arguments">separated_arguments</strong> ::=  <a class="reference internal" href="#grammar-token-separation"><tt class="xref docutils literal"><span class="pre">separation</span></tt></a>+ <a class="reference internal" href="#grammar-token-argument"><tt class="xref docutils literal"><span class="pre">argument</span></tt></a>? |
+                         <a class="reference internal" href="#grammar-token-separation"><tt class="xref docutils literal"><span class="pre">separation</span></tt></a>* '(' <a class="reference internal" href="#grammar-token-arguments"><tt class="xref docutils literal"><span class="pre">arguments</span></tt></a> ')'
+<strong id="grammar-token-separation">separation         </strong> ::=  <a class="reference internal" href="#grammar-token-space"><tt class="xref docutils literal"><span class="pre">space</span></tt></a> | <a class="reference internal" href="#grammar-token-line_ending"><tt class="xref docutils literal"><span class="pre">line_ending</span></tt></a>
+</pre>
+<p>For example:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">add_executable</span><span class="p">(</span><span class="s">hello</span> <span class="s">world.c</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Command names are case-insensitive.
+Nested unquoted parentheses in the arguments must balance.
+Each <tt class="docutils literal"><span class="pre">(</span></tt> or <tt class="docutils literal"><span class="pre">)</span></tt> is given to the command invocation as
+a literal <a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>.  This may be used in calls
+to the <a class="reference internal" href="../command/if.html#command:if" title="if"><tt class="xref cmake cmake-command docutils literal"><span class="pre">if()</span></tt></a> command to enclose conditions.
+For example:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">if</span><span class="p">(</span><span class="s">FALSE</span> <span class="s">AND</span> <span class="p">(</span><span class="s">FALSE</span> <span class="s">OR</span> <span class="s">TRUE</span><span class="p">))</span> <span class="c"># evaluates to FALSE</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>CMake versions prior to 3.0 require command name identifiers
+to be at least 2 characters.</p>
+<p class="last">CMake versions prior to 2.8.12 silently accept an <a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>
+or a <a class="reference internal" href="#quoted-argument">Quoted Argument</a> immediately following a <a class="reference internal" href="#quoted-argument">Quoted Argument</a> and
+not separated by any whitespace.  For compatibility, CMake 2.8.12 and
+higher accept such code but produce a warning.</p>
+</div>
+</div>
+<div class="section" id="command-arguments">
+<h3><a class="toc-backref" href="#id16">Command Arguments</a><a class="headerlink" href="#command-arguments" title="Permalink to this headline">¶</a></h3>
+<p>There are three types of arguments within <a class="reference internal" href="#command-invocations">Command Invocations</a>:</p>
+<pre>
+<strong id="grammar-token-argument">argument</strong> ::=  <a class="reference internal" href="#grammar-token-bracket_argument"><tt class="xref docutils literal"><span class="pre">bracket_argument</span></tt></a> | <a class="reference internal" href="#grammar-token-quoted_argument"><tt class="xref docutils literal"><span class="pre">quoted_argument</span></tt></a> | <a class="reference internal" href="#grammar-token-unquoted_argument"><tt class="xref docutils literal"><span class="pre">unquoted_argument</span></tt></a>
+</pre>
+<div class="section" id="bracket-argument">
+<span id="id2"></span><h4><a class="toc-backref" href="#id17">Bracket Argument</a><a class="headerlink" href="#bracket-argument" title="Permalink to this headline">¶</a></h4>
+<p>A <em>bracket argument</em>, inspired by <a class="reference external" href="http://www.lua.org/">Lua</a> long bracket syntax,
+encloses content between opening and closing &#8220;brackets&#8221; of the
+same length:</p>
+<pre>
+<strong id="grammar-token-bracket_argument">bracket_argument</strong> ::=  <a class="reference internal" href="#grammar-token-bracket_open"><tt class="xref docutils literal"><span class="pre">bracket_open</span></tt></a> <a class="reference internal" href="#grammar-token-bracket_content"><tt class="xref docutils literal"><span class="pre">bracket_content</span></tt></a> <a class="reference internal" href="#grammar-token-bracket_close"><tt class="xref docutils literal"><span class="pre">bracket_close</span></tt></a>
+<strong id="grammar-token-bracket_open">bracket_open    </strong> ::=  '[' '='{len} '['
+<strong id="grammar-token-bracket_content">bracket_content </strong> ::=  &lt;any text not containing a <a class="reference internal" href="#grammar-token-bracket_close"><tt class="xref docutils literal"><span class="pre">bracket_close</span></tt></a>
+                       of the same {len} as the <a class="reference internal" href="#grammar-token-bracket_open"><tt class="xref docutils literal"><span class="pre">bracket_open</span></tt></a>&gt;
+<strong id="grammar-token-bracket_close">bracket_close   </strong> ::=  ']' '='{len} ']'
+</pre>
+<p>An opening bracket of length <em>len &gt;= 0</em> is written <tt class="docutils literal"><span class="pre">[</span></tt> followed
+by <em>len</em> <tt class="docutils literal"><span class="pre">=</span></tt> followed by <tt class="docutils literal"><span class="pre">[</span></tt> and the corresponding closing
+bracket is written <tt class="docutils literal"><span class="pre">]</span></tt> followed by <em>len</em> <tt class="docutils literal"><span class="pre">=</span></tt> followed by <tt class="docutils literal"><span class="pre">]</span></tt>.
+Brackets do not nest.  A unique length may always be chosen
+for the opening and closing brackets to contain closing brackets
+of other lengths.</p>
+<p>Bracket argument content consists of all text between the opening
+and closing brackets, except that one newline immediately following
+the opening bracket, if any, is ignored.  No evaluation of the
+enclosed content, such as <a class="reference internal" href="#escape-sequences">Escape Sequences</a> or <a class="reference internal" href="#variable-references">Variable References</a>,
+is performed.  A bracket argument is always given to the command
+invocation as exactly one argument.</p>
+<p>For example:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">message</span><span class="p">(</span><span class="s">[=[</span>
+<span class="s">This</span> <span class="s">is</span> <span class="s">the</span> <span class="s">first</span> <span class="s">line</span> <span class="s">in</span> <span class="s">a</span> <span class="s">bracket</span> <span class="s">argument</span> <span class="s">with</span> <span class="s">bracket</span> <span class="s">length</span> <span class="s">1.</span>
+<span class="s">No</span> <span class="s">\-escape</span> <span class="s">sequences</span> <span class="s">or</span> <span class="o">${</span><span class="nv">variable</span><span class="o">}</span> <span class="s">references</span> <span class="s">are</span> <span class="s">evaluated.</span>
+<span class="s">This</span> <span class="s">is</span> <span class="s">always</span> <span class="s">one</span> <span class="s">argument</span> <span class="s">even</span> <span class="s">though</span> <span class="s">it</span> <span class="s">contains</span> <span class="s">a</span> <span class="s">;</span> <span class="s">character.</span>
+<span class="s">The</span> <span class="s">text</span> <span class="s">does</span> <span class="s">not</span> <span class="s">end</span> <span class="s">on</span> <span class="s">a</span> <span class="s">closing</span> <span class="s">bracket</span> <span class="s">of</span> <span class="s">length</span> <span class="s">0</span> <span class="s">like</span> <span class="s">]].</span>
+<span class="s">It</span> <span class="s">does</span> <span class="s">end</span> <span class="s">in</span> <span class="s">a</span> <span class="s">closing</span> <span class="s">bracket</span> <span class="s">of</span> <span class="s">length</span> <span class="s">1.</span>
+<span class="s">]=]</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">CMake versions prior to 3.0 do not support bracket arguments.
+They interpret the opening bracket as the start of an
+<a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>.</p>
+</div>
+</div>
+<div class="section" id="quoted-argument">
+<span id="id3"></span><h4><a class="toc-backref" href="#id18">Quoted Argument</a><a class="headerlink" href="#quoted-argument" title="Permalink to this headline">¶</a></h4>
+<p>A <em>quoted argument</em> encloses content between opening and closing
+double-quote characters:</p>
+<pre>
+<strong id="grammar-token-quoted_argument">quoted_argument    </strong> ::=  '&quot;' <a class="reference internal" href="#grammar-token-quoted_element"><tt class="xref docutils literal"><span class="pre">quoted_element</span></tt></a>* '&quot;'
+<strong id="grammar-token-quoted_element">quoted_element     </strong> ::=  &lt;any character except '\' or '&quot;'&gt; |
+                         <a class="reference internal" href="#grammar-token-escape_sequence"><tt class="xref docutils literal"><span class="pre">escape_sequence</span></tt></a> |
+                         <a class="reference internal" href="#grammar-token-quoted_continuation"><tt class="xref docutils literal"><span class="pre">quoted_continuation</span></tt></a>
+<strong id="grammar-token-quoted_continuation">quoted_continuation</strong> ::=  '\' <a class="reference internal" href="#grammar-token-newline"><tt class="xref docutils literal"><span class="pre">newline</span></tt></a>
+</pre>
+<p>Quoted argument content consists of all text between opening and
+closing quotes.  Both <a class="reference internal" href="#escape-sequences">Escape Sequences</a> and <a class="reference internal" href="#variable-references">Variable References</a>
+are evaluated.  A quoted argument is always given to the command
+invocation as exactly one argument.</p>
+<p>For example:</p>
+<div class="highlight-cmake"><pre>message("This is a quoted argument containing multiple lines.
+This is always one argument even though it contains a ; character.
+Both \\-escape sequences and ${variable} references are evaluated.
+The text does not end on an escaped double-quote like \".
+It does end in an unescaped double quote.
+")</pre>
+</div>
+<p>The final <tt class="docutils literal"><span class="pre">\</span></tt> on any line ending in an odd number of backslashes
+is treated as a line continuation and ignored along with the
+immediately following newline character.  For example:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">message</span><span class="p">(</span><span class="s2">&quot;\</span>
+<span class="s2">This is the first line of a quoted argument. \</span>
+<span class="s2">In fact it is the only line but since it is long \</span>
+<span class="s2">the source code uses line continuation.\</span>
+<span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">CMake versions prior to 3.0 do not support continuation with <tt class="docutils literal"><span class="pre">\</span></tt>.
+They report errors in quoted arguments containing lines ending in
+an odd number of <tt class="docutils literal"><span class="pre">\</span></tt> characters.</p>
+</div>
+</div>
+<div class="section" id="unquoted-argument">
+<span id="id4"></span><h4><a class="toc-backref" href="#id19">Unquoted Argument</a><a class="headerlink" href="#unquoted-argument" title="Permalink to this headline">¶</a></h4>
+<p>An <em>unquoted argument</em> is not enclosed by any quoting syntax.
+It may not contain any whitespace, <tt class="docutils literal"><span class="pre">(</span></tt>, <tt class="docutils literal"><span class="pre">)</span></tt>, <tt class="docutils literal"><span class="pre">#</span></tt>, <tt class="docutils literal"><span class="pre">&quot;</span></tt>, or <tt class="docutils literal"><span class="pre">\</span></tt>
+except when escaped by a backslash:</p>
+<pre>
+<strong id="grammar-token-unquoted_argument">unquoted_argument</strong> ::=  <a class="reference internal" href="#grammar-token-unquoted_element"><tt class="xref docutils literal"><span class="pre">unquoted_element</span></tt></a>+ | <a class="reference internal" href="#grammar-token-unquoted_legacy"><tt class="xref docutils literal"><span class="pre">unquoted_legacy</span></tt></a>
+<strong id="grammar-token-unquoted_element">unquoted_element </strong> ::=  &lt;any character except whitespace or one of '()#&quot;\'&gt; |
+                       <a class="reference internal" href="#grammar-token-escape_sequence"><tt class="xref docutils literal"><span class="pre">escape_sequence</span></tt></a>
+<strong id="grammar-token-unquoted_legacy">unquoted_legacy  </strong> ::=  &lt;see note in text&gt;
+</pre>
+<p>Unquoted argument content consists of all text in a contiguous block
+of allowed or escaped characters.  Both <a class="reference internal" href="#escape-sequences">Escape Sequences</a> and
+<a class="reference internal" href="#variable-references">Variable References</a> are evaluated.  The resulting value is divided
+in the same way <a class="reference internal" href="#lists">Lists</a> divide into elements.  Each non-empty element
+is given to the command invocation as an argument.  Therefore an
+unquoted argument may be given to a command invocation as zero or
+more arguments.</p>
+<p>For example:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">foreach</span><span class="p">(</span><span class="s">arg</span>
+    <span class="s">NoSpace</span>
+    <span class="s">Escaped\</span> <span class="s">Space</span>
+    <span class="s">This;Divides;Into;Five;Arguments</span>
+    <span class="s">Escaped\;Semicolon</span>
+    <span class="p">)</span>
+  <span class="nb">message</span><span class="p">(</span><span class="s2">&quot;${arg}&quot;</span><span class="p">)</span>
+<span class="nb">endforeach</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>To support legacy CMake code, unquoted arguments may also contain
+double-quoted strings (<tt class="docutils literal"><span class="pre">&quot;...&quot;</span></tt>, possibly enclosing horizontal
+whitespace), and make-style variable references (<tt class="docutils literal"><span class="pre">$(MAKEVAR)</span></tt>).
+Unescaped double-quotes must balance, may not appear at the
+beginning of an unquoted argument, and are treated as part of the
+content.  For example, the unquoted arguments <tt class="docutils literal"><span class="pre">-Da=&quot;b</span> <span class="pre">c&quot;</span></tt>,
+<tt class="docutils literal"><span class="pre">-Da=$(v)</span></tt>, and <tt class="docutils literal"><span class="pre">a&quot;</span> <span class="pre">&quot;b&quot;c&quot;d</span></tt> are each interpreted literally.</p>
+<p class="last">The above &#8220;unquoted_legacy&#8221; production represents such arguments.
+We do not recommend using legacy unquoted arguments in new code.
+Instead use a <a class="reference internal" href="#quoted-argument">Quoted Argument</a> or a <a class="reference internal" href="#bracket-argument">Bracket Argument</a> to
+represent the content.</p>
+</div>
+</div>
+</div>
+<div class="section" id="escape-sequences">
+<h3><a class="toc-backref" href="#id20">Escape Sequences</a><a class="headerlink" href="#escape-sequences" title="Permalink to this headline">¶</a></h3>
+<p>An <em>escape sequence</em> is a <tt class="docutils literal"><span class="pre">\</span></tt> followed by one character:</p>
+<pre>
+<strong id="grammar-token-escape_sequence">escape_sequence </strong> ::=  <a class="reference internal" href="#grammar-token-escape_identity"><tt class="xref docutils literal"><span class="pre">escape_identity</span></tt></a> | <a class="reference internal" href="#grammar-token-escape_encoded"><tt class="xref docutils literal"><span class="pre">escape_encoded</span></tt></a> | <a class="reference internal" href="#grammar-token-escape_semicolon"><tt class="xref docutils literal"><span class="pre">escape_semicolon</span></tt></a>
+<strong id="grammar-token-escape_identity">escape_identity </strong> ::=  '\(' | '\)' | '\#' | '\&quot;' | '\ ' |
+                      '\\' | '\$' | '\&#64;' | '\^'
+<strong id="grammar-token-escape_encoded">escape_encoded  </strong> ::=  '\t' | '\r' | '\n'
+<strong id="grammar-token-escape_semicolon">escape_semicolon</strong> ::=  '\;'
+</pre>
+<p>A <tt class="docutils literal"><span class="pre">\</span></tt> followed by one of <tt class="docutils literal"><span class="pre">()#&quot;</span> <span class="pre">\#&#64;^</span></tt> simply encodes the literal
+character without interpreting it as syntax.  A <tt class="docutils literal"><span class="pre">\t</span></tt>, <tt class="docutils literal"><span class="pre">\r</span></tt>, or <tt class="docutils literal"><span class="pre">\n</span></tt>
+encodes a tab, carriage return, or newline character, respectively.
+A <tt class="docutils literal"><span class="pre">\;</span></tt> encodes itself but may be used in an <a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>
+to encode the <tt class="docutils literal"><span class="pre">;</span></tt> without dividing the argument value on it.</p>
+</div>
+<div class="section" id="variable-references">
+<h3><a class="toc-backref" href="#id21">Variable References</a><a class="headerlink" href="#variable-references" title="Permalink to this headline">¶</a></h3>
+<p>A <em>variable reference</em> has the form <tt class="docutils literal"><span class="pre">${variable_name}</span></tt> and is
+evaluated inside a <a class="reference internal" href="#quoted-argument">Quoted Argument</a> or an <a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>.
+A variable reference is replaced by the value of the variable,
+or by the empty string if the variable is not set.
+Variable references can nest and are evaluated from the
+inside out, e.g. <tt class="docutils literal"><span class="pre">${outer_${inner_variable}_variable}</span></tt>.</p>
+<p>The <a class="reference internal" href="#variables">Variables</a> section documents the scope of variable names
+and how their values are set.</p>
+<p>An <em>environment variable reference</em> has the form <tt class="docutils literal"><span class="pre">$ENV{VAR}</span></tt> and
+is evaluated in the same contexts as a normal variable reference.</p>
+</div>
+<div class="section" id="comments">
+<h3><a class="toc-backref" href="#id22">Comments</a><a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<p>A comment starts with a <tt class="docutils literal"><span class="pre">#</span></tt> character that is not inside a
+<a class="reference internal" href="#bracket-argument">Bracket Argument</a>, <a class="reference internal" href="#quoted-argument">Quoted Argument</a>, or escaped with <tt class="docutils literal"><span class="pre">\</span></tt>
+as part of an <a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>.  There are two types of
+comments: a <a class="reference internal" href="#bracket-comment">Bracket Comment</a> and a <a class="reference internal" href="#line-comment">Line Comment</a>.</p>
+<div class="section" id="bracket-comment">
+<span id="id5"></span><h4><a class="toc-backref" href="#id23">Bracket Comment</a><a class="headerlink" href="#bracket-comment" title="Permalink to this headline">¶</a></h4>
+<p>A <tt class="docutils literal"><span class="pre">#</span></tt> immediately followed by a <a class="reference internal" href="#bracket-argument">Bracket Argument</a> forms a
+<em>bracket comment</em> consisting of the entire bracket enclosure:</p>
+<pre>
+<strong id="grammar-token-bracket_comment">bracket_comment</strong> ::=  '#' <a class="reference internal" href="#grammar-token-bracket_argument"><tt class="xref docutils literal"><span class="pre">bracket_argument</span></tt></a>
+</pre>
+<p>For example:</p>
+<div class="highlight-cmake"><pre>#[[This is a bracket comment.
+It runs until the close bracket.]]
+message("First Argument\n" #[[Bracket Comment]] "Second Argument")</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">CMake versions prior to 3.0 do not support bracket comments.
+They interpret the opening <tt class="docutils literal"><span class="pre">#</span></tt> as the start of a <a class="reference internal" href="#line-comment">Line Comment</a>.</p>
+</div>
+</div>
+<div class="section" id="line-comment">
+<span id="id6"></span><h4><a class="toc-backref" href="#id24">Line Comment</a><a class="headerlink" href="#line-comment" title="Permalink to this headline">¶</a></h4>
+<p>A <tt class="docutils literal"><span class="pre">#</span></tt> not immediately followed by a <a class="reference internal" href="#bracket-argument">Bracket Argument</a> forms a
+<em>line comment</em> that runs until the end of the line:</p>
+<pre>
+<strong id="grammar-token-line_comment">line_comment</strong> ::=  '#' &lt;any text not starting in a <a class="reference internal" href="#grammar-token-bracket_argument"><tt class="xref docutils literal"><span class="pre">bracket_argument</span></tt></a>
+                       and not containing a <a class="reference internal" href="#grammar-token-newline"><tt class="xref docutils literal"><span class="pre">newline</span></tt></a>&gt;
+</pre>
+<p>For example:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="c"># This is a line comment.</span>
+<span class="nb">message</span><span class="p">(</span><span class="s2">&quot;First Argument\n&quot;</span> <span class="c"># This is a line comment :)</span>
+        <span class="s2">&quot;Second Argument&quot;</span><span class="p">)</span> <span class="c"># This is a line comment.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="control-structures">
+<h2><a class="toc-backref" href="#id25">Control Structures</a><a class="headerlink" href="#control-structures" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conditional-blocks">
+<h3><a class="toc-backref" href="#id26">Conditional Blocks</a><a class="headerlink" href="#conditional-blocks" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="../command/if.html#command:if" title="if"><tt class="xref cmake cmake-command docutils literal"><span class="pre">if()</span></tt></a>/<a class="reference internal" href="../command/elseif.html#command:elseif" title="elseif"><tt class="xref cmake cmake-command docutils literal"><span class="pre">elseif()</span></tt></a>/<a class="reference internal" href="../command/else.html#command:else" title="else"><tt class="xref cmake cmake-command docutils literal"><span class="pre">else()</span></tt></a>/<a class="reference internal" href="../command/endif.html#command:endif" title="endif"><tt class="xref cmake cmake-command docutils literal"><span class="pre">endif()</span></tt></a>
+commands delimit code blocks to be executed conditionally.</p>
+</div>
+<div class="section" id="loops">
+<h3><a class="toc-backref" href="#id27">Loops</a><a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="../command/foreach.html#command:foreach" title="foreach"><tt class="xref cmake cmake-command docutils literal"><span class="pre">foreach()</span></tt></a>/<a class="reference internal" href="../command/endforeach.html#command:endforeach" title="endforeach"><tt class="xref cmake cmake-command docutils literal"><span class="pre">endforeach()</span></tt></a> and
+<a class="reference internal" href="../command/while.html#command:while" title="while"><tt class="xref cmake cmake-command docutils literal"><span class="pre">while()</span></tt></a>/<a class="reference internal" href="../command/endwhile.html#command:endwhile" title="endwhile"><tt class="xref cmake cmake-command docutils literal"><span class="pre">endwhile()</span></tt></a> commands delimit code
+blocks to be executed in a loop.  The <a class="reference internal" href="../command/break.html#command:break" title="break"><tt class="xref cmake cmake-command docutils literal"><span class="pre">break()</span></tt></a> command
+may be used inside such blocks to terminate the loop early.</p>
+</div>
+<div class="section" id="command-definitions">
+<h3><a class="toc-backref" href="#id28">Command Definitions</a><a class="headerlink" href="#command-definitions" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="../command/macro.html#command:macro" title="macro"><tt class="xref cmake cmake-command docutils literal"><span class="pre">macro()</span></tt></a>/<a class="reference internal" href="../command/endmacro.html#command:endmacro" title="endmacro"><tt class="xref cmake cmake-command docutils literal"><span class="pre">endmacro()</span></tt></a>, and
+<a class="reference internal" href="../command/function.html#command:function" title="function"><tt class="xref cmake cmake-command docutils literal"><span class="pre">function()</span></tt></a>/<a class="reference internal" href="../command/endfunction.html#command:endfunction" title="endfunction"><tt class="xref cmake cmake-command docutils literal"><span class="pre">endfunction()</span></tt></a> commands delimit
+code blocks to be recorded for later invocation as commands.</p>
+</div>
+</div>
+<div class="section" id="variables">
+<h2><a class="toc-backref" href="#id29">Variables</a><a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<p>Variables are the basic unit of storage in the CMake Language.
+Their values are always of string type, though some commands may
+interpret the strings as values of other types.
+The <a class="reference internal" href="../command/set.html#command:set" title="set"><tt class="xref cmake cmake-command docutils literal"><span class="pre">set()</span></tt></a> and <a class="reference internal" href="../command/unset.html#command:unset" title="unset"><tt class="xref cmake cmake-command docutils literal"><span class="pre">unset()</span></tt></a> commands explicitly
+set or unset a variable, but other commands have semantics
+that modify variables as well.
+Variable names are case-sensitive and may consist of almost
+any text, but we recommend sticking to names consisting only
+of alphanumeric characters plus <tt class="docutils literal"><span class="pre">_</span></tt> and <tt class="docutils literal"><span class="pre">-</span></tt>.</p>
+<p>Variables have dynamic scope.  Each variable &#8220;set&#8221; or &#8220;unset&#8221;
+creates a binding in the current scope:</p>
+<dl class="docutils">
+<dt>Function Scope</dt>
+<dd><a class="reference internal" href="#command-definitions">Command Definitions</a> created by the <a class="reference internal" href="../command/function.html#command:function" title="function"><tt class="xref cmake cmake-command docutils literal"><span class="pre">function()</span></tt></a> command
+create commands that, when invoked, process the recorded commands
+in a new variable binding scope.  A variable &#8220;set&#8221; or &#8220;unset&#8221;
+binds in this scope and is visible for the current function and
+any nested calls, but not after the function returns.</dd>
+<dt>Directory Scope</dt>
+<dd><p class="first">Each of the <a class="reference internal" href="#directories">Directories</a> in a source tree has its own variable
+bindings.  Before processing the <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> file for a
+directory, CMake copies all variable bindings currently defined
+in the parent directory, if any, to initialize the new directory
+scope.  CMake <a class="reference internal" href="#scripts">Scripts</a>, when processed with <tt class="docutils literal"><span class="pre">cmake</span> <span class="pre">-P</span></tt>, bind
+variables in one &#8220;directory&#8221; scope.</p>
+<p class="last">A variable &#8220;set&#8221; or &#8220;unset&#8221; not inside a function call binds
+to the current directory scope.</p>
+</dd>
+<dt>Persistent Cache</dt>
+<dd>CMake stores a separate set of &#8220;cache&#8221; variables, or &#8220;cache entries&#8221;,
+whose values persist across multiple runs within a project build
+tree.  Cache entries have an isolated binding scope modified only
+by explicit request, such as by the <tt class="docutils literal"><span class="pre">CACHE</span></tt> option of the
+<a class="reference internal" href="../command/set.html#command:set" title="set"><tt class="xref cmake cmake-command docutils literal"><span class="pre">set()</span></tt></a> and <a class="reference internal" href="../command/unset.html#command:unset" title="unset"><tt class="xref cmake cmake-command docutils literal"><span class="pre">unset()</span></tt></a> commands.</dd>
+</dl>
+<p>When evaluating <a class="reference internal" href="#variable-references">Variable References</a>, CMake first searches the
+function call stack, if any, for a binding and then falls back
+to the binding in the current directory scope, if any.  If a
+&#8220;set&#8221; binding is found, its value is used.  If an &#8220;unset&#8221; binding
+is found, or no binding is found, CMake then searches for a
+cache entry.  If a cache entry is found, its value is used.
+Otherwise, the variable reference evaluates to an empty string.</p>
+<p>The <a class="reference internal" href="cmake-variables.7.html#manual:cmake-variables(7)" title="cmake-variables(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-variables(7)</span></tt></a> manual documents many variables
+that are provided by CMake or have meaning to CMake when set
+by project code.</p>
+</div>
+<div class="section" id="lists">
+<h2><a class="toc-backref" href="#id30">Lists</a><a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<p>Although all values in CMake are stored as strings, a string
+may be treated as a list in certain contexts, such as during
+evaluation of an <a class="reference internal" href="#unquoted-argument">Unquoted Argument</a>.  In such contexts, a string
+is divided into list elements by splitting on <tt class="docutils literal"><span class="pre">;</span></tt> characters not
+following an unequal number of <tt class="docutils literal"><span class="pre">[</span></tt> and <tt class="docutils literal"><span class="pre">]</span></tt> characters and not
+immediately preceded by a <tt class="docutils literal"><span class="pre">\</span></tt>.  The sequence <tt class="docutils literal"><span class="pre">\;</span></tt> does not
+divide a value but is replaced by <tt class="docutils literal"><span class="pre">;</span></tt> in the resulting element.</p>
+<p>A list of elements is represented as a string by concatenating
+the elements separated by <tt class="docutils literal"><span class="pre">;</span></tt>.  For example, the <a class="reference internal" href="../command/set.html#command:set" title="set"><tt class="xref cmake cmake-command docutils literal"><span class="pre">set()</span></tt></a>
+command stores multiple values into the destination variable
+as a list:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="s">srcs</span> <span class="s">a.c</span> <span class="s">b.c</span> <span class="s">c.c</span><span class="p">)</span> <span class="c"># sets &quot;srcs&quot; to &quot;a.c;b.c;c.c&quot;</span>
+</pre></div>
+</div>
+<p>Lists are meant for simple use cases such as a list of source
+files and should not be used for complex data processing tasks.
+Most commands that construct lists do not escape <tt class="docutils literal"><span class="pre">;</span></tt> characters
+in list elements, thus flattening nested lists:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="s">x</span> <span class="s">a</span> <span class="s2">&quot;b;c&quot;</span><span class="p">)</span> <span class="c"># sets &quot;x&quot; to &quot;a;b;c&quot;, not &quot;a;b\;c&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cmake-language(7)</a><ul>
+<li><a class="reference internal" href="#organization">Organization</a><ul>
+<li><a class="reference internal" href="#directories">Directories</a></li>
+<li><a class="reference internal" href="#scripts">Scripts</a></li>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#syntax">Syntax</a><ul>
+<li><a class="reference internal" href="#encoding">Encoding</a></li>
+<li><a class="reference internal" href="#source-files">Source Files</a></li>
+<li><a class="reference internal" href="#command-invocations">Command Invocations</a></li>
+<li><a class="reference internal" href="#command-arguments">Command Arguments</a><ul>
+<li><a class="reference internal" href="#bracket-argument">Bracket Argument</a></li>
+<li><a class="reference internal" href="#quoted-argument">Quoted Argument</a></li>
+<li><a class="reference internal" href="#unquoted-argument">Unquoted Argument</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#escape-sequences">Escape Sequences</a></li>
+<li><a class="reference internal" href="#variable-references">Variable References</a></li>
+<li><a class="reference internal" href="#comments">Comments</a><ul>
+<li><a class="reference internal" href="#bracket-comment">Bracket Comment</a></li>
+<li><a class="reference internal" href="#line-comment">Line Comment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#control-structures">Control Structures</a><ul>
+<li><a class="reference internal" href="#conditional-blocks">Conditional Blocks</a></li>
+<li><a class="reference internal" href="#loops">Loops</a></li>
+<li><a class="reference internal" href="#command-definitions">Command Definitions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#lists">Lists</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../generator/Sublime Text 2.html"
+                        title="previous chapter">Sublime Text 2</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cmake-modules.7.html"
+                        title="next chapter">cmake-modules(7)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/manual/cmake-language.7.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cmake-modules.7.html" title="cmake-modules(7)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../generator/Sublime Text 2.html" title="Sublime Text 2"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

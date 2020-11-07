@@ -3,43 +3,16 @@
 #include "../def/internalDef.h"
 #include "../client/InternalCookieVisitor.h"
 #include <atlconv.h>
+#include "../client/InternalCookieStoreVisitor.h"
+#include <vector>
+#include "include/capi/cef_parser_capi.h"
+#include "include/capi/cef_values_capi.h"
 
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyCookieManager,CefCookieManager);
 
-///
-// Returns the global cookie manager. By default data will be stored at
-// CefSettings.cache_path if specified or in memory otherwise. If |callback|
-// is non-NULL it will be executed asnychronously on the UI thread after the
-// manager's storage has been initialized. Using this method is equivalent to
-// calling CefRequestContext::GetGlobalContext()->GetDefaultCookieManager().
-///
-/*--cef(optional_param=callback)--*/
-shrewd_ptr<ProxyCookieManager> ProxyCookieManager::GetGlobalManager() {
-    CefRefPtr<CefCookieManager> manager = CefCookieManager::GetGlobalManager(nullptr);
-    return new ProxyCookieManager(manager);
-}
 
 bool ProxyCookieManager::IsValid() {
     return _rawptr != nullptr;
-}
-
-///
-// Set the schemes supported by this manager. If |include_defaults| is true
-// the default schemes ("http", "https", "ws" and "wss") will also be
-// supported. Calling this method with an empty |schemes| value and
-// |include_defaults| set to false will disable all loading and saving of
-// cookies for this manager. If |callback| is non-NULL it will be executed
-// asnychronously on the UI thread after the change has been applied. Must be
-// called before any cookies are accessed.
-///
-/*--cef(optional_param=callback)--*/
-void ProxyCookieManager::SetSupportedSchemes(const char* schemes, bool include_defaults) {
-    ASSERTN();
-    std::vector<CefString> stringArrays;
-    if (schemes) {
-        SplitString(schemes, ";", stringArrays);
-    }
-    FORWARD(CefCookieManager)->SetSupportedSchemes(stringArrays, include_defaults, nullptr);
 }
 
 ///
@@ -48,10 +21,15 @@ void ProxyCookieManager::SetSupportedSchemes(const char* schemes, bool include_d
 // cannot be accessed.
 ///
 /*--cef()--*/
-bool ProxyCookieManager::VisitAllCookies() {
-    ASSERTQ(false);
-    CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor();
-    return FORWARD(CefCookieManager)->VisitAllCookies(visitor);
+shrewd_ptr<ProxyCookie>** ProxyCookieManager::VisitAllCookies() {
+    ASSERTQ(NULL);
+    CefRefPtr<CefWaitableEvent> waitable = CefWaitableEvent::CreateWaitableEvent(false, false);
+    CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor(COOKIE_VISIT_MODE_FETCH, waitable);
+    CefCookie cookie;
+    FORWARD(CefCookieManager)->SetCookie(L"http://www.internal.aquarius2/", cookie, nullptr);
+    FORWARD(CefCookieManager)->VisitAllCookies(visitor);
+    WaitAwaking(waitable);
+    return visitor->GetCookieArray();
 }
 
 ///
@@ -62,14 +40,23 @@ bool ProxyCookieManager::VisitAllCookies() {
 // Returns false if cookies cannot be accessed.
 ///
 /*--cef()--*/
-bool ProxyCookieManager::VisitUrlCookies(const char* url, bool includeHttpOnly) {
-    ASSERTQ(false);
-    if (!url) {
-        return false;
-    }
+shrewd_ptr<ProxyCookie>** ProxyCookieManager::VisitUrlCookies(const char* url, bool includeHttpOnly) {
+    ASSERTQ(NULL);
+    const wchar_t* wURL = L"";
     USES_CONVERSION;
-    CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor();
-    return FORWARD(CefCookieManager)->VisitUrlCookies(A2W(url), includeHttpOnly, visitor);
+    CefCookie cookie;
+
+    if (url) {
+        wURL = A2W(url);
+    }
+
+    CefRefPtr<CefWaitableEvent> waitable = CefWaitableEvent::CreateWaitableEvent(false, false);
+    CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor(COOKIE_VISIT_MODE_FETCH, waitable);
+
+    FORWARD(CefCookieManager)->SetCookie(L"http://www.internal.aquarius2/", cookie, nullptr);
+    FORWARD(CefCookieManager)->VisitUrlCookies(wURL,includeHttpOnly, visitor);
+    WaitAwaking(waitable);
+    return visitor->GetCookieArray();
 }
 
 ///
@@ -82,12 +69,27 @@ bool ProxyCookieManager::VisitUrlCookies(const char* url, bool includeHttpOnly) 
 // false if an invalid URL is specified or if cookies cannot be accessed.
 ///
 /*--cef(optional_param=callback)--*/
-bool ProxyCookieManager::SetCookie(const char* url, shrewd_ptr<ProxyCookie> cookie) {
+bool ProxyCookieManager::SetCookie(const char* url, const char* domain, const char* name, const char* value) {
     ASSERTQ(false);
-    if (!cookie) {
+    CefCookie cookie;
+    const wchar_t* wValue = L"";
+    USES_CONVERSION;
+
+    if (!url || !name) {
         return false;
     }
-    return FORWARD(CefCookieManager)->SetCookie(url, *(CefCookie*)cookie->OriginPointer(), nullptr);
+
+    CefString(&cookie.name) = A2W(name);
+
+    if (value) {
+        CefString(&cookie.value) = A2W(value);
+    }
+
+    if (domain) {
+        CefString(&cookie.domain) = A2W(domain);
+    }
+    
+    return FORWARD(CefCookieManager)->SetCookie(A2W(url), cookie, nullptr);
 }
 
 ///
@@ -117,14 +119,13 @@ bool ProxyCookieManager::DeleteCookies(const char* url, const char* cookie_name)
         tempName = A2W(cookie_name);
     }
 
-    if (!cookie_name) {
-        CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor(true);
+    if (url && !cookie_name) {
+        CefRefPtr<InternalCookieVisitor> visitor = new InternalCookieVisitor(COOKIE_VISIT_MODE_DELETE, nullptr);
         return FORWARD(CefCookieManager)->VisitUrlCookies(tempUrl, true, visitor);
     }
     else {
         return FORWARD(CefCookieManager)->DeleteCookies(tempUrl, tempName, nullptr);
     }
-    
 }
 
 ///
@@ -136,4 +137,144 @@ bool ProxyCookieManager::DeleteCookies(const char* url, const char* cookie_name)
 bool ProxyCookieManager::FlushStore() {
     ASSERTQ(false);
     return FORWARD(CefCookieManager)->FlushStore(nullptr);
+}
+
+///
+//  ExtractToString
+///
+char* ProxyCookieManager::ExtractToString() {
+    ASSERTQ(NULL);
+
+    CefRefPtr<CefWaitableEvent> waitable = CefWaitableEvent::CreateWaitableEvent(false, false);
+    CefRefPtr<InternalCookieStoreVisitor> visitor = new InternalCookieStoreVisitor(waitable);
+    CefCookie cookie;
+
+    FORWARD(CefCookieManager)->SetCookie(L"http://www.internal.aquarius2/", cookie, nullptr);
+    FORWARD(CefCookieManager)->VisitAllCookies(visitor);
+    WaitAwaking(waitable);
+
+    return visitor->GetString();
+}
+
+std::wstring __reduceCookie(const std::wstring& s, CefCookie& cookie) {
+    std::wstring url;
+    std::size_t begin = 0;
+    std::size_t end = s.find(L";", begin);
+    std::wstring text;
+    std::wstring path;
+    std::wstring domain;
+
+    while (end != std::string::npos){
+        text = s.substr(begin, end - begin);
+        if (text == L"Secure") {
+            cookie.secure = true;
+        }
+        else if (text == L"HttpOnly") {
+            cookie.httponly = true;
+        }
+        else if (text == L"HttpOnly") {
+            cookie.httponly = true;
+        }
+        else if (text.find(L"Domain=") != std::wstring::npos) {
+            CefString(&cookie.domain) = text.substr(7, text.length() - 7);
+            domain = text.substr(7, text.length() - 7);
+        }
+        else if (text.find(L"Path=") != std::wstring::npos) {
+            CefString(&cookie.path) = text.substr(5, text.length() - 5);
+            path = text.substr(5, text.length() - 5);
+        }
+        else if (text.find(L"Expires=") != std::wstring::npos) {
+            std::wstring value = text.substr(8, text.length() - 8);
+            wchar_t* ends = nullptr;
+            CefTime time;
+            time.AttachTo(cookie.expires);
+            time.SetTimeT(std::wcstoll(value.c_str(), &ends, 10));
+            cookie.has_expires = true;
+        }
+        else if (text.find(L"Set-Cookie:") != std::wstring::npos) {
+            std::wstring ck = text.substr(11, text.length() - 11);
+            if (!ck.empty()) {
+                std::size_t pos = ck.find(L"=");
+                CefString(&cookie.name) = ck.substr(0, pos);
+                CefString(&cookie.value) = ck.substr(pos + 1, ck.length() - pos - 1);
+            }
+        }
+        begin = end + 1;
+        end = s.find(L";", begin);
+    }
+
+    std::wstringstream sstr;
+    if (cookie.secure) {
+        sstr << (domain[0] == L'.' ? L"https://www" : L"https://www.");
+    }
+    else {
+        sstr << (domain[0] == L'.' ? L"http://www" : L"http://www.");
+    }
+    sstr << domain;
+    sstr << path;
+    url = sstr.str();
+    return std::move(url);
+
+}
+
+///
+//  ReduceFromString
+///
+void ProxyCookieManager::ReduceFromString(const char* string) {
+    ASSERTN();
+    if (!string) {
+        return ;
+    }
+    cef_string_t s;
+    std::size_t begin = 0;
+    std::size_t end = 0;
+    std::wstring text;
+    std::wstring line;
+    std::wstring url;
+    CefCookie cookie;
+
+    s.dtor = nullptr;
+    s.str = ToUnicode(string, strlen(string));
+    s.length = lstrlenW(s.str);
+
+    FORWARD(CefCookieManager)->DeleteCookies(L"", L"", nullptr);
+
+    text.assign( s.str,s.length );
+
+    end = text.find(L"\r\n");
+    while (end != std::wstring::npos)
+    {
+        line = text.substr(begin, end - begin);
+        CefCookieTraits::clear(&cookie);
+        url = __reduceCookie(line, cookie);
+
+        FORWARD(CefCookieManager)->SetCookie(url,cookie,nullptr);
+        begin = end + 2;
+        end = text.find(L"\r\n", begin);
+    }
+
+    if (s.str) {
+        DeleteBuffer(s.str);
+    }
+}
+
+///
+//  ExtractToHTTP
+///
+char* ProxyCookieManager::ExtractToHTTP(const char* url) {
+    CefRefPtr<CefWaitableEvent> waitable = CefWaitableEvent::CreateWaitableEvent(false, false);
+    CefRefPtr<InternalCookieStoreVisitor> visitor = new InternalCookieStoreVisitor(waitable, 1);
+    CefCookie cookie;
+
+    FORWARD(CefCookieManager)->SetCookie(L"http://www.internal.aquarius2/", cookie, nullptr);
+    if (url) {
+        USES_CONVERSION;
+        FORWARD(CefCookieManager)->VisitUrlCookies(A2W(url),true, visitor);
+    }
+    else {
+        FORWARD(CefCookieManager)->VisitAllCookies(visitor);
+    }
+
+    WaitAwaking(waitable);
+    return visitor->GetString();
 }

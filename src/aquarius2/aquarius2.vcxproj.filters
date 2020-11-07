@@ -42,9 +42,6 @@
     <ClCompile Include="proxy\ProxyBrowser.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
-    <ClCompile Include="proxy\ProxyBrowserHost.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
     <ClCompile Include="proxy\ProxyFrame.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
@@ -60,12 +57,6 @@
     <ClCompile Include="def\utilityDef.cpp">
       <Filter>src\def</Filter>
     </ClCompile>
-    <ClCompile Include="proxy\ProxyPostData.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyPostDataElement.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
     <ClCompile Include="proxy\ProxyResponse.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
@@ -75,22 +66,13 @@
     <ClCompile Include="proxy\ProxySettings.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
-    <ClCompile Include="proxy\ProxyWindowInfo.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
     <ClCompile Include="proxy\ProxyBrowserSettings.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyRequestContext.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
     <ClCompile Include="proxy\ProxyCookieManager.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
     <ClCompile Include="proxy\ProxyCookie.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyTime.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
     <ClCompile Include="client\InternalStringVisitor.cpp">
@@ -108,21 +90,6 @@
     <ClCompile Include="client\InternalCalculationVisitor.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
-    <ClCompile Include="proxy\ProxyPopupFeatures.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyRequestContextSettings.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyKeyEvent.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyMouseEvent.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyTouchEvent.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
     <ClCompile Include="proxy\ProxyClient.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
@@ -132,38 +99,14 @@
     <ClCompile Include="proxy\ProxyAuthCallback.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
-    <ClCompile Include="proxy\ProxyRequestCallback.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
     <ClCompile Include="client\InternalCreateBrowser.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
     <ClCompile Include="proxy\ProxyFileDialogCallback.cpp">
       <Filter>src\proxy</Filter>
     </ClCompile>
-    <ClCompile Include="proxy\ProxyContextMenuParams.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyMenuModel.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyDownloadItemCallback.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
     <ClCompile Include="proxy\ProxyDownloadItem.cpp">
       <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyRunContextMenuCallback.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyBeforeDownloadCallback.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="proxy\ProxyTaskRunner.cpp">
-      <Filter>src\proxy</Filter>
-    </ClCompile>
-    <ClCompile Include="client\InternalTaskVisitor.cpp">
-      <Filter>src\client</Filter>
     </ClCompile>
     <ClCompile Include="proxy\ProxyResponseFilter.cpp">
       <Filter>src\proxy</Filter>
@@ -179,6 +122,87 @@
     </ClCompile>
     <ClCompile Include="client\InternalCookieVisitor.cpp">
       <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalRequestClient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyWindowInfo.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyPostDataElement.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalCookieStoreVisitor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyURLRequest.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyServer.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalServerClient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalServerTask.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyWebSocket.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyWaitableEvent.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyMenuModel.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyContextMenuParams.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyRunContextMenuCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyCollection.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalCollection.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyDOMNode.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyDOMDocument.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalDOMDocument.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyExtension.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalExtensionClient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalTaskVisitor.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyGetExtensionResourceCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyActiveBrowserCallback.cpp">
+      <Filter>src\proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="def\Power.cpp">
+      <Filter>src\def</Filter>
+    </ClCompile>
+    <ClCompile Include="def\InternalPower.cpp">
+      <Filter>src\def</Filter>
+    </ClCompile>
+    <ClCompile Include="client\InternalMessageRouterHandler.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="proxy\ProxyQueryCallback.cpp">
+      <Filter>src\proxy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +221,6 @@
     <ClInclude Include="proxy\ProxyBrowser.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
-    <ClInclude Include="proxy\ProxyBrowserHost.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
     <ClInclude Include="proxy\ProxyFrame.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
@@ -215,12 +236,6 @@
     <ClInclude Include="def\utilityDef.h">
       <Filter>src\def</Filter>
     </ClInclude>
-    <ClInclude Include="proxy\ProxyPostData.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyPostDataElement.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
     <ClInclude Include="proxy\ProxyResponse.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
@@ -230,22 +245,13 @@
     <ClInclude Include="proxy\ProxySettings.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
-    <ClInclude Include="proxy\ProxyWindowInfo.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
     <ClInclude Include="proxy\ProxyBrowserSettings.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyRequestContext.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
     <ClInclude Include="proxy\ProxyCookieManager.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
     <ClInclude Include="proxy\ProxyCookie.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyTime.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
     <ClInclude Include="client\InternalStringVisitor.h">
@@ -263,21 +269,6 @@
     <ClInclude Include="client\InternalCalculationVisitor.h">
       <Filter>src\client</Filter>
     </ClInclude>
-    <ClInclude Include="proxy\ProxyPopupFeatures.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyRequestContextSettings.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyKeyEvent.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyMouseEvent.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyTouchEvent.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
     <ClInclude Include="proxy\ProxyClient.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
@@ -287,38 +278,14 @@
     <ClInclude Include="proxy\ProxyAuthCallback.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
-    <ClInclude Include="proxy\ProxyRequestCallback.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
     <ClInclude Include="client\InternalCreateBrowser.h">
       <Filter>src\client</Filter>
     </ClInclude>
     <ClInclude Include="proxy\ProxyFileDialogCallback.h">
       <Filter>src\proxy</Filter>
     </ClInclude>
-    <ClInclude Include="proxy\ProxyContextMenuParams.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyMenuModel.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyDownloadItemCallback.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
     <ClInclude Include="proxy\ProxyDownloadItem.h">
       <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyRunContextMenuCallback.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyBeforeDownloadCallback.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="proxy\ProxyTaskRunner.h">
-      <Filter>src\proxy</Filter>
-    </ClInclude>
-    <ClInclude Include="client\InternalTaskVisitor.h">
-      <Filter>src\client</Filter>
     </ClInclude>
     <ClInclude Include="proxy\ProxyResponseFilter.h">
       <Filter>src\proxy</Filter>
@@ -335,5 +302,100 @@
     <ClInclude Include="client\InternalCookieVisitor.h">
       <Filter>src\client</Filter>
     </ClInclude>
+    <ClInclude Include="client\InternalCookieStoreVisitor.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalRequestClient.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyWindowInfo.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyPostDataElement.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyURLRequest.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyServer.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalServerClient.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalServerTask.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyWebSocket.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyWaitableEvent.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyMenuModel.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyContextMenuParams.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyRunContextMenuCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyCollection.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalCollection.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyDOMNode.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyDOMDocument.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalDOMDocument.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyExtension.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalExtensionClient.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalTaskVisitor.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyGetExtensionResourceCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyActiveBrowserCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="def\Power.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="def\InternalPower.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="def\InternalPage.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="client\InternalMessageRouterHandler.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\ProxyQueryCallback.h">
+      <Filter>src\proxy</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="aquarius2.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

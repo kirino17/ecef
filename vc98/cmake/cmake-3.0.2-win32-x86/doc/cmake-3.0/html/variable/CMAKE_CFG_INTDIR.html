@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMAKE_CFG_INTDIR &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-variables(7)" href="../manual/cmake-variables.7.html" />
+    <link rel="next" title="CMAKE_COMMAND" href="CMAKE_COMMAND.html" />
+    <link rel="prev" title="CMAKE_CACHE_PATCH_VERSION" href="CMAKE_CACHE_PATCH_VERSION.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMAKE_COMMAND.html" title="CMAKE_COMMAND"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_CACHE_PATCH_VERSION.html" title="CMAKE_CACHE_PATCH_VERSION"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" accesskey="U">cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmake-cfg-intdir">
+<span id="variable:CMAKE_CFG_INTDIR"></span><h1>CMAKE_CFG_INTDIR<a class="headerlink" href="#cmake-cfg-intdir" title="Permalink to this headline">¶</a></h1>
+<p>Build-time reference to per-configuration output subdirectory.</p>
+<p>For native build systems supporting multiple configurations in the
+build tree (such as Visual Studio and Xcode), the value is a reference
+to a build-time variable specifying the name of the per-configuration
+output subdirectory.  On Makefile generators this evaluates to &#8221;.&#8221;
+because there is only one configuration in a build tree.  Example
+values:</p>
+<div class="highlight-python"><pre>$(IntDir)        = Visual Studio 6
+$(OutDir)        = Visual Studio 7, 8, 9
+$(Configuration) = Visual Studio 10
+$(CONFIGURATION) = Xcode
+.                = Make-based tools</pre>
+</div>
+<p>Since these values are evaluated by the native build system, this
+variable is suitable only for use in command lines that will be
+evaluated at build time.  Example of intended usage:</p>
+<div class="highlight-python"><pre>add_executable(mytool mytool.c)
+add_custom_command(
+  OUTPUT out.txt
+  COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/mytool
+          ${CMAKE_CURRENT_SOURCE_DIR}/in.txt out.txt
+  DEPENDS mytool in.txt
+  )
+add_custom_target(drive ALL DEPENDS out.txt)</pre>
+</div>
+<p>Note that CMAKE_CFG_INTDIR is no longer necessary for this purpose but
+has been left for compatibility with existing projects.  Instead
+add_custom_command() recognizes executable target names in its COMMAND
+option, so &#8220;${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/mytool&#8221;
+can be replaced by just &#8220;mytool&#8221;.</p>
+<p>This variable is read-only.  Setting it is undefined behavior.  In
+multi-configuration build systems the value of this variable is passed
+as the value of preprocessor symbol &#8220;CMAKE_INTDIR&#8221; to the compilation
+of all source files.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMAKE_CACHE_PATCH_VERSION.html"
+                        title="previous chapter">CMAKE_CACHE_PATCH_VERSION</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMAKE_COMMAND.html"
+                        title="next chapter">CMAKE_COMMAND</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/variable/CMAKE_CFG_INTDIR.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMAKE_COMMAND.html" title="CMAKE_COMMAND"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_CACHE_PATCH_VERSION.html" title="CMAKE_CACHE_PATCH_VERSION"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" >cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

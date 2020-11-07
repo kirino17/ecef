@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cmake_policy &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="configure_file" href="configure_file.html" />
+    <link rel="prev" title="cmake_minimum_required" href="cmake_minimum_required.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configure_file.html" title="configure_file"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmake_minimum_required.html" title="cmake_minimum_required"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmake-policy">
+<span id="command:cmake_policy"></span><h1>cmake_policy<a class="headerlink" href="#cmake-policy" title="Permalink to this headline">¶</a></h1>
+<p>Manage CMake Policy settings.</p>
+<p>As CMake evolves it is sometimes necessary to change existing behavior
+in order to fix bugs or improve implementations of existing features.
+The CMake Policy mechanism is designed to help keep existing projects
+building as new versions of CMake introduce changes in behavior.  Each
+new policy (behavioral change) is given an identifier of the form
+&#8220;CMP&lt;NNNN&gt;&#8221; where &#8220;&lt;NNNN&gt;&#8221; is an integer index.  Documentation
+associated with each policy describes the OLD and NEW behavior and the
+reason the policy was introduced.  Projects may set each policy to
+select the desired behavior.  When CMake needs to know which behavior
+to use it checks for a setting specified by the project.  If no
+setting is available the OLD behavior is assumed and a warning is
+produced requesting that the policy be set.</p>
+<p>The cmake_policy command is used to set policies to OLD or NEW
+behavior.  While setting policies individually is supported, we
+encourage projects to set policies based on CMake versions.</p>
+<div class="highlight-python"><pre>cmake_policy(VERSION major.minor[.patch[.tweak]])</pre>
+</div>
+<p>Specify that the current CMake list file is written for the given
+version of CMake.  All policies introduced in the specified version or
+earlier will be set to use NEW behavior.  All policies introduced
+after the specified version will be unset (unless variable
+CMAKE_POLICY_DEFAULT_CMP&lt;NNNN&gt; sets a default).  This effectively
+requests behavior preferred as of a given CMake version and tells
+newer CMake versions to warn about their new policies.  The policy
+version specified must be at least 2.4 or the command will report an
+error.  In order to get compatibility features supporting versions
+earlier than 2.4 see documentation of policy CMP0001.</p>
+<div class="highlight-python"><pre>cmake_policy(SET CMP&lt;NNNN&gt; NEW)
+cmake_policy(SET CMP&lt;NNNN&gt; OLD)</pre>
+</div>
+<p>Tell CMake to use the OLD or NEW behavior for a given policy.
+Projects depending on the old behavior of a given policy may silence a
+policy warning by setting the policy state to OLD.  Alternatively one
+may fix the project to work with the new behavior and set the policy
+state to NEW.</p>
+<div class="highlight-python"><pre>cmake_policy(GET CMP&lt;NNNN&gt; &lt;variable&gt;)</pre>
+</div>
+<p>Check whether a given policy is set to OLD or NEW behavior.  The
+output variable value will be &#8220;OLD&#8221; or &#8220;NEW&#8221; if the policy is set, and
+empty otherwise.</p>
+<p>CMake keeps policy settings on a stack, so changes made by the
+cmake_policy command affect only the top of the stack.  A new entry on
+the policy stack is managed automatically for each subdirectory to
+protect its parents and siblings.  CMake also manages a new entry for
+scripts loaded by include() and find_package() commands except when
+invoked with the NO_POLICY_SCOPE option (see also policy CMP0011).
+The cmake_policy command provides an interface to manage custom
+entries on the policy stack:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cmake_policy</span><span class="p">(</span><span class="n">PUSH</span><span class="p">)</span>
+<span class="n">cmake_policy</span><span class="p">(</span><span class="n">POP</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each PUSH must have a matching POP to erase any changes.  This is
+useful to make temporary changes to policy settings.</p>
+<p>Functions and macros record policy settings when they are created and
+use the pre-record policies when they are invoked.  If the function or
+macro implementation sets policies, the changes automatically
+propagate up through callers until they reach the closest nested
+policy stack entry.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmake_minimum_required.html"
+                        title="previous chapter">cmake_minimum_required</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configure_file.html"
+                        title="next chapter">configure_file</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/cmake_policy.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configure_file.html" title="configure_file"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmake_minimum_required.html" title="cmake_minimum_required"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

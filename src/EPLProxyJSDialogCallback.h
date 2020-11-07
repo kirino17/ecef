@@ -5,8 +5,8 @@
 
 
 #define DECL_DATA_TYPE_ProxyJSDialogCallback \
-	{ /*16*/ \
-		/*m_szName*/		 _WT("Chromium脚本对话框回调"), \
+	{ /*19*/ \
+		/*m_szName*/		 _WT("水星脚本对话框"), \
 		/*m_szEgName*/		 _WT("ProxyJSDialogCallback"), \
 		/*m_szExplain*/		 _WT("脚本对话框回调接口, 用于Javascript对话框请求的执行返回。"), \
 		/*m_nCmdCount*/		 4, \
@@ -33,7 +33,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyJSDialogCallback::Continue ** 1 **/ \
 		/*name*/	 _WT("输入文本"), \
@@ -42,7 +42,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 

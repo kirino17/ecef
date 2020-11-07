@@ -5,8 +5,8 @@
 
 
 #define DECL_DATA_TYPE_ProxyResponseFilter \
-	{ /*29*/ \
-		/*m_szName*/		 _WT("Chromium资源过滤器"), \
+	{ /*26*/ \
+		/*m_szName*/		 _WT("水星资源过滤器"), \
 		/*m_szEgName*/		 _WT("ProxyResponseFilter"), \
 		/*m_szExplain*/		 _WT("用于提供资源可选化配置的类。"), \
 		/*m_nCmdCount*/		 9, \
@@ -33,7 +33,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BIN, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponseFilter::SetResource ** 1 **/ \
 		/*name*/	 _WT("资源长度"), \
@@ -42,7 +42,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -108,7 +108,7 @@
 	{ /*4*/ \
 		/*ccname*/	_WT("取URL"),\
 		/*egname*/	_WT("GetURL"), \
-		/*explain*/	_WT("获取该资源的URL。"), \
+		/*explain*/	_WT("取该资源的URL。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -122,7 +122,7 @@
 	{ /*5*/ \
 		/*ccname*/	_WT("取MIME类型"),\
 		/*egname*/	_WT("GetMimeType"), \
-		/*explain*/	_WT("获取该资源的Mime类型."), \
+		/*explain*/	_WT("取该资源的Mime类型."), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -136,7 +136,7 @@
 	{ /*6*/ \
 		/*ccname*/	_WT("取总字节长度"),\
 		/*egname*/	_WT("GetTotalBytes"), \
-		/*explain*/	_WT("获取该资源所占用的总字节数。"), \
+		/*explain*/	_WT("取该资源所占用的总字节数。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -148,9 +148,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*7*/ \
-		/*ccname*/	_WT("获取资源"),\
+		/*ccname*/	_WT("取资源"),\
 		/*egname*/	_WT("GetResource"), \
-		/*explain*/	_WT("获取该资源"), \
+		/*explain*/	_WT("取该资源"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BIN, \
@@ -162,7 +162,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*8*/ \
-		/*ccname*/	_WT("设置资源"),\
+		/*ccname*/	_WT("置资源"),\
 		/*egname*/	_WT("SetResource"), \
 		/*explain*/	_WT("设置一个新的资源对资源进行替换"), \
 		/*category*/	-1, \

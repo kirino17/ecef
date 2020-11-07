@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>INTERFACE_POSITION_INDEPENDENT_CODE &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-properties(7)" href="../manual/cmake-properties.7.html" />
+    <link rel="next" title="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES" href="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES.html" />
+    <link rel="prev" title="INTERFACE_LINK_LIBRARIES" href="INTERFACE_LINK_LIBRARIES.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES.html" title="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="INTERFACE_LINK_LIBRARIES.html" title="INTERFACE_LINK_LIBRARIES"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" accesskey="U">cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="interface-position-independent-code">
+<span id="prop_tgt:INTERFACE_POSITION_INDEPENDENT_CODE"></span><h1>INTERFACE_POSITION_INDEPENDENT_CODE<a class="headerlink" href="#interface-position-independent-code" title="Permalink to this headline">¶</a></h1>
+<p>Whether consumers need to create a position-independent target</p>
+<p>The <tt class="docutils literal"><span class="pre">INTERFACE_POSITION_INDEPENDENT_CODE</span></tt> property informs consumers of
+this target whether they must set their
+<a class="reference internal" href="POSITION_INDEPENDENT_CODE.html#prop_tgt:POSITION_INDEPENDENT_CODE" title="POSITION_INDEPENDENT_CODE"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">POSITION_INDEPENDENT_CODE</span></tt></a> property to <tt class="docutils literal"><span class="pre">ON</span></tt>.  If this
+property is set to <tt class="docutils literal"><span class="pre">ON</span></tt>, then the <a class="reference internal" href="POSITION_INDEPENDENT_CODE.html#prop_tgt:POSITION_INDEPENDENT_CODE" title="POSITION_INDEPENDENT_CODE"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">POSITION_INDEPENDENT_CODE</span></tt></a>
+property on  all consumers will be set to <tt class="docutils literal"><span class="pre">ON</span></tt>. Similarly, if this
+property is set to <tt class="docutils literal"><span class="pre">OFF</span></tt>, then the <a class="reference internal" href="POSITION_INDEPENDENT_CODE.html#prop_tgt:POSITION_INDEPENDENT_CODE" title="POSITION_INDEPENDENT_CODE"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">POSITION_INDEPENDENT_CODE</span></tt></a>
+property on all consumers will be set to <tt class="docutils literal"><span class="pre">OFF</span></tt>.  If this property is
+undefined, then consumers will determine their
+<a class="reference internal" href="POSITION_INDEPENDENT_CODE.html#prop_tgt:POSITION_INDEPENDENT_CODE" title="POSITION_INDEPENDENT_CODE"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">POSITION_INDEPENDENT_CODE</span></tt></a> property by other means.  Consumers
+must ensure that the targets that they link to have a consistent
+requirement for their <tt class="docutils literal"><span class="pre">INTERFACE_POSITION_INDEPENDENT_CODE</span></tt> property.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="INTERFACE_LINK_LIBRARIES.html"
+                        title="previous chapter">INTERFACE_LINK_LIBRARIES</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES.html"
+                        title="next chapter">INTERFACE_SYSTEM_INCLUDE_DIRECTORIES</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/prop_tgt/INTERFACE_POSITION_INDEPENDENT_CODE.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES.html" title="INTERFACE_SYSTEM_INCLUDE_DIRECTORIES"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="INTERFACE_LINK_LIBRARIES.html" title="INTERFACE_LINK_LIBRARIES"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" >cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

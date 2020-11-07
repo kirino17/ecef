@@ -5,11 +5,11 @@
 
 
 #define DECL_DATA_TYPE_ProxyDownloadItem \
-	{ /*12*/ \
-		/*m_szName*/		 _WT("Chromium文件下载项"), \
+	{ /*14*/ \
+		/*m_szName*/		 _WT("水星下载项"), \
 		/*m_szEgName*/		 _WT("ProxyDownloadItem"), \
 		/*m_szExplain*/		 _WT("用于表示下载项目的类。"), \
-		/*m_nCmdCount*/		 20, \
+		/*m_nCmdCount*/		 24, \
 		/*m_pnCmdsIndex*/		 s_nProxyDownloadItemElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -26,6 +26,24 @@
 //==========================================
 
 #define DECL_DATA_TYPE_ProxyDownloadItem_ARGINFO \
+	{ /****** ProxyDownloadItem::SaveTo ** 0 **/ \
+		/*name*/	 _WT("保存路径"), \
+		/*explain*/	 _WT("设置下载文件的保存位置。"), \
+		/*bmp inx*/	 0, \
+		/*bmp num*/	 0, \
+		/*type*/	 SDT_TEXT, \
+		/*default*/	 0,\
+		/*state*/	 NULL \
+	},\
+	{ /****** ProxyDownloadItem::SaveTo ** 1 **/ \
+		/*name*/	 _WT("显示对话框"), \
+		/*explain*/	 _WT("显示文件对话框供用户选择。"), \
+		/*bmp inx*/	 0, \
+		/*bmp num*/	 0, \
+		/*type*/	 SDT_BOOL, \
+		/*default*/	 0,\
+		/*state*/	 NULL \
+	},\
 
 
 //==========================================
@@ -191,7 +209,7 @@
 		/*explain*/	_WT("返回下载开始的时间。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*ret*/	SDT_DOUBLE, \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -205,7 +223,7 @@
 		/*explain*/	_WT("返回下载结束的时间。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(34,0),  /*shrewd_ptr<ProxyTime>*/ \
+		/*ret*/	SDT_DOUBLE, \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -311,6 +329,62 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
+	{ /*20*/ \
+		/*ccname*/	_WT("保存到"),\
+		/*egname*/	_WT("SaveTo"), \
+		/*explain*/	_WT("提供文件的保存路径或者弹出对话框供用户选择。"), \
+		/*category*/	-1, \
+		/*state*/	NULL, \
+		/*ret*/	_SDT_NULL, \
+		/*reserved*/	0, \
+		/*level*/	LVL_SIMPLE, \
+		/*bmp inx*/	0, \
+		/*bmp num*/	0, \
+		/*argcount*/	2, \
+		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
+	},\
+	{ /*21*/ \
+		/*ccname*/	_WT("取消下载"),\
+		/*egname*/	_WT("CancelDownload"), \
+		/*explain*/	_WT("取消此文件的下载。"), \
+		/*category*/	-1, \
+		/*state*/	NULL, \
+		/*ret*/	_SDT_NULL, \
+		/*reserved*/	0, \
+		/*level*/	LVL_SIMPLE, \
+		/*bmp inx*/	0, \
+		/*bmp num*/	0, \
+		/*argcount*/	0, \
+		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
+	},\
+	{ /*22*/ \
+		/*ccname*/	_WT("暂停下载"),\
+		/*egname*/	_WT("PauseDownload"), \
+		/*explain*/	_WT("暂停此文件的下载。"), \
+		/*category*/	-1, \
+		/*state*/	NULL, \
+		/*ret*/	_SDT_NULL, \
+		/*reserved*/	0, \
+		/*level*/	LVL_SIMPLE, \
+		/*bmp inx*/	0, \
+		/*bmp num*/	0, \
+		/*argcount*/	0, \
+		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
+	},\
+	{ /*23*/ \
+		/*ccname*/	_WT("恢复下载"),\
+		/*egname*/	_WT("ResumeDownload"), \
+		/*explain*/	_WT("恢复此文件的下载"), \
+		/*category*/	-1, \
+		/*state*/	NULL, \
+		/*ret*/	_SDT_NULL, \
+		/*reserved*/	0, \
+		/*level*/	LVL_SIMPLE, \
+		/*bmp inx*/	0, \
+		/*bmp num*/	0, \
+		/*argcount*/	0, \
+		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
+	},\
 
 
 //==========================================
@@ -336,6 +410,10 @@
 	EDITIONS("ProxyDownloadItem_GetSuggestedFileName"),\
 	EDITIONS("ProxyDownloadItem_GetContentDisposition"),\
 	EDITIONS("ProxyDownloadItem_GetMimeType"),\
+	EDITIONS("ProxyDownloadItem_SaveTo"),\
+	EDITIONS("ProxyDownloadItem_CancelDownload"),\
+	EDITIONS("ProxyDownloadItem_PauseDownload"),\
+	EDITIONS("ProxyDownloadItem_ResumeDownload"),\
 
 
 //==========================================
@@ -361,6 +439,10 @@
 	EDITIONF(ProxyDownloadItem_GetSuggestedFileName),\
 	EDITIONF(ProxyDownloadItem_GetContentDisposition),\
 	EDITIONF(ProxyDownloadItem_GetMimeType),\
+	EDITIONF(ProxyDownloadItem_SaveTo),\
+	EDITIONF(ProxyDownloadItem_CancelDownload),\
+	EDITIONF(ProxyDownloadItem_PauseDownload),\
+	EDITIONF(ProxyDownloadItem_ResumeDownload),\
 
 
 //==========================================
@@ -405,6 +487,14 @@ extern "C"
 void EDITIONF(ProxyDownloadItem_GetContentDisposition) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyDownloadItem_GetMimeType) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+extern "C"
+void EDITIONF(ProxyDownloadItem_SaveTo) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+extern "C"
+void EDITIONF(ProxyDownloadItem_CancelDownload) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+extern "C"
+void EDITIONF(ProxyDownloadItem_PauseDownload) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+extern "C"
+void EDITIONF(ProxyDownloadItem_ResumeDownload) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 
 
 //==========================================

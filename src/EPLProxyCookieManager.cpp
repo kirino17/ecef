@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyCookieManager.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyCookieManager.h>
 
 
@@ -45,48 +45,31 @@ void EDITIONF(ProxyCookieManager_IsValid) (PMDATA_INF pRetData, INT nArgCount, P
 }
 
 extern "C"
-void EDITIONF(ProxyCookieManager_GetGlobalManager) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyCookieManager> result = ProxyCookieManager::GetGlobalManager();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
-}
-
-extern "C"
-void EDITIONF(ProxyCookieManager_SetSupportedSchemes) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		return ;
-	}
-	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
-	const char* argSchemes = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
-	bool argInclude_Defaults = pArgInf[2].m_bool;
-	self->SetSupportedSchemes(argSchemes,argInclude_Defaults);
-}
-
-extern "C"
 void EDITIONF(ProxyCookieManager_VisitAllCookies) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		pRetData->m_bool = FALSE;
+		DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC, 8, 0);
+		InternalPointer[0] = 1;
+		InternalPointer[1] = 0;
+		pRetData->m_pCompoundData = InternalPointer;
 		return ;
 	}
 	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
-	pRetData->m_bool = self->VisitAllCookies();
+	pRetData->m_pCompoundData = (void*)self->VisitAllCookies();
 }
 
 extern "C"
 void EDITIONF(ProxyCookieManager_VisitUrlCookies) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		pRetData->m_bool = FALSE;
+		DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC, 8, 0);
+		InternalPointer[0] = 1;
+		InternalPointer[1] = 0;
+		pRetData->m_pCompoundData = InternalPointer;
 		return ;
 	}
 	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
 	const char* argUrl = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
 	bool argIncludehttponly = pArgInf[2].m_bool;
-	pRetData->m_bool = self->VisitUrlCookies(argUrl,argIncludehttponly);
+	pRetData->m_pCompoundData = (void*)self->VisitUrlCookies(argUrl,argIncludehttponly);
 }
 
 extern "C"
@@ -97,8 +80,10 @@ void EDITIONF(ProxyCookieManager_SetCookie) (PMDATA_INF pRetData, INT nArgCount,
 	}
 	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
 	const char* argUrl = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
-	shrewd_ptr<ProxyCookie> argCookie = (ProxyCookie*)*pArgInf[2].m_ppCompoundData;
-	pRetData->m_bool = self->SetCookie(argUrl,argCookie);
+	const char* argDomain = (NULL==pArgInf[2].m_pText || strlen(pArgInf[2].m_pText) <= 0) ? NULL : pArgInf[2].m_pText;
+	const char* argName = (NULL==pArgInf[3].m_pText || strlen(pArgInf[3].m_pText) <= 0) ? NULL : pArgInf[3].m_pText;
+	const char* argValue = (NULL==pArgInf[4].m_pText || strlen(pArgInf[4].m_pText) <= 0) ? NULL : pArgInf[4].m_pText;
+	pRetData->m_bool = self->SetCookie(argUrl,argDomain,argName,argValue);
 }
 
 extern "C"
@@ -121,6 +106,37 @@ void EDITIONF(ProxyCookieManager_FlushStore) (PMDATA_INF pRetData, INT nArgCount
 	}
 	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
 	pRetData->m_bool = self->FlushStore();
+}
+
+extern "C"
+void EDITIONF(ProxyCookieManager_ExtractToString) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		pRetData->m_pText = NULL;
+		return ;
+	}
+	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
+	pRetData->m_pText = self->ExtractToString();
+}
+
+extern "C"
+void EDITIONF(ProxyCookieManager_ReduceFromString) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
+	const char* argString = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
+	self->ReduceFromString(argString);
+}
+
+extern "C"
+void EDITIONF(ProxyCookieManager_ExtractToHTTP) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		pRetData->m_pText = NULL;
+		return ;
+	}
+	shrewd_ptr<ProxyCookieManager> self = (ProxyCookieManager*)*pArgInf->m_ppCompoundData;
+	const char* argUrl = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
+	pRetData->m_pText = self->ExtractToHTTP(argUrl);
 }
 
 

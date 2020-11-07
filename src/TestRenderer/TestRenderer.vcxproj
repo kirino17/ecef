@@ -122,7 +122,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_INTERNAL_VER_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -176,10 +176,23 @@ if %errorlevel% neq 0 goto :VCEnd
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestAuthorization.h" />
+    <ClInclude Include="TestDomProcess.h" />
+    <ClInclude Include="TestDomVisitor.h" />
     <ClInclude Include="TestRenderer.h" />
+    <ClInclude Include="TestSelector.h" />
+    <ClInclude Include="TestThread.h" />
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TestAuthorization.cpp" />
+    <ClCompile Include="TestDomProcess.cpp" />
+    <ClCompile Include="TestDomVisitor.cpp" />
+    <ClCompile Include="TestInterceptor.cpp" />
     <ClCompile Include="TestRenderer.cpp" />
+    <ClCompile Include="TestSelector.cpp" />
+    <ClCompile Include="TestThread.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestRenderer.rc" />

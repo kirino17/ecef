@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindSDL_ttf &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindSelfPackers" href="FindSelfPackers.html" />
+    <link rel="prev" title="FindSDL_sound" href="FindSDL_sound.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindSelfPackers.html" title="FindSelfPackers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindSDL_sound.html" title="FindSDL_sound"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findsdl-ttf">
+<span id="module:FindSDL_ttf"></span><h1>FindSDL_ttf<a class="headerlink" href="#findsdl-ttf" title="Permalink to this headline">¶</a></h1>
+<p>Locate SDL_ttf library</p>
+<p>This module defines:</p>
+<div class="highlight-python"><pre>SDL_TTF_LIBRARIES, the name of the library to link against
+SDL_TTF_INCLUDE_DIRS, where to find the headers
+SDL_TTF_FOUND, if false, do not try to link against
+SDL_TTF_VERSION_STRING - human-readable string containing the version of SDL_ttf</pre>
+</div>
+<p>For backward compatiblity the following variables are also set:</p>
+<div class="highlight-python"><pre>SDLTTF_LIBRARY (same value as SDL_TTF_LIBRARIES)
+SDLTTF_INCLUDE_DIR (same value as SDL_TTF_INCLUDE_DIRS)
+SDLTTF_FOUND (same value as SDL_TTF_FOUND)</pre>
+</div>
+<p>$SDLDIR is an environment variable that would correspond to the
+./configure &#8211;prefix=$SDLDIR used in building SDL.</p>
+<p>Created by Eric Wing.  This was influenced by the FindSDL.cmake
+module, but with modifications to recognize OS X frameworks and
+additional Unix paths (FreeBSD, etc).</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindSDL_sound.html"
+                        title="previous chapter">FindSDL_sound</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindSelfPackers.html"
+                        title="next chapter">FindSelfPackers</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindSDL_ttf.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindSelfPackers.html" title="FindSelfPackers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindSDL_sound.html" title="FindSDL_sound"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

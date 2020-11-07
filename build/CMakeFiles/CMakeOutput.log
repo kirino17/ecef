@@ -1,0 +1,135 @@
+The system is: Windows - 6.2 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Building default target: CompilerIdC - Win32 Debug
+--------------------Configuration: CompilerIdC - Win32 Debug--------------------
+Compiling...
+CMakeCCompilerId.c
+Linking...
+CMAKE_C_COMPILER=E:\ecef\vc98\vc60\VC98\Bin\CL.EXE
+
+CompilerIdC.exe - 0 error(s), 0 warning(s)
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.dsp"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.ilk"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.plg"
+
+The C compiler identification is MSVC, found in "E:/ecef/build/CMakeFiles/3.0.2/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Building default target: CompilerIdCXX - Win32 Debug
+--------------------Configuration: CompilerIdCXX - Win32 Debug--------------------
+Compiling...
+CMakeCXXCompilerId.cpp
+Linking...
+CMAKE_CXX_COMPILER=E:\ecef\vc98\vc60\VC98\Bin\CL.EXE
+
+CompilerIdCXX.exe - 0 error(s), 0 warning(s)
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.dsp"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.ilk"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.plg"
+
+The CXX compiler identification is MSVC, found in "E:/ecef/build/CMakeFiles/3.0.2/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: E:/ecef/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"msdev.exe" "CMAKE_TRY_COMPILE.dsw" "/MAKE" "cmTryCompileExec2327327942 - Debug" "/BUILD"
+--------------------Configuration: cmTryCompileExec2327327942 - Win32 Debug--------------------
+Compiling...
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+cl /MDd /W3 /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_WINDOWS" /D "_MBCS" /D CMAKE_INTDIR=\"Debug\" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /Zm1000  /GZ  /TC /c 
+   "E:\ecef\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+testCCompiler.c
+Linking...
+Microsoft (R) Incremental Linker Version 6.00.8168
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /version:0.0 /subsystem:console /incremental:yes "/pdb:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2327327942.pdb" /debug /machine:I386 "/out:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2327327942.exe" "/implib:E:\ecef\build\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2327327942.lib" /pdbtype:sept /IGNORE:4089 /machine:X86 
+.\Debug\testCCompiler.obj 
+
+cmTryCompileExec2327327942.exe - 0 error(s), 0 warning(s)
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: E:/ecef/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"msdev.exe" "CMAKE_TRY_COMPILE.dsw" "/MAKE" "cmTryCompileExec2167161771 - Debug" "/BUILD"
+--------------------Configuration: cmTryCompileExec2167161771 - Win32 Debug--------------------
+Compiling...
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+cl /MDd /W3 /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_WINDOWS" /D "_MBCS" /D CMAKE_INTDIR=\"Debug\" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /Zm1000  /GZ  /TC /c 
+   "E:\ecef\vc98\cmake\cmake-3.0.2-win32-x86\share\cmake-3.0\Modules\CMakeCCompilerABI.c"
+CMakeCCompilerABI.c
+Linking...
+Microsoft (R) Incremental Linker Version 6.00.8168
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+/version:0.0 /subsystem:console /incremental:yes "/pdb:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2167161771.pdb" /debug /machine:I386 "/out:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2167161771.exe" "/implib:E:\ecef\build\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2167161771.lib" /pdbtype:sept /IGNORE:4089 /machine:X86 
+.\Debug\CMakeCCompilerABI.obj 
+
+cmTryCompileExec2167161771.exe - 0 error(s), 0 warning(s)
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: E:/ecef/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"msdev.exe" "CMAKE_TRY_COMPILE.dsw" "/MAKE" "cmTryCompileExec1018042048 - Debug" "/BUILD"
+--------------------Configuration: cmTryCompileExec1018042048 - Win32 Debug--------------------
+Compiling...
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+cl /MDd /W3 /GR /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_WINDOWS" /D "_MBCS" /D CMAKE_INTDIR=\"Debug\" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /Zm1000  /GZ  /TP /c 
+   "E:\ecef\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+testCXXCompiler.cxx
+Linking...
+Microsoft (R) Incremental Linker Version 6.00.8168
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /version:0.0 /subsystem:console /incremental:yes "/pdb:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec1018042048.pdb" /debug /machine:I386 "/out:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec1018042048.exe" "/implib:E:\ecef\build\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1018042048.lib" /pdbtype:sept /IGNORE:4089 /machine:X86 
+.\Debug\testCXXCompiler.obj 
+
+cmTryCompileExec1018042048.exe - 0 error(s), 0 warning(s)
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: E:/ecef/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"msdev.exe" "CMAKE_TRY_COMPILE.dsw" "/MAKE" "cmTryCompileExec2318211756 - Debug" "/BUILD"
+--------------------Configuration: cmTryCompileExec2318211756 - Win32 Debug--------------------
+Compiling...
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+cl /MDd /W3 /GR /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_WINDOWS" /D "_MBCS" /D CMAKE_INTDIR=\"Debug\" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /Zm1000  /GZ  /TP /c 
+   "E:\ecef\vc98\cmake\cmake-3.0.2-win32-x86\share\cmake-3.0\Modules\CMakeCXXCompilerABI.cpp"
+CMakeCXXCompilerABI.cpp
+Linking...
+Microsoft (R) Incremental Linker Version 6.00.8168
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+/version:0.0 /subsystem:console /incremental:yes "/pdb:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2318211756.pdb" /debug /machine:I386 "/out:E:\ecef\build\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2318211756.exe" "/implib:E:\ecef\build\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2318211756.lib" /pdbtype:sept /IGNORE:4089 /machine:X86 
+.\Debug\CMakeCXXCompilerABI.obj 
+
+cmTryCompileExec2318211756.exe - 0 error(s), 0 warning(s)
+
+

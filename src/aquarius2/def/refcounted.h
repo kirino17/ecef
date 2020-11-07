@@ -12,9 +12,7 @@
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#ifndef _WINSOCKAPI_
-#define _WINSOCKAPI_
-#endif
+
 #include <windows.h>
 #elif (defined(__linux__) || defined(linux) || defined(__linux) || defined(__gnu_linux__))
 #define OS_LINUX

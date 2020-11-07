@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyCommandLine.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyCommandLine.h>
 
 
@@ -35,30 +35,6 @@ void EDITIONF(ProxyCommandLine_CopyConstructor)(PMDATA_INF pRetData, INT nArgCou
 }
 
 extern "C"
-void EDITIONF(ProxyCommandLine_CreateCommandLine) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyCommandLine> result = ProxyCommandLine::CreateCommandLine();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
-}
-
-extern "C"
-void EDITIONF(ProxyCommandLine_GetGlobalCommandLine) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyCommandLine> result = ProxyCommandLine::GetGlobalCommandLine();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
-}
-
-extern "C"
 void EDITIONF(ProxyCommandLine_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
 		pRetData->m_bool = FALSE;
@@ -81,7 +57,7 @@ void EDITIONF(ProxyCommandLine_IsReadOnly) (PMDATA_INF pRetData, INT nArgCount, 
 extern "C"
 void EDITIONF(ProxyCommandLine_Copy) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyCommandLine> self = (ProxyCommandLine*)*pArgInf->m_ppCompoundData;
@@ -119,7 +95,10 @@ void EDITIONF(ProxyCommandLine_Reset) (PMDATA_INF pRetData, INT nArgCount, PMDAT
 extern "C"
 void EDITIONF(ProxyCommandLine_GetArgv) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC, 8, 0);
+		InternalPointer[0] = 1;
+		InternalPointer[1] = 0;
+		pRetData->m_pCompoundData = InternalPointer;
 		return ;
 	}
 	shrewd_ptr<ProxyCommandLine> self = (ProxyCommandLine*)*pArgInf->m_ppCompoundData;

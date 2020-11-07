@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>set &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="set_source_files_properties" href="set_source_files_properties.html" />
+    <link rel="prev" title="set_property" href="set_property.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="set_source_files_properties.html" title="set_source_files_properties"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="set_property.html" title="set_property"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="set">
+<span id="command:set"></span><h1>set<a class="headerlink" href="#set" title="Permalink to this headline">¶</a></h1>
+<p>Set a CMake, cache or environment variable to a given value.</p>
+<div class="highlight-python"><pre>set(&lt;variable&gt; &lt;value&gt;
+    [[CACHE &lt;type&gt; &lt;docstring&gt; [FORCE]] | PARENT_SCOPE])</pre>
+</div>
+<p>Within CMake sets &lt;variable&gt; to the value &lt;value&gt;.  &lt;value&gt; is
+expanded before &lt;variable&gt; is set to it.  Normally, set will set a
+regular CMake variable.  If CACHE is present, then the &lt;variable&gt; is
+put in the cache instead, unless it is already in the cache.  See
+section &#8216;Variable types in CMake&#8217; below for details of regular and
+cache variables and their interactions.  If CACHE is used, &lt;type&gt; and
+&lt;docstring&gt; are required.  &lt;type&gt; is used by the CMake GUI to choose a
+widget with which the user sets a value.  The value for &lt;type&gt; may be
+one of</p>
+<div class="highlight-python"><pre>FILEPATH = File chooser dialog.
+PATH     = Directory chooser dialog.
+STRING   = Arbitrary string.
+BOOL     = Boolean ON/OFF checkbox.
+INTERNAL = No GUI entry (used for persistent variables).</pre>
+</div>
+<p>If &lt;type&gt; is INTERNAL, the cache variable is marked as internal, and
+will not be shown to the user in tools like cmake-gui.  This is
+intended for values that should be persisted in the cache, but which
+users should not normally change.  INTERNAL implies FORCE.</p>
+<p>Normally, set(...CACHE...) creates cache variables, but does not
+modify them.  If FORCE is specified, the value of the cache variable
+is set, even if the variable is already in the cache.  This should
+normally be avoided, as it will remove any changes to the cache
+variable&#8217;s value by the user.</p>
+<p>If PARENT_SCOPE is present, the variable will be set in the scope
+above the current scope.  Each new directory or function creates a new
+scope.  This command will set the value of a variable into the parent
+directory or calling function (whichever is applicable to the case at
+hand).  PARENT_SCOPE cannot be combined with CACHE.</p>
+<p>If &lt;value&gt; is not specified then the variable is removed instead of
+set.  See also: the unset() command.</p>
+<div class="highlight-python"><pre>set(&lt;variable&gt; &lt;value1&gt; ... &lt;valueN&gt;)</pre>
+</div>
+<p>In this case &lt;variable&gt; is set to a semicolon separated list of
+values.</p>
+<p>&lt;variable&gt; can be an environment variable such as:</p>
+<div class="highlight-python"><pre>set( ENV{PATH} /home/martink )</pre>
+</div>
+<p>in which case the environment variable will be set.</p>
+<p><strong>* Variable types in CMake *</strong></p>
+<p>In CMake there are two types of variables: normal variables and cache
+variables.  Normal variables are meant for the internal use of the
+script (just like variables in most programming languages); they are
+not persisted across CMake runs.  Cache variables (unless set with
+INTERNAL) are mostly intended for configuration settings where the
+first CMake run determines a suitable default value, which the user
+can then override, by editing the cache with tools such as ccmake or
+cmake-gui.  Cache variables are stored in the CMake cache file, and
+are persisted across CMake runs.</p>
+<p>Both types can exist at the same time with the same name but different
+values.  When ${FOO} is evaluated, CMake first looks for a normal
+variable &#8216;FOO&#8217; in scope and uses it if set.  If and only if no normal
+variable exists then it falls back to the cache variable &#8216;FOO&#8217;.</p>
+<p>Some examples:</p>
+<p>The code &#8216;set(FOO &#8220;x&#8221;)&#8217; sets the normal variable &#8216;FOO&#8217;.  It does not
+touch the cache, but it will hide any existing cache value &#8216;FOO&#8217;.</p>
+<p>The code &#8216;set(FOO &#8220;x&#8221; CACHE ...)&#8217; checks for &#8216;FOO&#8217; in the cache,
+ignoring any normal variable of the same name.  If &#8216;FOO&#8217; is in the
+cache then nothing happens to either the normal variable or the cache
+variable.  If &#8216;FOO&#8217; is not in the cache, then it is added to the
+cache.</p>
+<p>Finally, whenever a cache variable is added or modified by a command,
+CMake also <em>removes</em> the normal variable of the same name from the
+current scope so that an immediately following evaluation of it will
+expose the newly cached value.</p>
+<p>Normally projects should avoid using normal and cache variables of the
+same name, as this interaction can be hard to follow.  However, in
+some situations it can be useful.  One example (used by some
+projects):</p>
+<p>A project has a subproject in its source tree.  The child project has
+its own CMakeLists.txt, which is included from the parent
+CMakeLists.txt using add_subdirectory().  Now, if the parent and the
+child project provide the same option (for example a compiler option),
+the parent gets the first chance to add a user-editable option to the
+cache.  Normally, the child would then use the same value that the
+parent uses.  However, it may be necessary to hard-code the value for
+the child project&#8217;s option while still allowing the user to edit the
+value used by the parent project.  The parent project can achieve this
+simply by setting a normal variable with the same name as the option
+in a scope sufficient to hide the option&#8217;s cache variable from the
+child completely.  The parent has already set the cache variable, so
+the child&#8217;s set(...CACHE...) will do nothing, and evaluating the
+option variable will use the value from the normal variable, which
+hides the cache variable.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="set_property.html"
+                        title="previous chapter">set_property</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="set_source_files_properties.html"
+                        title="next chapter">set_source_files_properties</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/set.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="set_source_files_properties.html" title="set_source_files_properties"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="set_property.html" title="set_property"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

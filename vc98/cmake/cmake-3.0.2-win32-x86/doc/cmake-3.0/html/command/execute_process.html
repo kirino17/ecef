@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>execute_process &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="export" href="export.html" />
+    <link rel="prev" title="endwhile" href="endwhile.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="export.html" title="export"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="endwhile.html" title="endwhile"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="execute-process">
+<span id="command:execute_process"></span><h1>execute_process<a class="headerlink" href="#execute-process" title="Permalink to this headline">¶</a></h1>
+<p>Execute one or more child processes.</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">execute_process</span><span class="p">(</span><span class="s">COMMAND</span> <span class="s">&lt;cmd1&gt;</span> <span class="s">[args1...]]</span>
+                <span class="s">[COMMAND</span> <span class="s">&lt;cmd2&gt;</span> <span class="s">[args2...]</span> <span class="s">[...]]</span>
+                <span class="s">[WORKING_DIRECTORY</span> <span class="s">&lt;directory&gt;]</span>
+                <span class="s">[TIMEOUT</span> <span class="s">&lt;seconds&gt;]</span>
+                <span class="s">[RESULT_VARIABLE</span> <span class="s">&lt;variable&gt;]</span>
+                <span class="s">[OUTPUT_VARIABLE</span> <span class="s">&lt;variable&gt;]</span>
+                <span class="s">[ERROR_VARIABLE</span> <span class="s">&lt;variable&gt;]</span>
+                <span class="s">[INPUT_FILE</span> <span class="s">&lt;file&gt;]</span>
+                <span class="s">[OUTPUT_FILE</span> <span class="s">&lt;file&gt;]</span>
+                <span class="s">[ERROR_FILE</span> <span class="s">&lt;file&gt;]</span>
+                <span class="s">[OUTPUT_QUIET]</span>
+                <span class="s">[ERROR_QUIET]</span>
+                <span class="s">[OUTPUT_STRIP_TRAILING_WHITESPACE]</span>
+                <span class="s">[ERROR_STRIP_TRAILING_WHITESPACE]</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Runs the given sequence of one or more commands with the standard
+output of each process piped to the standard input of the next.
+A single standard error pipe is used for all processes.</p>
+<p>Options:</p>
+<dl class="docutils">
+<dt>COMMAND</dt>
+<dd><p class="first">A child process command line.</p>
+<p class="last">CMake executes the child process using operating system APIs directly.
+All arguments are passed VERBATIM to the child process.
+No intermediate shell is used, so shell operators such as <tt class="docutils literal"><span class="pre">&gt;</span></tt>
+are treated as normal arguments.
+(Use the <tt class="docutils literal"><span class="pre">INPUT_*</span></tt>, <tt class="docutils literal"><span class="pre">OUTPUT_*</span></tt>, and <tt class="docutils literal"><span class="pre">ERROR_*</span></tt> options to
+redirect stdin, stdout, and stderr.)</p>
+</dd>
+<dt>WORKING_DIRECTORY</dt>
+<dd>The named directory will be set as the current working directory of
+the child processes.</dd>
+<dt>TIMEOUT</dt>
+<dd>The child processes will be terminated if they do not finish in the
+specified number of seconds (fractions are allowed).</dd>
+<dt>RESULT_VARIABLE</dt>
+<dd>The variable will be set to contain the result of running the processes.
+This will be an integer return code from the last child or a string
+describing an error condition.</dd>
+<dt>OUTPUT_VARIABLE, ERROR_VARIABLE</dt>
+<dd>The variable named will be set with the contents of the standard output
+and standard error pipes, respectively.  If the same variable is named
+for both pipes their output will be merged in the order produced.</dd>
+<dt>INPUT_FILE, OUTPUT_FILE, ERROR_FILE</dt>
+<dd>The file named will be attached to the standard input of the first
+process, standard output of the last process, or standard error of
+all processes, respectively.</dd>
+<dt>OUTPUT_QUIET, ERROR_QUIET</dt>
+<dd>The standard output or standard error results will be quietly ignored.</dd>
+</dl>
+<p>If more than one <tt class="docutils literal"><span class="pre">OUTPUT_*</span></tt> or <tt class="docutils literal"><span class="pre">ERROR_*</span></tt> option is given for the
+same pipe the precedence is not specified.
+If no <tt class="docutils literal"><span class="pre">OUTPUT_*</span></tt> or <tt class="docutils literal"><span class="pre">ERROR_*</span></tt> options are given the output will
+be shared with the corresponding pipes of the CMake process itself.</p>
+<p>The <a class="reference internal" href="#command:execute_process" title="execute_process"><tt class="xref cmake cmake-command docutils literal"><span class="pre">execute_process()</span></tt></a> command is a newer more powerful version of
+<a class="reference internal" href="exec_program.html#command:exec_program" title="exec_program"><tt class="xref cmake cmake-command docutils literal"><span class="pre">exec_program()</span></tt></a>, but the old command has been kept for compatibility.
+Both commands run while CMake is processing the project prior to build
+system generation.  Use <a class="reference internal" href="add_custom_target.html#command:add_custom_target" title="add_custom_target"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_custom_target()</span></tt></a> and
+<a class="reference internal" href="add_custom_command.html#command:add_custom_command" title="add_custom_command"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_custom_command()</span></tt></a> to create custom commands that run at
+build time.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="endwhile.html"
+                        title="previous chapter">endwhile</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="export.html"
+                        title="next chapter">export</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/execute_process.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="export.html" title="export"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="endwhile.html" title="endwhile"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

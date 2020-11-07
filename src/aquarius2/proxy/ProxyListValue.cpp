@@ -6,14 +6,6 @@
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyListValue, CefListValue);
 
 ///
-// Creates a new object that is not owned by any other object.
-///
-/*--cef()--*/
-shrewd_ptr<ProxyListValue> ProxyListValue::Create() {
-	return new ProxyListValue(CefListValue::Create());
-}
-
-///
 // Returns true if this object is valid. This object may become invalid if
 // the underlying data is owned by another object (e.g. list or dictionary)
 // and that other object is then modified or destroyed. Do not call any other

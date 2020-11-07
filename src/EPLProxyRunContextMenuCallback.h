@@ -5,10 +5,10 @@
 
 
 #define DECL_DATA_TYPE_ProxyRunContextMenuCallback \
-	{ /*30*/ \
-		/*m_szName*/		 _WT("Chromium菜单上下文回调"), \
+	{ /*27*/ \
+		/*m_szName*/		 _WT("水星菜单回调"), \
 		/*m_szEgName*/		 _WT("ProxyRunContextMenuCallback"), \
-		/*m_szExplain*/		 _WT("用于输出自定义上下文显示菜单执行结果的回调接口。"), \
+		/*m_szExplain*/		 _WT("自定义菜单命令回调"), \
 		/*m_nCmdCount*/		 5, \
 		/*m_pnCmdsIndex*/		 s_nProxyRunContextMenuCallbackElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
@@ -27,22 +27,22 @@
 
 #define DECL_DATA_TYPE_ProxyRunContextMenuCallback_ARGINFO \
 	{ /****** ProxyRunContextMenuCallback::Continue ** 0 **/ \
-		/*name*/	 _WT("菜单ID"), \
-		/*explain*/	 _WT("有关具有默认实现的菜单命令ID, 参见枚举常量: #系统内置菜单.* "), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyRunContextMenuCallback::Continue ** 1 **/ \
 		/*name*/	 _WT("事件标志"), \
-		/*explain*/	 _WT("有关菜单事件标志可以查看枚举常量: #菜单事件标志.* 的定义值。"), \
+		/*explain*/	 _WT("事件标志定义值见枚举常量, #事件标志.* "), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -94,7 +94,7 @@
 	{ /*3*/ \
 		/*ccname*/	_WT("执行命令"),\
 		/*egname*/	_WT("Continue"), \
-		/*explain*/	_WT("执行菜单ID所指定的命令。"), \
+		/*explain*/	_WT("执行菜单命令"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -108,7 +108,7 @@
 	{ /*4*/ \
 		/*ccname*/	_WT("取消"),\
 		/*egname*/	_WT("Cancel"), \
-		/*explain*/	_WT("取消该菜单的执行"), \
+		/*explain*/	_WT("取消执行"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \

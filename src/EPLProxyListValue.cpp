@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyListValue.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyListValue.h>
 
 
@@ -32,18 +32,6 @@ void EDITIONF(ProxyListValue_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount
 	shrewd_ptr<ProxyListValue> ptr = (ProxyListValue*)*pArgInf[1].m_ppCompoundData;
 	if(ptr){ ptr->retain(); *pArgInf->m_ppCompoundData = ptr.get(); }
 	else { *pArgInf->m_ppCompoundData = NULL; }
-}
-
-extern "C"
-void EDITIONF(ProxyListValue_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyListValue> result = ProxyListValue::Create();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
 }
 
 extern "C"
@@ -101,7 +89,7 @@ void EDITIONF(ProxyListValue_IsEqual) (PMDATA_INF pRetData, INT nArgCount, PMDAT
 extern "C"
 void EDITIONF(ProxyListValue_Copy) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyListValue> self = (ProxyListValue*)*pArgInf->m_ppCompoundData;
@@ -131,7 +119,7 @@ void EDITIONF(ProxyListValue_SetSize) (PMDATA_INF pRetData, INT nArgCount, PMDAT
 extern "C"
 void EDITIONF(ProxyListValue_GetSize) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyListValue> self = (ProxyListValue*)*pArgInf->m_ppCompoundData;
@@ -173,7 +161,7 @@ void EDITIONF(ProxyListValue_GetType) (PMDATA_INF pRetData, INT nArgCount, PMDAT
 extern "C"
 void EDITIONF(ProxyListValue_GetValue) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyListValue> self = (ProxyListValue*)*pArgInf->m_ppCompoundData;
@@ -237,7 +225,7 @@ void EDITIONF(ProxyListValue_GetString) (PMDATA_INF pRetData, INT nArgCount, PMD
 extern "C"
 void EDITIONF(ProxyListValue_GetBinary) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyListValue> self = (ProxyListValue*)*pArgInf->m_ppCompoundData;
@@ -248,7 +236,7 @@ void EDITIONF(ProxyListValue_GetBinary) (PMDATA_INF pRetData, INT nArgCount, PMD
 extern "C"
 void EDITIONF(ProxyListValue_GetDictionary) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyListValue> self = (ProxyListValue*)*pArgInf->m_ppCompoundData;
@@ -268,7 +256,7 @@ void EDITIONF(ProxyListValue_GetDictionary) (PMDATA_INF pRetData, INT nArgCount,
 extern "C"
 void EDITIONF(ProxyListValue_GetList) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyListValue> self = (ProxyListValue*)*pArgInf->m_ppCompoundData;

@@ -12,10 +12,6 @@ ProxyCookie::~ProxyCookie() {
 	}
 }
 
-shrewd_ptr<ProxyCookie> ProxyCookie::Create() {
-	return new ProxyCookie(new CefCookie);
-}
-
 bool ProxyCookie::IsValid() {
 	return _rawptr != nullptr;
 }
@@ -115,34 +111,42 @@ int ProxyCookie::GetHttponly() {
 // The cookie creation date. This is automatically populated by the system on
 // cookie creation.
 ///
-void ProxyCookie::SetCreation(shrewd_ptr<ProxyTime> creation) {
+void ProxyCookie::SetCreation(double creation) {
 	ASSERTN();
 	if (!creation) {
 		return;
 	}
-	CefTime(((CefCookie*)_rawptr)->creation) = *(CefTime*)creation->OriginPointer();
+	CefTime time;
+	time.AttachTo(((CefCookie*)_rawptr)->creation);
+	time.SetDoubleT(creation);
 }
 
-shrewd_ptr<ProxyTime> ProxyCookie::GetCreation() {
+double ProxyCookie::GetCreation() {
 	ASSERTQ(NULL);
-	return new ProxyTime(new CefTime(((CefCookie*)_rawptr)->creation));
+	CefTime time;
+	time.AttachTo(((CefCookie*)_rawptr)->creation);
+	return time.GetDoubleT();
 }
 
 ///
 // The cookie last access date. This is automatically populated by the system
 // on access.
 ///
-void ProxyCookie::SetLastAccess(shrewd_ptr<ProxyTime> last_access) {
+void ProxyCookie::SetLastAccess(double last_access) {
 	ASSERTN();
 	if (!last_access) {
 		return;
 	}
-	CefTime(((CefCookie*)_rawptr)->last_access) = *(CefTime*)last_access->OriginPointer();
+	CefTime time;
+	time.AttachTo(((CefCookie*)_rawptr)->last_access);
+
 }
 
-shrewd_ptr<ProxyTime> ProxyCookie::GetLastAccess() {
+double ProxyCookie::GetLastAccess() {
 	ASSERTQ(NULL);
-	return new ProxyTime(new CefTime(((CefCookie*)_rawptr)->last_access));
+	CefTime time;
+	time.AttachTo(((CefCookie*)_rawptr)->last_access);
+	return time.GetDoubleT();
 }
 
 ///
@@ -157,15 +161,19 @@ int ProxyCookie::GetHasExpires() {
 	return ((CefCookie*)_rawptr)->has_expires;
 }
 
-void ProxyCookie::SetExpires(shrewd_ptr<ProxyTime> expires) {
+void ProxyCookie::SetExpires(double expires) {
 	ASSERTN();
 	if (!expires) {
 		return;
 	}
-	CefTime(((CefCookie*)_rawptr)->expires) = *(CefTime*)expires->OriginPointer();
+	CefTime time;
+	time.AttachTo(((CefCookie*)_rawptr)->expires);
+	time.SetDoubleT(expires);
 }
 
-shrewd_ptr<ProxyTime> ProxyCookie::GetExpires() {
+double ProxyCookie::GetExpires() {
 	ASSERTQ(NULL);
-	return new ProxyTime(new CefTime(((CefCookie*)_rawptr)->expires));
+	CefTime time;
+	time.AttachTo(((CefCookie*)_rawptr)->expires);
+	return time.GetDoubleT();
 }

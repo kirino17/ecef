@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9341A721-F61A-368B-A33D-7ADBDE4D05DA}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\simple\cef\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/simple/cef/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+E:\8086\cmake\bin\cmake.exe -SE:/simple/cef -BE:/simple/cef/build --check-stamp-file E:/simple/cef/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\8086\cmake\share\cmake-3.16\Modules\CMakeCCompiler.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCCompilerABI.c;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCXXCompiler.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCXXCompilerABI.cpp;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCXXInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCompilerIdDetection.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCXXCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompileFeatures.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompilerABI.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompilerId.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineRCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineSystem.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeFindBinUtils.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeParseImplicitIncludeInfo.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeParseImplicitLinkInfo.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeRCCompiler.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeSystem.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestCXXCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestCompilerCommon.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestRCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\ADSP-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\ARMCC-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\ARMClang-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\AppleClang-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Borland-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Clang-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Cray-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\GHS-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\GNU-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\HP-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\IAR-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Intel-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\MSVC-CXX.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\MSVC-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\PGI-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\PathScale-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SCO-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\TI-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Watcom-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XL-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\zOS-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CompilerId\VS-10.vcxproj.in;E:\8086\cmake\share\cmake-3.16\Modules\Internal\FeatureTesting.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-Determine-CXX.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-MSVC-CXX.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeCCompiler.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeCXXCompiler.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeRCCompiler.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeSystem.cmake;E:\simple\cef\cmake\FindCEF.cmake;E:\simple\cef\cmake\cef_macros.cmake;E:\simple\cef\cmake\cef_variables.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\simple\cef\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/simple/cef/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+E:\8086\cmake\bin\cmake.exe -SE:/simple/cef -BE:/simple/cef/build --check-stamp-file E:/simple/cef/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\8086\cmake\share\cmake-3.16\Modules\CMakeCCompiler.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCCompilerABI.c;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCXXCompiler.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCXXCompilerABI.cpp;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCXXInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeCompilerIdDetection.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCXXCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompileFeatures.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompilerABI.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineCompilerId.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineRCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeDetermineSystem.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeFindBinUtils.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeParseImplicitIncludeInfo.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeParseImplicitLinkInfo.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeRCCompiler.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeSystem.cmake.in;E:\8086\cmake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestCXXCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestCompilerCommon.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CMakeTestRCCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\ADSP-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\ARMCC-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\ARMClang-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\AppleClang-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Borland-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Clang-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Cray-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\GHS-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\GNU-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\HP-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\IAR-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Intel-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\MSVC-CXX.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\MSVC-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\PGI-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\PathScale-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SCO-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\TI-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\Watcom-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XL-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\zOS-C-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;E:\8086\cmake\share\cmake-3.16\Modules\CompilerId\VS-10.vcxproj.in;E:\8086\cmake\share\cmake-3.16\Modules\Internal\FeatureTesting.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-Determine-CXX.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-MSVC-CXX.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\Windows.cmake;E:\8086\cmake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeCCompiler.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeCXXCompiler.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeRCCompiler.cmake;E:\simple\cef\build\CMakeFiles\3.16.2\CMakeSystem.cmake;E:\simple\cef\cmake\FindCEF.cmake;E:\simple\cef\cmake\cef_macros.cmake;E:\simple\cef\cmake\cef_variables.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\simple\cef\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\simple\cef\build\ZERO_CHECK.vcxproj">
+      <Project>{F9B83CFC-B323-3D10-AA95-DA02D5D9F2E8}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\simple\cef\build\libcef_dll_wrapper\libcef_dll_wrapper.vcxproj">
+      <Project>{BD20E267-F07A-3B8D-8A0A-745CB56236BF}</Project>
+      <Name>libcef_dll_wrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

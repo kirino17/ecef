@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cmake-packages(7) &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="next" title="cmake-policies(7)" href="cmake-policies.7.html" />
+    <link rel="prev" title="WriteBasicConfigVersionFile" href="../module/WriteBasicConfigVersionFile.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cmake-policies.7.html" title="cmake-policies(7)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../module/WriteBasicConfigVersionFile.html" title="WriteBasicConfigVersionFile"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="manual:cmake-packages(7)"></span><div class="section" id="cmake-packages-7">
+<h1><a class="toc-backref" href="#id4">cmake-packages(7)</a><a class="headerlink" href="#cmake-packages-7" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cmake-packages-7" id="id4">cmake-packages(7)</a><ul>
+<li><a class="reference internal" href="#introduction" id="id5">Introduction</a></li>
+<li><a class="reference internal" href="#using-packages" id="id6">Using Packages</a><ul>
+<li><a class="reference internal" href="#config-file-packages" id="id7">Config-file Packages</a></li>
+<li><a class="reference internal" href="#find-module-packages" id="id8">Find-module Packages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#package-layout" id="id9">Package Layout</a><ul>
+<li><a class="reference internal" href="#package-configuration-file" id="id10">Package Configuration File</a></li>
+<li><a class="reference internal" href="#package-version-file" id="id11">Package Version File</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-packages" id="id12">Creating Packages</a></li>
+<li><a class="reference internal" href="#package-registry" id="id13">Package Registry</a><ul>
+<li><a class="reference internal" href="#user-package-registry" id="id14">User Package Registry</a></li>
+<li><a class="reference internal" href="#system-package-registry" id="id15">System Package Registry</a></li>
+<li><a class="reference internal" href="#package-registry-example" id="id16">Package Registry Example</a></li>
+<li><a class="reference internal" href="#package-registry-ownership" id="id17">Package Registry Ownership</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id5">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Packages provide dependency information to CMake based buildsystems.  Packages
+are found with the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command.  The result of
+using <tt class="docutils literal"><span class="pre">find_package</span></tt> is either a set of <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a> targets, or
+a set of variables corresponding to build-relevant information.</p>
+</div>
+<div class="section" id="using-packages">
+<h2><a class="toc-backref" href="#id6">Using Packages</a><a class="headerlink" href="#using-packages" title="Permalink to this headline">¶</a></h2>
+<p>CMake provides direct support for two forms of packages,
+<a class="reference internal" href="#config-file-packages">Config-file Packages</a> and <a class="reference internal" href="#find-module-packages">Find-module Packages</a>.
+Indirect support for <tt class="docutils literal"><span class="pre">pkg-config</span></tt> packages is also provided via
+the <a class="reference internal" href="../module/FindPkgConfig.html#module:FindPkgConfig" title="FindPkgConfig"><tt class="xref cmake cmake-module docutils literal"><span class="pre">FindPkgConfig</span></tt></a> module.  In all cases, the basic form
+of <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> calls is the same:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt4</span> <span class="s">4.7.0</span> <span class="s">REQUIRED</span><span class="p">)</span> <span class="c"># CMake provides a Qt4 find-module</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5Core</span> <span class="s">5.1.0</span> <span class="s">REQUIRED</span><span class="p">)</span> <span class="c"># Qt provides a Qt5 package config file.</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">LibXml2</span> <span class="s">REQUIRED</span><span class="p">)</span> <span class="c"># Use pkg-config via the LibXml2 find-module</span>
+</pre></div>
+</div>
+<p>In cases where it is known that a package configuration file is provided by
+upstream, and only that should be used, the <tt class="docutils literal"><span class="pre">CONFIG</span></tt> keyword may be passed
+to <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a>:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5Core</span> <span class="s">5.1.0</span> <span class="s">CONFIG</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5Gui</span> <span class="s">5.1.0</span> <span class="s">CONFIG</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly, the <tt class="docutils literal"><span class="pre">MODULE</span></tt> keyword says to use only a find-module:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt4</span> <span class="s">4.7.0</span> <span class="s">MODULE</span> <span class="s">REQUIRED</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Specifying the type of package explicitly improves the error message shown to
+the user if it is not found.</p>
+<p>Both types of packages also support specifying components of a package,
+either after the <tt class="docutils literal"><span class="pre">REQUIRED</span></tt> keyword:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5</span> <span class="s">5.1.0</span> <span class="s">CONFIG</span> <span class="s">REQUIRED</span> <span class="s">Widgets</span> <span class="s">Xml</span> <span class="s">Sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or as a separate <tt class="docutils literal"><span class="pre">COMPONENTS</span></tt> list:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5</span> <span class="s">5.1.0</span> <span class="s">COMPONENTS</span> <span class="s">Widgets</span> <span class="s">Xml</span> <span class="s">Sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or as a separate <tt class="docutils literal"><span class="pre">OPTIONAL_COMPONENTS</span></tt> list:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5</span> <span class="s">5.1.0</span> <span class="s">COMPONENTS</span> <span class="s">Widgets</span>
+                       <span class="s">OPTIONAL_COMPONENTS</span> <span class="s">Xml</span> <span class="s">Sql</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Handling of <tt class="docutils literal"><span class="pre">COMPONENTS</span></tt> and <tt class="docutils literal"><span class="pre">OPTIONAL_COMPONENTS</span></tt> is defined by the
+package.</p>
+<p>By setting the <a class="reference internal" href="../variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html#variable:CMAKE_DISABLE_FIND_PACKAGE_&lt;PackageName&gt;" title="CMAKE_DISABLE_FIND_PACKAGE_&lt;PackageName&gt;"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_&lt;PackageName&gt;</span></tt></a> variable to
+<tt class="docutils literal"><span class="pre">TRUE</span></tt>, the <tt class="docutils literal"><span class="pre">PackageName</span></tt> package will not be searched, and will always
+be <tt class="docutils literal"><span class="pre">NOTFOUND</span></tt>.</p>
+<div class="section" id="config-file-packages">
+<h3><a class="toc-backref" href="#id7">Config-file Packages</a><a class="headerlink" href="#config-file-packages" title="Permalink to this headline">¶</a></h3>
+<p>A config-file package is a set of files provided by upstreams for downstreams
+to use. CMake searches in a number of locations for package configuration files, as
+described in the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> documentation.  The most simple way for
+a CMake user to tell <a class="reference internal" href="cmake.1.html#manual:cmake(1)" title="cmake(1)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake(1)</span></tt></a> to search in a non-standard prefix for
+a package is to set the <tt class="docutils literal"><span class="pre">CMAKE_PREFIX_PATH</span></tt> cache variable.</p>
+<p>Config-file packages are provided by upstream vendors as part of development
+packages, that is, they belong with the header files and any other files
+provided to assist downsteams in using the package.</p>
+<p>A set of variables which provide package status information are also set
+automatically when using a config-file package.  The <tt class="docutils literal"><span class="pre">&lt;Package&gt;_FOUND</span></tt>
+variable is set to true or false, depending on whether the package was
+found.  The <tt class="docutils literal"><span class="pre">&lt;Package&gt;_DIR</span></tt> cache variable is set to the location of the
+package configuration file.</p>
+</div>
+<div class="section" id="find-module-packages">
+<h3><a class="toc-backref" href="#id8">Find-module Packages</a><a class="headerlink" href="#find-module-packages" title="Permalink to this headline">¶</a></h3>
+<p>A find module is a file with a set of rules for finding the required pieces of
+a dependency, primarily header files and libraries.  Typically, a find module
+is needed when the upstream is not built with CMake, or is not CMake-aware
+enough to otherwise provide a package configuration file.  Unlike a package configuration
+file, it is not shipped with upstream, but is used by downstream to find the
+files by guessing locations of files with platform-specific hints.</p>
+<p>Unlike the case of an upstream-provided package configuration file, no single point
+of reference identifies the package as being found, so the <tt class="docutils literal"><span class="pre">&lt;Package&gt;_FOUND</span></tt>
+variable is not automatically set by the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command.  It
+can still be expected to be set by convention however and should be set by
+the author of the Find-module.  Similarly there is no <tt class="docutils literal"><span class="pre">&lt;Package&gt;_DIR</span></tt> variable,
+but each of the artifacts such as library locations and header file locations
+provide a separate cache variable.</p>
+<p>See the <a class="reference internal" href="cmake-developer.7.html#manual:cmake-developer(7)" title="cmake-developer(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-developer(7)</span></tt></a> manual for more information about creating
+Find-module files.</p>
+</div>
+</div>
+<div class="section" id="package-layout">
+<h2><a class="toc-backref" href="#id9">Package Layout</a><a class="headerlink" href="#package-layout" title="Permalink to this headline">¶</a></h2>
+<p>A config-file package consists of a <a class="reference internal" href="#package-configuration-file">Package Configuration File</a> and
+optionally a <a class="reference internal" href="#package-version-file">Package Version File</a> provided with the project distribution.</p>
+<div class="section" id="package-configuration-file">
+<h3><a class="toc-backref" href="#id10">Package Configuration File</a><a class="headerlink" href="#package-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>Consider a project <tt class="docutils literal"><span class="pre">Foo</span></tt> that installs the following files:</p>
+<div class="highlight-python"><pre>&lt;prefix&gt;/include/foo-1.2/foo.h
+&lt;prefix&gt;/lib/foo-1.2/libfoo.a</pre>
+</div>
+<p>It may also provide a CMake package configuration file:</p>
+<div class="highlight-python"><pre>&lt;prefix&gt;/lib/cmake/foo-1.2/FooConfig.cmake</pre>
+</div>
+<p>with content defining <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a> targets, or defining variables, such
+as:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="c"># ...</span>
+<span class="c"># (compute PREFIX relative to file location)</span>
+<span class="c"># ...</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">Foo_INCLUDE_DIRS</span> <span class="o">${</span><span class="nv">PREFIX</span><span class="o">}</span><span class="s">/include/foo-1.2</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">Foo_LIBRARIES</span> <span class="o">${</span><span class="nv">PREFIX</span><span class="o">}</span><span class="s">/lib/foo-1.2/libfoo.a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If another project wishes to use <tt class="docutils literal"><span class="pre">Foo</span></tt> it need only to locate the <tt class="docutils literal"><span class="pre">FooConfig.cmake</span></tt>
+file and load it to get all the information it needs about package content
+locations.  Since the package configuration file is provided by the package
+installation it already knows all the file locations.</p>
+<p>The <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command may be used to search for the package
+configuration file.  This command constructs a set of installation prefixes
+and searches under each prefix in several locations.  Given the name <tt class="docutils literal"><span class="pre">Foo</span></tt>,
+it looks for a file called <tt class="docutils literal"><span class="pre">FooConfig.cmake</span></tt> or <tt class="docutils literal"><span class="pre">foo-config.cmake</span></tt>.
+The full set of locations is specified in the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command
+documentation. One place it looks is:</p>
+<div class="highlight-python"><pre>&lt;prefix&gt;/lib/cmake/Foo*/</pre>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">Foo*</span></tt> is a case-insensitive globbing expression.  In our example the
+globbing expression will match <tt class="docutils literal"><span class="pre">&lt;prefix&gt;/lib/cmake/foo-1.2</span></tt> and the package
+configuration file will be found.</p>
+<p>Once found, a package configuration file is immediately loaded.  It, together
+with a package version file, contains all the information the project needs to
+use the package.</p>
+</div>
+<div class="section" id="package-version-file">
+<h3><a class="toc-backref" href="#id11">Package Version File</a><a class="headerlink" href="#package-version-file" title="Permalink to this headline">¶</a></h3>
+<p>When the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command finds a candidate package configuration
+file it looks next to it for a version file. The version file is loaded to test
+whether the package version is an acceptable match for the version requested.
+If the version file claims compatibility the configuration file is accepted.
+Otherwise it is ignored.</p>
+<p>The name of the package version file must match that of the package configuration
+file but has either <tt class="docutils literal"><span class="pre">-version</span></tt> or <tt class="docutils literal"><span class="pre">Version</span></tt> appended to the name before
+the <tt class="docutils literal"><span class="pre">.cmake</span></tt> extension.  For example, the files:</p>
+<div class="highlight-python"><pre>&lt;prefix&gt;/lib/cmake/foo-1.3/foo-config.cmake
+&lt;prefix&gt;/lib/cmake/foo-1.3/foo-config-version.cmake</pre>
+</div>
+<p>and:</p>
+<div class="highlight-python"><pre>&lt;prefix&gt;/lib/cmake/bar-4.2/BarConfig.cmake
+&lt;prefix&gt;/lib/cmake/bar-4.2/BarConfigVersion.cmake</pre>
+</div>
+<p>are each pairs of package configuration files and corresponding package version
+files.</p>
+<p>When the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command loads a version file it first sets the
+following variables:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_NAME</span></tt></dt>
+<dd>The &lt;package&gt; name</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_VERSION</span></tt></dt>
+<dd>Full requested version string</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_VERSION_MAJOR</span></tt></dt>
+<dd>Major version if requested, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_VERSION_MINOR</span></tt></dt>
+<dd>Minor version if requested, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_VERSION_PATCH</span></tt></dt>
+<dd>Patch version if requested, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_VERSION_TWEAK</span></tt></dt>
+<dd>Tweak version if requested, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_FIND_VERSION_COUNT</span></tt></dt>
+<dd>Number of version components, 0 to 4</dd>
+</dl>
+<p>The version file must use these variables to check whether it is compatible or
+an exact match for the requested version and set the following variables with
+results:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_VERSION</span></tt></dt>
+<dd>Full provided version string</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_VERSION_EXACT</span></tt></dt>
+<dd>True if version is exact match</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_VERSION_COMPATIBLE</span></tt></dt>
+<dd>True if version is compatible</dd>
+<dt><tt class="docutils literal"><span class="pre">PACKAGE_VERSION_UNSUITABLE</span></tt></dt>
+<dd>True if unsuitable as any version</dd>
+</dl>
+<p>Version files are loaded in a nested scope so they are free to set any variables
+they wish as part of their computation. The find_package command wipes out the
+scope when the version file has completed and it has checked the output
+variables. When the version file claims to be an acceptable match for the
+requested version the find_package command sets the following variables for
+use by the project:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">&lt;package&gt;_VERSION</span></tt></dt>
+<dd>Full provided version string</dd>
+<dt><tt class="docutils literal"><span class="pre">&lt;package&gt;_VERSION_MAJOR</span></tt></dt>
+<dd>Major version if provided, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">&lt;package&gt;_VERSION_MINOR</span></tt></dt>
+<dd>Minor version if provided, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">&lt;package&gt;_VERSION_PATCH</span></tt></dt>
+<dd>Patch version if provided, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">&lt;package&gt;_VERSION_TWEAK</span></tt></dt>
+<dd>Tweak version if provided, else 0</dd>
+<dt><tt class="docutils literal"><span class="pre">&lt;package&gt;_VERSION_COUNT</span></tt></dt>
+<dd>Number of version components, 0 to 4</dd>
+</dl>
+<p>The variables report the version of the package that was actually found.
+The <tt class="docutils literal"><span class="pre">&lt;package&gt;</span></tt> part of their name matches the argument given to the
+<a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command.</p>
+</div>
+</div>
+<div class="section" id="creating-packages">
+<h2><a class="toc-backref" href="#id12">Creating Packages</a><a class="headerlink" href="#creating-packages" title="Permalink to this headline">¶</a></h2>
+<p>Usually, the upstream depends on CMake itself and can use some CMake facilities
+for creating the package files. Consider an upstream which provides a single
+shared library:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">project</span><span class="p">(</span><span class="s">UpstreamLib</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_INCLUDE_CURRENT_DIR</span> <span class="s">ON</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE</span> <span class="s">ON</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">Upstream_VERSION</span> <span class="s">3.4.1</span><span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s">GenerateExportHeader</span><span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">ClimbingStats</span> <span class="s">SHARED</span> <span class="s">climbingstats.cpp</span><span class="p">)</span>
+<span class="nb">generate_export_header</span><span class="p">(</span><span class="s">ClimbingStats</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">ClimbingStats</span> <span class="s">PROPERTY</span> <span class="s">VERSION</span> <span class="o">${</span><span class="nv">Upstream_VERSION</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">ClimbingStats</span> <span class="s">PROPERTY</span> <span class="s">SOVERSION</span> <span class="s">3</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">ClimbingStats</span> <span class="s">PROPERTY</span> <span class="s">INTERFACE_ClimbingStats_MAJOR_VERSION</span> <span class="s">3</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">ClimbingStats</span> <span class="s">APPEND</span> <span class="s">PROPERTY</span>
+  <span class="s">COMPATIBLE_INTERFACE_STRING</span> <span class="s">ClimbingStats_MAJOR_VERSION</span>
+<span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span> <span class="s">ClimbingStats</span> <span class="s">EXPORT</span> <span class="s">ClimbingStatsTargets</span>
+  <span class="s">LIBRARY</span> <span class="s">DESTINATION</span> <span class="s">lib</span>
+  <span class="s">ARCHIVE</span> <span class="s">DESTINATION</span> <span class="s">lib</span>
+  <span class="s">RUNTIME</span> <span class="s">DESTINATION</span> <span class="s">bin</span>
+  <span class="s">INCLUDES</span> <span class="s">DESTINATION</span> <span class="s">include</span>
+<span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span>
+  <span class="s">FILES</span>
+    <span class="s">climbingstats.h</span>
+    <span class="s2">&quot;${CMAKE_CURRENT_BINARY_DIR}/climbingstats_export.h&quot;</span>
+  <span class="s">DESTINATION</span>
+    <span class="s">include</span>
+  <span class="s">COMPONENT</span>
+    <span class="s">Devel</span>
+<span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s">CMakePackageConfigHelpers</span><span class="p">)</span>
+<span class="nb">write_basic_package_version_file</span><span class="p">(</span>
+  <span class="s2">&quot;${CMAKE_CURRENT_BINARY_DIR}/ClimbingStats/ClimbingStatsConfigVersion.cmake&quot;</span>
+  <span class="s">VERSION</span> <span class="o">${</span><span class="nv">Upstream_VERSION</span><span class="o">}</span>
+  <span class="s">COMPATIBILITY</span> <span class="s">AnyNewerVersion</span>
+<span class="p">)</span>
+
+<span class="nb">export</span><span class="p">(</span><span class="s">EXPORT</span> <span class="s">ClimbingStatsTargets</span>
+  <span class="s">FILE</span> <span class="s2">&quot;${CMAKE_CURRENT_BINARY_DIR}/ClimbingStats/ClimbingStatsTargets.cmake&quot;</span>
+  <span class="s">NAMESPACE</span> <span class="s">Upstream::</span>
+<span class="p">)</span>
+<span class="nb">configure_file</span><span class="p">(</span><span class="s">cmake/ClimbingStatsConfig.cmake</span>
+  <span class="s2">&quot;${CMAKE_CURRENT_BINARY_DIR}/ClimbingStats/ClimbingStatsConfig.cmake&quot;</span>
+  <span class="s">COPY_ONLY</span>
+<span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">ConfigPackageLocation</span> <span class="s">lib/cmake/ClimbingStats</span><span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">EXPORT</span> <span class="s">ClimbingStatsTargets</span>
+  <span class="s">FILE</span>
+    <span class="s">ClimbingStatsTargets.cmake</span>
+  <span class="s">NAMESPACE</span>
+    <span class="s">Upstream::</span>
+  <span class="s">DESTINATION</span>
+    <span class="o">${</span><span class="nv">ConfigPackageLocation</span><span class="o">}</span>
+<span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span>
+  <span class="s">FILES</span>
+    <span class="s">cmake/ClimbingStatsConfig.cmake</span>
+    <span class="s2">&quot;${CMAKE_CURRENT_BINARY_DIR}/ClimbingStats/ClimbingStatsConfigVersion.cmake&quot;</span>
+  <span class="s">DESTINATION</span>
+    <span class="o">${</span><span class="nv">ConfigPackageLocation</span><span class="o">}</span>
+  <span class="s">COMPONENT</span>
+    <span class="s">Devel</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../module/CMakePackageConfigHelpers.html#module:CMakePackageConfigHelpers" title="CMakePackageConfigHelpers"><tt class="xref cmake cmake-module docutils literal"><span class="pre">CMakePackageConfigHelpers</span></tt></a> module provides a macro for creating
+a simple <tt class="docutils literal"><span class="pre">ConfigVersion.cmake</span></tt> file.  This file sets the version of the
+package.  It is read by CMake when <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> is called to
+determine the compatibility with the requested version, and to set some
+version-specific variables <tt class="docutils literal"><span class="pre">&lt;Package&gt;_VERSION</span></tt>, <tt class="docutils literal"><span class="pre">&lt;Package&gt;_VERSION_MAJOR</span></tt>,
+<tt class="docutils literal"><span class="pre">&lt;Package&gt;_VERSION_MINOR</span></tt> etc.  The <a class="reference internal" href="../command/install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(EXPORT)</span></tt></a> command is
+used to export the targets in the <tt class="docutils literal"><span class="pre">ClimbingStatsTargets</span></tt> export-set, defined
+previously by the <a class="reference internal" href="../command/install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(TARGETS)</span></tt></a> command. This command generates
+the <tt class="docutils literal"><span class="pre">ClimbingStatsTargets.cmake</span></tt> file to contain <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a>
+targets, suitable for use by downsteams and arranges to install it to
+<tt class="docutils literal"><span class="pre">lib/cmake/ClimbingStats</span></tt>.  The generated <tt class="docutils literal"><span class="pre">ClimbingStatsConfigVersion.cmake</span></tt>
+and a <tt class="docutils literal"><span class="pre">cmake/ClimbingStatsConfig.cmake</span></tt> are installed to the same location,
+completing the package.</p>
+<p>The generated <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a> targets have appropriate properties set
+to define their usage requirements, such as
+<a class="reference internal" href="../prop_tgt/INTERFACE_INCLUDE_DIRECTORIES.html#prop_tgt:INTERFACE_INCLUDE_DIRECTORIES" title="INTERFACE_INCLUDE_DIRECTORIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_INCLUDE_DIRECTORIES</span></tt></a>,
+<a class="reference internal" href="../prop_tgt/INTERFACE_COMPILE_DEFINITIONS.html#prop_tgt:INTERFACE_COMPILE_DEFINITIONS" title="INTERFACE_COMPILE_DEFINITIONS"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_COMPILE_DEFINITIONS</span></tt></a> and other relevant built-in
+<tt class="docutils literal"><span class="pre">INTERFACE_</span></tt> properties.  The <tt class="docutils literal"><span class="pre">INTERFACE</span></tt> variant of user-defined
+properties listed in <a class="reference internal" href="../prop_tgt/COMPATIBLE_INTERFACE_STRING.html#prop_tgt:COMPATIBLE_INTERFACE_STRING" title="COMPATIBLE_INTERFACE_STRING"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">COMPATIBLE_INTERFACE_STRING</span></tt></a> and
+other <a class="reference internal" href="cmake-buildsystem.7.html#compatible-interface-properties"><em>Compatible Interface Properties</em></a> are also propagated to the
+generated <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a> targets.  In the above case,
+<tt class="docutils literal"><span class="pre">ClimbingStats_MAJOR_VERSION</span></tt> is defined as a string which must be
+compatible among the dependencies of any depender.  By setting this custom
+defined user property in this version and in the next version of
+<tt class="docutils literal"><span class="pre">ClimbingStats</span></tt>, <a class="reference internal" href="cmake.1.html#manual:cmake(1)" title="cmake(1)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake(1)</span></tt></a> will issue a diagnostic if there is an
+attempt to use version 3 together with version 4.  Packages can choose to
+employ such a pattern if different major versions of the package are designed
+to be incompatible.</p>
+<p>A <tt class="docutils literal"><span class="pre">NAMESPACE</span></tt> with double-colons is specified when exporting the targets
+for installation.  This convention of double-colons gives CMake a hint that
+the name is an <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a> target when it is used by downstreams
+with the <a class="reference internal" href="../command/target_link_libraries.html#command:target_link_libraries" title="target_link_libraries"><tt class="xref cmake cmake-command docutils literal"><span class="pre">target_link_libraries()</span></tt></a> command.  This way, CMake can
+issue a diagnostic if the package providing it has not yet been found.</p>
+<p>In this case, when using <a class="reference internal" href="../command/install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(TARGETS)</span></tt></a> the <tt class="docutils literal"><span class="pre">INCLUDES</span> <span class="pre">DESTINATION</span></tt>
+was specified.  This causes the <tt class="docutils literal"><span class="pre">IMPORTED</span></tt> targets to have their
+<a class="reference internal" href="../prop_tgt/INTERFACE_INCLUDE_DIRECTORIES.html#prop_tgt:INTERFACE_INCLUDE_DIRECTORIES" title="INTERFACE_INCLUDE_DIRECTORIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_INCLUDE_DIRECTORIES</span></tt></a> populated with the <tt class="docutils literal"><span class="pre">include</span></tt>
+directory in the <a class="reference internal" href="../variable/CMAKE_INSTALL_PREFIX.html#variable:CMAKE_INSTALL_PREFIX" title="CMAKE_INSTALL_PREFIX"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_INSTALL_PREFIX</span></tt></a>.  When the <tt class="docutils literal"><span class="pre">IMPORTED</span></tt>
+target is used by downsteam, it automatically consumes the entries from
+that property.</p>
+<p>In this case, the <tt class="docutils literal"><span class="pre">ClimbingStatsConfig.cmake</span></tt> file could be as simple as:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s2">&quot;${CMAKE_CURRENT_LIST_DIR}/ClimbingStatsTargets.cmake&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As this allows downstreams to use the <tt class="docutils literal"><span class="pre">IMPORTED</span></tt> targets.  If any macros
+should be provided by the <tt class="docutils literal"><span class="pre">ClimbingStats</span></tt> package, they should
+be in a separate file which is installed to the same location as the
+<tt class="docutils literal"><span class="pre">ClimbingStatsConfig.cmake</span></tt> file, and included from there.</p>
+<p>Packages created by <a class="reference internal" href="../command/install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(EXPORT)</span></tt></a> are designed to be relocatable,
+using paths relative to the location of the package itself.  When defining
+the interface of a target for <tt class="docutils literal"><span class="pre">EXPORT</span></tt>, keep in mind that the include
+directories should be specified as relative paths which are relative to the
+<a class="reference internal" href="../variable/CMAKE_INSTALL_PREFIX.html#variable:CMAKE_INSTALL_PREFIX" title="CMAKE_INSTALL_PREFIX"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_INSTALL_PREFIX</span></tt></a>:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tgt</span> <span class="s">INTERFACE</span>
+  <span class="c"># Wrong, not relocatable:</span>
+  <span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include/TgtName</span><span class="o">&gt;</span>
+<span class="p">)</span>
+
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tgt</span> <span class="s">INTERFACE</span>
+  <span class="c"># Ok, relocatable:</span>
+  <span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:include/TgtName</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">$&lt;INSTALL_PREFIX&gt;</span></tt>
+<a class="reference internal" href="cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7)" title="cmake-generator-expressions(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">generator</span> <span class="pre">expression</span></tt></a> may be used as
+a placeholder for the install prefix without resulting in a non-relocatable
+package.  This is necessary if complex generator expressions are used:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tgt</span> <span class="s">INTERFACE</span>
+  <span class="c"># Ok, relocatable:</span>
+  <span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:$&lt;$&lt;CONFIG:Debug</span><span class="o">&gt;</span><span class="s">:</span><span class="o">$&lt;</span><span class="nv">INSTALL_PREFIX</span><span class="o">&gt;</span><span class="s">/include/TgtName&gt;&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../command/export.html#command:export" title="export"><tt class="xref cmake cmake-command docutils literal"><span class="pre">export(EXPORT)</span></tt></a> command creates an <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a> targets
+definition file which is specific to the build-tree, and is not relocatable.
+This can similiarly be used with a suitable package configuration file and
+package version file to define a package for the build tree which may be used
+without installation.  Consumers of the build tree can simply ensure that the
+<a class="reference internal" href="../variable/CMAKE_PREFIX_PATH.html#variable:CMAKE_PREFIX_PATH" title="CMAKE_PREFIX_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_PREFIX_PATH</span></tt></a> contains the build directory, or set the
+<tt class="docutils literal"><span class="pre">ClimbingStats_DIR</span></tt> to <tt class="docutils literal"><span class="pre">&lt;build_dir&gt;/ClimbingStats</span></tt> in the cache.</p>
+<p>This can also be extended to cover dependencies:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="c"># ...</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">ClimbingStats</span> <span class="s">SHARED</span> <span class="s">climbingstats.cpp</span><span class="p">)</span>
+<span class="nb">generate_export_header</span><span class="p">(</span><span class="s">ClimbingStats</span><span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Stats</span> <span class="s">2.6.4</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">ClimbingStats</span> <span class="s">PUBLIC</span> <span class="s">Stats::Types</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As the <tt class="docutils literal"><span class="pre">Stats::Types</span></tt> target is a <tt class="docutils literal"><span class="pre">PUBLIC</span></tt> dependency of <tt class="docutils literal"><span class="pre">ClimbingStats</span></tt>,
+downsteams must also find the <tt class="docutils literal"><span class="pre">Stats</span></tt> package and link to the <tt class="docutils literal"><span class="pre">Stats::Types</span></tt>
+library.  The <tt class="docutils literal"><span class="pre">Stats</span></tt> package should be found in the <tt class="docutils literal"><span class="pre">ClimbingStatsConfig.cmake</span></tt>
+file to ensure this.  The <tt class="docutils literal"><span class="pre">find_dependency</span></tt> macro from the
+<a class="reference internal" href="../module/CMakeFindDependencyMacro.html#module:CMakeFindDependencyMacro" title="CMakeFindDependencyMacro"><tt class="xref cmake cmake-module docutils literal"><span class="pre">CMakeFindDependencyMacro</span></tt></a> helps with this by propagating
+whether the package is <tt class="docutils literal"><span class="pre">REQUIRED</span></tt>, or <tt class="docutils literal"><span class="pre">QUIET</span></tt> etc.  All <tt class="docutils literal"><span class="pre">REQUIRED</span></tt>
+dependencies of a package should be found in the <tt class="docutils literal"><span class="pre">Config.cmake</span></tt> file:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">CMakeFindDependencyMacro</span><span class="p">)</span>
+<span class="nb">find_dependency</span><span class="p">(</span><span class="s">Stats</span> <span class="s">2.6.4</span><span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s2">&quot;${CMAKE_CURRENT_LIST_DIR}/ClimbingStatsTargets.cmake&quot;</span><span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s2">&quot;${CMAKE_CURRENT_LIST_DIR}/ClimbingStatsMacros.cmake&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">find_dependency</span></tt> macro also sets <tt class="docutils literal"><span class="pre">ClimbingStats_FOUND</span></tt> to <tt class="docutils literal"><span class="pre">False</span></tt> if
+the dependency is not found, along with a diagnostic that the <tt class="docutils literal"><span class="pre">ClimbingStats</span></tt>
+package can not be used without the <tt class="docutils literal"><span class="pre">Stats</span></tt> package.</p>
+<p>If <tt class="docutils literal"><span class="pre">COMPONENTS</span></tt> are specified when the downstream uses <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a>,
+they are listed in the <tt class="docutils literal"><span class="pre">&lt;Package&gt;_FIND_COMPONENTS</span></tt> variable. If a particular
+component is non-optional, then the <tt class="docutils literal"><span class="pre">&lt;Package&gt;_FIND_REQUIRED_&lt;comp&gt;</span></tt> will
+be true. This can be tested with logic in the package configuration file:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">CMakeFindDependencyMacro</span><span class="p">)</span>
+<span class="nb">find_dependency</span><span class="p">(</span><span class="s">Stats</span> <span class="s">2.6.4</span><span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s2">&quot;${CMAKE_CURRENT_LIST_DIR}/ClimbingStatsTargets.cmake&quot;</span><span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s2">&quot;${CMAKE_CURRENT_LIST_DIR}/ClimbingStatsMacros.cmake&quot;</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">_supported_components</span> <span class="s">Plot</span> <span class="s">Table</span><span class="p">)</span>
+
+<span class="nb">foreach</span><span class="p">(</span><span class="s">_comp</span> <span class="o">${</span><span class="nv">ClimbingStats_FIND_COMPONENTS</span><span class="o">}</span><span class="p">)</span>
+  <span class="nb">if</span> <span class="p">(</span><span class="s">NOT</span> <span class="s2">&quot;;${_supported_components};&quot;</span> <span class="s">MATCHES</span> <span class="s">_comp</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="s">ClimbingStats_FOUND</span> <span class="s">False</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="s">ClimbingStats_NOTFOUND_MESSAGE</span> <span class="s2">&quot;Specified unsupported component: ${_comp}&quot;</span><span class="p">)</span>
+  <span class="nb">endif</span><span class="p">()</span>
+  <span class="nb">include</span><span class="p">(</span><span class="s2">&quot;${CMAKE_CURRENT_LIST_DIR}/ClimbingStats${_comp}Targets.cmake&quot;</span><span class="p">)</span>
+<span class="nb">endforeach</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here, the <tt class="docutils literal"><span class="pre">ClimbingStats_NOTFOUND_MESSAGE</span></tt> is set to a diagnosis that the package
+could not be found because an invalid component was specified.  This message
+variable can be set for any case where the <tt class="docutils literal"><span class="pre">_FOUND</span></tt> variable is set to <tt class="docutils literal"><span class="pre">False</span></tt>,
+and will be displayed to the user.</p>
+</div>
+<div class="section" id="package-registry">
+<span id="id1"></span><h2><a class="toc-backref" href="#id13">Package Registry</a><a class="headerlink" href="#package-registry" title="Permalink to this headline">¶</a></h2>
+<p>CMake provides two central locations to register packages that have
+been built or installed anywhere on a system:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#user-package-registry">User Package Registry</a></li>
+<li><a class="reference internal" href="#system-package-registry">System Package Registry</a></li>
+</ul>
+<p>The registries are especially useful to help projects find packages in
+non-standard install locations or directly in their own build trees.
+A project may populate either the user or system registry (using its own
+means, see below) to refer to its location.
+In either case the package should store at the registered location a
+<a class="reference internal" href="#package-configuration-file">Package Configuration File</a> (<tt class="docutils literal"><span class="pre">&lt;package&gt;Config.cmake</span></tt>) and optionally a
+<a class="reference internal" href="#package-version-file">Package Version File</a> (<tt class="docutils literal"><span class="pre">&lt;package&gt;ConfigVersion.cmake</span></tt>).</p>
+<p>The <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command searches the two package registries
+as two of the search steps specified in its documentation.  If it has
+sufficient permissions it also removes stale package registry entries
+that refer to directories that do not exist or do not contain a matching
+package configuration file.</p>
+<div class="section" id="user-package-registry">
+<span id="id2"></span><h3><a class="toc-backref" href="#id14">User Package Registry</a><a class="headerlink" href="#user-package-registry" title="Permalink to this headline">¶</a></h3>
+<p>The User Package Registry is stored in a per-user location.
+The <a class="reference internal" href="../command/export.html#command:export" title="export"><tt class="xref cmake cmake-command docutils literal"><span class="pre">export(PACKAGE)</span></tt></a> command may be used to register a project
+build tree in the user package registry.  CMake currently provides no
+interface to add install trees to the user package registry.  Installers
+must be manually taught to register their packages if desired.</p>
+<p>On Windows the user package registry is stored in the Windows registry
+under a key in <tt class="docutils literal"><span class="pre">HKEY_CURRENT_USER</span></tt>.</p>
+<p>A <tt class="docutils literal"><span class="pre">&lt;package&gt;</span></tt> may appear under registry key:</p>
+<div class="highlight-python"><pre>HKEY_CURRENT_USER\Software\Kitware\CMake\Packages\&lt;package&gt;</pre>
+</div>
+<p>as a <tt class="docutils literal"><span class="pre">REG_SZ</span></tt> value, with arbitrary name, that specifies the directory
+containing the package configuration file.</p>
+<p>On UNIX platforms the user package registry is stored in the user home
+directory under <tt class="docutils literal"><span class="pre">~/.cmake/packages</span></tt>.  A <tt class="docutils literal"><span class="pre">&lt;package&gt;</span></tt> may appear under
+the directory:</p>
+<div class="highlight-python"><pre>~/.cmake/packages/&lt;package&gt;</pre>
+</div>
+<p>as a file, with arbitrary name, whose content specifies the directory
+containing the package configuration file.</p>
+</div>
+<div class="section" id="system-package-registry">
+<span id="id3"></span><h3><a class="toc-backref" href="#id15">System Package Registry</a><a class="headerlink" href="#system-package-registry" title="Permalink to this headline">¶</a></h3>
+<p>The System Package Registry is stored in a system-wide location.
+CMake currently provides no interface to add to the system package registry.
+Installers must be manually taught to register their packages if desired.</p>
+<p>On Windows the system package registry is stored in the Windows registry
+under a key in <tt class="docutils literal"><span class="pre">HKEY_LOCAL_MACHINE</span></tt>.  A <tt class="docutils literal"><span class="pre">&lt;package&gt;</span></tt> may appear under
+registry key:</p>
+<div class="highlight-python"><pre>HKEY_LOCAL_MACHINE\Software\Kitware\CMake\Packages\&lt;package&gt;</pre>
+</div>
+<p>as a <tt class="docutils literal"><span class="pre">REG_SZ</span></tt> value, with arbitrary name, that specifies the directory
+containing the package configuration file.</p>
+<p>There is no system package registry on non-Windows platforms.</p>
+</div>
+<div class="section" id="package-registry-example">
+<h3><a class="toc-backref" href="#id16">Package Registry Example</a><a class="headerlink" href="#package-registry-example" title="Permalink to this headline">¶</a></h3>
+<p>A simple convention for naming package registry entries is to use content
+hashes.  They are deterministic and unlikely to collide
+(<a class="reference internal" href="../command/export.html#command:export" title="export"><tt class="xref cmake cmake-command docutils literal"><span class="pre">export(PACKAGE)</span></tt></a> uses this approach).
+The name of an entry referencing a specific directory is simply the content
+hash of the directory path itself.</p>
+<p>If a project arranges for package registry entries to exist, such as:</p>
+<div class="highlight-python"><pre>&gt; reg query HKCU\Software\Kitware\CMake\Packages\MyPackage
+HKEY_CURRENT_USER\Software\Kitware\CMake\Packages\MyPackage
+ 45e7d55f13b87179bb12f907c8de6fc4 REG_SZ c:/Users/Me/Work/lib/cmake/MyPackage
+ 7b4a9844f681c80ce93190d4e3185db9 REG_SZ c:/Users/Me/Work/MyPackage-build</pre>
+</div>
+<p>or:</p>
+<div class="highlight-python"><pre>$ cat ~/.cmake/packages/MyPackage/7d1fb77e07ce59a81bed093bbee945bd
+/home/me/work/lib/cmake/MyPackage
+$ cat ~/.cmake/packages/MyPackage/f92c1db873a1937f3100706657c63e07
+/home/me/work/MyPackage-build</pre>
+</div>
+<p>then the <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> code:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">find_package</span><span class="p">(</span><span class="s">MyPackage</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will search the registered locations for package configuration files
+(<tt class="docutils literal"><span class="pre">MyPackageConfig.cmake</span></tt>).  The search order among package registry
+entries for a single package is unspecified and the entry names
+(hashes in this example) have no meaning.  Registered locations may
+contain package version files (<tt class="docutils literal"><span class="pre">MyPackageConfigVersion.cmake</span></tt>) to
+tell <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> whether a specific location is suitable
+for the version requested.</p>
+</div>
+<div class="section" id="package-registry-ownership">
+<h3><a class="toc-backref" href="#id17">Package Registry Ownership</a><a class="headerlink" href="#package-registry-ownership" title="Permalink to this headline">¶</a></h3>
+<p>Package registry entries are individually owned by the project installations
+that they reference.  A package installer is responsible for adding its own
+entry and the corresponding uninstaller is responsible for removing it.</p>
+<p>The <a class="reference internal" href="../command/export.html#command:export" title="export"><tt class="xref cmake cmake-command docutils literal"><span class="pre">export(PACKAGE)</span></tt></a> command populates the user package registry
+with the location of a project build tree.  Build trees tend to be deleted by
+developers and have no &#8220;uninstall&#8221; event that could trigger removal of their
+entries.  In order to keep the registries clean the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a>
+command automatically removes stale entries it encounters if it has sufficient
+permissions.  CMake provides no interface to remove an entry referencing an
+existing build tree once <a class="reference internal" href="../command/export.html#command:export" title="export"><tt class="xref cmake cmake-command docutils literal"><span class="pre">export(PACKAGE)</span></tt></a> has been invoked.
+However, if the project removes its package configuration file from the build
+tree then the entry referencing the location will be considered stale.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cmake-packages(7)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#using-packages">Using Packages</a><ul>
+<li><a class="reference internal" href="#config-file-packages">Config-file Packages</a></li>
+<li><a class="reference internal" href="#find-module-packages">Find-module Packages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#package-layout">Package Layout</a><ul>
+<li><a class="reference internal" href="#package-configuration-file">Package Configuration File</a></li>
+<li><a class="reference internal" href="#package-version-file">Package Version File</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-packages">Creating Packages</a></li>
+<li><a class="reference internal" href="#package-registry">Package Registry</a><ul>
+<li><a class="reference internal" href="#user-package-registry">User Package Registry</a></li>
+<li><a class="reference internal" href="#system-package-registry">System Package Registry</a></li>
+<li><a class="reference internal" href="#package-registry-example">Package Registry Example</a></li>
+<li><a class="reference internal" href="#package-registry-ownership">Package Registry Ownership</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../module/WriteBasicConfigVersionFile.html"
+                        title="previous chapter">WriteBasicConfigVersionFile</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cmake-policies.7.html"
+                        title="next chapter">cmake-policies(7)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/manual/cmake-packages.7.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cmake-policies.7.html" title="cmake-policies(7)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../module/WriteBasicConfigVersionFile.html" title="WriteBasicConfigVersionFile"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

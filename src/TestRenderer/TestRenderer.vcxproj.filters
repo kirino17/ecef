@@ -27,9 +27,48 @@
     <ClInclude Include="TestRenderer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestDomProcess.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestDomVisitor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSelector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TestAuthorization.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestInterceptor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestDomProcess.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestDomVisitor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestThread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSelector.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestAuthorization.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyResponseFilter.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyResponseFilter.h>
 
 
@@ -77,7 +77,7 @@ void EDITIONF(ProxyResponseFilter_GetTotalBytes) (PMDATA_INF pRetData, INT nArgC
 extern "C"
 void EDITIONF(ProxyResponseFilter_GetResource) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyResponseFilter> self = (ProxyResponseFilter*)*pArgInf->m_ppCompoundData;

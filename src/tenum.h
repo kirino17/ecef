@@ -340,7 +340,7 @@ LIB_DATA_TYPE_ELEMENT s_ResourceRetValueEnumList[] = {
 		/*szEgName*/	_WT("Cancel"), 
 		/*szExplain*/	_WT("立即取消本次资源请求。"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
-		/*nDefault*/	0 
+		/*nDefault*/	1 
 	},
 	{ 
 		/*dtType*/ 		SDT_INT, 
@@ -349,7 +349,7 @@ LIB_DATA_TYPE_ELEMENT s_ResourceRetValueEnumList[] = {
 		/*szEgName*/	_WT("Continue"), 
 		/*szExplain*/	_WT("立即通过本次资源请求。"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
-		/*nDefault*/	1 
+		/*nDefault*/	0 
 	},
 	{ 
 		/*dtType*/ 		SDT_INT, 
@@ -527,7 +527,7 @@ LIB_DATA_TYPE_ELEMENT s_CommandSwitchEnumList[] = {
 		/*pArySpec*/	NULL, 
 		/*szName*/		_WT("默认"), 
 		/*szEgName*/	_WT("STATE_DEFAULT"), 
-		/*szExplain*/	_WT("Use the default state for the setting."), 
+		/*szExplain*/	_WT("使用默认设置."), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	0 
 	},
@@ -536,7 +536,7 @@ LIB_DATA_TYPE_ELEMENT s_CommandSwitchEnumList[] = {
 		/*pArySpec*/	NULL, 
 		/*szName*/		_WT("启用"), 
 		/*szEgName*/	_WT("STATE_ENABLED"), 
-		/*szExplain*/	_WT("Enable or allow the setting."), 
+		/*szExplain*/	_WT("启用此选项."), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	1 
 	},
@@ -545,7 +545,7 @@ LIB_DATA_TYPE_ELEMENT s_CommandSwitchEnumList[] = {
 		/*pArySpec*/	NULL, 
 		/*szName*/		_WT("禁止"), 
 		/*szEgName*/	_WT("STATE_DISABLED"), 
-		/*szExplain*/	_WT("Disable or disallow the setting."), 
+		/*szExplain*/	_WT("禁用此选项"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	2 
 	},
@@ -1200,8 +1200,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchEventTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TET_RELEASED"), 
-		/*szEgName*/	_WT("TET_RELEASED"), 
+		/*szName*/		_WT("RELEASED"), 
+		/*szEgName*/	_WT("RELEASED"), 
 		/*szExplain*/	_WT(""), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	0
@@ -1209,8 +1209,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchEventTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TET_PRESSED"), 
-		/*szEgName*/	_WT("TET_PRESSED"), 
+		/*szName*/		_WT("PRESSED"), 
+		/*szEgName*/	_WT("PRESSED"), 
 		/*szExplain*/	_WT(""), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	1
@@ -1218,8 +1218,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchEventTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TET_MOVED"), 
-		/*szEgName*/	_WT("TET_MOVED"), 
+		/*szName*/		_WT("MOVED"), 
+		/*szEgName*/	_WT("MOVED"), 
 		/*szExplain*/	_WT(""), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	2
@@ -1227,8 +1227,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchEventTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TET_CANCELLED"), 
-		/*szEgName*/	_WT("TET_CANCELLED"), 
+		/*szName*/		_WT("CANCELLED"), 
+		/*szEgName*/	_WT("CANCELLED"), 
 		/*szExplain*/	_WT(""), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	3
@@ -1240,8 +1240,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchPointerTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TYPE_TOUCH"), 
-		/*szEgName*/	_WT("TYPE_TOUCH"), 
+		/*szName*/		_WT("TOUCH"), 
+		/*szEgName*/	_WT("TOUCH"), 
 		/*szExplain*/	_WT("触摸板"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	0
@@ -1249,8 +1249,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchPointerTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TYPE_MOUSE"), 
-		/*szEgName*/	_WT("TYPE_MOUSE"), 
+		/*szName*/		_WT("MOUSE"), 
+		/*szEgName*/	_WT("MOUSE"), 
 		/*szExplain*/	_WT("鼠标"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	1
@@ -1258,8 +1258,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchPointerTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TYPE_PEN"), 
-		/*szEgName*/	_WT("TYPE_PEN"), 
+		/*szName*/		_WT("PEN"), 
+		/*szEgName*/	_WT("PEN"), 
 		/*szExplain*/	_WT("触笔"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	2
@@ -1267,8 +1267,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchPointerTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TYPE_ERASER"), 
-		/*szEgName*/	_WT("TYPE_ERASER"), 
+		/*szName*/		_WT("ERASER"), 
+		/*szEgName*/	_WT("ERASER"), 
 		/*szExplain*/	_WT(""), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	3
@@ -1276,8 +1276,8 @@ LIB_DATA_TYPE_ELEMENT s_TouchPointerTypeEnumList[] = {
 	{ 
 		/*dtType*/ 		SDT_INT, 
 		/*pArySpec*/	NULL, 
-		/*szName*/		_WT("TYPE_UNKNOWN"), 
-		/*szEgName*/	_WT("TYPE_UNKNOWN"), 
+		/*szName*/		_WT("UNKNOWN"), 
+		/*szEgName*/	_WT("UNKNOWN"), 
 		/*szExplain*/	_WT(""), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	4
@@ -1300,7 +1300,7 @@ LIB_DATA_TYPE_ELEMENT s_PostDataElementTypeEnumList[] = {
 		/*pArySpec*/	NULL, 
 		/*szName*/		_WT("BYTES"), 
 		/*szEgName*/	_WT("BYTES"), 
-		/*szExplain*/	_WT("字节流"), 
+		/*szExplain*/	_WT("字节集"), 
 		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
 		/*nDefault*/	1
 	},
@@ -1315,3 +1315,761 @@ LIB_DATA_TYPE_ELEMENT s_PostDataElementTypeEnumList[] = {
 	},
 };
 #define ENUM_POST_DATA_ELEMENT_TYPE_EXPLAIN		"提交数据元素类型"
+
+LIB_DATA_TYPE_ELEMENT s_UriUnescapeRuleEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("无"), 
+		/*szEgName*/	_WT("NONE"), 
+		/*szExplain*/	_WT("没有避免规则。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("普通转义"), 
+		/*szEgName*/	_WT("NORMAL"), 
+		/*szExplain*/	_WT("解码所有特殊字符的转义。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("空格转义"), 
+		/*szEgName*/	_WT("SPACES"), 
+		/*szExplain*/	_WT("将%20转义为空格。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("斜杠转义"), 
+		/*szEgName*/	_WT("SPACES"), 
+		/*szExplain*/	_WT("解码转义\"/\"和\"\\\\\"。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("连接符转义"), 
+		/*szEgName*/	_WT("REPLACE_PLUS_WITH_SPACE"), 
+		/*szExplain*/	_WT("解码转义\"%\",\"+\",\"&\",\"#\"等连接字符。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("加号转义"), 
+		/*szEgName*/	_WT("REPLACE_PLUS_WITH_SPACE"), 
+		/*szExplain*/	_WT("使用\"+\"表示空格。 "), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 4
+	},
+};
+#define ENUM_URI_UNESCAPE_RULE_EXPLAIN		"URI转义字符解码规则"
+
+LIB_DATA_TYPE_ELEMENT s_UrlRequestStatusEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("UNKNOWN"), 
+		/*szEgName*/	_WT("UNKNOWN"), 
+		/*szExplain*/	_WT("状态未知。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("SUCCESS"), 
+		/*szEgName*/	_WT("SUCCESS"), 
+		/*szExplain*/	_WT("请求成功。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("IO_PENDING"), 
+		/*szEgName*/	_WT("IO_PENDING"), 
+		/*szExplain*/	_WT("IO处理仍在进行中。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("CANCELED"), 
+		/*szEgName*/	_WT("CANCELED"), 
+		/*szExplain*/	_WT("请求已被取消。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("FAILED"), 
+		/*szEgName*/	_WT("FAILED"), 
+		/*szExplain*/	_WT("请求失败。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	4
+	},
+};
+#define ENUM_URL_REQUEST_STATUS_EXPLAIN		"URL请求会话状态"
+
+
+LIB_DATA_TYPE_ELEMENT s_WebSocketDataTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("字符串"), 
+		/*szEgName*/	_WT("string"), 
+		/*szExplain*/	_WT("字符串"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("字节集"), 
+		/*szEgName*/	_WT("binary"), 
+		/*szExplain*/	_WT("字节集"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+};
+#define ENUM_WEB_SOCKET_DATA_TYPE_EXPLAIN		"超文本套接字数据流类型"
+
+LIB_DATA_TYPE_ELEMENT s_MenuTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("无"), 
+		/*szEgName*/	_WT("None"), 
+		/*szExplain*/	_WT("没有节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("页"), 
+		/*szEgName*/	_WT("Page"), 
+		/*szExplain*/	_WT("选择了主页面。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("子框架"), 
+		/*szEgName*/	_WT("Frame"), 
+		/*szExplain*/	_WT("选择了主框架"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("链接"), 
+		/*szEgName*/	_WT("Link"), 
+		/*szExplain*/	_WT("选择了链接"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("多媒体"), 
+		/*szEgName*/	_WT("Media"), 
+		/*szExplain*/	_WT("选择了多媒体"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("选区"), 
+		/*szEgName*/	_WT("Selection"), 
+		/*szExplain*/	_WT("选择了一段选区"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 4
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("可编辑组件"), 
+		/*szEgName*/	_WT("Editable"), 
+		/*szExplain*/	_WT("选择了可编辑组件"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 5
+	},
+};
+#define ENUM_MENU_TYPE_EXPLAIN		"超文本套接字数据流类型"
+
+
+LIB_DATA_TYPE_ELEMENT s_MediaTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("NONE"), 
+		/*szEgName*/	_WT("NONE"), 
+		/*szExplain*/	_WT("没有节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("IMAGE"), 
+		/*szEgName*/	_WT("IMAGE"), 
+		/*szExplain*/	_WT("IMAGE节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("VIDEO"), 
+		/*szEgName*/	_WT("VIDEO"), 
+		/*szExplain*/	_WT("VIDEO节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("AUDIO"), 
+		/*szEgName*/	_WT("AUDIO"), 
+		/*szExplain*/	_WT("AUDIO节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("FILE"), 
+		/*szEgName*/	_WT("FILE"), 
+		/*szExplain*/	_WT("FILE节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	4
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("PLUGIN"), 
+		/*szEgName*/	_WT("PLUGIN"), 
+		/*szExplain*/	_WT("PLUGIN节点被选择"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	5
+	},
+};
+
+#define ENUM_MEDIA_TYPE_EXPLAIN		"多媒体菜单类型"
+
+LIB_DATA_TYPE_ELEMENT s_DocumentTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("UNKNOWN"), 
+		/*szEgName*/	_WT("UNKNOWN"), 
+		/*szExplain*/	_WT("未知文档"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("HTML"), 
+		/*szEgName*/	_WT("HTML"), 
+		/*szExplain*/	_WT("HTML文档类型"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("XHTML"), 
+		/*szEgName*/	_WT("XHTML"), 
+		/*szExplain*/	_WT("XHTML文档类型"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("PLUGIN"), 
+		/*szEgName*/	_WT("PLUGIN"), 
+		/*szExplain*/	_WT("PLUGIN文档类型"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+};
+
+LIB_DATA_TYPE_ELEMENT s_DocumentElementTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("UNSUPPORTED"), 
+		/*szEgName*/	_WT("UNSUPPORTED"), 
+		/*szExplain*/	_WT("未知元素"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("ELEMENT"), 
+		/*szEgName*/	_WT("ELEMENT"), 
+		/*szExplain*/	_WT("文档元素"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("ATTRIBUTE"), 
+		/*szEgName*/	_WT("ATTRIBUTE"), 
+		/*szExplain*/	_WT("属性元素"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("TEXT"), 
+		/*szEgName*/	_WT("TEXT"), 
+		/*szExplain*/	_WT("文本元素"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("CDATA_SECTION"), 
+		/*szEgName*/	_WT("CDATA_SECTION"), 
+		/*szExplain*/	_WT("CDATA_SECTION"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	4
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("PROCESSING_INSTRUCTIONS"), 
+		/*szEgName*/	_WT("PROCESSING_INSTRUCTIONS"), 
+		/*szExplain*/	_WT("PROCESSING_INSTRUCTIONS"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	5
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("COMMENT"), 
+		/*szEgName*/	_WT("COMMENT"), 
+		/*szExplain*/	_WT("COMMENT"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	6
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("DOCUMENT"), 
+		/*szEgName*/	_WT("DOCUMENT"), 
+		/*szExplain*/	_WT("DOCUMENT"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	7
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("DOCUMENT_TYPE"), 
+		/*szEgName*/	_WT("DOCUMENT_TYPE"), 
+		/*szExplain*/	_WT("DOCUMENT_TYPE"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	8
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("DOCUMENT_FRAGMENT"), 
+		/*szEgName*/	_WT("DOCUMENT_FRAGMENT"), 
+		/*szExplain*/	_WT("DOCUMENT_FRAGMENT"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	9
+	},
+};
+
+LIB_DATA_TYPE_ELEMENT s_GestureSourceTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("DEFAULT"), 
+		/*szEgName*/	_WT("DEFAULT"), 
+		/*szExplain*/	_WT("默认提供平台首选的输入类型。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("TOUCH"), 
+		/*szEgName*/	_WT("TOUCH"), 
+		/*szExplain*/	_WT("TOUCH。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("MOUSE"), 
+		/*szEgName*/	_WT("MOUSE"), 
+		/*szExplain*/	_WT("MOUSE"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("PEN"), 
+		/*szEgName*/	_WT("PEN"), 
+		/*szExplain*/	_WT("PEN"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+};
+
+LIB_DATA_TYPE_ELEMENT s_GestureProviderConfigTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("当前平台"), 
+		/*szEgName*/	_WT("CURRENT_PLATFORM"), 
+		/*szExplain*/	_WT("为当前平台量身定制的参数。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("当前平台VR"), 
+		/*szEgName*/	_WT("CURRENT_PLATFORM"), 
+		/*szExplain*/	_WT("为VR中的当前平台量身定制的参数。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("桌面"), 
+		/*szEgName*/	_WT("DESKTOP"), 
+		/*szExplain*/	_WT("台式电脑的典型参数。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("移动设备"), 
+		/*szEgName*/	_WT("MOBILE"), 
+		/*szExplain*/	_WT("移动设备(电话/平板电脑)的典型参数。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+};
+
+LIB_DATA_TYPE_ELEMENT s_DeviceScreenTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("桌面端"), 
+		/*szEgName*/	_WT("DESKTOP"), 
+		/*szExplain*/	_WT("桌面屏幕类型"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+		{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("移动端"), 
+		/*szEgName*/	_WT("MOBILE"), 
+		/*szExplain*/	_WT("桌面屏幕类型"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	}
+};
+
+LIB_DATA_TYPE_ELEMENT s_ScreenOrientationTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("原始方向"), 
+		/*szEgName*/	_WT("Undefined"), 
+		/*szExplain*/	_WT("保持屏幕原始方向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("纵向主要"), 
+		/*szEgName*/	_WT("PortraitPrimary"), 
+		/*szExplain*/	_WT("纵向方向为主要方向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("纵向次要"), 
+		/*szEgName*/	_WT("PortraitSecondary"), 
+		/*szExplain*/	_WT("纵向方向为次要方向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("横向主要"), 
+		/*szEgName*/	_WT("LandscapePrimary"), 
+		/*szExplain*/	_WT("横向方向为主要方向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("横向次要"), 
+		/*szEgName*/	_WT("LandscapeSecondary"), 
+		/*szExplain*/	_WT("横向方向为次要方向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	4
+	},
+};
+
+LIB_DATA_TYPE_ELEMENT s_URLRequestFlagsEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("没有标志"), 
+		/*szEgName*/	_WT("NONE"), 
+		/*szExplain*/	_WT("使用默认标志参数。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("跳过缓存"), 
+		/*szEgName*/	_WT("SKIP_CACHE"), 
+		/*szExplain*/	_WT("如果设置, 则在处理请求时将跳过缓存。设置此值等效于指定: \\\"Cache-Control: no-cache\\\"请求标头。 此标志值与 仅从缓存 标志冲突,组合使用会导致请求失败。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("仅从缓存"), 
+		/*szEgName*/	_WT("ONLY_FROM_CACHE"), 
+		/*szExplain*/	_WT("如果设置, 若在无法从缓存(或某些等效的本地存储)中提供请求, 则该请求将失败。 设置此标志值等效于指定\\\"Cache-Control: only-if-cached\\\"请求标头。 此标志值与 跳过缓存 标志冲突, 组合使用会导致请求失败。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("不使用缓存"), 
+		/*szEgName*/	_WT("DISABLE_CACHE"), 
+		/*szExplain*/	_WT("如果设置, 将根本不使用缓存。设置此标志值等效于指定\\\"Cache-Control: no-store\\\"请求标头。 此标志值与 仅从缓存 标志冲突, 组合使用会导致请求失败。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 2
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("允许存储证书"), 
+		/*szEgName*/	_WT("ALLOW_STORED_CREDENTIALS"), 
+		/*szExplain*/	_WT("如果设置了用户名, 密码和cookie, 则可能会随请求一起发送, 并且cookie可能会从响应中保存。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("报告上传进度"), 
+		/*szEgName*/	_WT("REPORT_UPLOAD_PROGRESS"), 
+		/*szExplain*/	_WT("如果设置了则在请求具有正文(Body)时将生成上传进度事件。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 4
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("不下载数据"), 
+		/*szEgName*/	_WT("NO_DOWNLOAD_DATA"), 
+		/*szExplain*/	_WT("如果设置则不会调用下载事件接收数据。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 5
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("回复5XX"), 
+		/*szEgName*/	_WT("REPLY_5XX"), 
+		/*szExplain*/	_WT("如果响应设置为5XX, 重定向错误将传播给观察者, 而不是自动重试。当前, 这仅适用于源自浏览器进程的请求。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 6
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("不要重定向"), 
+		/*szEgName*/	_WT("STOP_NO_REDIRECT"), 
+		/*szExplain*/	_WT("如果响应设置为3XX, 则应立即停止抓取, 而不是继续进行重定向。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1 << 7
+	},
+};
+
+LIB_DATA_TYPE_ELEMENT s_RequestTransitionTypeEnumList[] = {
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("链接"), 
+		/*szEgName*/	_WT("LINK"), 
+		/*szExplain*/	_WT("请求源是单击链接或 Javascript window.open 函数。这也是非导航之类的请求(如子资源加载)的默认值。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("显示导航"), 
+		/*szEgName*/	_WT("EXPLICIT"), 
+		/*szExplain*/	_WT("请求源是其它一些\\\"explicit\\\"导航。 这是实际类型位置的导航的默认值。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	1
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("自动子框架"), 
+		/*szEgName*/	_WT("AUTO_SUBFRAME"), 
+		/*szExplain*/	_WT("请求源是子框架, 这是在非顶级框架中自动加载的所有内容。例如, 如果页面由包含广告的多个框架组成, 则这些广告URL将具有此过渡类型。用户深圳可能没有意识到这些页面中的内容是单独的框架, 因此可能不在乎URL。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	3
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("手动子框架"), 
+		/*szEgName*/	_WT("MANUAL_SUBFRAME"), 
+		/*szExplain*/	_WT("请求源是用户明确请求的子框架导航, 它将在后退/前进列表中生成新的导航条目。这些可能比在后台自动加载的框架更为重要, 因为用户可能管线此链接已加载的事实。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	4
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("表单提交"), 
+		/*szEgName*/	_WT("FORM_SUBMIT"), 
+		/*szExplain*/	_WT("请求源是用户提交的表单, 注意: 在某些情况下, 提交表单不会导致此传输类型。如果表单使用脚本提交内容, 则会发生这种情况。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	7
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_请求源"), 
+		/*szEgName*/	_WT("SOURCE_MASK"), 
+		/*szExplain*/	_WT("通用掩码, 定义用于指示请求源的标志位。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0xFF
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_请求被阻止"), 
+		/*szEgName*/	_WT("BLOCKED_FLAG"), 
+		/*szExplain*/	_WT("尝试访问URL, 但被阻止。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x00800000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_请求或后退"), 
+		/*szEgName*/	_WT("FORWARD_BACK_FLAG"), 
+		/*szExplain*/	_WT("使用前进或后退功能在浏览历史记录直接导航。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x01000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_直接加载"), 
+		/*szEgName*/	_WT("DIRECT_LOAD_FLAG"), 
+		/*szExplain*/	_WT("直接通过创建浏览器、加载URL、加载请求等方法的请求。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x02000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_导航链开始"), 
+		/*szEgName*/	_WT("CHAIN_START_FLAG"), 
+		/*szExplain*/	_WT("导航链的开始。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x10000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_导航链结束"), 
+		/*szEgName*/	_WT("CHAIN_END_FLAG"), 
+		/*szExplain*/	_WT("结束导航链。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x20000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_客户端重定向"), 
+		/*szEgName*/	_WT("CLIENT_REDIRECT_FLAG"), 
+		/*szExplain*/	_WT("由 javascript 或页面上的meta refresh标签引擎的重定向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x40000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_服务器重定向"), 
+		/*szEgName*/	_WT("SERVER_REDIRECT_FLAG"), 
+		/*szExplain*/	_WT("通过HTTP标头从服务器发送来的重定向"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0x80000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_测试是否重定向"), 
+		/*szEgName*/	_WT("IS_REDIRECT_MASK"), 
+		/*szExplain*/	_WT("用于测试传输是否涉及重定向。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0xC0000000
+	},
+	{ 
+		/*dtType*/ 		SDT_INT, 
+		/*pArySpec*/	NULL, 
+		/*szName*/		_WT("掩码_标志位"), 
+		/*szEgName*/	_WT("QUALIFIER_MASK"), 
+		/*szExplain*/	_WT("用于限定标志位的掩码。"), 
+		/*dwState*/		LES_HAS_DEFAULT_VALUE, 
+		/*nDefault*/	0xFFFFFF00
+	},
+};

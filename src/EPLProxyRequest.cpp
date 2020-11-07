@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyRequest.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyRequest.h>
 
 
@@ -42,18 +42,6 @@ void EDITIONF(ProxyRequest_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_
 	}
 	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
 	pRetData->m_bool = self->IsValid();
-}
-
-extern "C"
-void EDITIONF(ProxyRequest_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyRequest> result = ProxyRequest::Create();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
 }
 
 extern "C"
@@ -138,38 +126,64 @@ void EDITIONF(ProxyRequest_GetReferrerPolicy) (PMDATA_INF pRetData, INT nArgCoun
 }
 
 extern "C"
-void EDITIONF(ProxyRequest_GetPostData) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+void EDITIONF(ProxyRequest_GetPostDataElementCount) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		pRetData->m_int = 0;
 		return ;
 	}
 	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyPostData> result = self->GetPostData();
-	if(result){
-	result->retain();
-	DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC,4,0);
-	*InternalPointer = (DWORD)result.get();
-	pRetData->m_pCompoundData = InternalPointer;
-}
-	else{
-	pRetData->m_pCompoundData=NULL;
-}
+	pRetData->m_int = self->GetPostDataElementCount();
 }
 
 extern "C"
-void EDITIONF(ProxyRequest_SetPostData) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+void EDITIONF(ProxyRequest_GetPostDataElements) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC, 8, 0);
+		InternalPointer[0] = 1;
+		InternalPointer[1] = 0;
+		pRetData->m_pCompoundData = InternalPointer;
+		return ;
+	}
+	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
+	pRetData->m_pCompoundData = (void*)self->GetPostDataElements();
+}
+
+extern "C"
+void EDITIONF(ProxyRequest_AddPostDataElement) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
 		return ;
 	}
 	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
-	shrewd_ptr<ProxyPostData> argPostdata = (ProxyPostData*)*pArgInf[1].m_ppCompoundData;
-	self->SetPostData(argPostdata);
+	shrewd_ptr<ProxyPostDataElement> argElement = (ProxyPostDataElement*)*pArgInf[1].m_ppCompoundData;
+	self->AddPostDataElement(argElement);
+}
+
+extern "C"
+void EDITIONF(ProxyRequest_RemovePostDataElement) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
+	shrewd_ptr<ProxyPostDataElement> argElement = (ProxyPostDataElement*)*pArgInf[1].m_ppCompoundData;
+	self->RemovePostDataElement(argElement);
+}
+
+extern "C"
+void EDITIONF(ProxyRequest_ClearPostDataElements) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		return ;
+	}
+	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
+	self->ClearPostDataElements();
 }
 
 extern "C"
 void EDITIONF(ProxyRequest_GetHeaderMap) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		DWORD* InternalPointer = (DWORD*)NotifySys(NRS_MALLOC, 8, 0);
+		InternalPointer[0] = 1;
+		InternalPointer[1] = 0;
+		pRetData->m_pCompoundData = InternalPointer;
 		return ;
 	}
 	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
@@ -210,16 +224,23 @@ void EDITIONF(ProxyRequest_SetHeaderByName) (PMDATA_INF pRetData, INT nArgCount,
 }
 
 extern "C"
-void EDITIONF(ProxyRequest_Set) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+void EDITIONF(ProxyRequest_GetResourceType) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		pRetData->m_int = 0;
 		return ;
 	}
 	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
-	const char* argUrl = (NULL==pArgInf[1].m_pText || strlen(pArgInf[1].m_pText) <= 0) ? NULL : pArgInf[1].m_pText;
-	const char* argMethod = (NULL==pArgInf[2].m_pText || strlen(pArgInf[2].m_pText) <= 0) ? NULL : pArgInf[2].m_pText;
-	shrewd_ptr<ProxyPostData> argPostdata = (ProxyPostData*)*pArgInf[3].m_ppCompoundData;
-	const char* argHeadermap = (NULL==pArgInf[4].m_pText || strlen(pArgInf[4].m_pText) <= 0) ? NULL : pArgInf[4].m_pText;
-	self->Set(argUrl,argMethod,argPostdata,argHeadermap);
+	pRetData->m_int = self->GetResourceType();
+}
+
+extern "C"
+void EDITIONF(ProxyRequest_GetIdentifier) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
+	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
+		pRetData->m_int64 = 0;
+		return ;
+	}
+	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
+	pRetData->m_int64 = self->GetIdentifier();
 }
 
 extern "C"
@@ -263,16 +284,6 @@ void EDITIONF(ProxyRequest_SetFirstPartyForCookies) (PMDATA_INF pRetData, INT nA
 }
 
 extern "C"
-void EDITIONF(ProxyRequest_GetResourceType) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		pRetData->m_int = 0;
-		return ;
-	}
-	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
-	pRetData->m_int = self->GetResourceType();
-}
-
-extern "C"
 void EDITIONF(ProxyRequest_GetTransitionType) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
 		pRetData->m_int = 0;
@@ -280,16 +291,6 @@ void EDITIONF(ProxyRequest_GetTransitionType) (PMDATA_INF pRetData, INT nArgCoun
 	}
 	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
 	pRetData->m_int = self->GetTransitionType();
-}
-
-extern "C"
-void EDITIONF(ProxyRequest_GetIdentifier) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		pRetData->m_int64 = 0;
-		return ;
-	}
-	shrewd_ptr<ProxyRequest> self = (ProxyRequest*)*pArgInf->m_ppCompoundData;
-	pRetData->m_int64 = self->GetIdentifier();
 }
 
 

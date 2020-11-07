@@ -7,13 +7,6 @@ public:
 	~ProxyResponse();
 
 public:
-    ///
-    // Create a new CefResponse object.
-    ///
-    /*--cef()--*/
-    static shrewd_ptr<ProxyResponse> Create();
-
-public:
     // is valid
     bool IsValid();
 

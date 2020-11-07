@@ -1,6 +1,8 @@
 #pragma once
 #include "../def/def.h"
-#include "../proxy/ProxyValue.h"
+#include "ProxyValue.h"
+#include "ProxyURLRequest.h"
+#include "ProxyDOMDocument.h"
 
 class ProxyBrowser;
 class ProxyRequest;
@@ -82,6 +84,12 @@ public:
      char* GetText();
 
     ///
+    // Load the specified |url|.
+    ///
+    /*--cef()--*/
+     void LoadURL(const char* url);
+
+     ///
     // Load the request represented by the |request| object.
     //
     // WARNING: This method will fail with "bad IPC message" reason
@@ -90,12 +98,6 @@ public:
     ///
     /*--cef()--*/
      void LoadRequest(shrewd_ptr<ProxyRequest> request);
-
-    ///
-    // Load the specified |url|.
-    ///
-    /*--cef()--*/
-     void LoadURL(const char* url);
 
     ///
     // Execute a string of JavaScript code in this frame. The |script_url|
@@ -169,9 +171,48 @@ public:
     /*--cef()--*/
      __int64 GetIdentifier();
 
+     ///
+     // Create a new URL request that will be treated as originating from this
+     // frame and the associated browser. This request may be intercepted by the
+     // client via CefResourceRequestHandler or CefSchemeHandlerFactory. Use
+     // CefURLRequest::Create instead if you do not want the request to have this
+     // association, in which case it may be handled differently (see documentation
+     // on that method). Requests may originate from both the browser process and
+     // the render process.
+     //
+     // For requests originating from the browser process:
+     //   - POST data may only contain a single element of type PDE_TYPE_FILE or
+     //     PDE_TYPE_BYTES.
+     // For requests originating from the render process:
+     //   - POST data may only contain a single element of type PDE_TYPE_BYTES.
+     //   - If the response contains Content-Disposition or Mime-Type header values
+     //     that would not normally be rendered then the response may receive
+     //     special handling inside the browser (for example, via the file download
+     //     code path instead of the URL request code path).
+     //
+     // The |request| object will be marked as read-only after calling this method.
+     ///
+     /*--cef()--*/
+     shrewd_ptr<ProxyURLRequest> CreateURLRequest(shrewd_ptr<ProxyRequest> request, const char* proxy_username, const char* proxy_password);
+
+     ///
+    // Visit the DOM document. This method can only be called from the render
+    // process.
+    ///
+    /*--cef()--*/
+     shrewd_ptr<ProxyDOMDocument> VisitDOM();
+
+     void SynthesizePinchGesture(float x, float y, float scale_factor, float relative_speed, float gesture_source_type);
+
+     void SynthesizeScrollGesture(float x, float y, float x_distance, float y_distance, float x_overscroll, float y_overscroll, float scale_factor, bool prevent_fling, int speed, int gesture_source_type);
+
+     void SynthesizeTapGesture(float x, float y, float scale_factor, int duration, int tap_count, int gesture_source_type);
+
+     void SynthesizeDragGesture(float x, float y, float x_distance, float y_distance, float scale_factor, int speed, int gesture_source_type);
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyFrame);
     AQUA_DECL_PUBLIC_ORIGIN;
+
 private:
 	void* _rawptr;
 };

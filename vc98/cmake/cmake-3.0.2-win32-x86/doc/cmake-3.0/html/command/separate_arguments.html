@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>separate_arguments &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="set_directory_properties" href="set_directory_properties.html" />
+    <link rel="prev" title="return" href="return.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="set_directory_properties.html" title="set_directory_properties"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="return.html" title="return"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="separate-arguments">
+<span id="command:separate_arguments"></span><h1>separate_arguments<a class="headerlink" href="#separate-arguments" title="Permalink to this headline">¶</a></h1>
+<p>Parse space-separated arguments into a semicolon-separated list.</p>
+<div class="highlight-python"><pre>separate_arguments(&lt;var&gt; &lt;UNIX|WINDOWS&gt;_COMMAND "&lt;args&gt;")</pre>
+</div>
+<p>Parses a unix- or windows-style command-line string &#8220;&lt;args&gt;&#8221; and
+stores a semicolon-separated list of the arguments in &lt;var&gt;.  The
+entire command line must be given in one &#8220;&lt;args&gt;&#8221; argument.</p>
+<p>The UNIX_COMMAND mode separates arguments by unquoted whitespace.  It
+recognizes both single-quote and double-quote pairs.  A backslash
+escapes the next literal character (&#8221; is &#8221;); there are no special
+escapes (n is just n).</p>
+<p>The WINDOWS_COMMAND mode parses a windows command-line using the same
+syntax the runtime library uses to construct argv at startup.  It
+separates arguments by whitespace that is not double-quoted.
+Backslashes are literal unless they precede double-quotes.  See the
+MSDN article &#8220;Parsing C Command-Line Arguments&#8221; for details.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">separate_arguments</span><span class="p">(</span><span class="n">VARIABLE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Convert the value of VARIABLE to a semi-colon separated list.  All
+spaces are replaced with &#8216;;&#8217;.  This helps with generating command
+lines.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="return.html"
+                        title="previous chapter">return</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="set_directory_properties.html"
+                        title="next chapter">set_directory_properties</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/separate_arguments.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="set_directory_properties.html" title="set_directory_properties"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="return.html" title="return"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

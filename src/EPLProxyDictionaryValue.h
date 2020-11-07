@@ -6,10 +6,10 @@
 
 #define DECL_DATA_TYPE_ProxyDictionaryValue \
 	{ /*11*/ \
-		/*m_szName*/		 _WT("Chromium字典值"), \
+		/*m_szName*/		 _WT("水星字典型"), \
 		/*m_szEgName*/		 _WT("ProxyDictionaryValue"), \
 		/*m_szExplain*/		 _WT("表示字典值(DictionaryValue)的类。"), \
-		/*m_nCmdCount*/		 33, \
+		/*m_nCmdCount*/		 32, \
 		/*m_pnCmdsIndex*/		 s_nProxyDictionaryValueElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -27,292 +27,292 @@
 
 #define DECL_DATA_TYPE_ProxyDictionaryValue_ARGINFO \
 	{ /****** ProxyDictionaryValue::IsSame ** 0 **/ \
-		/*name*/	 _WT("that"), \
+		/*name*/	 _WT("比较对象"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*type*/	 MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::IsEqual ** 1 **/ \
-		/*name*/	 _WT("that"), \
+		/*name*/	 _WT("比较对象"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*type*/	 MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::Copy ** 2 **/ \
-		/*name*/	 _WT("exclude_empty_children"), \
+		/*name*/	 _WT("是否清空"), \
 		/*explain*/	 _WT("如果此参数为真,所有空的子字典值对象或子列表值对象都将从副本中排除。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::HasKey ** 3 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::Remove ** 4 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetType ** 5 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetValue ** 6 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetBool ** 7 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetInt ** 8 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetDouble ** 9 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetString ** 10 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetBinary ** 11 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetDictionary ** 12 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::GetList ** 13 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetValue ** 14 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetValue ** 15 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(36,0),  /*shrewd_ptr<ProxyValue>*/ \
+		/*type*/	 MAKELONG(31,0),  /*shrewd_ptr<ProxyValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetNull ** 16 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetBool ** 17 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetBool ** 18 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetInt ** 19 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetInt ** 20 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetDouble ** 21 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetDouble ** 22 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_DOUBLE, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetString ** 23 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetString ** 24 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetBinary ** 25 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetBinary ** 26 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BIN, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetBinary ** 27 **/ \
-		/*name*/	 _WT("length"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("长度"), \
+		/*explain*/	 _WT("类型值长度"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetDictionary ** 28 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetDictionary ** 29 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*type*/	 MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetList ** 30 **/ \
-		/*name*/	 _WT("key"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("键名"), \
+		/*explain*/	 _WT("键名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyDictionaryValue::SetList ** 31 **/ \
-		/*name*/	 _WT("value"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("类型值"), \
+		/*explain*/	 _WT("设置的类型值。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
-		/*type*/	 MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*type*/	 MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -362,20 +362,6 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("创建对象"),\
-		/*egname*/	_WT("Create"), \
-		/*explain*/	_WT("创建对象实例, 非静态对象, 需要调用此函数后才能够有效访问。"), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	0, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
-	},\
-	{ /*4*/ \
 		/*ccname*/	_WT("是否有效"),\
 		/*egname*/	_WT("IsValid"), \
 		/*explain*/	_WT("此函数检查本类中的对象实例是否有效。"), \
@@ -389,8 +375,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*5*/ \
-		/*ccname*/	_WT("IsOwned"),\
+	{ /*4*/ \
+		/*ccname*/	_WT("是否拥有"),\
 		/*egname*/	_WT("IsOwned"), \
 		/*explain*/	_WT("如果基础数据由另一个对象拥有，则返回true。"), \
 		/*category*/	-1, \
@@ -403,8 +389,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*6*/ \
-		/*ccname*/	_WT("IsReadOnly"),\
+	{ /*5*/ \
+		/*ccname*/	_WT("是否只读"),\
 		/*egname*/	_WT("IsReadOnly"), \
 		/*explain*/	_WT("如果对象是只读的返回真"), \
 		/*category*/	-1, \
@@ -417,8 +403,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*7*/ \
-		/*ccname*/	_WT("IsSame"),\
+	{ /*6*/ \
+		/*ccname*/	_WT("是否相同"),\
 		/*egname*/	_WT("IsSame"), \
 		/*explain*/	_WT("比较两个对象是否相同。"), \
 		/*category*/	-1, \
@@ -431,8 +417,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*8*/ \
-		/*ccname*/	_WT("IsEqual"),\
+	{ /*7*/ \
+		/*ccname*/	_WT("是否相等"),\
 		/*egname*/	_WT("IsEqual"), \
 		/*explain*/	_WT("比较两个对象是否为同一个。"), \
 		/*category*/	-1, \
@@ -445,13 +431,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*9*/ \
-		/*ccname*/	_WT("Copy"),\
+	{ /*8*/ \
+		/*ccname*/	_WT("创建副本"),\
 		/*egname*/	_WT("Copy"), \
 		/*explain*/	_WT("为此对象创建一个新副本。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*ret*/	MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -459,10 +445,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*10*/ \
-		/*ccname*/	_WT("GetSize"),\
+	{ /*9*/ \
+		/*ccname*/	_WT("取大小"),\
 		/*egname*/	_WT("GetSize"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取已存储类型大小"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -473,10 +459,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*11*/ \
-		/*ccname*/	_WT("Clear"),\
+	{ /*10*/ \
+		/*ccname*/	_WT("清空"),\
 		/*egname*/	_WT("Clear"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("清空类型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -487,10 +473,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*12*/ \
-		/*ccname*/	_WT("HasKey"),\
+	{ /*11*/ \
+		/*ccname*/	_WT("可有键"),\
 		/*egname*/	_WT("HasKey"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("如果指定的键名存在返回真。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -501,10 +487,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*13*/ \
-		/*ccname*/	_WT("GetKeys"),\
+	{ /*12*/ \
+		/*ccname*/	_WT("取所有键"),\
 		/*egname*/	_WT("GetKeys"), \
-		/*explain*/	_WT("返回以 #换行符 分隔的Key字符串列表。"), \
+		/*explain*/	_WT("返回以Key字符串列表。"), \
 		/*category*/	-1, \
 		/*state*/	CT_RETRUN_ARY_TYPE_DATA, \
 		/*ret*/	SDT_TEXT, \
@@ -515,10 +501,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*14*/ \
-		/*ccname*/	_WT("Remove"),\
+	{ /*13*/ \
+		/*ccname*/	_WT("移除键"),\
 		/*egname*/	_WT("Remove"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("删除指定的键值项"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -529,10 +515,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*15*/ \
-		/*ccname*/	_WT("GetType"),\
+	{ /*14*/ \
+		/*ccname*/	_WT("取类型"),\
 		/*egname*/	_WT("GetType"), \
-		/*explain*/	_WT("获取该对象中存储的基础数据值类型, 有关定义在枚举常量: #值类型.* 中。"), \
+		/*explain*/	_WT("取该对象中存储的基础数据值类型, 有关定义在枚举常量: #值类型.* 中。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -543,13 +529,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+5] \
 	},\
-	{ /*16*/ \
-		/*ccname*/	_WT("GetValue"),\
+	{ /*15*/ \
+		/*ccname*/	_WT("取通用型"),\
 		/*egname*/	_WT("GetValue"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取通用型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(36,0),  /*shrewd_ptr<ProxyValue>*/ \
+		/*ret*/	MAKELONG(31,0),  /*shrewd_ptr<ProxyValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -557,10 +543,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+6] \
 	},\
-	{ /*17*/ \
-		/*ccname*/	_WT("GetBool"),\
+	{ /*16*/ \
+		/*ccname*/	_WT("取逻辑型"),\
 		/*egname*/	_WT("GetBool"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取逻辑型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -571,10 +557,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+7] \
 	},\
-	{ /*18*/ \
-		/*ccname*/	_WT("GetInt"),\
+	{ /*17*/ \
+		/*ccname*/	_WT("取整数型"),\
 		/*egname*/	_WT("GetInt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取整数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -585,10 +571,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+8] \
 	},\
-	{ /*19*/ \
-		/*ccname*/	_WT("GetDouble"),\
+	{ /*18*/ \
+		/*ccname*/	_WT("取双精度小数型"),\
 		/*egname*/	_WT("GetDouble"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取双精度小数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_DOUBLE, \
@@ -599,10 +585,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*20*/ \
-		/*ccname*/	_WT("GetString"),\
+	{ /*19*/ \
+		/*ccname*/	_WT("取文本型"),\
 		/*egname*/	_WT("GetString"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取文本型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -613,10 +599,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+10] \
 	},\
-	{ /*21*/ \
-		/*ccname*/	_WT("GetBinary"),\
+	{ /*20*/ \
+		/*ccname*/	_WT("取字节集型"),\
 		/*egname*/	_WT("GetBinary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取字节集型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BIN, \
@@ -627,13 +613,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+11] \
 	},\
-	{ /*22*/ \
-		/*ccname*/	_WT("GetDictionary"),\
+	{ /*21*/ \
+		/*ccname*/	_WT("取字典型"),\
 		/*egname*/	_WT("GetDictionary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取字典型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(12,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
+		/*ret*/	MAKELONG(11,0),  /*shrewd_ptr<ProxyDictionaryValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -641,13 +627,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+12] \
 	},\
-	{ /*23*/ \
-		/*ccname*/	_WT("GetList"),\
+	{ /*22*/ \
+		/*ccname*/	_WT("取列表型"),\
 		/*egname*/	_WT("GetList"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取列表型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(19,0),  /*shrewd_ptr<ProxyListValue>*/ \
+		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyListValue>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -655,10 +641,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+13] \
 	},\
-	{ /*24*/ \
-		/*ccname*/	_WT("SetValue"),\
+	{ /*23*/ \
+		/*ccname*/	_WT("置通用型"),\
 		/*egname*/	_WT("SetValue"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置通用型数据"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -669,10 +655,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+14] \
 	},\
-	{ /*25*/ \
-		/*ccname*/	_WT("SetNull"),\
+	{ /*24*/ \
+		/*ccname*/	_WT("置为空"),\
 		/*egname*/	_WT("SetNull"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为空类型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -683,10 +669,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+16] \
 	},\
-	{ /*26*/ \
-		/*ccname*/	_WT("SetBool"),\
+	{ /*25*/ \
+		/*ccname*/	_WT("置逻辑型"),\
 		/*egname*/	_WT("SetBool"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为逻辑型数据"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -697,10 +683,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+17] \
 	},\
-	{ /*27*/ \
-		/*ccname*/	_WT("SetInt"),\
+	{ /*26*/ \
+		/*ccname*/	_WT("置整数型"),\
 		/*egname*/	_WT("SetInt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为整数型数据"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -711,10 +697,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+19] \
 	},\
-	{ /*28*/ \
-		/*ccname*/	_WT("SetDouble"),\
+	{ /*27*/ \
+		/*ccname*/	_WT("置双精度小数型"),\
 		/*egname*/	_WT("SetDouble"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置双精度小数型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -725,10 +711,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+21] \
 	},\
-	{ /*29*/ \
-		/*ccname*/	_WT("SetString"),\
+	{ /*28*/ \
+		/*ccname*/	_WT("置文本型"),\
 		/*egname*/	_WT("SetString"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为文本型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -739,10 +725,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+23] \
 	},\
-	{ /*30*/ \
-		/*ccname*/	_WT("SetBinary"),\
+	{ /*29*/ \
+		/*ccname*/	_WT("置字节集型"),\
 		/*egname*/	_WT("SetBinary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为字节集类型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -753,10 +739,10 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+25] \
 	},\
-	{ /*31*/ \
-		/*ccname*/	_WT("SetDictionary"),\
+	{ /*30*/ \
+		/*ccname*/	_WT("置字典型"),\
 		/*egname*/	_WT("SetDictionary"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置字典型数据。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -767,10 +753,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+28] \
 	},\
-	{ /*32*/ \
-		/*ccname*/	_WT("SetList"),\
+	{ /*31*/ \
+		/*ccname*/	_WT("置列表型"),\
 		/*egname*/	_WT("SetList"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置为列表型数据"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -789,7 +775,6 @@
 	EDITIONS("ProxyDictionaryValue_Constructor"),\
 	EDITIONS("ProxyDictionaryValue_Destructor"),\
 	EDITIONS("ProxyDictionaryValue_CopyConstructor"),\
-	EDITIONS("ProxyDictionaryValue_Create"),\
 	EDITIONS("ProxyDictionaryValue_IsValid"),\
 	EDITIONS("ProxyDictionaryValue_IsOwned"),\
 	EDITIONS("ProxyDictionaryValue_IsReadOnly"),\
@@ -827,7 +812,6 @@
 	EDITIONF(ProxyDictionaryValue_Constructor),\
 	EDITIONF(ProxyDictionaryValue_Destructor),\
 	EDITIONF(ProxyDictionaryValue_CopyConstructor),\
-	EDITIONF(ProxyDictionaryValue_Create),\
 	EDITIONF(ProxyDictionaryValue_IsValid),\
 	EDITIONF(ProxyDictionaryValue_IsOwned),\
 	EDITIONF(ProxyDictionaryValue_IsReadOnly),\
@@ -867,8 +851,6 @@ extern "C"
 void EDITIONF(ProxyDictionaryValue_Destructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyDictionaryValue_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
-void EDITIONF(ProxyDictionaryValue_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyDictionaryValue_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"

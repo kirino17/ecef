@@ -5,11 +5,11 @@
 
 
 #define DECL_DATA_TYPE_ProxyBrowserSettings \
-	{ /*6*/ \
-		/*m_szName*/		 _WT("Chromium浏览器设置"), \
+	{ /*5*/ \
+		/*m_szName*/		 _WT("水星浏览器设置"), \
 		/*m_szEgName*/		 _WT("ProxyBrowserSettings"), \
 		/*m_szExplain*/		 _WT("提供浏览器初始化设置。"), \
-		/*m_nCmdCount*/		 36, \
+		/*m_nCmdCount*/		 34, \
 		/*m_pnCmdsIndex*/		 s_nProxyBrowserSettingsElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -26,284 +26,275 @@
 //==========================================
 
 #define DECL_DATA_TYPE_ProxyBrowserSettings_ARGINFO \
-	{ /****** ProxyBrowserSettings::SetWindowlessFrameRate ** 0 **/ \
-		/*name*/	 _WT("windowless_frame_rate"), \
-		/*explain*/	 _WT(""), \
-		/*bmp inx*/	 0, \
-		/*bmp num*/	 0, \
-		/*type*/	 SDT_INT, \
-		/*default*/	 0,\
-		/*state*/	 NULL\
-	},\
-	{ /****** ProxyBrowserSettings::SetStandardFontFamily ** 1 **/ \
+	{ /****** ProxyBrowserSettings::SetStandardFontFamily ** 0 **/ \
 		/*name*/	 _WT("字体名称"), \
-		/*explain*/	 _WT(""), \
+		/*explain*/	 _WT("设置字体名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetFixedFontFamily ** 2 **/ \
+	{ /****** ProxyBrowserSettings::SetFixedFontFamily ** 1 **/ \
 		/*name*/	 _WT("字体名称"), \
-		/*explain*/	 _WT(""), \
+		/*explain*/	 _WT("设置字体名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetSerifFontFamily ** 3 **/ \
+	{ /****** ProxyBrowserSettings::SetSerifFontFamily ** 2 **/ \
 		/*name*/	 _WT("字体名称"), \
-		/*explain*/	 _WT(""), \
+		/*explain*/	 _WT("设置字体名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetSansSerifFontFamily ** 4 **/ \
+	{ /****** ProxyBrowserSettings::SetSansSerifFontFamily ** 3 **/ \
 		/*name*/	 _WT("字体名称"), \
-		/*explain*/	 _WT(""), \
+		/*explain*/	 _WT("设置字体名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetCursiveFontFamily ** 5 **/ \
+	{ /****** ProxyBrowserSettings::SetCursiveFontFamily ** 4 **/ \
 		/*name*/	 _WT("字体名称"), \
-		/*explain*/	 _WT(""), \
+		/*explain*/	 _WT("设置字体名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetFantasyFontFamily ** 6 **/ \
+	{ /****** ProxyBrowserSettings::SetFantasyFontFamily ** 5 **/ \
 		/*name*/	 _WT("字体名称"), \
-		/*explain*/	 _WT(""), \
+		/*explain*/	 _WT("设置字体名称"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetDefaultFontSize ** 7 **/ \
+	{ /****** ProxyBrowserSettings::SetDefaultFontSize ** 6 **/ \
 		/*name*/	 _WT("字体大小"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetDefaultFixedFontSize ** 8 **/ \
+	{ /****** ProxyBrowserSettings::SetDefaultFixedFontSize ** 7 **/ \
 		/*name*/	 _WT("字体大小"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetMinimumFontSize ** 9 **/ \
+	{ /****** ProxyBrowserSettings::SetMinimumFontSize ** 8 **/ \
 		/*name*/	 _WT("最小大小"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetMinimumLogicalFontSize ** 10 **/ \
+	{ /****** ProxyBrowserSettings::SetMinimumLogicalFontSize ** 9 **/ \
 		/*name*/	 _WT("最小合理大小"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetDefaultEncoding ** 11 **/ \
+	{ /****** ProxyBrowserSettings::SetDefaultEncoding ** 10 **/ \
 		/*name*/	 _WT("默认编码"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetRemoteFonts ** 12 **/ \
-		/*name*/	 _WT("开关"), \
+	{ /****** ProxyBrowserSettings::SetRemoteFonts ** 11 **/ \
+		/*name*/	 _WT("状态开关"), \
 		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetJavascript ** 13 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetJavascript ** 12 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetJavascriptCloseWindows ** 14 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetJavascriptCloseWindow ** 13 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetJavascriptAccessClipboard ** 15 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetJavascriptAccessClipboard ** 14 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetJavascriptDomPaste ** 16 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetJavascriptDomPaste ** 15 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetPlugins ** 17 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetPlugins ** 16 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetUniversalAccessFromFileUrls ** 18 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetUniversalAccessFromFileUrls ** 17 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetFileAccessFromFileUrls ** 19 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetFileAccessFromFileUrls ** 18 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetWebSecurity ** 20 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetWebSecurity ** 19 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetImageLoading ** 21 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetImageLoading ** 20 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetImageShrinkStandaloneToFit ** 22 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetImageShrinkStandaloneToFit ** 21 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetTextAreaResize ** 23 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetTextAreaResize ** 22 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetTabToLinks ** 24 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetTabToLinks ** 23 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetLocalStorage ** 25 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetLocalStorage ** 24 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetDatabases ** 26 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetDataBase ** 25 **/ \
+		/*name*/	 _WT("启用状态"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetApplicationCache ** 27 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetApplicationCache ** 26 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetWebGL ** 28 **/ \
-		/*name*/	 _WT("开关"), \
-		/*explain*/	 _WT("配置状态开关定义值为枚举常量: #状态开关.*"), \
+	{ /****** ProxyBrowserSettings::SetWebGL ** 27 **/ \
+		/*name*/	 _WT("状态开关"), \
+		/*explain*/	 _WT("设置启用状态, 定义值为枚举常量: #状态开关.* 。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetBackgroundColor ** 29 **/ \
-		/*name*/	 _WT("背景颜色"), \
+	{ /****** ProxyBrowserSettings::SetBackgroundColor ** 28 **/ \
+		/*name*/	 _WT("颜色"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
-	{ /****** ProxyBrowserSettings::SetAcceptLanguageList ** 30 **/ \
-		/*name*/	 _WT("值"), \
+	{ /****** ProxyBrowserSettings::SetAcceptLanguageList ** 29 **/ \
+		/*name*/	 _WT("语言字符串"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -353,20 +344,6 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("创建对象"),\
-		/*egname*/	_WT("Create"), \
-		/*explain*/	_WT("创建对象实例, 非静态对象, 需要调用此函数后才能够有效访问。"), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	MAKELONG(7,0),  /*shrewd_ptr<ProxyBrowserSettings>*/ \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	0, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
-	},\
-	{ /*4*/ \
 		/*ccname*/	_WT("是否有效"),\
 		/*egname*/	_WT("IsValid"), \
 		/*explain*/	_WT("此函数检查本类中的对象实例是否有效。"), \
@@ -380,9 +357,9 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*5*/ \
-		/*ccname*/	_WT("SetWindowlessFrameRate"),\
-		/*egname*/	_WT("SetWindowlessFrameRate"), \
+	{ /*4*/ \
+		/*ccname*/	_WT("标准字体"),\
+		/*egname*/	_WT("SetStandardFontFamily"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -394,9 +371,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*6*/ \
-		/*ccname*/	_WT("设置标准字体"),\
-		/*egname*/	_WT("SetStandardFontFamily"), \
+	{ /*5*/ \
+		/*ccname*/	_WT("等宽字体"),\
+		/*egname*/	_WT("SetFixedFontFamily"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -408,9 +385,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*7*/ \
-		/*ccname*/	_WT("设置等宽字体"),\
-		/*egname*/	_WT("SetFixedFontFamily"), \
+	{ /*6*/ \
+		/*ccname*/	_WT("衬线字体"),\
+		/*egname*/	_WT("SetSerifFontFamily"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -422,9 +399,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*8*/ \
-		/*ccname*/	_WT("设置衬线字体"),\
-		/*egname*/	_WT("SetSerifFontFamily"), \
+	{ /*7*/ \
+		/*ccname*/	_WT("无衬线字体"),\
+		/*egname*/	_WT("SetSansSerifFontFamily"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -436,9 +413,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*9*/ \
-		/*ccname*/	_WT("设置无衬线字体"),\
-		/*egname*/	_WT("SetSansSerifFontFamily"), \
+	{ /*8*/ \
+		/*ccname*/	_WT("手写字体"),\
+		/*egname*/	_WT("SetCursiveFontFamily"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -450,9 +427,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*10*/ \
-		/*ccname*/	_WT("设置手写字体"),\
-		/*egname*/	_WT("SetCursiveFontFamily"), \
+	{ /*9*/ \
+		/*ccname*/	_WT("艺术字体"),\
+		/*egname*/	_WT("SetFantasyFontFamily"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -464,9 +441,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+5] \
 	},\
-	{ /*11*/ \
-		/*ccname*/	_WT("设置艺术字体"),\
-		/*egname*/	_WT("SetFantasyFontFamily"), \
+	{ /*10*/ \
+		/*ccname*/	_WT("默认字体大小"),\
+		/*egname*/	_WT("SetDefaultFontSize"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -478,9 +455,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+6] \
 	},\
-	{ /*12*/ \
-		/*ccname*/	_WT("设置默认字体大小"),\
-		/*egname*/	_WT("SetDefaultFontSize"), \
+	{ /*11*/ \
+		/*ccname*/	_WT("默认等宽字体大小"),\
+		/*egname*/	_WT("SetDefaultFixedFontSize"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -492,9 +469,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+7] \
 	},\
-	{ /*13*/ \
-		/*ccname*/	_WT("设置默认等宽字体大小"),\
-		/*egname*/	_WT("SetDefaultFixedFontSize"), \
+	{ /*12*/ \
+		/*ccname*/	_WT("字体最小大小"),\
+		/*egname*/	_WT("SetMinimumFontSize"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -506,9 +483,9 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+8] \
 	},\
-	{ /*14*/ \
-		/*ccname*/	_WT("设置字体最小大小"),\
-		/*egname*/	_WT("SetMinimumFontSize"), \
+	{ /*13*/ \
+		/*ccname*/	_WT("字体最小合理大小"),\
+		/*egname*/	_WT("SetMinimumLogicalFontSize"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
@@ -520,22 +497,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*15*/ \
-		/*ccname*/	_WT("设置字体最小合理大小"),\
-		/*egname*/	_WT("SetMinimumLogicalFontSize"), \
-		/*explain*/	_WT(""), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	_SDT_NULL, \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	1, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+10] \
-	},\
-	{ /*16*/ \
-		/*ccname*/	_WT("设置页面缺省编码"),\
+	{ /*14*/ \
+		/*ccname*/	_WT("页面缺省编码"),\
 		/*egname*/	_WT("SetDefaultEncoding"), \
 		/*explain*/	_WT("默认设置为: \"ISO-8859-1\", 也可以使用\"default-encoding\"命令行开关进行配置。"), \
 		/*category*/	-1, \
@@ -546,10 +509,10 @@
 		/*bmp inx*/	0, \
 		/*bmp num*/	0, \
 		/*argcount*/	1, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+11] \
+		/*arg lp*/	&s_ArgInfo[BeginIndex+10] \
 	},\
-	{ /*17*/ \
-		/*ccname*/	_WT("设置是否允许加载远程字体源"),\
+	{ /*15*/ \
+		/*ccname*/	_WT("加载远程字体源"),\
 		/*egname*/	_WT("SetRemoteFonts"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -560,12 +523,26 @@
 		/*bmp inx*/	0, \
 		/*bmp num*/	0, \
 		/*argcount*/	1, \
+		/*arg lp*/	&s_ArgInfo[BeginIndex+11] \
+	},\
+	{ /*16*/ \
+		/*ccname*/	_WT("脚本可否执行"),\
+		/*egname*/	_WT("SetJavascript"), \
+		/*explain*/	_WT("控制是否可以执行Javascript脚本。"), \
+		/*category*/	-1, \
+		/*state*/	NULL, \
+		/*ret*/	_SDT_NULL, \
+		/*reserved*/	0, \
+		/*level*/	LVL_SIMPLE, \
+		/*bmp inx*/	0, \
+		/*bmp num*/	0, \
+		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+12] \
 	},\
-	{ /*18*/ \
-		/*ccname*/	_WT("设置是否允许执行脚本"),\
-		/*egname*/	_WT("SetJavascript"), \
-		/*explain*/	_WT("设置是否允许执行Javascript。也可以使用命令行开关\"disable-javascript\"进行配置。"), \
+	{ /*17*/ \
+		/*ccname*/	_WT("脚本可否关闭窗口"),\
+		/*egname*/	_WT("SetJavascriptCloseWindow"), \
+		/*explain*/	_WT("控制是否可以使用JavaScript关闭未通过JavaScript打开的窗口。Javascript仍可用于关闭通过Javascript打开的窗口或没有后退/前进历史记录的窗口。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -576,10 +553,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+13] \
 	},\
-	{ /*19*/ \
-		/*ccname*/	_WT("设置是否允许脚本关闭窗口"),\
-		/*egname*/	_WT("SetJavascriptCloseWindows"), \
-		/*explain*/	_WT(""), \
+	{ /*18*/ \
+		/*ccname*/	_WT("脚本可否访问剪贴板"),\
+		/*egname*/	_WT("SetJavascriptAccessClipboard"), \
+		/*explain*/	_WT("控制JavaScript是否可用访问剪贴板。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -590,10 +567,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+14] \
 	},\
-	{ /*20*/ \
-		/*ccname*/	_WT("设置是否允许脚本访问剪辑版"),\
-		/*egname*/	_WT("SetJavascriptAccessClipboard"), \
-		/*explain*/	_WT(""), \
+	{ /*19*/ \
+		/*ccname*/	_WT("脚本可否粘贴DOM"),\
+		/*egname*/	_WT("SetJavascriptDomPaste"), \
+		/*explain*/	_WT("控制是否通过 execCommand(\"paste\") 在编辑器中支持DOM粘贴。 要使用该设置需要连同 脚本可否访问剪贴板 设置一起启用。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -604,10 +581,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+15] \
 	},\
-	{ /*21*/ \
-		/*ccname*/	_WT("设置是否允许脚本粘贴DOM"),\
-		/*egname*/	_WT("SetJavascriptDomPaste"), \
-		/*explain*/	_WT(""), \
+	{ /*20*/ \
+		/*ccname*/	_WT("加载插件"),\
+		/*egname*/	_WT("SetPlugins"), \
+		/*explain*/	_WT("控制是否允许加载插件"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -618,10 +595,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+16] \
 	},\
-	{ /*22*/ \
-		/*ccname*/	_WT("设置是否允许加载插件"),\
-		/*egname*/	_WT("SetPlugins"), \
-		/*explain*/	_WT(""), \
+	{ /*21*/ \
+		/*ccname*/	_WT("文件URL所有访问"),\
+		/*egname*/	_WT("SetUniversalAccessFromFileUrls"), \
+		/*explain*/	_WT("控制文件URL是否可以访问所有URL。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -632,10 +609,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+17] \
 	},\
-	{ /*23*/ \
-		/*ccname*/	_WT("SetUniversalAccessFromFileUrls"),\
-		/*egname*/	_WT("SetUniversalAccessFromFileUrls"), \
-		/*explain*/	_WT(""), \
+	{ /*22*/ \
+		/*ccname*/	_WT("文件URL本地访问"),\
+		/*egname*/	_WT("SetFileAccessFromFileUrls"), \
+		/*explain*/	_WT("控制文件URL是否可用访问其它文件URL"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -646,10 +623,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+18] \
 	},\
-	{ /*24*/ \
-		/*ccname*/	_WT("SetFileAccessFromFileUrls"),\
-		/*egname*/	_WT("SetFileAccessFromFileUrls"), \
-		/*explain*/	_WT(""), \
+	{ /*23*/ \
+		/*ccname*/	_WT("WEB安全限制"),\
+		/*egname*/	_WT("SetWebSecurity"), \
+		/*explain*/	_WT("控制是否将Web安全限制(同源策略)设置为强制执行。不建议禁用此设置, 因为它会带来风险安全行为, 例如跨站点脚本(XSS)。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -660,10 +637,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+19] \
 	},\
-	{ /*25*/ \
-		/*ccname*/	_WT("SetWebSecurity"),\
-		/*egname*/	_WT("SetWebSecurity"), \
-		/*explain*/	_WT(""), \
+	{ /*24*/ \
+		/*ccname*/	_WT("加载图像"),\
+		/*egname*/	_WT("SetImageLoading"), \
+		/*explain*/	_WT("控制是否从网络加载图像URL。如果需要, 仍将渲染缓存的图像。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -674,10 +651,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+20] \
 	},\
-	{ /*26*/ \
-		/*ccname*/	_WT("SetImageLoading"),\
-		/*egname*/	_WT("SetImageLoading"), \
-		/*explain*/	_WT(""), \
+	{ /*25*/ \
+		/*ccname*/	_WT("图像自适应缩放"),\
+		/*egname*/	_WT("SetImageShrinkStandaloneToFit"), \
+		/*explain*/	_WT("控制是否将独立图像缩小以适合页面。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -688,10 +665,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+21] \
 	},\
-	{ /*27*/ \
-		/*ccname*/	_WT("SetImageShrinkStandaloneToFit"),\
-		/*egname*/	_WT("SetImageShrinkStandaloneToFit"), \
-		/*explain*/	_WT(""), \
+	{ /*26*/ \
+		/*ccname*/	_WT("调整文本区域尺寸"),\
+		/*egname*/	_WT("SetTextAreaResize"), \
+		/*explain*/	_WT("控制是否可用调整文本区域(Text Area)的大小。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -702,10 +679,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+22] \
 	},\
-	{ /*28*/ \
-		/*ccname*/	_WT("SetTextAreaResize"),\
-		/*egname*/	_WT("SetTextAreaResize"), \
-		/*explain*/	_WT(""), \
+	{ /*27*/ \
+		/*ccname*/	_WT("转移焦点到连接"),\
+		/*egname*/	_WT("SetTabToLinks"), \
+		/*explain*/	_WT("控制TAB键是否可用将焦点转移到链接。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -716,10 +693,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+23] \
 	},\
-	{ /*29*/ \
-		/*ccname*/	_WT("SetTabToLinks"),\
-		/*egname*/	_WT("SetTabToLinks"), \
-		/*explain*/	_WT(""), \
+	{ /*28*/ \
+		/*ccname*/	_WT("LocalStorage"),\
+		/*egname*/	_WT("SetLocalStorage"), \
+		/*explain*/	_WT("控制是否可用使用本地存储(Local Storage)。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -730,10 +707,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+24] \
 	},\
-	{ /*30*/ \
-		/*ccname*/	_WT("设置是否允许使用LocalStorage"),\
-		/*egname*/	_WT("SetLocalStorage"), \
-		/*explain*/	_WT(""), \
+	{ /*29*/ \
+		/*ccname*/	_WT("Database"),\
+		/*egname*/	_WT("SetDataBase"), \
+		/*explain*/	_WT("控制是否可用使用数据库(Database)。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -744,10 +721,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+25] \
 	},\
-	{ /*31*/ \
-		/*ccname*/	_WT("设置是否允许使用IndexedDB"),\
-		/*egname*/	_WT("SetDatabases"), \
-		/*explain*/	_WT(""), \
+	{ /*30*/ \
+		/*ccname*/	_WT("ApplicationCache"),\
+		/*egname*/	_WT("SetApplicationCache"), \
+		/*explain*/	_WT("控制可否使用应用缓存(Application Cache)。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -758,10 +735,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+26] \
 	},\
-	{ /*32*/ \
-		/*ccname*/	_WT("设置是否允许ApplicationCache"),\
-		/*egname*/	_WT("SetApplicationCache"), \
-		/*explain*/	_WT(""), \
+	{ /*31*/ \
+		/*ccname*/	_WT("WebGL"),\
+		/*egname*/	_WT("SetWebGL"), \
+		/*explain*/	_WT("控制是否可用使用WebGL, 请注意, WebGL 需要硬件支持, 即使启用, 也可能无法在所有系统上运行。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -772,10 +749,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+27] \
 	},\
-	{ /*33*/ \
-		/*ccname*/	_WT("设置是否允许使用WebGL"),\
-		/*egname*/	_WT("SetWebGL"), \
-		/*explain*/	_WT(""), \
+	{ /*32*/ \
+		/*ccname*/	_WT("背景颜色"),\
+		/*egname*/	_WT("SetBackgroundColor"), \
+		/*explain*/	_WT("在加载稳定之前和未指定文档颜色时浏览器使用的背景颜色。alpha分量必须完全不透明(0xFF)或完全透明(0x00).如果Alpha分量完全不透明, 则RGB分量将作用于背景色。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -786,10 +763,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+28] \
 	},\
-	{ /*34*/ \
-		/*ccname*/	_WT("设置背景颜色"),\
-		/*egname*/	_WT("SetBackgroundColor"), \
-		/*explain*/	_WT("设置在加载文档之前或加载没有背景色的文档时浏览器使用的背景色。"), \
+	{ /*33*/ \
+		/*ccname*/	_WT("接收语言字符串"),\
+		/*egname*/	_WT("SetAcceptLanguageList"), \
+		/*explain*/	_WT("设置以逗号分隔的语言代码的有序列表, 不能出现空格, 这些字符串将在HTTP Accept-Language 标头中使用。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	_SDT_NULL, \
@@ -800,20 +777,6 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+29] \
 	},\
-	{ /*35*/ \
-		/*ccname*/	_WT("设置HTTP接收语言字符串"),\
-		/*egname*/	_WT("SetAcceptLanguageList"), \
-		/*explain*/	_WT("设置全局的HTTP接收语言字符串,以逗号分隔的语言代码字符串数组,不可以使用空格, 这些字符串值将在\"Accept-Language\" HTTP标头中使用。"), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	_SDT_NULL, \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	1, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+30] \
-	},\
 
 
 //==========================================
@@ -822,9 +785,7 @@
 	EDITIONS("ProxyBrowserSettings_Constructor"),\
 	EDITIONS("ProxyBrowserSettings_Destructor"),\
 	EDITIONS("ProxyBrowserSettings_CopyConstructor"),\
-	EDITIONS("ProxyBrowserSettings_Create"),\
 	EDITIONS("ProxyBrowserSettings_IsValid"),\
-	EDITIONS("ProxyBrowserSettings_SetWindowlessFrameRate"),\
 	EDITIONS("ProxyBrowserSettings_SetStandardFontFamily"),\
 	EDITIONS("ProxyBrowserSettings_SetFixedFontFamily"),\
 	EDITIONS("ProxyBrowserSettings_SetSerifFontFamily"),\
@@ -838,7 +799,7 @@
 	EDITIONS("ProxyBrowserSettings_SetDefaultEncoding"),\
 	EDITIONS("ProxyBrowserSettings_SetRemoteFonts"),\
 	EDITIONS("ProxyBrowserSettings_SetJavascript"),\
-	EDITIONS("ProxyBrowserSettings_SetJavascriptCloseWindows"),\
+	EDITIONS("ProxyBrowserSettings_SetJavascriptCloseWindow"),\
 	EDITIONS("ProxyBrowserSettings_SetJavascriptAccessClipboard"),\
 	EDITIONS("ProxyBrowserSettings_SetJavascriptDomPaste"),\
 	EDITIONS("ProxyBrowserSettings_SetPlugins"),\
@@ -850,7 +811,7 @@
 	EDITIONS("ProxyBrowserSettings_SetTextAreaResize"),\
 	EDITIONS("ProxyBrowserSettings_SetTabToLinks"),\
 	EDITIONS("ProxyBrowserSettings_SetLocalStorage"),\
-	EDITIONS("ProxyBrowserSettings_SetDatabases"),\
+	EDITIONS("ProxyBrowserSettings_SetDataBase"),\
 	EDITIONS("ProxyBrowserSettings_SetApplicationCache"),\
 	EDITIONS("ProxyBrowserSettings_SetWebGL"),\
 	EDITIONS("ProxyBrowserSettings_SetBackgroundColor"),\
@@ -863,9 +824,7 @@
 	EDITIONF(ProxyBrowserSettings_Constructor),\
 	EDITIONF(ProxyBrowserSettings_Destructor),\
 	EDITIONF(ProxyBrowserSettings_CopyConstructor),\
-	EDITIONF(ProxyBrowserSettings_Create),\
 	EDITIONF(ProxyBrowserSettings_IsValid),\
-	EDITIONF(ProxyBrowserSettings_SetWindowlessFrameRate),\
 	EDITIONF(ProxyBrowserSettings_SetStandardFontFamily),\
 	EDITIONF(ProxyBrowserSettings_SetFixedFontFamily),\
 	EDITIONF(ProxyBrowserSettings_SetSerifFontFamily),\
@@ -879,7 +838,7 @@
 	EDITIONF(ProxyBrowserSettings_SetDefaultEncoding),\
 	EDITIONF(ProxyBrowserSettings_SetRemoteFonts),\
 	EDITIONF(ProxyBrowserSettings_SetJavascript),\
-	EDITIONF(ProxyBrowserSettings_SetJavascriptCloseWindows),\
+	EDITIONF(ProxyBrowserSettings_SetJavascriptCloseWindow),\
 	EDITIONF(ProxyBrowserSettings_SetJavascriptAccessClipboard),\
 	EDITIONF(ProxyBrowserSettings_SetJavascriptDomPaste),\
 	EDITIONF(ProxyBrowserSettings_SetPlugins),\
@@ -891,7 +850,7 @@
 	EDITIONF(ProxyBrowserSettings_SetTextAreaResize),\
 	EDITIONF(ProxyBrowserSettings_SetTabToLinks),\
 	EDITIONF(ProxyBrowserSettings_SetLocalStorage),\
-	EDITIONF(ProxyBrowserSettings_SetDatabases),\
+	EDITIONF(ProxyBrowserSettings_SetDataBase),\
 	EDITIONF(ProxyBrowserSettings_SetApplicationCache),\
 	EDITIONF(ProxyBrowserSettings_SetWebGL),\
 	EDITIONF(ProxyBrowserSettings_SetBackgroundColor),\
@@ -907,11 +866,7 @@ void EDITIONF(ProxyBrowserSettings_Destructor)(PMDATA_INF pRetData, INT nArgCoun
 extern "C"
 void EDITIONF(ProxyBrowserSettings_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
-void EDITIONF(ProxyBrowserSettings_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
 void EDITIONF(ProxyBrowserSettings_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
-void EDITIONF(ProxyBrowserSettings_SetWindowlessFrameRate) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyBrowserSettings_SetStandardFontFamily) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
@@ -939,7 +894,7 @@ void EDITIONF(ProxyBrowserSettings_SetRemoteFonts) (PMDATA_INF pRetData, INT nAr
 extern "C"
 void EDITIONF(ProxyBrowserSettings_SetJavascript) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
-void EDITIONF(ProxyBrowserSettings_SetJavascriptCloseWindows) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+void EDITIONF(ProxyBrowserSettings_SetJavascriptCloseWindow) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyBrowserSettings_SetJavascriptAccessClipboard) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
@@ -963,7 +918,7 @@ void EDITIONF(ProxyBrowserSettings_SetTabToLinks) (PMDATA_INF pRetData, INT nArg
 extern "C"
 void EDITIONF(ProxyBrowserSettings_SetLocalStorage) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
-void EDITIONF(ProxyBrowserSettings_SetDatabases) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+void EDITIONF(ProxyBrowserSettings_SetDataBase) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyBrowserSettings_SetApplicationCache) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"

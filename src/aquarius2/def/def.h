@@ -16,6 +16,20 @@ using namespace prime;
 #define WEBAPI			__cdecl
 #define WEBCALLBACK		__stdcall
 
+//易语言类型导出约定
+typedef char	        EPL_BYTE;
+typedef short	        EPL_SHORT;
+typedef int		        EPL_INT;
+typedef __int64	        EPL_INT64;
+typedef float	        EPL_FLOAT;
+typedef double	        EPL_DOUBLE;
+typedef int		        EPL_BOOL;
+typedef char*           EPL_TEXT;
+typedef unsigned char*  EPL_BIN;
+typedef void*           EPL_SUBPTR;
+typedef void*           EPL_STATMENT;
+typedef void*           EPL_ALL;
+
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
 
@@ -38,6 +52,23 @@ using namespace prime;
 //辅助编写宏
 #define ASSERTQ(ret) if(!_rawptr) return ret
 #define ASSERTN() if(!_rawptr) return 
+
+//内部方法标志, 使用此标志的类, 枚举, 以及方法都将在易语言中隐藏
+#define INTERNAL_CALL
+
+//可空标志, 使用此标志的参数表示为接受易语言空值调用, 标志必须于类型名称前, 如: void foo(EPL_EMPTY int value);
+#define EPL_EMPTY
+
+//事件标志, 使用此标志的方法为一个易语言事件。
+#define EPL_EVENT
+
+#define ASSERTARRAY(type) if(!_rawptr){ \
+    DWORD* pointer = (DWORD*)NewBuffer(sizeof(INT) * (2)); \
+    *(pointer + 0) = 1; \
+    *(pointer + 1) = 0; \
+    return (type**)pointer; \
+}
+
 #define FORWARD(ClassName) reinterpret_cast<ClassName*>(_rawptr)
 #define ORIGIN(ClassName, wrap) reinterpret_cast<ClassName*>(wrap->OriginPointer())
 

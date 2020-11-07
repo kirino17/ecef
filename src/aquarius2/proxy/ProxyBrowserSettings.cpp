@@ -13,9 +13,6 @@ ProxyBrowserSettings::~ProxyBrowserSettings() {
 	}
 }
 
-shrewd_ptr<ProxyBrowserSettings> ProxyBrowserSettings::Create() {
-	return new ProxyBrowserSettings( new CefBrowserSettings );
-}
 
 bool ProxyBrowserSettings::IsValid() {
 	return _rawptr != nullptr;
@@ -64,9 +61,6 @@ void ProxyBrowserSettings::SetFantasyFontFamily(const char* fantasy_font_family)
 	}
 }
 
-void ProxyBrowserSettings::SetWindowlessFrameRate(int windowless_frame_rate) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->windowless_frame_rate = windowless_frame_rate;
-}
 ///
  // Default encoding for Web content. If empty "ISO-8859-1" will be used. Also
  // configurable using the "default-encoding" command-line switch.
@@ -98,84 +92,71 @@ void ProxyBrowserSettings::SetRemoteFonts(int remote_fonts) {
 	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->remote_fonts = (cef_state_t)remote_fonts;
 }
 
-void ProxyBrowserSettings::SetJavascript(int javascript) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript = (cef_state_t)javascript;
+void ProxyBrowserSettings::SetJavascript(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetJavascriptCloseWindows(int javascript_close_windows) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript_close_windows = (cef_state_t)javascript_close_windows;
+void ProxyBrowserSettings::SetJavascriptCloseWindow(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript_close_windows = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetJavascriptAccessClipboard(int javascript_access_clipboard) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript_access_clipboard = (cef_state_t)javascript_access_clipboard;
+void ProxyBrowserSettings::SetJavascriptAccessClipboard(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript_access_clipboard = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetJavascriptDomPaste(int javascript_dom_paste) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript_dom_paste = (cef_state_t)javascript_dom_paste;
+void ProxyBrowserSettings::SetJavascriptDomPaste(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->javascript_dom_paste = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetPlugins(int plugins) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->plugins = (cef_state_t)plugins;
+void ProxyBrowserSettings::SetPlugins(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->plugins = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetUniversalAccessFromFileUrls(int universal_access_from_file_urls) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->universal_access_from_file_urls = (cef_state_t)universal_access_from_file_urls;
+void ProxyBrowserSettings::SetUniversalAccessFromFileUrls(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->universal_access_from_file_urls = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetFileAccessFromFileUrls(int file_access_from_file_urls) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->file_access_from_file_urls = (cef_state_t)file_access_from_file_urls;
+void ProxyBrowserSettings::SetFileAccessFromFileUrls(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->file_access_from_file_urls = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetWebSecurity(int web_security) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->web_security = (cef_state_t)web_security;
+void ProxyBrowserSettings::SetWebSecurity(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->web_security = (cef_state_t)value;
+}
+void ProxyBrowserSettings::SetImageLoading(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->image_loading = (cef_state_t)value;
+}
+void ProxyBrowserSettings::SetImageShrinkStandaloneToFit(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->image_shrink_standalone_to_fit = (cef_state_t)value;
+}
+void ProxyBrowserSettings::SetTextAreaResize(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->text_area_resize = (cef_state_t)value;
+}
+void ProxyBrowserSettings::SetTabToLinks(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->tab_to_links = (cef_state_t)value;
+}
+void ProxyBrowserSettings::SetLocalStorage(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->local_storage = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetImageLoading(int image_loading) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->image_loading = (cef_state_t)image_loading;
+void ProxyBrowserSettings::SetDataBase(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->databases = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetImageShrinkStandaloneToFit(int image_shrink_standalone_to_fit) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->image_shrink_standalone_to_fit = (cef_state_t)image_shrink_standalone_to_fit;
+void ProxyBrowserSettings::SetApplicationCache(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->application_cache = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetTextAreaResize(int text_area_resize) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->text_area_resize = (cef_state_t)text_area_resize;
+void ProxyBrowserSettings::SetWebGL(int value) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->webgl = (cef_state_t)value;
 }
 
-void ProxyBrowserSettings::SetTabToLinks(int tab_to_links) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->tab_to_links = (cef_state_t)tab_to_links;
+void ProxyBrowserSettings::SetBackgroundColor(int color) {
+	if (!_rawptr) return; ((CefBrowserSettings*)_rawptr)->background_color = (cef_color_t)color;
 }
 
-void ProxyBrowserSettings::SetLocalStorage(int local_storage) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->local_storage = (cef_state_t)local_storage;
-}
-
-void ProxyBrowserSettings::SetDatabases(int databases) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->databases = (cef_state_t)databases;
-}
-
-void ProxyBrowserSettings::SetApplicationCache(int application_cache) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->application_cache = (cef_state_t)application_cache;
-}
-
-void ProxyBrowserSettings::SetWebGL(int webgl) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->webgl = (cef_state_t)webgl;
-}
-
-void ProxyBrowserSettings::SetBackgroundColor(int background_color) {
-	if(!_rawptr) return; ((CefBrowserSettings*)_rawptr)->background_color = (cef_color_t)background_color;
-}
-
-///
-// Comma delimited ordered list of language codes without any whitespace that
-// will be used in the "Accept-Language" HTTP header. May be set globally
-// using the CefBrowserSettings.accept_language_list value. If both values are
-// empty then "en-US,en" will be used.
-///
-void ProxyBrowserSettings::SetAcceptLanguageList(const char* accept_language_list) {
-	if (!_rawptr) return;
-	if (accept_language_list) {
-		USES_CONVERSION;
-		CefString(&((CefBrowserSettings*)_rawptr)->accept_language_list) = A2W(accept_language_list);
-	}
+void ProxyBrowserSettings::SetAcceptLanguageList(const char* values) {
+	if (!_rawptr || !values) return; 
+	USES_CONVERSION;
+	CefString(&((CefBrowserSettings*)_rawptr)->accept_language_list) = A2W(values);
 }

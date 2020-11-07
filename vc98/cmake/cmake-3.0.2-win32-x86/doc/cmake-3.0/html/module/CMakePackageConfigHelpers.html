@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMakePackageConfigHelpers &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="CMakeParseArguments" href="CMakeParseArguments.html" />
+    <link rel="prev" title="CMakeGraphVizOptions" href="CMakeGraphVizOptions.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMakeParseArguments.html" title="CMakeParseArguments"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMakeGraphVizOptions.html" title="CMakeGraphVizOptions"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmakepackageconfighelpers">
+<span id="module:CMakePackageConfigHelpers"></span><h1>CMakePackageConfigHelpers<a class="headerlink" href="#cmakepackageconfighelpers" title="Permalink to this headline">¶</a></h1>
+<p>CONFIGURE_PACKAGE_CONFIG_FILE(), WRITE_BASIC_PACKAGE_VERSION_FILE()</p>
+<div class="highlight-python"><pre>CONFIGURE_PACKAGE_CONFIG_FILE(&lt;input&gt; &lt;output&gt; INSTALL_DESTINATION &lt;path&gt;
+                                               [PATH_VARS &lt;var1&gt; &lt;var2&gt; ... &lt;varN&gt;]
+                                               [NO_SET_AND_CHECK_MACRO]
+                                               [NO_CHECK_REQUIRED_COMPONENTS_MACRO])</pre>
+</div>
+<p>CONFIGURE_PACKAGE_CONFIG_FILE() should be used instead of the plain
+configure_file() command when creating the &lt;Name&gt;Config.cmake or
+&lt;Name&gt;-config.cmake file for installing a project or library.  It
+helps making the resulting package relocatable by avoiding hardcoded
+paths in the installed Config.cmake file.</p>
+<p>In a FooConfig.cmake file there may be code like this to make the
+install destinations know to the using project:</p>
+<div class="highlight-python"><pre>set(FOO_INCLUDE_DIR   "@CMAKE_INSTALL_FULL_INCLUDEDIR@" )
+set(FOO_DATA_DIR   "@CMAKE_INSTALL_PREFIX@/@RELATIVE_DATA_INSTALL_DIR@" )
+set(FOO_ICONS_DIR   "@CMAKE_INSTALL_PREFIX@/share/icons" )
+...logic to determine installedPrefix from the own location...
+set(FOO_CONFIG_DIR  "${installedPrefix}/@CONFIG_INSTALL_DIR@" )</pre>
+</div>
+<p>All 4 options shown above are not sufficient, since the first 3
+hardcode the absolute directory locations, and the 4th case works only
+if the logic to determine the installedPrefix is correct, and if
+CONFIG_INSTALL_DIR contains a relative path, which in general cannot
+be guaranteed.  This has the effect that the resulting FooConfig.cmake
+file would work poorly under Windows and OSX, where users are used to
+choose the install location of a binary package at install time,
+independent from how CMAKE_INSTALL_PREFIX was set at build/cmake time.</p>
+<p>Using CONFIGURE_PACKAGE_CONFIG_FILE() helps.  If used correctly, it
+makes the resulting FooConfig.cmake file relocatable.  Usage:</p>
+<div class="highlight-python"><pre>1. write a FooConfig.cmake.in file as you are used to
+2. insert a line containing only the string "@PACKAGE_INIT@"
+3. instead of set(FOO_DIR "@SOME_INSTALL_DIR@"), use set(FOO_DIR "@PACKAGE_SOME_INSTALL_DIR@")
+   (this must be after the @PACKAGE_INIT@ line)
+4. instead of using the normal configure_file(), use CONFIGURE_PACKAGE_CONFIG_FILE()</pre>
+</div>
+<p>The &lt;input&gt; and &lt;output&gt; arguments are the input and output file, the
+same way as in configure_file().</p>
+<p>The &lt;path&gt; given to INSTALL_DESTINATION must be the destination where
+the FooConfig.cmake file will be installed to.  This can either be a
+relative or absolute path, both work.</p>
+<p>The variables &lt;var1&gt; to &lt;varN&gt; given as PATH_VARS are the variables
+which contain install destinations.  For each of them the macro will
+create a helper variable PACKAGE_&lt;var...&gt;.  These helper variables
+must be used in the FooConfig.cmake.in file for setting the installed
+location.  They are calculated by CONFIGURE_PACKAGE_CONFIG_FILE() so
+that they are always relative to the installed location of the
+package.  This works both for relative and also for absolute
+locations.  For absolute locations it works only if the absolute
+location is a subdirectory of CMAKE_INSTALL_PREFIX.</p>
+<p>By default configure_package_config_file() also generates two helper
+macros, set_and_check() and check_required_components() into the
+FooConfig.cmake file.</p>
+<p>set_and_check() should be used instead of the normal set() command for
+setting directories and file locations.  Additionally to setting the
+variable it also checks that the referenced file or directory actually
+exists and fails with a FATAL_ERROR otherwise.  This makes sure that
+the created FooConfig.cmake file does not contain wrong references.
+When using the NO_SET_AND_CHECK_MACRO, this macro is not generated
+into the FooConfig.cmake file.</p>
+<p>check_required_components(&lt;package_name&gt;) should be called at the end
+of the FooConfig.cmake file if the package supports components.  This
+macro checks whether all requested, non-optional components have been
+found, and if this is not the case, sets the Foo_FOUND variable to
+FALSE, so that the package is considered to be not found.  It does
+that by testing the Foo_&lt;Component&gt;_FOUND variables for all requested
+required components.  When using the NO_CHECK_REQUIRED_COMPONENTS
+option, this macro is not generated into the FooConfig.cmake file.</p>
+<p>For an example see below the documentation for
+WRITE_BASIC_PACKAGE_VERSION_FILE().</p>
+<div class="highlight-python"><pre>WRITE_BASIC_PACKAGE_VERSION_FILE( filename [VERSION major.minor.patch] COMPATIBILITY (AnyNewerVersion|SameMajorVersion|ExactVersion) )</pre>
+</div>
+<p>Writes a file for use as &lt;package&gt;ConfigVersion.cmake file to
+&lt;filename&gt;.  See the documentation of find_package() for details on
+this.</p>
+<div class="highlight-python"><pre>filename is the output filename, it should be in the build tree.
+major.minor.patch is the version number of the project to be installed</pre>
+</div>
+<p>If no <tt class="docutils literal"><span class="pre">VERSION</span></tt> is given, the <a class="reference internal" href="../variable/PROJECT_VERSION.html#variable:PROJECT_VERSION" title="PROJECT_VERSION"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">PROJECT_VERSION</span></tt></a> variable
+is used.  If this hasn&#8217;t been set, it errors out.</p>
+<p>The COMPATIBILITY mode AnyNewerVersion means that the installed
+package version will be considered compatible if it is newer or
+exactly the same as the requested version.  This mode should be used
+for packages which are fully backward compatible, also across major
+versions.  If SameMajorVersion is used instead, then the behaviour
+differs from AnyNewerVersion in that the major version number must be
+the same as requested, e.g.  version 2.0 will not be considered
+compatible if 1.0 is requested.  This mode should be used for packages
+which guarantee backward compatibility within the same major version.
+If ExactVersion is used, then the package is only considered
+compatible if the requested version matches exactly its own version
+number (not considering the tweak version).  For example, version
+1.2.3 of a package is only considered compatible to requested version
+1.2.3.  This mode is for packages without compatibility guarantees.
+If your project has more elaborated version matching rules, you will
+need to write your own custom ConfigVersion.cmake file instead of
+using this macro.</p>
+<p>Internally, this macro executes configure_file() to create the
+resulting version file.  Depending on the COMPATIBLITY, either the
+file BasicConfigVersion-SameMajorVersion.cmake.in or
+BasicConfigVersion-AnyNewerVersion.cmake.in is used.  Please note that
+these two files are internal to CMake and you should not call
+configure_file() on them yourself, but they can be used as starting
+point to create more sophisticted custom ConfigVersion.cmake files.</p>
+<p>Example using both configure_package_config_file() and
+write_basic_package_version_file(): CMakeLists.txt:</p>
+<div class="highlight-python"><pre>set(INCLUDE_INSTALL_DIR include/ ... CACHE )
+set(LIB_INSTALL_DIR lib/ ... CACHE )
+set(SYSCONFIG_INSTALL_DIR etc/foo/ ... CACHE )
+...
+include(CMakePackageConfigHelpers)
+configure_package_config_file(FooConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/FooConfig.cmake
+                              INSTALL_DESTINATION ${LIB_INSTALL_DIR}/Foo/cmake
+                              PATH_VARS INCLUDE_INSTALL_DIR SYSCONFIG_INSTALL_DIR)
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/FooConfigVersion.cmake
+                                 VERSION 1.2.3
+                                 COMPATIBILITY SameMajorVersion )
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/FooConfigVersion.cmake
+        DESTINATION ${LIB_INSTALL_DIR}/Foo/cmake )</pre>
+</div>
+<p>With a FooConfig.cmake.in:</p>
+<div class="highlight-python"><pre>set(FOO_VERSION x.y.z)
+...
+@PACKAGE_INIT@
+...
+set_and_check(FOO_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set_and_check(FOO_SYSCONFIG_DIR "@PACKAGE_SYSCONFIG_INSTALL_DIR@")</pre>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">check_required_components</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMakeGraphVizOptions.html"
+                        title="previous chapter">CMakeGraphVizOptions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMakeParseArguments.html"
+                        title="next chapter">CMakeParseArguments</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/CMakePackageConfigHelpers.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMakeParseArguments.html" title="CMakeParseArguments"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMakeGraphVizOptions.html" title="CMakeGraphVizOptions"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

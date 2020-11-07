@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>list &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="load_cache" href="load_cache.html" />
+    <link rel="prev" title="link_directories" href="link_directories.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="load_cache.html" title="load_cache"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="link_directories.html" title="link_directories"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="list">
+<span id="command:list"></span><h1>list<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h1>
+<p>List operations.</p>
+<div class="highlight-python"><pre>list(LENGTH &lt;list&gt; &lt;output variable&gt;)
+list(GET &lt;list&gt; &lt;element index&gt; [&lt;element index&gt; ...]
+     &lt;output variable&gt;)
+list(APPEND &lt;list&gt; [&lt;element&gt; ...])
+list(FIND &lt;list&gt; &lt;value&gt; &lt;output variable&gt;)
+list(INSERT &lt;list&gt; &lt;element_index&gt; &lt;element&gt; [&lt;element&gt; ...])
+list(REMOVE_ITEM &lt;list&gt; &lt;value&gt; [&lt;value&gt; ...])
+list(REMOVE_AT &lt;list&gt; &lt;index&gt; [&lt;index&gt; ...])
+list(REMOVE_DUPLICATES &lt;list&gt;)
+list(REVERSE &lt;list&gt;)
+list(SORT &lt;list&gt;)</pre>
+</div>
+<p>LENGTH will return a given list&#8217;s length.</p>
+<p>GET will return list of elements specified by indices from the list.</p>
+<p>APPEND will append elements to the list.</p>
+<p>FIND will return the index of the element specified in the list or -1
+if it wasn&#8217;t found.</p>
+<p>INSERT will insert elements to the list to the specified location.</p>
+<p>REMOVE_AT and REMOVE_ITEM will remove items from the list.  The
+difference is that REMOVE_ITEM will remove the given items, while
+REMOVE_AT will remove the items at the given indices.</p>
+<p>REMOVE_DUPLICATES will remove duplicated items in the list.</p>
+<p>REVERSE reverses the contents of the list in-place.</p>
+<p>SORT sorts the list in-place alphabetically.</p>
+<p>The list subcommands APPEND, INSERT, REMOVE_AT, REMOVE_ITEM,
+REMOVE_DUPLICATES, REVERSE and SORT may create new values for the list
+within the current CMake variable scope.  Similar to the SET command,
+the LIST command creates new variable values in the current scope,
+even if the list itself is actually defined in a parent scope.  To
+propagate the results of these operations upwards, use SET with
+PARENT_SCOPE, SET with CACHE INTERNAL, or some other means of value
+propagation.</p>
+<p>NOTES: A list in cmake is a ; separated group of strings.  To create a
+list the set command can be used.  For example, set(var a b c d e)
+creates a list with a;b;c;d;e, and set(var &#8220;a b c d e&#8221;) creates a
+string or a list with one item in it.   (Note macro arguments are not
+variables, and therefore cannot be used in LIST commands.)</p>
+<p>When specifying index values, if &lt;element index&gt; is 0 or greater, it
+is indexed from the beginning of the list, with 0 representing the
+first list element.  If &lt;element index&gt; is -1 or lesser, it is indexed
+from the end of the list, with -1 representing the last list element.
+Be careful when counting with negative indices: they do not start from
+0.  -0 is equivalent to 0, the first list element.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="link_directories.html"
+                        title="previous chapter">link_directories</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="load_cache.html"
+                        title="next chapter">load_cache</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/list.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="load_cache.html" title="load_cache"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="link_directories.html" title="link_directories"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

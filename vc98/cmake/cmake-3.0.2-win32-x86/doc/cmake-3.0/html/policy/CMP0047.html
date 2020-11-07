@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMP0047 &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-policies(7)" href="../manual/cmake-policies.7.html" />
+    <link rel="next" title="CMP0048" href="CMP0048.html" />
+    <link rel="prev" title="CMP0046" href="CMP0046.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMP0048.html" title="CMP0048"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMP0046.html" title="CMP0046"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-policies.7.html" accesskey="U">cmake-policies(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmp0047">
+<span id="policy:CMP0047"></span><h1>CMP0047<a class="headerlink" href="#cmp0047" title="Permalink to this headline">¶</a></h1>
+<p>Use <tt class="docutils literal"><span class="pre">QCC</span></tt> compiler id for the qcc drivers on QNX.</p>
+<p>CMake 3.0 and above recognize that the QNX qcc compiler driver is
+different from the GNU compiler.
+CMake now prefers to present this to projects by setting the
+<a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_ID.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_ID" title="CMAKE_&lt;LANG&gt;_COMPILER_ID"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER_ID</span></tt></a> variable to <tt class="docutils literal"><span class="pre">QCC</span></tt> instead
+of <tt class="docutils literal"><span class="pre">GNU</span></tt>.  However, existing projects may assume the compiler id for
+QNX qcc is just <tt class="docutils literal"><span class="pre">GNU</span></tt> as it was in CMake versions prior to 3.0.
+Therefore this policy determines for QNX qcc which compiler id to
+report in the <a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_ID.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_ID" title="CMAKE_&lt;LANG&gt;_COMPILER_ID"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_&lt;LANG&gt;_COMPILER_ID</span></tt></a> variable after
+language <tt class="docutils literal"><span class="pre">&lt;LANG&gt;</span></tt> is enabled by the <a class="reference internal" href="../command/project.html#command:project" title="project"><tt class="xref cmake cmake-command docutils literal"><span class="pre">project()</span></tt></a> or
+<a class="reference internal" href="../command/enable_language.html#command:enable_language" title="enable_language"><tt class="xref cmake cmake-command docutils literal"><span class="pre">enable_language()</span></tt></a> command.  The policy must be set prior
+to the invocation of either command.</p>
+<p>The OLD behavior for this policy is to use the <tt class="docutils literal"><span class="pre">GNU</span></tt> compiler id
+for the qcc and QCC compiler drivers. The NEW behavior for this policy
+is to use the <tt class="docutils literal"><span class="pre">QCC</span></tt> compiler id for those drivers.</p>
+<p>This policy was introduced in CMake version 3.0.  Use the
+<a class="reference internal" href="../command/cmake_policy.html#command:cmake_policy" title="cmake_policy"><tt class="xref cmake cmake-command docutils literal"><span class="pre">cmake_policy()</span></tt></a> command to set this policy to OLD or NEW explicitly.
+Unlike most policies, CMake version 3.0.2 does <em>not</em> warn
+by default when this policy is not set and simply uses OLD behavior.
+See documentation of the
+<a class="reference internal" href="../variable/CMAKE_POLICY_WARNING_CMPNNNN.html#variable:CMAKE_POLICY_WARNING_CMP&lt;NNNN&gt;" title="CMAKE_POLICY_WARNING_CMP&lt;NNNN&gt;"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_POLICY_WARNING_CMP0047</span></tt></a>
+variable to control the warning.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMP0046.html"
+                        title="previous chapter">CMP0046</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMP0048.html"
+                        title="next chapter">CMP0048</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/policy/CMP0047.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMP0048.html" title="CMP0048"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMP0046.html" title="CMP0046"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-policies.7.html" >cmake-policies(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

@@ -5,11 +5,11 @@
 
 
 #define DECL_DATA_TYPE_ProxyMenuModel \
-	{ /*19*/ \
-		/*m_szName*/		 _WT("Chromium菜单"), \
+	{ /*21*/ \
+		/*m_szName*/		 _WT("水星菜单"), \
 		/*m_szEgName*/		 _WT("ProxyMenuModel"), \
-		/*m_szExplain*/		 _WT("支持创建和修改菜单的类。有关具有默认实现的命令ID, 参见枚举常量: #系统内置菜单.* 。"), \
-		/*m_nCmdCount*/		 56, \
+		/*m_szExplain*/		 _WT("上下文菜单"), \
+		/*m_nCmdCount*/		 55, \
 		/*m_pnCmdsIndex*/		 s_nProxyMenuModelElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -27,598 +27,598 @@
 
 #define DECL_DATA_TYPE_ProxyMenuModel_ARGINFO \
 	{ /****** ProxyMenuModel::AddItem ** 0 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddItem ** 1 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddCheckItem ** 2 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddCheckItem ** 3 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddRadioItem ** 4 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddRadioItem ** 5 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddRadioItem ** 6 **/ \
-		/*name*/	 _WT("group_id"), \
+		/*name*/	 _WT("分组ID"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddSubMenu ** 7 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::AddSubMenu ** 8 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertSeparatorAt ** 9 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertItemAt ** 10 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertItemAt ** 11 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertItemAt ** 12 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertCheckItemAt ** 13 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertCheckItemAt ** 14 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertCheckItemAt ** 15 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertRadioItemAt ** 16 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertRadioItemAt ** 17 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertRadioItemAt ** 18 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertRadioItemAt ** 19 **/ \
-		/*name*/	 _WT("group_id"), \
+		/*name*/	 _WT("分组ID"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertSubMenuAt ** 20 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertSubMenuAt ** 21 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::InsertSubMenuAt ** 22 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::Remove ** 23 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::RemoveAt ** 24 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetIndexOf ** 25 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetCommandIdAt ** 26 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetCommandIdAt ** 27 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetCommandIdAt ** 28 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetLabel ** 29 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetLabelAt ** 30 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetLabel ** 31 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetLabel ** 32 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetLabelAt ** 33 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetLabelAt ** 34 **/ \
-		/*name*/	 _WT("label"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("标题"), \
+		/*explain*/	 _WT("菜单项标题"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetType ** 35 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetTypeAt ** 36 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetGroupId ** 37 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetGroupIdAt ** 38 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetGroupId ** 39 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetGroupId ** 40 **/ \
-		/*name*/	 _WT("group_id"), \
+		/*name*/	 _WT("分组ID"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetGroupIdAt ** 41 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetGroupIdAt ** 42 **/ \
-		/*name*/	 _WT("group_id"), \
+		/*name*/	 _WT("分组ID"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetSubMenu ** 43 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::GetSubMenuAt ** 44 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::IsVisible ** 45 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::IsVisibleAt ** 46 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetVisible ** 47 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetVisible ** 48 **/ \
-		/*name*/	 _WT("visible"), \
+		/*name*/	 _WT("可视"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetVisibleAt ** 49 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetVisibleAt ** 50 **/ \
-		/*name*/	 _WT("visible"), \
+		/*name*/	 _WT("可视"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::IsEnabled ** 51 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::IsEnabledAt ** 52 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetEnabled ** 53 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetEnabled ** 54 **/ \
-		/*name*/	 _WT("enabled"), \
+		/*name*/	 _WT("启用"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetEnabledAt ** 55 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetEnabledAt ** 56 **/ \
-		/*name*/	 _WT("enabled"), \
+		/*name*/	 _WT("启用"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::IsChecked ** 57 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::IsCheckedAt ** 58 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetChecked ** 59 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetChecked ** 60 **/ \
-		/*name*/	 _WT("checked"), \
+		/*name*/	 _WT("选中"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetCheckedAt ** 61 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetCheckedAt ** 62 **/ \
-		/*name*/	 _WT("checked"), \
+		/*name*/	 _WT("选中"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::HasAccelerator ** 63 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::HasAcceleratorAt ** 64 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAccelerator ** 65 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAccelerator ** 66 **/ \
 		/*name*/	 _WT("key_code"), \
@@ -627,7 +627,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAccelerator ** 67 **/ \
 		/*name*/	 _WT("shift_pressed"), \
@@ -636,7 +636,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAccelerator ** 68 **/ \
 		/*name*/	 _WT("ctrl_pressed"), \
@@ -645,7 +645,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAccelerator ** 69 **/ \
 		/*name*/	 _WT("alt_pressed"), \
@@ -654,16 +654,16 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAcceleratorAt ** 70 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAcceleratorAt ** 71 **/ \
 		/*name*/	 _WT("key_code"), \
@@ -672,7 +672,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAcceleratorAt ** 72 **/ \
 		/*name*/	 _WT("shift_pressed"), \
@@ -681,7 +681,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAcceleratorAt ** 73 **/ \
 		/*name*/	 _WT("ctrl_pressed"), \
@@ -690,7 +690,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetAcceleratorAt ** 74 **/ \
 		/*name*/	 _WT("alt_pressed"), \
@@ -699,115 +699,115 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::RemoveAccelerator ** 75 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::RemoveAcceleratorAt ** 76 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetColor ** 77 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetColor ** 78 **/ \
-		/*name*/	 _WT("color_type"), \
+		/*name*/	 _WT("颜色类型"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetColor ** 79 **/ \
-		/*name*/	 _WT("color"), \
+		/*name*/	 _WT("颜色"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetColorAt ** 80 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetColorAt ** 81 **/ \
-		/*name*/	 _WT("color_type"), \
+		/*name*/	 _WT("颜色类型"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetColorAt ** 82 **/ \
-		/*name*/	 _WT("color"), \
+		/*name*/	 _WT("颜色"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetFontList ** 83 **/ \
-		/*name*/	 _WT("command_id"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("命令ID"), \
+		/*explain*/	 _WT("菜单命令ID"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetFontList ** 84 **/ \
-		/*name*/	 _WT("font_list"), \
+		/*name*/	 _WT("字体列表"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetFontListAt ** 85 **/ \
-		/*name*/	 _WT("index"), \
-		/*explain*/	 _WT(""), \
+		/*name*/	 _WT("菜单项索引"), \
+		/*explain*/	 _WT("菜单项索引, 从0开始。"), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyMenuModel::SetFontListAt ** 86 **/ \
-		/*name*/	 _WT("font_list"), \
+		/*name*/	 _WT("字体列表"), \
 		/*explain*/	 _WT(""), \
 		/*bmp inx*/	 0, \
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -857,12 +857,12 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("CreateMenuModel"),\
-		/*egname*/	_WT("CreateMenuModel"), \
-		/*explain*/	_WT(""), \
+		/*ccname*/	_WT("是否为子菜单"),\
+		/*egname*/	_WT("IsSubMenu"), \
+		/*explain*/	_WT("如果此菜单对象为子菜单返回真。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
+		/*ret*/	SDT_BOOL, \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -871,9 +871,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*4*/ \
-		/*ccname*/	_WT("IsSubMenu"),\
-		/*egname*/	_WT("IsSubMenu"), \
-		/*explain*/	_WT(""), \
+		/*ccname*/	_WT("清除"),\
+		/*egname*/	_WT("Clear"), \
+		/*explain*/	_WT("清除所有菜单项。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -885,23 +885,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*5*/ \
-		/*ccname*/	_WT("Clear"),\
-		/*egname*/	_WT("Clear"), \
-		/*explain*/	_WT(""), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	SDT_BOOL, \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	0, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
-	},\
-	{ /*6*/ \
-		/*ccname*/	_WT("GetCount"),\
+		/*ccname*/	_WT("取菜单项数量"),\
 		/*egname*/	_WT("GetCount"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回此菜单的菜单项目数。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -912,10 +898,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*7*/ \
-		/*ccname*/	_WT("AddSeparator"),\
+	{ /*6*/ \
+		/*ccname*/	_WT("添加分隔符"),\
 		/*egname*/	_WT("AddSeparator"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("在菜单中添加一个分隔符。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -926,10 +912,10 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*8*/ \
-		/*ccname*/	_WT("AddItem"),\
+	{ /*7*/ \
+		/*ccname*/	_WT("添加菜单项"),\
 		/*egname*/	_WT("AddItem"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("添加一个项目到菜单中。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -940,8 +926,8 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*9*/ \
-		/*ccname*/	_WT("AddCheckItem"),\
+	{ /*8*/ \
+		/*ccname*/	_WT("添加复选菜单项"),\
 		/*egname*/	_WT("AddCheckItem"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -954,8 +940,8 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*10*/ \
-		/*ccname*/	_WT("AddRadioItem"),\
+	{ /*9*/ \
+		/*ccname*/	_WT("添加单选菜单项"),\
 		/*egname*/	_WT("AddRadioItem"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -968,13 +954,13 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*11*/ \
-		/*ccname*/	_WT("AddSubMenu"),\
+	{ /*10*/ \
+		/*ccname*/	_WT("添加子菜单项"),\
 		/*egname*/	_WT("AddSubMenu"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
+		/*ret*/	MAKELONG(21,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -982,8 +968,8 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+7] \
 	},\
-	{ /*12*/ \
-		/*ccname*/	_WT("InsertSeparatorAt"),\
+	{ /*11*/ \
+		/*ccname*/	_WT("插入分隔符索引"),\
 		/*egname*/	_WT("InsertSeparatorAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -996,8 +982,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*13*/ \
-		/*ccname*/	_WT("InsertItemAt"),\
+	{ /*12*/ \
+		/*ccname*/	_WT("插入菜单项索引"),\
 		/*egname*/	_WT("InsertItemAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1010,8 +996,8 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+10] \
 	},\
-	{ /*14*/ \
-		/*ccname*/	_WT("InsertCheckItemAt"),\
+	{ /*13*/ \
+		/*ccname*/	_WT("插入复选菜单项索引"),\
 		/*egname*/	_WT("InsertCheckItemAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1024,8 +1010,8 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+13] \
 	},\
-	{ /*15*/ \
-		/*ccname*/	_WT("InsertRadioItemAt"),\
+	{ /*14*/ \
+		/*ccname*/	_WT("插入单选菜单项索引"),\
 		/*egname*/	_WT("InsertRadioItemAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1038,13 +1024,13 @@
 		/*argcount*/	4, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+16] \
 	},\
-	{ /*16*/ \
-		/*ccname*/	_WT("InsertSubMenuAt"),\
+	{ /*15*/ \
+		/*ccname*/	_WT("插入子菜单项索引"),\
 		/*egname*/	_WT("InsertSubMenuAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
+		/*ret*/	MAKELONG(21,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -1052,8 +1038,8 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+20] \
 	},\
-	{ /*17*/ \
-		/*ccname*/	_WT("Remove"),\
+	{ /*16*/ \
+		/*ccname*/	_WT("移除菜单项"),\
 		/*egname*/	_WT("Remove"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1066,8 +1052,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+23] \
 	},\
-	{ /*18*/ \
-		/*ccname*/	_WT("RemoveAt"),\
+	{ /*17*/ \
+		/*ccname*/	_WT("移除菜单项索引"),\
 		/*egname*/	_WT("RemoveAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1080,8 +1066,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+24] \
 	},\
-	{ /*19*/ \
-		/*ccname*/	_WT("GetIndexOf"),\
+	{ /*18*/ \
+		/*ccname*/	_WT("取菜单项索引命令ID"),\
 		/*egname*/	_WT("GetIndexOf"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1094,8 +1080,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+25] \
 	},\
-	{ /*20*/ \
-		/*ccname*/	_WT("GetCommandIdAt"),\
+	{ /*19*/ \
+		/*ccname*/	_WT("取菜单项命令ID索引"),\
 		/*egname*/	_WT("GetCommandIdAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1108,8 +1094,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+26] \
 	},\
-	{ /*21*/ \
-		/*ccname*/	_WT("SetCommandIdAt"),\
+	{ /*20*/ \
+		/*ccname*/	_WT("置菜单项命令ID索引"),\
 		/*egname*/	_WT("SetCommandIdAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1122,10 +1108,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+27] \
 	},\
-	{ /*22*/ \
-		/*ccname*/	_WT("GetLabel"),\
+	{ /*21*/ \
+		/*ccname*/	_WT("取标题"),\
 		/*egname*/	_WT("GetLabel"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取菜单项标题"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -1136,10 +1122,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+29] \
 	},\
-	{ /*23*/ \
-		/*ccname*/	_WT("GetLabelAt"),\
+	{ /*22*/ \
+		/*ccname*/	_WT("取菜单项标题索引"),\
 		/*egname*/	_WT("GetLabelAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取菜单项标题"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -1150,10 +1136,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+30] \
 	},\
-	{ /*24*/ \
-		/*ccname*/	_WT("SetLabel"),\
+	{ /*23*/ \
+		/*ccname*/	_WT("置菜单项标题"),\
 		/*egname*/	_WT("SetLabel"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("置菜单项标题"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1164,10 +1150,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+31] \
 	},\
-	{ /*25*/ \
-		/*ccname*/	_WT("SetLabelAt"),\
+	{ /*24*/ \
+		/*ccname*/	_WT("置菜单项标题索引"),\
 		/*egname*/	_WT("SetLabelAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("置菜单项标题"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1178,10 +1164,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+33] \
 	},\
-	{ /*26*/ \
-		/*ccname*/	_WT("GetType"),\
+	{ /*25*/ \
+		/*ccname*/	_WT("取菜单项类型"),\
 		/*egname*/	_WT("GetType"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取菜单项类型"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -1192,10 +1178,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+35] \
 	},\
-	{ /*27*/ \
-		/*ccname*/	_WT("GetTypeAt"),\
+	{ /*26*/ \
+		/*ccname*/	_WT("取菜单项类型索引"),\
 		/*egname*/	_WT("GetTypeAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项索引"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -1206,10 +1192,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+36] \
 	},\
-	{ /*28*/ \
-		/*ccname*/	_WT("GetGroupId"),\
+	{ /*27*/ \
+		/*ccname*/	_WT("取菜单项分组ID"),\
 		/*egname*/	_WT("GetGroupId"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取菜单项分组ID"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -1220,10 +1206,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+37] \
 	},\
-	{ /*29*/ \
-		/*ccname*/	_WT("GetGroupIdAt"),\
+	{ /*28*/ \
+		/*ccname*/	_WT("取菜单项分组ID索引"),\
 		/*egname*/	_WT("GetGroupIdAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取菜单项分组ID"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -1234,10 +1220,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+38] \
 	},\
-	{ /*30*/ \
-		/*ccname*/	_WT("SetGroupId"),\
+	{ /*29*/ \
+		/*ccname*/	_WT("置菜单项分组ID"),\
 		/*egname*/	_WT("SetGroupId"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置菜单项分组ID"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1248,10 +1234,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+39] \
 	},\
-	{ /*31*/ \
-		/*ccname*/	_WT("SetGroupIdAt"),\
+	{ /*30*/ \
+		/*ccname*/	_WT("置菜单项分组ID索引"),\
 		/*egname*/	_WT("SetGroupIdAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置菜单项分组ID"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1262,13 +1248,13 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+41] \
 	},\
-	{ /*32*/ \
-		/*ccname*/	_WT("GetSubMenu"),\
+	{ /*31*/ \
+		/*ccname*/	_WT("取子菜单项"),\
 		/*egname*/	_WT("GetSubMenu"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("获取子菜单"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
+		/*ret*/	MAKELONG(21,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -1276,13 +1262,13 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+43] \
 	},\
-	{ /*33*/ \
-		/*ccname*/	_WT("GetSubMenuAt"),\
+	{ /*32*/ \
+		/*ccname*/	_WT("取子菜单项索引"),\
 		/*egname*/	_WT("GetSubMenuAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("获取子菜单"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
-		/*ret*/	MAKELONG(20,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
+		/*ret*/	MAKELONG(21,0),  /*shrewd_ptr<ProxyMenuModel>*/ \
 		/*reserved*/	0, \
 		/*level*/	LVL_SIMPLE, \
 		/*bmp inx*/	0, \
@@ -1290,10 +1276,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+44] \
 	},\
-	{ /*34*/ \
-		/*ccname*/	_WT("IsVisible"),\
+	{ /*33*/ \
+		/*ccname*/	_WT("菜单项是否可视"),\
 		/*egname*/	_WT("IsVisible"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否可视"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1304,10 +1290,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+45] \
 	},\
-	{ /*35*/ \
-		/*ccname*/	_WT("IsVisibleAt"),\
+	{ /*34*/ \
+		/*ccname*/	_WT("菜单项是否可视索引"),\
 		/*egname*/	_WT("IsVisibleAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否可视"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1318,10 +1304,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+46] \
 	},\
-	{ /*36*/ \
-		/*ccname*/	_WT("SetVisible"),\
+	{ /*35*/ \
+		/*ccname*/	_WT("置菜单项可视状态"),\
 		/*egname*/	_WT("SetVisible"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置菜单可视状态"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1332,10 +1318,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+47] \
 	},\
-	{ /*37*/ \
-		/*ccname*/	_WT("SetVisibleAt"),\
+	{ /*36*/ \
+		/*ccname*/	_WT("置菜单项可视状态索引"),\
 		/*egname*/	_WT("SetVisibleAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否可视"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1346,10 +1332,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+49] \
 	},\
-	{ /*38*/ \
-		/*ccname*/	_WT("IsEnabled"),\
+	{ /*37*/ \
+		/*ccname*/	_WT("菜单项是否可用"),\
 		/*egname*/	_WT("IsEnabled"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否可用"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1360,10 +1346,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+51] \
 	},\
-	{ /*39*/ \
-		/*ccname*/	_WT("IsEnabledAt"),\
+	{ /*38*/ \
+		/*ccname*/	_WT("菜单项是否可用索引"),\
 		/*egname*/	_WT("IsEnabledAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否被启用"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1374,10 +1360,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+52] \
 	},\
-	{ /*40*/ \
-		/*ccname*/	_WT("SetEnabled"),\
+	{ /*39*/ \
+		/*ccname*/	_WT("置菜单项可用状态"),\
 		/*egname*/	_WT("SetEnabled"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置菜单项启用状态"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1388,10 +1374,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+53] \
 	},\
-	{ /*41*/ \
-		/*ccname*/	_WT("SetEnabledAt"),\
+	{ /*40*/ \
+		/*ccname*/	_WT("置菜单项可用状态索引"),\
 		/*egname*/	_WT("SetEnabledAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("设置菜单项启用状态"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1402,10 +1388,10 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+55] \
 	},\
-	{ /*42*/ \
-		/*ccname*/	_WT("IsChecked"),\
+	{ /*41*/ \
+		/*ccname*/	_WT("菜单项是否被选中"),\
 		/*egname*/	_WT("IsChecked"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否被选中"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1416,10 +1402,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+57] \
 	},\
-	{ /*43*/ \
-		/*ccname*/	_WT("IsCheckedAt"),\
+	{ /*42*/ \
+		/*ccname*/	_WT("菜单项是否已选中索引"),\
 		/*egname*/	_WT("IsCheckedAt"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("菜单项是否被选中"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -1430,8 +1416,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+58] \
 	},\
-	{ /*44*/ \
-		/*ccname*/	_WT("SetChecked"),\
+	{ /*43*/ \
+		/*ccname*/	_WT("选择菜单项"),\
 		/*egname*/	_WT("SetChecked"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1444,8 +1430,8 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+59] \
 	},\
-	{ /*45*/ \
-		/*ccname*/	_WT("SetCheckedAt"),\
+	{ /*44*/ \
+		/*ccname*/	_WT("选择菜单项索引"),\
 		/*egname*/	_WT("SetCheckedAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1458,8 +1444,8 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+61] \
 	},\
-	{ /*46*/ \
-		/*ccname*/	_WT("HasAccelerator"),\
+	{ /*45*/ \
+		/*ccname*/	_WT("菜单项是否有快捷键"),\
 		/*egname*/	_WT("HasAccelerator"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1472,8 +1458,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+63] \
 	},\
-	{ /*47*/ \
-		/*ccname*/	_WT("HasAcceleratorAt"),\
+	{ /*46*/ \
+		/*ccname*/	_WT("菜单项是否有快捷键索引"),\
 		/*egname*/	_WT("HasAcceleratorAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1486,8 +1472,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+64] \
 	},\
-	{ /*48*/ \
-		/*ccname*/	_WT("SetAccelerator"),\
+	{ /*47*/ \
+		/*ccname*/	_WT("置菜单项快捷键"),\
 		/*egname*/	_WT("SetAccelerator"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1500,8 +1486,8 @@
 		/*argcount*/	5, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+65] \
 	},\
-	{ /*49*/ \
-		/*ccname*/	_WT("SetAcceleratorAt"),\
+	{ /*48*/ \
+		/*ccname*/	_WT("置菜单项快捷键索引"),\
 		/*egname*/	_WT("SetAcceleratorAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1514,8 +1500,8 @@
 		/*argcount*/	5, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+70] \
 	},\
-	{ /*50*/ \
-		/*ccname*/	_WT("RemoveAccelerator"),\
+	{ /*49*/ \
+		/*ccname*/	_WT("移除菜单项快捷键"),\
 		/*egname*/	_WT("RemoveAccelerator"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1528,8 +1514,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+75] \
 	},\
-	{ /*51*/ \
-		/*ccname*/	_WT("RemoveAcceleratorAt"),\
+	{ /*50*/ \
+		/*ccname*/	_WT("移除菜单项快捷键索引"),\
 		/*egname*/	_WT("RemoveAcceleratorAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1542,8 +1528,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+76] \
 	},\
-	{ /*52*/ \
-		/*ccname*/	_WT("SetColor"),\
+	{ /*51*/ \
+		/*ccname*/	_WT("置菜单项颜色"),\
 		/*egname*/	_WT("SetColor"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1556,8 +1542,8 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+77] \
 	},\
-	{ /*53*/ \
-		/*ccname*/	_WT("SetColorAt"),\
+	{ /*52*/ \
+		/*ccname*/	_WT("置菜单项颜色索引"),\
 		/*egname*/	_WT("SetColorAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1570,8 +1556,8 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+80] \
 	},\
-	{ /*54*/ \
-		/*ccname*/	_WT("SetFontList"),\
+	{ /*53*/ \
+		/*ccname*/	_WT("置菜单项字体列表"),\
 		/*egname*/	_WT("SetFontList"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1584,8 +1570,8 @@
 		/*argcount*/	2, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+83] \
 	},\
-	{ /*55*/ \
-		/*ccname*/	_WT("SetFontListAt"),\
+	{ /*54*/ \
+		/*ccname*/	_WT("置菜单项字体列表索引"),\
 		/*egname*/	_WT("SetFontListAt"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -1606,7 +1592,6 @@
 	EDITIONS("ProxyMenuModel_Constructor"),\
 	EDITIONS("ProxyMenuModel_Destructor"),\
 	EDITIONS("ProxyMenuModel_CopyConstructor"),\
-	EDITIONS("ProxyMenuModel_CreateMenuModel"),\
 	EDITIONS("ProxyMenuModel_IsSubMenu"),\
 	EDITIONS("ProxyMenuModel_Clear"),\
 	EDITIONS("ProxyMenuModel_GetCount"),\
@@ -1667,7 +1652,6 @@
 	EDITIONF(ProxyMenuModel_Constructor),\
 	EDITIONF(ProxyMenuModel_Destructor),\
 	EDITIONF(ProxyMenuModel_CopyConstructor),\
-	EDITIONF(ProxyMenuModel_CreateMenuModel),\
 	EDITIONF(ProxyMenuModel_IsSubMenu),\
 	EDITIONF(ProxyMenuModel_Clear),\
 	EDITIONF(ProxyMenuModel_GetCount),\
@@ -1730,8 +1714,6 @@ extern "C"
 void EDITIONF(ProxyMenuModel_Destructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyMenuModel_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
-void EDITIONF(ProxyMenuModel_CreateMenuModel) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyMenuModel_IsSubMenu) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"

@@ -1,0 +1,10 @@
+^E:\SIMPLE\CEF\CMAKELISTS.TXT
+setlocal
+E:\8086\cmake\bin\cmake.exe -SE:/simple/cef -BE:/simple/cef/build --check-stamp-file E:/simple/cef/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

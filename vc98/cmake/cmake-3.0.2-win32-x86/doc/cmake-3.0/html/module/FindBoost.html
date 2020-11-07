@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindBoost &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindBullet" href="FindBullet.html" />
+    <link rel="prev" title="FindBacktrace" href="FindBacktrace.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindBullet.html" title="FindBullet"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindBacktrace.html" title="FindBacktrace"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findboost">
+<span id="module:FindBoost"></span><h1>FindBoost<a class="headerlink" href="#findboost" title="Permalink to this headline">¶</a></h1>
+<p>Find Boost include dirs and libraries</p>
+<p>Use this module by invoking find_package with the form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">find_package</span><span class="p">(</span><span class="n">Boost</span>
+  <span class="p">[</span><span class="n">version</span><span class="p">]</span> <span class="p">[</span><span class="n">EXACT</span><span class="p">]</span>      <span class="c"># Minimum or EXACT version e.g. 1.36.0</span>
+  <span class="p">[</span><span class="n">REQUIRED</span><span class="p">]</span>             <span class="c"># Fail with error if Boost is not found</span>
+  <span class="p">[</span><span class="n">COMPONENTS</span> <span class="o">&lt;</span><span class="n">libs</span><span class="o">&gt;...</span><span class="p">]</span> <span class="c"># Boost libraries by their canonical name</span>
+  <span class="p">)</span>                      <span class="c"># e.g. &quot;date_time&quot; for &quot;libboost_date_time&quot;</span>
+</pre></div>
+</div>
+<p>This module finds headers and requested component libraries OR a CMake
+package configuration file provided by a &#8220;Boost CMake&#8221; build.  For the
+latter case skip to the &#8220;Boost CMake&#8221; section below.  For the former
+case results are reported in variables:</p>
+<div class="highlight-python"><pre>Boost_FOUND            - True if headers and requested libraries were found
+Boost_INCLUDE_DIRS     - Boost include directories
+Boost_LIBRARY_DIRS     - Link directories for Boost libraries
+Boost_LIBRARIES        - Boost component libraries to be linked
+Boost_&lt;C&gt;_FOUND        - True if component &lt;C&gt; was found (&lt;C&gt; is upper-case)
+Boost_&lt;C&gt;_LIBRARY      - Libraries to link for component &lt;C&gt; (may include
+                         target_link_libraries debug/optimized keywords)
+Boost_VERSION          - BOOST_VERSION value from boost/version.hpp
+Boost_LIB_VERSION      - Version string appended to library filenames
+Boost_MAJOR_VERSION    - Boost major version number (X in X.y.z)
+Boost_MINOR_VERSION    - Boost minor version number (Y in x.Y.z)
+Boost_SUBMINOR_VERSION - Boost subminor version number (Z in x.y.Z)
+Boost_LIB_DIAGNOSTIC_DEFINITIONS (Windows)
+                       - Pass to add_definitions() to have diagnostic
+                         information about Boost's automatic linking
+                         displayed during compilation</pre>
+</div>
+<p>This module reads hints about search locations from variables:</p>
+<div class="highlight-python"><pre>BOOST_ROOT             - Preferred installation prefix
+ (or BOOSTROOT)
+BOOST_INCLUDEDIR       - Preferred include directory e.g. &lt;prefix&gt;/include
+BOOST_LIBRARYDIR       - Preferred library directory e.g. &lt;prefix&gt;/lib
+Boost_NO_SYSTEM_PATHS  - Set to ON to disable searching in locations not
+                         specified by these hint variables. Default is OFF.
+Boost_ADDITIONAL_VERSIONS
+                       - List of Boost versions not known to this module
+                         (Boost install locations may contain the version)</pre>
+</div>
+<p>and saves search results persistently in CMake cache entries:</p>
+<div class="highlight-python"><pre>Boost_INCLUDE_DIR         - Directory containing Boost headers
+Boost_LIBRARY_DIR         - Directory containing Boost libraries
+Boost_&lt;C&gt;_LIBRARY_DEBUG   - Component &lt;C&gt; library debug variant
+Boost_&lt;C&gt;_LIBRARY_RELEASE - Component &lt;C&gt; library release variant</pre>
+</div>
+<p>Users may set these hints or results as cache entries.  Projects
+should not read these entries directly but instead use the above
+result variables.  Note that some hint names start in upper-case
+&#8220;BOOST&#8221;.  One may specify these as environment variables if they are
+not specified as CMake variables or cache entries.</p>
+<p>This module first searches for the Boost header files using the above
+hint variables (excluding BOOST_LIBRARYDIR) and saves the result in
+Boost_INCLUDE_DIR.  Then it searches for requested component libraries
+using the above hints (excluding BOOST_INCLUDEDIR and
+Boost_ADDITIONAL_VERSIONS), &#8220;lib&#8221; directories near Boost_INCLUDE_DIR,
+and the library name configuration settings below.  It saves the
+library directory in Boost_LIBRARY_DIR and individual library
+locations in Boost_&lt;C&gt;_LIBRARY_DEBUG and Boost_&lt;C&gt;_LIBRARY_RELEASE.
+When one changes settings used by previous searches in the same build
+tree (excluding environment variables) this module discards previous
+search results affected by the changes and searches again.</p>
+<p>Boost libraries come in many variants encoded in their file name.
+Users or projects may tell this module which variant to find by
+setting variables:</p>
+<div class="highlight-python"><pre>Boost_USE_MULTITHREADED  - Set to OFF to use the non-multithreaded
+                           libraries ('mt' tag).  Default is ON.
+Boost_USE_STATIC_LIBS    - Set to ON to force the use of the static
+                           libraries.  Default is OFF.
+Boost_USE_STATIC_RUNTIME - Set to ON or OFF to specify whether to use
+                           libraries linked statically to the C++ runtime
+                           ('s' tag).  Default is platform dependent.
+Boost_USE_DEBUG_RUNTIME  - Set to ON or OFF to specify whether to use
+                           libraries linked to the MS debug C++ runtime
+                           ('g' tag).  Default is ON.
+Boost_USE_DEBUG_PYTHON   - Set to ON to use libraries compiled with a
+                           debug Python build ('y' tag). Default is OFF.
+Boost_USE_STLPORT        - Set to ON to use libraries compiled with
+                           STLPort ('p' tag).  Default is OFF.
+Boost_USE_STLPORT_DEPRECATED_NATIVE_IOSTREAMS
+                         - Set to ON to use libraries compiled with
+                           STLPort deprecated "native iostreams"
+                           ('n' tag).  Default is OFF.
+Boost_COMPILER           - Set to the compiler-specific library suffix
+                           (e.g. "-gcc43").  Default is auto-computed
+                           for the C++ compiler in use.
+Boost_THREADAPI          - Suffix for "thread" component library name,
+                           such as "pthread" or "win32".  Names with
+                           and without this suffix will both be tried.
+Boost_NAMESPACE          - Alternate namespace used to build boost with
+                           e.g. if set to "myboost", will search for
+                           myboost_thread instead of boost_thread.</pre>
+</div>
+<p>Other variables one may set to control this module are:</p>
+<div class="highlight-python"><pre>Boost_DEBUG              - Set to ON to enable debug output from FindBoost.
+                           Please enable this before filing any bug report.
+Boost_DETAILED_FAILURE_MSG
+                         - Set to ON to add detailed information to the
+                           failure message even when the REQUIRED option
+                           is not given to the find_package call.
+Boost_REALPATH           - Set to ON to resolve symlinks for discovered
+                           libraries to assist with packaging.  For example,
+                           the "system" component library may be resolved to
+                           "/usr/lib/libboost_system.so.1.42.0" instead of
+                           "/usr/lib/libboost_system.so".  This does not
+                           affect linking and should not be enabled unless
+                           the user needs this information.</pre>
+</div>
+<p>On Visual Studio and Borland compilers Boost headers request automatic
+linking to corresponding libraries.  This requires matching libraries
+to be linked explicitly or available in the link library search path.
+In this case setting Boost_USE_STATIC_LIBS to OFF may not achieve
+dynamic linking.  Boost automatic linking typically requests static
+libraries with a few exceptions (such as Boost.Python).  Use:</p>
+<div class="highlight-python"><pre>add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})</pre>
+</div>
+<p>to ask Boost to report information about automatic linking requests.</p>
+<p>Example to find Boost headers only:</p>
+<div class="highlight-python"><pre>find_package(Boost 1.36.0)
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+  add_executable(foo foo.cc)
+endif()</pre>
+</div>
+<p>Example to find Boost headers and some <em>static</em> libraries:</p>
+<div class="highlight-python"><pre>set(Boost_USE_STATIC_LIBS        ON) # only find static libs
+set(Boost_USE_MULTITHREADED      ON)
+set(Boost_USE_STATIC_RUNTIME    OFF)
+find_package(Boost 1.36.0 COMPONENTS date_time filesystem system ...)
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+  add_executable(foo foo.cc)
+  target_link_libraries(foo ${Boost_LIBRARIES})
+endif()</pre>
+</div>
+<div class="section" id="boost-cmake">
+<h2>Boost CMake<a class="headerlink" href="#boost-cmake" title="Permalink to this headline">¶</a></h2>
+<p>If Boost was built using the boost-cmake project it provides a package
+configuration file for use with find_package&#8217;s Config mode.  This
+module looks for the package configuration file called
+BoostConfig.cmake or boost-config.cmake and stores the result in cache
+entry &#8220;Boost_DIR&#8221;.  If found, the package configuration file is loaded
+and this module returns with no further action.  See documentation of
+the Boost CMake package configuration for details on what it provides.</p>
+<p>Set Boost_NO_BOOST_CMAKE to ON to disable the search for boost-cmake.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FindBoost</a><ul>
+<li><a class="reference internal" href="#boost-cmake">Boost CMake</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindBacktrace.html"
+                        title="previous chapter">FindBacktrace</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindBullet.html"
+                        title="next chapter">FindBullet</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindBoost.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindBullet.html" title="FindBullet"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindBacktrace.html" title="FindBacktrace"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

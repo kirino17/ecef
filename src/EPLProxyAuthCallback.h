@@ -5,8 +5,8 @@
 
 
 #define DECL_DATA_TYPE_ProxyAuthCallback \
-	{ /*1*/ \
-		/*m_szName*/		 _WT("Chromium认证回调"), \
+	{ /*2*/ \
+		/*m_szName*/		 _WT("水星认证"), \
 		/*m_szEgName*/		 _WT("ProxyAuthCallback"), \
 		/*m_szExplain*/		 _WT("提供用户身份验证数据的回调接口。"), \
 		/*m_nCmdCount*/		 5, \
@@ -33,7 +33,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyAuthCallback::Continue ** 1 **/ \
 		/*name*/	 _WT("密码"), \
@@ -42,7 +42,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -92,7 +92,7 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("认证"),\
+		/*ccname*/	_WT("提交"),\
 		/*egname*/	_WT("Continue"), \
 		/*explain*/	_WT("提交用户身份认证信息"), \
 		/*category*/	-1, \

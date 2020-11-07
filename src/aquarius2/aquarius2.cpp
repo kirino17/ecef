@@ -1,4 +1,4 @@
-// aquarius2.cpp : ´ËÎÄ¼þ°üº¬ "main" º¯Êý¡£³ÌÐòÖ´ÐÐ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
+ï»¿// aquarius2.cpp : æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚ç¨‹åºæ‰§è¡Œå°†åœ¨æ­¤å¤„å¼€å§‹å¹¶ç»“æŸã€‚
 //
 
 #include <iostream>

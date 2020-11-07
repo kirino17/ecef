@@ -4,25 +4,27 @@
 #include "ProxyBrowser.h"
 #include "ProxyRequest.h"
 #include "ProxyFrame.h"
-#include "ProxyWindowInfo.h"
 #include "ProxyBrowserSettings.h"
-#include "ProxyBrowserHost.h"
 #include "ProxyCookie.h"
 #include "ProxyJSDialogCallback.h"
 #include "ProxyAuthCallback.h"
-#include "ProxyRequestCallback.h"
 #include "ProxyResponse.h"
 #include "ProxyDictionaryValue.h"
 #include "ProxyFileDialogCallback.h"
-#include "ProxyContextMenuParams.h"
-#include "ProxyMenuModel.h"
-#include "ProxyRunContextMenuCallback.h"
 #include "ProxyDownloadItem.h"
-#include "ProxyDownloadItemCallback.h"
-#include "ProxyBeforeDownloadCallback.h"
-#include "ProxyPopupFeatures.h"
 #include "ProxyResponseFilter.h"
 #include "ProxyListValue.h"
+#include "ProxyWindowInfo.h"
+#include "ProxyServer.h"
+#include "ProxyWebSocket.h"
+#include "ProxyWaitableEvent.h"
+#include "ProxyMenuModel.h"
+#include "ProxyContextMenuParams.h"
+#include "ProxyRunContextMenuCallback.h"
+#include "ProxyExtension.h"
+#include "ProxyGetExtensionResourceCallback.h"
+#include "ProxyActiveBrowserCallback.h"
+#include "ProxyQueryCallback.h"
 
 #if _MSC_VER > 1200
 #define EPL_EVENT /*override*/
@@ -33,7 +35,25 @@
 #define INTERNAL_DEFINITION(ClassName) \
 public: \
 	void \
-		OnSizeChanged(unsigned int parentWindow,int cx, int cy);
+		OnSizeChanged(unsigned int parentWindow,int cx, int cy); \
+	int \
+		GetSameBrowserCount(void* context); \
+	shrewd_ptr<ProxyBrowser>** \
+		GetSameBrowser(void* context); \
+	shrewd_ptr<ProxyBrowser> \
+		GetSameBrowserWithIndex(void* context, int index); \
+	void \
+		CloseSameBrowser(void* context); \
+	void \
+		SetUserAgentOverride(shrewd_ptr<ProxyBrowser> browser,const wchar_t* useragent, const wchar_t* appversion); \
+	const wchar_t* \
+		GetUserAgentOverride(void* browser); \
+	void \
+		SetScriptOnNewDocument(shrewd_ptr<ProxyBrowser> browser,const wchar_t* script); \
+	void \
+		OnInternalOnBeforePopup(void* browser,void** extra_info); \
+	shrewd_ptr<ProxyListValue> \
+		GetUsetData(shrewd_ptr<ProxyBrowser> browser); 
 
 
 class AQUADLL ProxyClient : public refcounted {
@@ -43,9 +63,14 @@ public:
 
 public:
 	virtual void OnBeforeCommandLineProcessing(
+		const char* process_type,
 		shrewd_ptr<ProxyCommandLine> command_line) EPL_EVENT { return; }
 
 	virtual void OnContextInitialized() EPL_EVENT { return; }
+
+	virtual void OnBeforeChildProcessLaunch(shrewd_ptr<ProxyCommandLine> command_line) EPL_EVENT { return; }
+
+	virtual void OnRenderProcessThreadCreated(shrewd_ptr<ProxyListValue> extra_info) EPL_EVENT;
 
 public:
 	virtual bool OnBeforePopup(
@@ -55,12 +80,10 @@ public:
 		const char* target_frame_name,
 		int target_disposition,
 		bool user_gesture,
-		shrewd_ptr<ProxyPopupFeatures> popupFeatures,
 		shrewd_ptr<ProxyWindowInfo> window_info,
 		shrewd_ptr<ProxyBrowserSettings> settings,
-		shrewd_ptr<ProxyDictionaryValue> extra_info,
 		int& no_javascript_access
-	) EPL_EVENT { return false;}
+	) EPL_EVENT { return false; }
 
 	virtual void OnAfterCreated(shrewd_ptr<ProxyBrowser> browser) EPL_EVENT;
 
@@ -89,18 +112,33 @@ public:
 		const char* failedUrl) EPL_EVENT { return;}
 
 public:
+	virtual void OnBeforeContextMenu(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame,
+		shrewd_ptr<ProxyContextMenuParams> params,
+		shrewd_ptr<ProxyMenuModel> model) EPL_EVENT { return;}
+
+	virtual bool RunContextMenu(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame,
+		shrewd_ptr<ProxyContextMenuParams> params,
+		shrewd_ptr<ProxyMenuModel> model,
+		shrewd_ptr<ProxyRunContextMenuCallback> callback) EPL_EVENT { return false;}
+
+	virtual bool OnContextMenuCommand(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame,
+		shrewd_ptr<ProxyContextMenuParams> params,
+		int command_id,
+		int event_flags) EPL_EVENT { return false;}
+
+	virtual void OnContextMenuDismissed(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame) EPL_EVENT { return;}
+
+public:
 	virtual void OnAddressChange(shrewd_ptr<ProxyBrowser> browser,
 		shrewd_ptr<ProxyFrame> frame,
 		const char* url) EPL_EVENT { return;}
 
 	virtual void OnTitleChange(shrewd_ptr<ProxyBrowser> browser,
 		const char* title) EPL_EVENT { return;}
-
-	virtual void OnFaviconURLChange(shrewd_ptr<ProxyBrowser> browser,
-		char* icon_urls) EPL_EVENT { return;}
-
-	virtual void OnFullscreenModeChange(shrewd_ptr<ProxyBrowser> browser,
-		bool fullscreen) EPL_EVENT { return;}
 
 	virtual bool OnTooltip(shrewd_ptr<ProxyBrowser> browser, const char* text) EPL_EVENT { return false; }
 
@@ -113,18 +151,11 @@ public:
 		const char* source,
 		int line) EPL_EVENT { return false;}
 
-	virtual bool OnAutoResize(shrewd_ptr<ProxyBrowser> browser,
-		int width, int height) EPL_EVENT { return false;}
-
 	virtual void OnLoadingProgressChange(shrewd_ptr<ProxyBrowser> browser,
 		double progress) EPL_EVENT { return;}
 
-public:
-	virtual void OnTakeFocus(shrewd_ptr<ProxyBrowser> browser, bool next) EPL_EVENT { return; }
+	virtual void OnFullscreenModeChange(shrewd_ptr<ProxyBrowser> browser, bool fullscreen) EPL_EVENT { return; }
 
-	virtual bool OnSetFocus(shrewd_ptr<ProxyBrowser> browser, int source) EPL_EVENT { return false; }
-
-	virtual void OnGotFocus(shrewd_ptr<ProxyBrowser> browser) EPL_EVENT { return ; }
 public:
 	virtual bool OnJSDialog(shrewd_ptr<ProxyBrowser> browser,
 		const char* origin_url,
@@ -144,26 +175,6 @@ public:
 	virtual void OnDialogClosed(shrewd_ptr<ProxyBrowser> browser) EPL_EVENT { return; }
 
 public:
-	virtual bool OnBeforeBrowse(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyRequest> request,
-		bool user_gesture,
-		bool is_redirect) EPL_EVENT { return false; }
-
-	virtual bool OnOpenURLFromTab(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		const char* target_url,
-		int target_disposition,
-		bool user_gesture) EPL_EVENT { return false; }
-
-	virtual bool GetResourceRequestHandler(
-		shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyRequest> request,
-		bool is_navigation,
-		bool is_download,
-		const char* request_initiator) EPL_EVENT { return false; }
-
 	virtual bool GetAuthCredentials(shrewd_ptr<ProxyBrowser> browser,
 		const char* origin_url,
 		bool isProxy,
@@ -173,25 +184,17 @@ public:
 		const char* scheme,
 		shrewd_ptr<ProxyAuthCallback> callback) EPL_EVENT { return false; }
 
-	virtual bool OnQuotaRequest(shrewd_ptr<ProxyBrowser> browser,
-		const char* origin_url,
-		__int64 new_size,
-		shrewd_ptr<ProxyRequestCallback> callback) EPL_EVENT { return false; }
-
-	virtual void OnPluginCrashed(shrewd_ptr<ProxyBrowser> browser,
-		const char* plugin_path) EPL_EVENT { return; }
-
-	virtual void OnRenderViewReady(shrewd_ptr<ProxyBrowser> browser) EPL_EVENT { return; }
-
-	virtual void OnRenderProcessTerminated(shrewd_ptr<ProxyBrowser> browser,
-		int status) EPL_EVENT { return; }
-
 public:
+	virtual bool OnBeforeBrowse(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame,
+		shrewd_ptr<ProxyRequest> request,
+		bool user_gesture,
+		bool is_redirect) EPL_EVENT { return false; }
+
 	virtual int OnBeforeResourceLoad(
 		shrewd_ptr<ProxyBrowser> browser,
 		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyRequest> request,
-		shrewd_ptr<ProxyRequestCallback> callback
+		shrewd_ptr<ProxyRequest> request
 		) EPL_EVENT { return 1; }
 
 	virtual void OnResourceRedirect(shrewd_ptr<ProxyBrowser> browser,
@@ -218,11 +221,6 @@ public:
 		int status,
 		__int64 received_content_length) EPL_EVENT { return; }
 
-	virtual void OnProtocolExecution(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyRequest> request,
-		int& allow_os_execution) EPL_EVENT { return; }
-
 public:
 	virtual bool OnFileDialog(shrewd_ptr<ProxyBrowser> browser,
 		int mode,
@@ -233,45 +231,101 @@ public:
 		shrewd_ptr<ProxyFileDialogCallback> callback) EPL_EVENT { return false; }
 
 public:
-	virtual void OnBeforeContextMenu(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyContextMenuParams> params,
-		shrewd_ptr<ProxyMenuModel> model) EPL_EVENT { return ; }
-
-	virtual bool RunContextMenu(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyContextMenuParams> params,
-		shrewd_ptr<ProxyMenuModel> model,
-		shrewd_ptr<ProxyRunContextMenuCallback> callback) EPL_EVENT { return false; }
-
-	virtual bool OnContextMenuCommand(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame,
-		shrewd_ptr<ProxyContextMenuParams> params,
-		int command_id,
-		int event_flags) EPL_EVENT { return false; }
-
-	virtual void OnContextMenuDismissed(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyFrame> frame) EPL_EVENT { return ; }
-
-public:
 	virtual void OnBeforeDownload(
 		shrewd_ptr<ProxyBrowser> browser,
 		shrewd_ptr<ProxyDownloadItem> download_item,
-		const char* suggested_name,
-		shrewd_ptr<ProxyBeforeDownloadCallback> callback) EPL_EVENT { return ; }
+		const char* suggested_name) EPL_EVENT { return ; }
 
 	virtual void OnDownloadUpdated(shrewd_ptr<ProxyBrowser> browser,
-		shrewd_ptr<ProxyDownloadItem> download_item,
-		shrewd_ptr<ProxyDownloadItemCallback> callback) EPL_EVENT { return ; }
+		shrewd_ptr<ProxyDownloadItem> download_item) EPL_EVENT { return ; }
 
 public:
-	virtual bool OnCookieVisitor(shrewd_ptr<ProxyCookie> cookie, int count, int total) EPL_EVENT { return false; }
-	
-	virtual void OnTaskVisitor(int taskid, int threadid, shrewd_ptr<ProxyValue> params)  EPL_EVENT { return ; }
-
-	virtual void OnRenderProcessThreadCreated(shrewd_ptr<ProxyListValue> extra_info) EPL_EVENT { return; }
-
 	virtual void OnResourceFilter(shrewd_ptr<ProxyBrowser> browser, shrewd_ptr<ProxyResponseFilter> filter) EPL_EVENT { return; }
+
+public:
+	virtual void OnServerCreated(shrewd_ptr<ProxyServer> server) EPL_EVENT { return; }
+
+	virtual void OnServerDestroyed(shrewd_ptr<ProxyServer> server) EPL_EVENT { return; }
+
+	virtual void OnClientConnected(shrewd_ptr<ProxyServer> server,
+		int connection_id) EPL_EVENT { return ; }
+
+	virtual void OnClientDisconnected(shrewd_ptr<ProxyServer> server,
+		int connection_id) EPL_EVENT { return ; }
+
+	virtual void OnHttpRequest(shrewd_ptr<ProxyServer> server,
+		int connection_id,
+		const char* client_address,
+		shrewd_ptr<ProxyRequest> request) EPL_EVENT { return ; }
+
+	virtual bool OnWebSocketRequest(shrewd_ptr<ProxyServer> server,
+		int connection_id,
+		const char* client_address,
+		shrewd_ptr<ProxyRequest> request) EPL_EVENT { return false; }
+
+	virtual void OnWebSocketConnected(shrewd_ptr<ProxyServer> server,
+		int connection_id) EPL_EVENT { return ; }
+
+	virtual void OnWebSocketMessage(shrewd_ptr<ProxyServer> server,
+		int connection_id,
+		const unsigned char* data,
+		int data_size) EPL_EVENT { return ; }
+
+public:
+	virtual void OnWebSocketClientConnected(shrewd_ptr<ProxyWebSocket> websocket) EPL_EVENT { return; }
+
+	virtual void OnWebSocketClientClosed(shrewd_ptr<ProxyWebSocket> websocket) EPL_EVENT { return; }
+
+	virtual void OnWebSocketClientMessage(shrewd_ptr<ProxyWebSocket> websocket, int type, const unsigned char* message) EPL_EVENT { return; }
+
+	virtual void OnWebSocketClientError(shrewd_ptr<ProxyWebSocket> websocket, const char* error) EPL_EVENT { return; }
+
+public:
+	virtual void OnExtensionLoadFailed(int result) EPL_EVENT {}
+
+	virtual void OnExtensionLoaded(shrewd_ptr<ProxyExtension> extension) EPL_EVENT {}
+
+	virtual void OnExtensionUnloaded(shrewd_ptr<ProxyExtension> extension) EPL_EVENT {}
+
+	virtual bool OnBeforeBackgroundBrowser(shrewd_ptr<ProxyExtension> extension, const char* url) EPL_EVENT { return false;}
+
+	virtual bool OnBeforeBrowser(shrewd_ptr<ProxyExtension> extension,
+		shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyBrowser> active_browser,
+		int index,
+		const char* url,
+		bool active,
+		shrewd_ptr<ProxyWindowInfo>& windowInfo) EPL_EVENT { return false;}
+
+	virtual bool CanAccessBrowser(shrewd_ptr<ProxyExtension> extension,
+		shrewd_ptr<ProxyBrowser> browser,
+		bool include_incognito,
+		shrewd_ptr<ProxyBrowser> target_browser) EPL_EVENT { return false;}
+
+	virtual void GetActiveBrowser(
+		shrewd_ptr<ProxyExtension> extension,
+		shrewd_ptr<ProxyBrowser> browser,
+		bool include_incognito,
+		shrewd_ptr<ProxyActiveBrowserCallback> callback) EPL_EVENT { return ; }
+
+	virtual bool GetExtensionResource(
+		shrewd_ptr<ProxyExtension> extension,
+		shrewd_ptr<ProxyBrowser> browser,
+		const char* file,
+		shrewd_ptr<ProxyGetExtensionResourceCallback> callback) EPL_EVENT { return false; }
+
+public:
+	virtual bool OnQuery(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame,
+		__int64 query_id,
+		const char* request,
+		bool persistent,
+		shrewd_ptr<ProxyQueryCallback> callback) EPL_EVENT { return false; }
+
+	virtual void OnQueryCanceled(shrewd_ptr<ProxyBrowser> browser,
+		shrewd_ptr<ProxyFrame> frame,
+		__int64 query_id) EPL_EVENT { return ; }
+
 
 public:
 	INTERNAL_DEFINITION(ProxyClient);
@@ -281,9 +335,7 @@ public:
 	bool CreateBrowser(
 		shrewd_ptr<ProxyWindowInfo> winInfo,
 		const char* url,
-		shrewd_ptr<ProxyBrowserSettings> settings,
-		shrewd_ptr<ProxyRequestContext> request_context
-	);
+		shrewd_ptr<ProxyBrowserSettings> settings, bool incognito_mode);
 
 	/*--cef()--*/
 	void CloseBrowser(shrewd_ptr<ProxyBrowser> browser, bool force_close);
@@ -295,12 +347,21 @@ public:
 	int GetBrowserCount();
 
 	/*--cef()--*/
-	shrewd_ptr<ProxyBrowser> GetBrowserWithIndex(int index);
-
-	/*--cef()--*/
 	shrewd_ptr<ProxyBrowser> GetBrowserWithHandle(unsigned int handle);
 
-	
+	/*--cef()--*/
+	shrewd_ptr<ProxyBrowser> GetBrowserWithIndex(unsigned int index);
+
+	///
+	// 获取索引
+	///
+	int GetIndex(shrewd_ptr<ProxyBrowser> browser);
+
+	///
+	// 取同源浏览器
+	///
+	shrewd_ptr<ProxyBrowser>** GetSameOriginBrowser(shrewd_ptr<ProxyBrowser> browser);
+
 private:
 	void* _rawptr;
 };

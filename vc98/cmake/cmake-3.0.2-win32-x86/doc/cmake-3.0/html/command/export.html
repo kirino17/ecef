@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>export &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="file" href="file.html" />
+    <link rel="prev" title="execute_process" href="execute_process.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="file.html" title="file"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="execute_process.html" title="execute_process"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="export">
+<span id="command:export"></span><h1>export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h1>
+<p>Export targets from the build tree for use by outside projects.</p>
+<div class="highlight-python"><pre>export(EXPORT &lt;export-name&gt; [NAMESPACE &lt;namespace&gt;] [FILE &lt;filename&gt;])</pre>
+</div>
+<p>Create a file &lt;filename&gt; that may be included by outside projects to
+import targets from the current project&#8217;s build tree.  This is useful
+during cross-compiling to build utility executables that can run on
+the host platform in one project and then import them into another
+project being compiled for the target platform.  If the NAMESPACE
+option is given the &lt;namespace&gt; string will be prepended to all target
+names written to the file.</p>
+<p>Target installations are associated with the export &lt;export-name&gt;
+using the <tt class="docutils literal"><span class="pre">EXPORT</span></tt> option of the <a class="reference internal" href="install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(TARGETS)</span></tt></a> command.</p>
+<p>The file created by this command is specific to the build tree and
+should never be installed.  See the install(EXPORT) command to export
+targets from an installation tree.</p>
+<p>The properties set on the generated IMPORTED targets will have the
+same values as the final values of the input TARGETS.</p>
+<div class="highlight-python"><pre>export(TARGETS [target1 [target2 [...]]] [NAMESPACE &lt;namespace&gt;]
+       [APPEND] FILE &lt;filename&gt; [EXPORT_LINK_INTERFACE_LIBRARIES])</pre>
+</div>
+<p>This signature is similar to the <tt class="docutils literal"><span class="pre">EXPORT</span></tt> signature, but targets are listed
+explicitly rather than specified as an export-name.  If the APPEND option is
+given the generated code will be appended to the file instead of overwriting it.
+The EXPORT_LINK_INTERFACE_LIBRARIES keyword, if present, causes the
+contents of the properties matching
+<tt class="docutils literal"><span class="pre">(IMPORTED_)?LINK_INTERFACE_LIBRARIES(_&lt;CONFIG&gt;)?</span></tt> to be exported, when
+policy CMP0022 is NEW.  If a library target is included in the export
+but a target to which it links is not included the behavior is
+unspecified.</p>
+<div class="highlight-python"><pre>export(PACKAGE &lt;name&gt;)</pre>
+</div>
+<p>Store the current build directory in the CMake user package registry
+for package &lt;name&gt;.  The find_package command may consider the
+directory while searching for package &lt;name&gt;.  This helps dependent
+projects find and use a package from the current project&#8217;s build tree
+without help from the user.  Note that the entry in the package
+registry that this command creates works only in conjunction with a
+package configuration file (&lt;name&gt;Config.cmake) that works with the
+build tree.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="execute_process.html"
+                        title="previous chapter">execute_process</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="file.html"
+                        title="next chapter">file</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/export.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="file.html" title="file"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="execute_process.html" title="execute_process"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

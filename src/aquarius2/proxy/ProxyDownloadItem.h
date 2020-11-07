@@ -1,6 +1,7 @@
 #pragma once
 #include "../def/def.h"
-#include "ProxyTime.h"
+
+#define INTERNAL_METHOD
 
 class AQUADLL ProxyDownloadItem : public refcounted {
 public:
@@ -62,13 +63,13 @@ public:
     // Returns the time that the download started.
     ///
     /*--cef()--*/
-    shrewd_ptr<ProxyTime> GetStartTime();
+    double GetStartTime();
 
     ///
     // Returns the time that the download ended.
     ///
     /*--cef()--*/
-    shrewd_ptr<ProxyTime> GetEndTime();
+    double GetEndTime();
 
     ///
     // Returns the full path to the downloaded or downloading file.
@@ -113,9 +114,57 @@ public:
     char* GetMimeType();
 
 public:
+
+    ///
+    // Call to continue the download. Set |download_path| to the full file path
+    // for the download including the file name or leave blank to use the
+    // suggested name and the default temp directory. Set |show_dialog| to true
+    // if you do wish to show the default "Save As" dialog.
+    ///
+    /*--cef(capi_name=cont,optional_param=download_path)--*/
+    void SaveTo(const char* download_path, bool show_dialog);
+
+public:
+    ///
+    // Call to cancel the download.
+    ///
+    /*--cef()--*/
+    void CancelDownload();
+
+    ///
+    // Call to pause the download.
+    ///
+    /*--cef()--*/
+    void PauseDownload();
+
+    ///
+    // Call to resume the download.
+    ///
+    /*--cef()--*/
+    void ResumeDownload();
+
+
+public:
+    ///
+    // 保存下载回调
+    ///
+    /*--cef()--*/
+    void SetBeforeDownloadCallback(void* ptr) INTERNAL_METHOD;
+
+    ///
+    // 保存下载回调
+    ///
+    /*--cef()--*/
+    void SetDownloadCallback(void* ptr) INTERNAL_METHOD;
+
+
+
+public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyDownloadItem);
 	AQUA_DECL_PUBLIC_ORIGIN;
 
 private:
 	void* _rawptr;
+    void* _beforeDownloadCallback;
+    void* _downloadCallback;
 };

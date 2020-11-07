@@ -1,15 +1,9 @@
 #include "ProxyPostDataElement.h"
 #include "include/cef_request.h"
+#include <atlconv.h>
 
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyPostDataElement,CefPostDataElement);
 
-///
-// Create a new CefPostDataElement object.
-///
-/*--cef()--*/
-shrewd_ptr<ProxyPostDataElement> ProxyPostDataElement::Create() {
-	return new ProxyPostDataElement(CefPostDataElement::Create());
-}
 
 bool ProxyPostDataElement::IsValid() {
 	return _rawptr != nullptr;
@@ -42,7 +36,8 @@ void ProxyPostDataElement::SetToFile(const char* fileName) {
 	if (!fileName) {
 		return ;
 	}
-	FORWARD(CefPostDataElement)->SetToFile(fileName);
+	USES_CONVERSION;
+	FORWARD(CefPostDataElement)->SetToFile(A2W(fileName));
 }
 
 ///
@@ -93,10 +88,12 @@ size_t ProxyPostDataElement::GetBytesCount() {
 // actually read.
 ///
 /*--cef()--*/
-size_t ProxyPostDataElement::GetBytes(size_t size, unsigned char* bytes) {
-	ASSERTQ(0);
-	if (size == 0 || bytes==NULL) {
-		return 0;
-	}
-	return FORWARD(CefPostDataElement)->GetBytes(size, &bytes[8]);
+unsigned char* ProxyPostDataElement::GetBytes() {
+	ASSERTQ(NULL);
+	size_t count = FORWARD(CefPostDataElement)->GetBytesCount();
+	unsigned char* buffer = (unsigned char*)NewBuffer(count + 8);
+	*((int*)&buffer[0]) = 1;
+	*((int*)&buffer[4]) = count;
+	FORWARD(CefPostDataElement)->GetBytes(count, &buffer[8]);
+	return buffer;
 }

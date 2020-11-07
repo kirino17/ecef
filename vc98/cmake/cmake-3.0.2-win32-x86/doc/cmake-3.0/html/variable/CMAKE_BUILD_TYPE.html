@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMAKE_BUILD_TYPE &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-variables(7)" href="../manual/cmake-variables.7.html" />
+    <link rel="next" title="CMAKE_COLOR_MAKEFILE" href="CMAKE_COLOR_MAKEFILE.html" />
+    <link rel="prev" title="CMAKE_BACKWARDS_COMPATIBILITY" href="CMAKE_BACKWARDS_COMPATIBILITY.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMAKE_COLOR_MAKEFILE.html" title="CMAKE_COLOR_MAKEFILE"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_BACKWARDS_COMPATIBILITY.html" title="CMAKE_BACKWARDS_COMPATIBILITY"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" accesskey="U">cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmake-build-type">
+<span id="variable:CMAKE_BUILD_TYPE"></span><h1>CMAKE_BUILD_TYPE<a class="headerlink" href="#cmake-build-type" title="Permalink to this headline">¶</a></h1>
+<p>Specifies the build type on single-configuration generators.</p>
+<p>This statically specifies what build type (configuration) will be
+built in this build tree.  Possible values are empty, Debug, Release,
+RelWithDebInfo and MinSizeRel.  This variable is only meaningful to
+single-configuration generators (such as make and Ninja) i.e.  those
+which choose a single configuration when CMake runs to generate a
+build tree as opposed to multi-configuration generators which offer
+selection of the build configuration within the generated build
+environment.  There are many per-config properties and variables
+(usually following clean SOME_VAR_&lt;CONFIG&gt; order conventions), such as
+CMAKE_C_FLAGS_&lt;CONFIG&gt;, specified as uppercase:
+CMAKE_C_FLAGS_[DEBUG|RELEASE|RELWITHDEBINFO|MINSIZEREL].  For example,
+in a build tree configured to build type Debug, CMake will see to
+having CMAKE_C_FLAGS_DEBUG settings get added to the CMAKE_C_FLAGS
+settings.  See also CMAKE_CONFIGURATION_TYPES.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMAKE_BACKWARDS_COMPATIBILITY.html"
+                        title="previous chapter">CMAKE_BACKWARDS_COMPATIBILITY</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMAKE_COLOR_MAKEFILE.html"
+                        title="next chapter">CMAKE_COLOR_MAKEFILE</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/variable/CMAKE_BUILD_TYPE.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMAKE_COLOR_MAKEFILE.html" title="CMAKE_COLOR_MAKEFILE"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_BACKWARDS_COMPATIBILITY.html" title="CMAKE_BACKWARDS_COMPATIBILITY"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" >cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

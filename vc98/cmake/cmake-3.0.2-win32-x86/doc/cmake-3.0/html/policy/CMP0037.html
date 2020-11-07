@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMP0037 &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-policies(7)" href="../manual/cmake-policies.7.html" />
+    <link rel="next" title="CMP0038" href="CMP0038.html" />
+    <link rel="prev" title="CMP0036" href="CMP0036.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMP0038.html" title="CMP0038"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMP0036.html" title="CMP0036"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-policies.7.html" accesskey="U">cmake-policies(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmp0037">
+<span id="policy:CMP0037"></span><h1>CMP0037<a class="headerlink" href="#cmp0037" title="Permalink to this headline">¶</a></h1>
+<p>Target names should not be reserved and should match a validity pattern.</p>
+<p>CMake 2.8.12 and lower allowed creating targets using <a class="reference internal" href="../command/add_library.html#command:add_library" title="add_library"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_library()</span></tt></a>,
+<a class="reference internal" href="../command/add_executable.html#command:add_executable" title="add_executable"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_executable()</span></tt></a> and <a class="reference internal" href="../command/add_custom_target.html#command:add_custom_target" title="add_custom_target"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_custom_target()</span></tt></a> with unrestricted
+choice for the target name.  Newer cmake features such
+as <a class="reference internal" href="../manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7)" title="cmake-generator-expressions(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-generator-expressions(7)</span></tt></a> and some
+diagnostics expect target names to match a restricted pattern.</p>
+<p>Target names may contain upper and lower case letters, numbers, the underscore
+character (_), dot(.), plus(+) and minus(-).  As a special case, ALIAS
+targets and IMPORTED targets may contain two consequtive colons.</p>
+<p>Target names reserved by one or more CMake generators are not allowed.
+Among others these include &#8220;all&#8221;, &#8220;help&#8221; and &#8220;test&#8221;.</p>
+<p>The OLD behavior for this policy is to allow creating targets with
+reserved names or which do not match the validity pattern.
+The NEW behavior for this policy is to report an error
+if an add_* command is used with an invalid target name.</p>
+<p>This policy was introduced in CMake version 3.0.  CMake version
+3.0.2 warns when the policy is not set and uses OLD behavior.  Use
+the cmake_policy command to set it to OLD or NEW explicitly.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMP0036.html"
+                        title="previous chapter">CMP0036</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMP0038.html"
+                        title="next chapter">CMP0038</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/policy/CMP0037.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMP0038.html" title="CMP0038"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMP0036.html" title="CMP0036"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-policies.7.html" >cmake-policies(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

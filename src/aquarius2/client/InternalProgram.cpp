@@ -4,6 +4,7 @@
 #include "include/cef_v8.h"
 #include "InternalV8Interceptor.h"
 #include "../proxy/ProxyListValue.h"
+#include <atlconv.h>
 
 namespace Local {
 	CefRefPtr<InternalProgram> shareInstance = nullptr;
@@ -30,12 +31,19 @@ CefRefPtr<InternalProgram> InternalProgram::GetShareInatance() {
 void InternalProgram::OnBeforeCommandLineProcessing(
 	const CefString& process_type,
 	CefRefPtr<CefCommandLine> command_line) {
-	if (process_type.empty()) {
-		if (_proxyClient) {
-			_proxyClient->OnBeforeCommandLineProcessing(
-				new ProxyCommandLine(command_line)
-			);
-		}
+	command_line->AppendSwitch(L"--disable-site-isolation-trials");
+	const char* processType = NULL;
+	USES_CONVERSION;
+
+	if (!process_type.empty()) {
+		processType = W2A(process_type.c_str());
+	}
+
+	if (_proxyClient) {
+		_proxyClient->OnBeforeCommandLineProcessing(
+			processType,
+			new ProxyCommandLine(command_line)
+		);
 	}
 }
 
@@ -47,7 +55,9 @@ void InternalProgram::OnContextInitialized() {
 
 void InternalProgram::OnBeforeChildProcessLaunch(
 	CefRefPtr<CefCommandLine> command_line) {
-
+	if (_proxyClient) {
+		_proxyClient->OnBeforeChildProcessLaunch( new ProxyCommandLine(command_line) );
+	}
 }
 
 void InternalProgram::OnRenderProcessThreadCreated(
@@ -57,6 +67,7 @@ void InternalProgram::OnRenderProcessThreadCreated(
 			new ProxyListValue(extra_info)
 		);
 	}
+	
 }
 
 void InternalProgram::SetClient(shrewd_ptr<ProxyClient> client) {

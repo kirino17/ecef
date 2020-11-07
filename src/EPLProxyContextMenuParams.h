@@ -6,9 +6,9 @@
 
 #define DECL_DATA_TYPE_ProxyContextMenuParams \
 	{ /*8*/ \
-		/*m_szName*/		 _WT("Chromium菜单上下文信息"), \
+		/*m_szName*/		 _WT("水星菜单信息"), \
 		/*m_szEgName*/		 _WT("ProxyContextMenuParams"), \
-		/*m_szExplain*/		 _WT("提供有关上下文菜单状态的信息。"), \
+		/*m_szExplain*/		 _WT("与菜单相关的上下文信息。"), \
 		/*m_nCmdCount*/		 24, \
 		/*m_pnCmdsIndex*/		 s_nProxyContextMenuParamsElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
@@ -74,9 +74,9 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("GetXCoord"),\
+		/*ccname*/	_WT("取坐标X"),\
 		/*egname*/	_WT("GetXCoord"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回鼠标的X坐标。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -88,9 +88,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*4*/ \
-		/*ccname*/	_WT("GetYCoord"),\
+		/*ccname*/	_WT("取坐标Y"),\
 		/*egname*/	_WT("GetYCoord"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回鼠标的Y坐标。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -102,9 +102,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*5*/ \
-		/*ccname*/	_WT("GetTypeFlags"),\
+		/*ccname*/	_WT("取菜单类型"),\
 		/*egname*/	_WT("GetTypeFlags"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回菜单的类型。定义值为枚举常量: #菜单类型.* 。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -116,9 +116,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*6*/ \
-		/*ccname*/	_WT("GetLinkUrl"),\
+		/*ccname*/	_WT("取URL"),\
 		/*egname*/	_WT("GetLinkUrl"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取链接URL"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -130,9 +130,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*7*/ \
-		/*ccname*/	_WT("GetUnfilteredLinkUrl"),\
+		/*ccname*/	_WT("取原始URL"),\
 		/*egname*/	_WT("GetUnfilteredLinkUrl"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取链接原始URL"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -144,9 +144,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*8*/ \
-		/*ccname*/	_WT("GetSourceUrl"),\
+		/*ccname*/	_WT("取源URL"),\
 		/*egname*/	_WT("GetSourceUrl"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("取链接源URL"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -158,9 +158,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*9*/ \
-		/*ccname*/	_WT("HasImageContents"),\
+		/*ccname*/	_WT("是否为图像"),\
 		/*egname*/	_WT("HasImageContents"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("如果在图像内容上调用了菜单返回真。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_BOOL, \
@@ -172,9 +172,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*10*/ \
-		/*ccname*/	_WT("GetTitleText"),\
+		/*ccname*/	_WT("取标题文本"),\
 		/*egname*/	_WT("GetTitleText"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("返回标题文本或者alt文本。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -186,7 +186,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*11*/ \
-		/*ccname*/	_WT("GetPageUrl"),\
+		/*ccname*/	_WT("取页URL"),\
 		/*egname*/	_WT("GetPageUrl"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -200,7 +200,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*12*/ \
-		/*ccname*/	_WT("GetFrameUrl"),\
+		/*ccname*/	_WT("取框架URL"),\
 		/*egname*/	_WT("GetFrameUrl"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -214,9 +214,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*13*/ \
-		/*ccname*/	_WT("GetFrameCharset"),\
+		/*ccname*/	_WT("取框架字符集"),\
 		/*egname*/	_WT("GetFrameCharset"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("charset"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -228,9 +228,9 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*14*/ \
-		/*ccname*/	_WT("GetMediaType"),\
+		/*ccname*/	_WT("取多媒体类型"),\
 		/*egname*/	_WT("GetMediaType"), \
-		/*explain*/	_WT(""), \
+		/*explain*/	_WT("定义值为枚举常量: #多媒体类型.* 。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -242,7 +242,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*15*/ \
-		/*ccname*/	_WT("GetMediaStateFlags"),\
+		/*ccname*/	_WT("取多媒体状态"),\
 		/*egname*/	_WT("GetMediaStateFlags"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -256,7 +256,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*16*/ \
-		/*ccname*/	_WT("GetSelectionText"),\
+		/*ccname*/	_WT("取选区文本"),\
 		/*egname*/	_WT("GetSelectionText"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -270,7 +270,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*17*/ \
-		/*ccname*/	_WT("GetMisspelledWord"),\
+		/*ccname*/	_WT("取拼写错误单词"),\
 		/*egname*/	_WT("GetMisspelledWord"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -284,7 +284,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*18*/ \
-		/*ccname*/	_WT("GetDictionarySuggestions"),\
+		/*ccname*/	_WT("取建议拼写单词"),\
 		/*egname*/	_WT("GetDictionarySuggestions"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -298,7 +298,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*19*/ \
-		/*ccname*/	_WT("IsEditable"),\
+		/*ccname*/	_WT("是否可编辑"),\
 		/*egname*/	_WT("IsEditable"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -312,7 +312,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*20*/ \
-		/*ccname*/	_WT("IsSpellCheckEnabled"),\
+		/*ccname*/	_WT("是否启用拼写检查"),\
 		/*egname*/	_WT("IsSpellCheckEnabled"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -326,7 +326,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*21*/ \
-		/*ccname*/	_WT("GetEditStateFlags"),\
+		/*ccname*/	_WT("取编辑状态"),\
 		/*egname*/	_WT("GetEditStateFlags"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -340,7 +340,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*22*/ \
-		/*ccname*/	_WT("IsCustomMenu"),\
+		/*ccname*/	_WT("是否为自定义菜单"),\
 		/*egname*/	_WT("IsCustomMenu"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -354,7 +354,7 @@
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
 	{ /*23*/ \
-		/*ccname*/	_WT("IsPepperMenu"),\
+		/*ccname*/	_WT("是否为插件菜单"),\
 		/*egname*/	_WT("IsPepperMenu"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \

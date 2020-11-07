@@ -9,6 +9,8 @@
 #include "../client/InternalCalculationVisitor.h"
 #include "include/cef_app.h"
 #include "../def/internalDef.h"
+#include "../client/InternalRequestClient.h"
+#include "../client/InternalDOMDocument.h"
 
 ProxyFrame::ProxyFrame(void* ptr):_rawptr(ptr)
 {
@@ -152,6 +154,17 @@ char* ProxyFrame::GetText() {
 }
 
 ///
+// Load the specified |url|.
+///
+/*--cef()--*/
+void ProxyFrame::LoadURL(const char* url) {
+    ASSERTN();
+    if (!url) return;
+    USES_CONVERSION;
+    FORWARD(CefFrame)->LoadURL(A2W(url));
+}
+
+///
 // Load the request represented by the |request| object.
 //
 // WARNING: This method will fail with "bad IPC message" reason
@@ -161,21 +174,10 @@ char* ProxyFrame::GetText() {
 /*--cef()--*/
 void ProxyFrame::LoadRequest(shrewd_ptr<ProxyRequest> request) {
     ASSERTN();
-    if (!request || !ORIGIN(CefRequest, request)) {
+    if (!request  || !ORIGIN(CefRequest, request)) {
         return;
     }
     FORWARD(CefFrame)->LoadRequest(ORIGIN(CefRequest, request));
-}
-
-///
-// Load the specified |url|.
-///
-/*--cef()--*/
-void ProxyFrame::LoadURL(const char* url) {
-    ASSERTN();
-    if (!url) return;
-    USES_CONVERSION;
-    FORWARD(CefFrame)->LoadURL(A2W(url));
 }
 
 ///
@@ -252,13 +254,23 @@ shrewd_ptr<ProxyValue> ProxyFrame::ExecuteJavaScriptEx(const char* code,
     CefRefPtr<CefValue> result = nullptr;
     CefRefPtr<CefValue> exp = nullptr;
 
-    arguments->SetSize(5);
-    arguments->SetInt(0, self->GetIdentifier());
-    arguments->SetInt(1, (int)calculation.get());
-    arguments->SetString(2, scriptCode);
-    arguments->SetString(3, scriptUrl);
-    arguments->SetInt(4, start_line);
-    
+    union {
+        struct {
+            int left;
+            int right;
+        };
+        int64 full;
+    } identity ;
+    identity.full = self->GetIdentifier();
+
+    arguments->SetSize(6);
+    arguments->SetInt(0, identity.left);
+    arguments->SetInt(1, identity.right);
+    arguments->SetInt(2, (int)calculation.get());
+    arguments->SetString(3, scriptCode);
+    arguments->SetString(4, scriptUrl);
+    arguments->SetInt(5, start_line);
+
     self->SendProcessMessage(PID_RENDERER, message);
 
     calculation->AddRef();
@@ -383,14 +395,55 @@ __int64 ProxyFrame::GetIdentifier() {
 // The |request| object will be marked as read-only after calling this method.
 ///
 /*--cef()--*/
-//shrewd_ptr<ProxyURLRequest> ProxyFrame::CreateURLRequest(
-//    shrewd_ptr<ProxyRequest> request,
-//    shrewd_ptr<ProxyURLRequestClient> client) {
-//    ASSERTQ(NULL);
-//    if (!request && !client) {
-//        return NULL;
-//    }
-//    if (!ORIGIN(CefRequest, freqest) && !ORIGIN(ProxyURLRequestClient, client)) {
-//        return NULL;
-//    }
-//}
+shrewd_ptr<ProxyURLRequest> ProxyFrame::CreateURLRequest(shrewd_ptr<ProxyRequest> request, const char* proxy_username, const char* proxy_password) {
+    ASSERTQ(NULL);
+    if (!request || !ORIGIN(CefRequest, request)) {
+        return nullptr;
+    }
+    CefRefPtr<InternalRequestClient> client = new InternalRequestClient(FORWARD(CefFrame));
+    CefRefPtr<CefRequestContext> context = nullptr;
+    CefRefPtr<CefURLRequest> url = nullptr;
+    CefRefPtr<CefWaitableEvent> waitable = nullptr;
+
+    client->SetAuthInfo(proxy_username, proxy_password);
+
+    waitable = client->SendRequest(ORIGIN(CefRequest, request), context);
+    WaitAwaking(waitable);
+    return new ProxyURLRequest(client);
+}
+
+///
+// Visit the DOM document. This method can only be called from the render
+// process.
+///
+/*--cef()--*/
+shrewd_ptr<ProxyDOMDocument> ProxyFrame::VisitDOM() {
+    ASSERTQ(NULL);
+    CefRefPtr<InternalDOMDocument> document = InternalDOMDocument::GetDocument(FORWARD(CefFrame));
+    if (!document) {
+        return NULL;
+    }
+    return new ProxyDOMDocument(document);
+}
+
+void ProxyFrame::SynthesizePinchGesture(float x, float y, float scale_factor, float relative_speed, float gesture_source_type) {
+    ASSERTN();
+    FORWARD(CefFrame)->SynthesizePinchGesture(x,y,scale_factor,relative_speed,gesture_source_type);
+}
+
+void ProxyFrame::SynthesizeScrollGesture(float x, float y, float x_distance, float y_distance, float x_overscroll, float y_overscroll, float scale_factor, bool prevent_fling, int speed, int gesture_source_type) {
+    ASSERTN();
+    FORWARD(CefFrame)->SynthesizeScrollGesture(x, y, x_distance, y_distance,
+        x_overscroll, y_overscroll, scale_factor,
+        prevent_fling, speed, gesture_source_type);
+}
+
+void ProxyFrame::SynthesizeTapGesture(float x, float y, float scale_factor, int duration, int tap_count, int gesture_source_type) {
+    ASSERTN();
+    FORWARD(CefFrame)->SynthesizeTapGesture(x,y,scale_factor,duration,tap_count,gesture_source_type);
+}
+
+void ProxyFrame::SynthesizeDragGesture(float x, float y, float x_distance, float y_distance, float scale_factor, int speed, int gesture_source_type) {
+    ASSERTN();
+    FORWARD(CefFrame)->SynthesizeDragGesture(x, y, x_distance,y_distance,scale_factor,speed,gesture_source_type);
+}

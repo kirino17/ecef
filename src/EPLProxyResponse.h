@@ -5,11 +5,11 @@
 
 
 #define DECL_DATA_TYPE_ProxyResponse \
-	{ /*28*/ \
-		/*m_szName*/		 _WT("Chromium响应"), \
+	{ /*25*/ \
+		/*m_szName*/		 _WT("水星响应"), \
 		/*m_szEgName*/		 _WT("ProxyResponse"), \
 		/*m_szExplain*/		 _WT("用于表示 Web 响应的类。"), \
-		/*m_nCmdCount*/		 22, \
+		/*m_nCmdCount*/		 21, \
 		/*m_pnCmdsIndex*/		 s_nProxyResponseElementCmdIndex, \
 		/*m_dwState*/		 NULL, \
 		/*m_dwUnitBmpID*/		 NULL, \
@@ -33,7 +33,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetStatus ** 1 **/ \
 		/*name*/	 _WT("状态码"), \
@@ -42,7 +42,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetStatusText ** 2 **/ \
 		/*name*/	 _WT("状态文本"), \
@@ -51,7 +51,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetMimeType ** 3 **/ \
 		/*name*/	 _WT("MIME类型"), \
@@ -60,7 +60,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetCharset ** 4 **/ \
 		/*name*/	 _WT("字符集"), \
@@ -69,7 +69,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::GetHeaderByName ** 5 **/ \
 		/*name*/	 _WT("标头名称"), \
@@ -78,7 +78,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetHeaderByName ** 6 **/ \
 		/*name*/	 _WT("标头名称"), \
@@ -87,7 +87,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetHeaderByName ** 7 **/ \
 		/*name*/	 _WT("值"), \
@@ -96,7 +96,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetHeaderByName ** 8 **/ \
 		/*name*/	 _WT("覆盖写入"), \
@@ -105,7 +105,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_BOOL, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetHeaderMap ** 9 **/ \
 		/*name*/	 _WT("标头列表字符串"), \
@@ -114,7 +114,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyResponse::SetURL ** 10 **/ \
 		/*name*/	 _WT("url"), \
@@ -123,7 +123,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 
@@ -173,20 +173,6 @@
 		/*arg lp*/	NULL, \
 	},\
 	{ /*3*/ \
-		/*ccname*/	_WT("创建对象"),\
-		/*egname*/	_WT("Create"), \
-		/*explain*/	_WT("创建对象实例, 非静态对象, 需要调用此函数后才能够有效访问。"), \
-		/*category*/	-1, \
-		/*state*/	NULL, \
-		/*ret*/	MAKELONG(29,0),  /*shrewd_ptr<ProxyResponse>*/ \
-		/*reserved*/	0, \
-		/*level*/	LVL_SIMPLE, \
-		/*bmp inx*/	0, \
-		/*bmp num*/	0, \
-		/*argcount*/	0, \
-		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
-	},\
-	{ /*4*/ \
 		/*ccname*/	_WT("是否有效"),\
 		/*egname*/	_WT("IsValid"), \
 		/*explain*/	_WT("此函数检查本类中的对象实例是否有效。"), \
@@ -200,7 +186,7 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*5*/ \
+	{ /*4*/ \
 		/*ccname*/	_WT("是否为只读"),\
 		/*egname*/	_WT("IsReadOnly"), \
 		/*explain*/	_WT(""), \
@@ -214,7 +200,7 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*6*/ \
+	{ /*5*/ \
 		/*ccname*/	_WT("取会话错误"),\
 		/*egname*/	_WT("GetError"), \
 		/*explain*/	_WT(""), \
@@ -228,8 +214,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*7*/ \
-		/*ccname*/	_WT("设置会话错误"),\
+	{ /*6*/ \
+		/*ccname*/	_WT("置会话错误"),\
 		/*egname*/	_WT("SetError"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -242,10 +228,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+0] \
 	},\
-	{ /*8*/ \
+	{ /*7*/ \
 		/*ccname*/	_WT("取状态代码"),\
 		/*egname*/	_WT("GetStatus"), \
-		/*explain*/	_WT("获取响应状态码"), \
+		/*explain*/	_WT("取响应状态码"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_INT, \
@@ -256,8 +242,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*9*/ \
-		/*ccname*/	_WT("设置状态代码"),\
+	{ /*8*/ \
+		/*ccname*/	_WT("置状态代码"),\
 		/*egname*/	_WT("SetStatus"), \
 		/*explain*/	_WT("设置响应状态码"), \
 		/*category*/	-1, \
@@ -270,10 +256,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+1] \
 	},\
-	{ /*10*/ \
+	{ /*9*/ \
 		/*ccname*/	_WT("取状态文本"),\
 		/*egname*/	_WT("GetStatusText"), \
-		/*explain*/	_WT("获取响应状态文本"), \
+		/*explain*/	_WT("取响应状态文本"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -284,8 +270,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*11*/ \
-		/*ccname*/	_WT("设置状态文本"),\
+	{ /*10*/ \
+		/*ccname*/	_WT("置状态文本"),\
 		/*egname*/	_WT("SetStatusText"), \
 		/*explain*/	_WT("设置响应状态文本"), \
 		/*category*/	-1, \
@@ -298,10 +284,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+2] \
 	},\
-	{ /*12*/ \
+	{ /*11*/ \
 		/*ccname*/	_WT("取MIME类型"),\
 		/*egname*/	_WT("GetMimeType"), \
-		/*explain*/	_WT("获取响应MIME类型。"), \
+		/*explain*/	_WT("取响应MIME类型。"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -312,8 +298,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*13*/ \
-		/*ccname*/	_WT("设置MIME类型"),\
+	{ /*12*/ \
+		/*ccname*/	_WT("置MIME类型"),\
 		/*egname*/	_WT("SetMimeType"), \
 		/*explain*/	_WT("设置响应MIME类型"), \
 		/*category*/	-1, \
@@ -326,10 +312,10 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+3] \
 	},\
-	{ /*14*/ \
+	{ /*13*/ \
 		/*ccname*/	_WT("取字符集"),\
 		/*egname*/	_WT("GetCharset"), \
-		/*explain*/	_WT("获取响应字符集"), \
+		/*explain*/	_WT("取响应字符集"), \
 		/*category*/	-1, \
 		/*state*/	NULL, \
 		/*ret*/	SDT_TEXT, \
@@ -340,8 +326,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*15*/ \
-		/*ccname*/	_WT("设置响应字符集"),\
+	{ /*14*/ \
+		/*ccname*/	_WT("置响应字符集"),\
 		/*egname*/	_WT("SetCharset"), \
 		/*explain*/	_WT(""), \
 		/*category*/	-1, \
@@ -354,7 +340,7 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+4] \
 	},\
-	{ /*16*/ \
+	{ /*15*/ \
 		/*ccname*/	_WT("取标头"),\
 		/*egname*/	_WT("GetHeaderByName"), \
 		/*explain*/	_WT("取指定HTTP标头值"), \
@@ -368,8 +354,8 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+5] \
 	},\
-	{ /*17*/ \
-		/*ccname*/	_WT("设置标头"),\
+	{ /*16*/ \
+		/*ccname*/	_WT("置标头"),\
 		/*egname*/	_WT("SetHeaderByName"), \
 		/*explain*/	_WT("设置指定HTTP标头值"), \
 		/*category*/	-1, \
@@ -382,10 +368,10 @@
 		/*argcount*/	3, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+6] \
 	},\
-	{ /*18*/ \
+	{ /*17*/ \
 		/*ccname*/	_WT("取标头列表"),\
 		/*egname*/	_WT("GetHeaderMap"), \
-		/*explain*/	_WT("获取该会话响应的HTTP标头列表"), \
+		/*explain*/	_WT("取该会话响应的HTTP标头列表"), \
 		/*category*/	-1, \
 		/*state*/	CT_RETRUN_ARY_TYPE_DATA, \
 		/*ret*/	SDT_TEXT, \
@@ -396,8 +382,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*19*/ \
-		/*ccname*/	_WT("设置标头列表"),\
+	{ /*18*/ \
+		/*ccname*/	_WT("置标头列表"),\
 		/*egname*/	_WT("SetHeaderMap"), \
 		/*explain*/	_WT("设置该会话响应的HTTP标头列表。"), \
 		/*category*/	-1, \
@@ -410,7 +396,7 @@
 		/*argcount*/	1, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+9] \
 	},\
-	{ /*20*/ \
+	{ /*19*/ \
 		/*ccname*/	_WT("取URL"),\
 		/*egname*/	_WT("GetURL"), \
 		/*explain*/	_WT("取该会话响应的URL。"), \
@@ -424,8 +410,8 @@
 		/*argcount*/	0, \
 		/*arg lp*/	&s_ArgInfo[BeginIndex+10] \
 	},\
-	{ /*21*/ \
-		/*ccname*/	_WT("设置URL"),\
+	{ /*20*/ \
+		/*ccname*/	_WT("置URL"),\
 		/*egname*/	_WT("SetURL"), \
 		/*explain*/	_WT("设置该会话响应的URL。"), \
 		/*category*/	-1, \
@@ -446,7 +432,6 @@
 	EDITIONS("ProxyResponse_Constructor"),\
 	EDITIONS("ProxyResponse_Destructor"),\
 	EDITIONS("ProxyResponse_CopyConstructor"),\
-	EDITIONS("ProxyResponse_Create"),\
 	EDITIONS("ProxyResponse_IsValid"),\
 	EDITIONS("ProxyResponse_IsReadOnly"),\
 	EDITIONS("ProxyResponse_GetError"),\
@@ -473,7 +458,6 @@
 	EDITIONF(ProxyResponse_Constructor),\
 	EDITIONF(ProxyResponse_Destructor),\
 	EDITIONF(ProxyResponse_CopyConstructor),\
-	EDITIONF(ProxyResponse_Create),\
 	EDITIONF(ProxyResponse_IsValid),\
 	EDITIONF(ProxyResponse_IsReadOnly),\
 	EDITIONF(ProxyResponse_GetError),\
@@ -502,8 +486,6 @@ extern "C"
 void EDITIONF(ProxyResponse_Destructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyResponse_CopyConstructor)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-extern "C"
-void EDITIONF(ProxyResponse_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"
 void EDITIONF(ProxyResponse_IsValid) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
 extern "C"

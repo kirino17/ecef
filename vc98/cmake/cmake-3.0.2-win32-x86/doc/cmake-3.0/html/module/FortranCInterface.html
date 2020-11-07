@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FortranCInterface &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="GenerateExportHeader" href="GenerateExportHeader.html" />
+    <link rel="prev" title="FindZLIB" href="FindZLIB.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GenerateExportHeader.html" title="GenerateExportHeader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindZLIB.html" title="FindZLIB"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="fortrancinterface">
+<span id="module:FortranCInterface"></span><h1>FortranCInterface<a class="headerlink" href="#fortrancinterface" title="Permalink to this headline">¶</a></h1>
+<p>Fortran/C Interface Detection</p>
+<p>This module automatically detects the API by which C and Fortran
+languages interact.  Variables indicate if the mangling is found:</p>
+<div class="highlight-python"><pre>FortranCInterface_GLOBAL_FOUND = Global subroutines and functions
+FortranCInterface_MODULE_FOUND = Module subroutines and functions
+                                 (declared by "MODULE PROCEDURE")</pre>
+</div>
+<p>A function is provided to generate a C header file containing macros
+to mangle symbol names:</p>
+<div class="highlight-python"><pre>FortranCInterface_HEADER(&lt;file&gt;
+                         [MACRO_NAMESPACE &lt;macro-ns&gt;]
+                         [SYMBOL_NAMESPACE &lt;ns&gt;]
+                         [SYMBOLS [&lt;module&gt;:]&lt;function&gt; ...])</pre>
+</div>
+<p>It generates in &lt;file&gt; definitions of the following macros:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#define FortranCInterface_GLOBAL (name,NAME) ...</span>
+<span class="c">#define FortranCInterface_GLOBAL_(name,NAME) ...</span>
+<span class="c">#define FortranCInterface_MODULE (mod,name, MOD,NAME) ...</span>
+<span class="c">#define FortranCInterface_MODULE_(mod,name, MOD,NAME) ...</span>
+</pre></div>
+</div>
+<p>These macros mangle four categories of Fortran symbols, respectively:</p>
+<div class="highlight-python"><pre>- Global symbols without '_': call mysub()
+- Global symbols with '_'   : call my_sub()
+- Module symbols without '_': use mymod; call mysub()
+- Module symbols with '_'   : use mymod; call my_sub()</pre>
+</div>
+<p>If mangling for a category is not known, its macro is left undefined.
+All macros require raw names in both lower case and upper case.  The
+MACRO_NAMESPACE option replaces the default &#8220;<a class="reference internal" href="#fortrancinterface">FortranCInterface</a>&#8221;
+prefix with a given namespace &#8220;&lt;macro-ns&gt;&#8221;.</p>
+<p>The SYMBOLS option lists symbols to mangle automatically with C
+preprocessor definitions:</p>
+<div class="highlight-python"><pre>&lt;function&gt;          ==&gt; #define &lt;ns&gt;&lt;function&gt; ...
+&lt;module&gt;:&lt;function&gt; ==&gt; #define &lt;ns&gt;&lt;module&gt;_&lt;function&gt; ...</pre>
+</div>
+<p>If the mangling for some symbol is not known then no preprocessor
+definition is created, and a warning is displayed.  The
+SYMBOL_NAMESPACE option prefixes all preprocessor definitions
+generated by the SYMBOLS option with a given namespace &#8220;&lt;ns&gt;&#8221;.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><pre>include(FortranCInterface)
+FortranCInterface_HEADER(FC.h MACRO_NAMESPACE "FC_")</pre>
+</div>
+<p>This creates a &#8220;FC.h&#8221; header that defines mangling macros FC_GLOBAL(),
+FC_GLOBAL_(), FC_MODULE(), and FC_MODULE_().</p>
+<p>Example usage:</p>
+<div class="highlight-python"><pre>include(FortranCInterface)
+FortranCInterface_HEADER(FCMangle.h
+                         MACRO_NAMESPACE "FC_"
+                         SYMBOL_NAMESPACE "FC_"
+                         SYMBOLS mysub mymod:my_sub)</pre>
+</div>
+<p>This creates a &#8220;FCMangle.h&#8221; header that defines the same FC_*()
+mangling macros as the previous example plus preprocessor symbols
+FC_mysub and FC_mymod_my_sub.</p>
+<p>Another function is provided to verify that the Fortran and C/C++
+compilers work together:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">FortranCInterface_VERIFY</span><span class="p">([</span><span class="n">CXX</span><span class="p">]</span> <span class="p">[</span><span class="n">QUIET</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>It tests whether a simple test executable using Fortran and C (and C++
+when the CXX option is given) compiles and links successfully.  The
+result is stored in the cache entry FortranCInterface_VERIFIED_C (or
+FortranCInterface_VERIFIED_CXX if CXX is given) as a boolean.  If the
+check fails and QUIET is not given the function terminates with a
+FATAL_ERROR message describing the problem.  The purpose of this check
+is to stop a build early for incompatible compiler combinations.  The
+test is built in the Release configuration.</p>
+<p>FortranCInterface is aware of possible GLOBAL and MODULE manglings for
+many Fortran compilers, but it also provides an interface to specify
+new possible manglings.  Set the variables</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">FortranCInterface_GLOBAL_SYMBOLS</span>
+<span class="n">FortranCInterface_MODULE_SYMBOLS</span>
+</pre></div>
+</div>
+<p>before including FortranCInterface to specify manglings of the symbols
+&#8220;MySub&#8221;, &#8220;My_Sub&#8221;, &#8220;MyModule:MySub&#8221;, and &#8220;My_Module:My_Sub&#8221;.  For
+example, the code:</p>
+<div class="highlight-python"><pre>set(FortranCInterface_GLOBAL_SYMBOLS mysub_ my_sub__ MYSUB_)
+  #                                  ^^^^^  ^^^^^^   ^^^^^
+set(FortranCInterface_MODULE_SYMBOLS
+    __mymodule_MOD_mysub __my_module_MOD_my_sub)
+  #   ^^^^^^^^     ^^^^^   ^^^^^^^^^     ^^^^^^
+include(FortranCInterface)</pre>
+</div>
+<p>tells FortranCInterface to try given GLOBAL and MODULE manglings.
+(The carets point at raw symbol names for clarity in this example but
+are not needed.)</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindZLIB.html"
+                        title="previous chapter">FindZLIB</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="GenerateExportHeader.html"
+                        title="next chapter">GenerateExportHeader</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FortranCInterface.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GenerateExportHeader.html" title="GenerateExportHeader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindZLIB.html" title="FindZLIB"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

@@ -1,14 +1,14 @@
-// header.h: ╠Йв╪о╣мЁ╟Э╨╛нд╪Ч╣д╟Э╨╛нд╪Чё╛
-// ╩Рль╤╗сзоНд©╣д╟Э╨╛нд╪Ч
+О╩©// header.h: Ф═┤Е┤├ГЁ╩Г╩÷Е▄┘Е░╚Ф√┤Д╩╤Г └Е▄┘Е░╚Ф√┤Д╩╤О╪▄
+// Ф┬√Г┴╧Е╝ Д╨▌И║╧Г⌡╝Г └Е▄┘Е░╚Ф√┤Д╩╤
 //
 
 #pragma once
 
 #include "targetver.h"
-#define WIN32_LEAN_AND_MEAN             // ╢с Windows м╥нд╪ЧжпееЁЩ╪╚иый╧сц╣ддзхщ
-// Windows м╥нд╪Ч
+#define WIN32_LEAN_AND_MEAN             // Д╩▌ Windows Е╓╢Ф√┤Д╩╤Д╦╜Ф▌▓И≥╓Ф·│Е╟▒Д╫©Г■╗Г └Е├┘Е╝╧
+// Windows Е╓╢Ф√┤Д╩╤
 #include <windows.h>
-// C ткппй╠м╥нд╪Ч
+// C Х©░Х║▄Ф≈╤Е╓╢Ф√┤Д╩╤
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>

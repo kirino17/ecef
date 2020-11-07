@@ -5,13 +5,7 @@
 
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyValue,CefValue);
 
-///
-// Creates a new object.
-///
-/*--cef()--*/
-shrewd_ptr<ProxyValue> ProxyValue::Create() {
-	return new ProxyValue(CefValue::Create());
-}
+
 
 ///
 // Returns true if the underlying data is valid. This will always be true for

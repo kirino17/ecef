@@ -5,13 +5,6 @@
 
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyResponse,CefResponse);
 
-///
-// Create a new CefResponse object.
-///
-/*--cef()--*/
-shrewd_ptr<ProxyResponse> ProxyResponse::Create() {
-	return new ProxyResponse(CefResponse::Create());
-}
 
 bool ProxyResponse::IsValid() {
     return _rawptr != nullptr;
@@ -163,19 +156,25 @@ void ProxyResponse::SetHeaderByName(const char* name,
 ///
 /*--cef()--*/
 char** ProxyResponse::GetHeaderMap() {
-    ASSERTQ(NULL);
-    CefResponse::HeaderMap headers;
-    FORWARD(CefResponse)->GetHeaderMap(headers);
+    ASSERTARRAY(char);
+    CefRequest::HeaderMap headers;
     std::vector<CefString> items;
+    FORWARD(CefResponse)->GetHeaderMap(headers);
     std::wstringstream strbuf;
     for (auto v : headers) {
         strbuf.clear();
         strbuf.str(L"");
 
-        strbuf << v.first.c_str() << L":" << v.second.c_str();
-
-        const auto& s = strbuf.str();
-        items.emplace_back(s);
+        if (v.first.length() > 0 && v.second.length() > 0) {
+            strbuf << v.first.c_str() << L":" << v.second.c_str();
+            items.emplace_back(strbuf.str());
+        }
+    }
+    if (items.empty()) {
+        DWORD* pointer = (DWORD*)NewBuffer(sizeof(INT) * (2));
+        *(pointer + 0) = 1;
+        *(pointer + 1) = 0;
+        return (char**)pointer;
     }
     return CreateEPLStringArray(items);
 }

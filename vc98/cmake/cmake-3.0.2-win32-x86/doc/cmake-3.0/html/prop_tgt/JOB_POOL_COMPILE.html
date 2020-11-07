@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>JOB_POOL_COMPILE &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-properties(7)" href="../manual/cmake-properties.7.html" />
+    <link rel="next" title="JOB_POOL_LINK" href="JOB_POOL_LINK.html" />
+    <link rel="prev" title="INTERPROCEDURAL_OPTIMIZATION" href="INTERPROCEDURAL_OPTIMIZATION.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="JOB_POOL_LINK.html" title="JOB_POOL_LINK"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="INTERPROCEDURAL_OPTIMIZATION.html" title="INTERPROCEDURAL_OPTIMIZATION"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" accesskey="U">cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="job-pool-compile">
+<span id="prop_tgt:JOB_POOL_COMPILE"></span><h1>JOB_POOL_COMPILE<a class="headerlink" href="#job-pool-compile" title="Permalink to this headline">¶</a></h1>
+<p>Ninja only: Pool used for compiling.</p>
+<p>The number of parallel compile processes could be limited by defining
+pools with the global <a class="reference internal" href="../prop_gbl/JOB_POOLS.html#prop_gbl:JOB_POOLS" title="JOB_POOLS"><tt class="xref cmake cmake-prop_gbl docutils literal"><span class="pre">JOB_POOLS</span></tt></a>
+property and then specifying here the pool name.</p>
+<p>For instance:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">myexe</span> <span class="s">PROPERTY</span> <span class="s">JOB_POOL_COMPILE</span> <span class="s">ten_jobs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This property is initialized by the value of
+<a class="reference internal" href="../variable/CMAKE_JOB_POOL_COMPILE.html#variable:CMAKE_JOB_POOL_COMPILE" title="CMAKE_JOB_POOL_COMPILE"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_JOB_POOL_COMPILE</span></tt></a>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="INTERPROCEDURAL_OPTIMIZATION.html"
+                        title="previous chapter">INTERPROCEDURAL_OPTIMIZATION</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="JOB_POOL_LINK.html"
+                        title="next chapter">JOB_POOL_LINK</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/prop_tgt/JOB_POOL_COMPILE.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="JOB_POOL_LINK.html" title="JOB_POOL_LINK"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="INTERPROCEDURAL_OPTIMIZATION.html" title="INTERPROCEDURAL_OPTIMIZATION"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" >cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

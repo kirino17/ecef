@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindPkgConfig &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindPNG" href="FindPNG.html" />
+    <link rel="prev" title="FindPike" href="FindPike.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindPNG.html" title="FindPNG"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindPike.html" title="FindPike"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findpkgconfig">
+<span id="module:FindPkgConfig"></span><h1>FindPkgConfig<a class="headerlink" href="#findpkgconfig" title="Permalink to this headline">¶</a></h1>
+<p>a pkg-config module for CMake</p>
+<p>Usage:</p>
+<div class="highlight-python"><pre>pkg_check_modules(&lt;PREFIX&gt; [REQUIRED] [QUIET] &lt;MODULE&gt; [&lt;MODULE&gt;]*)
+  checks for all the given modules</pre>
+</div>
+<div class="highlight-python"><pre>pkg_search_module(&lt;PREFIX&gt; [REQUIRED] [QUIET] &lt;MODULE&gt; [&lt;MODULE&gt;]*)
+  checks for given modules and uses the first working one</pre>
+</div>
+<p>When the &#8216;REQUIRED&#8217; argument was set, macros will fail with an error
+when module(s) could not be found</p>
+<p>When the &#8216;QUIET&#8217; argument is set, no status messages will be printed.</p>
+<p>It sets the following variables:</p>
+<div class="highlight-python"><pre>PKG_CONFIG_FOUND          ... if pkg-config executable was found
+PKG_CONFIG_EXECUTABLE     ... pathname of the pkg-config program
+PKG_CONFIG_VERSION_STRING ... the version of the pkg-config program found
+                              (since CMake 2.8.8)</pre>
+</div>
+<p>For the following variables two sets of values exist; first one is the
+common one and has the given PREFIX.  The second set contains flags
+which are given out when pkgconfig was called with the &#8216;&#8211;static&#8217;
+option.</p>
+<div class="highlight-python"><pre>&lt;XPREFIX&gt;_FOUND          ... set to 1 if module(s) exist
+&lt;XPREFIX&gt;_LIBRARIES      ... only the libraries (w/o the '-l')
+&lt;XPREFIX&gt;_LIBRARY_DIRS   ... the paths of the libraries (w/o the '-L')
+&lt;XPREFIX&gt;_LDFLAGS        ... all required linker flags
+&lt;XPREFIX&gt;_LDFLAGS_OTHER  ... all other linker flags
+&lt;XPREFIX&gt;_INCLUDE_DIRS   ... the '-I' preprocessor flags (w/o the '-I')
+&lt;XPREFIX&gt;_CFLAGS         ... all required cflags
+&lt;XPREFIX&gt;_CFLAGS_OTHER   ... the other compiler flags</pre>
+</div>
+<div class="highlight-python"><pre>&lt;XPREFIX&gt; = &lt;PREFIX&gt;        for common case
+&lt;XPREFIX&gt; = &lt;PREFIX&gt;_STATIC for static linking</pre>
+</div>
+<p>There are some special variables whose prefix depends on the count of
+given modules.  When there is only one module, &lt;PREFIX&gt; stays
+unchanged.  When there are multiple modules, the prefix will be
+changed to &lt;PREFIX&gt;_&lt;MODNAME&gt;:</p>
+<div class="highlight-python"><pre>&lt;XPREFIX&gt;_VERSION    ... version of the module
+&lt;XPREFIX&gt;_PREFIX     ... prefix-directory of the module
+&lt;XPREFIX&gt;_INCLUDEDIR ... include-dir of the module
+&lt;XPREFIX&gt;_LIBDIR     ... lib-dir of the module</pre>
+</div>
+<div class="highlight-python"><pre>&lt;XPREFIX&gt; = &lt;PREFIX&gt;  when |MODULES| == 1, else
+&lt;XPREFIX&gt; = &lt;PREFIX&gt;_&lt;MODNAME&gt;</pre>
+</div>
+<p>A &lt;MODULE&gt; parameter can have the following formats:</p>
+<div class="highlight-python"><pre>{MODNAME}            ... matches any version
+{MODNAME}&gt;={VERSION} ... at least version &lt;VERSION&gt; is required
+{MODNAME}={VERSION}  ... exactly version &lt;VERSION&gt; is required
+{MODNAME}&lt;={VERSION} ... modules must not be newer than &lt;VERSION&gt;</pre>
+</div>
+<p>Examples</p>
+<div class="highlight-python"><pre>pkg_check_modules (GLIB2   glib-2.0)</pre>
+</div>
+<div class="highlight-python"><pre>pkg_check_modules (GLIB2   glib-2.0&gt;=2.10)
+  requires at least version 2.10 of glib2 and defines e.g.
+    GLIB2_VERSION=2.10.3</pre>
+</div>
+<div class="highlight-python"><pre>pkg_check_modules (FOO     glib-2.0&gt;=2.10 gtk+-2.0)
+  requires both glib2 and gtk2, and defines e.g.
+    FOO_glib-2.0_VERSION=2.10.3
+    FOO_gtk+-2.0_VERSION=2.8.20</pre>
+</div>
+<div class="highlight-python"><pre>pkg_check_modules (XRENDER REQUIRED xrender)
+  defines e.g.:
+    XRENDER_LIBRARIES=Xrender;X11
+    XRENDER_STATIC_LIBRARIES=Xrender;X11;pthread;Xau;Xdmcp</pre>
+</div>
+<div class="highlight-python"><pre>pkg_search_module (BAR     libxml-2.0 libxml2 libxml&gt;=2)</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindPike.html"
+                        title="previous chapter">FindPike</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindPNG.html"
+                        title="next chapter">FindPNG</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindPkgConfig.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindPNG.html" title="FindPNG"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindPike.html" title="FindPike"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

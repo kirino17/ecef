@@ -1,0 +1,13 @@
+cef/build/.vs
+cef/build/libcef_dll_wrapper/libcef_dll_wrapper.dir
+src/TestRenderer/.vs
+src/TestRenderer/Release
+src/aquarius2/.vs
+src/aquarius2/packages
+src/aquarius2/Release
+out/setup
+.exp
+.iobj
+.ipdb
+.map
+.pdb

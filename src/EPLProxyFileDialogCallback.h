@@ -5,8 +5,8 @@
 
 
 #define DECL_DATA_TYPE_ProxyFileDialogCallback \
-	{ /*14*/ \
-		/*m_szName*/		 _WT("Chromium文件对话框回调"), \
+	{ /*16*/ \
+		/*m_szName*/		 _WT("水星文件选择器"), \
 		/*m_szEgName*/		 _WT("ProxyFileDialogCallback"), \
 		/*m_szExplain*/		 _WT("文件对话框回调接口, 如使用自定义文件对话框, 则使用该回调接口返回文件选择结果。"), \
 		/*m_nCmdCount*/		 5, \
@@ -33,7 +33,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_INT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 	{ /****** ProxyFileDialogCallback::Continue ** 1 **/ \
 		/*name*/	 _WT("选择的文件列表"), \
@@ -42,7 +42,7 @@
 		/*bmp num*/	 0, \
 		/*type*/	 SDT_TEXT, \
 		/*default*/	 0,\
-		/*state*/	 NULL\
+		/*state*/	 NULL \
 	},\
 
 

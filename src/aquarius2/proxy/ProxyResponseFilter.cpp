@@ -49,6 +49,11 @@ unsigned char* ProxyResponseFilter::GetResource() {
 
 // set buffer
 void ProxyResponseFilter::SetResource(unsigned char* buffer, int length) {
-
+	ASSERTN();
+	if (!buffer || ((size_t)length) <= 0) {
+		return ;
+	}
+	
+	FORWARD(InternalResponseFilter)->SetBuffer(&buffer[8],(size_t)length);
 }
 

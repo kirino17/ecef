@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMAKE_USER_MAKE_RULES_OVERRIDE &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-variables(7)" href="../manual/cmake-variables.7.html" />
+    <link rel="next" title="CMAKE_WARN_DEPRECATED" href="CMAKE_WARN_DEPRECATED.html" />
+    <link rel="prev" title="CMAKE_SYSTEM_PROGRAM_PATH" href="CMAKE_SYSTEM_PROGRAM_PATH.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMAKE_WARN_DEPRECATED.html" title="CMAKE_WARN_DEPRECATED"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_SYSTEM_PROGRAM_PATH.html" title="CMAKE_SYSTEM_PROGRAM_PATH"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" accesskey="U">cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmake-user-make-rules-override">
+<span id="variable:CMAKE_USER_MAKE_RULES_OVERRIDE"></span><h1>CMAKE_USER_MAKE_RULES_OVERRIDE<a class="headerlink" href="#cmake-user-make-rules-override" title="Permalink to this headline">¶</a></h1>
+<p>Specify a CMake file that overrides platform information.</p>
+<p>CMake loads the specified file while enabling support for each
+language from either the project() or enable_language() commands.  It
+is loaded after CMake&#8217;s builtin compiler and platform information
+modules have been loaded but before the information is used.  The file
+may set platform information variables to override CMake&#8217;s defaults.</p>
+<p>This feature is intended for use only in overriding information
+variables that must be set before CMake builds its first test project
+to check that the compiler for a language works.  It should not be
+used to load a file in cases that a normal include() will work.  Use
+it only as a last resort for behavior that cannot be achieved any
+other way.  For example, one may set CMAKE_C_FLAGS_INIT to change the
+default value used to initialize CMAKE_C_FLAGS before it is cached.
+The override file should NOT be used to set anything that could be set
+after languages are enabled, such as variables like
+CMAKE_RUNTIME_OUTPUT_DIRECTORY that affect the placement of binaries.
+Information set in the file will be used for try_compile and try_run
+builds too.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMAKE_SYSTEM_PROGRAM_PATH.html"
+                        title="previous chapter">CMAKE_SYSTEM_PROGRAM_PATH</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMAKE_WARN_DEPRECATED.html"
+                        title="next chapter">CMAKE_WARN_DEPRECATED</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/variable/CMAKE_USER_MAKE_RULES_OVERRIDE.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMAKE_WARN_DEPRECATED.html" title="CMAKE_WARN_DEPRECATED"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_SYSTEM_PROGRAM_PATH.html" title="CMAKE_SYSTEM_PROGRAM_PATH"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" >cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

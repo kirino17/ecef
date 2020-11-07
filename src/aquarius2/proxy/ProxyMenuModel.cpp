@@ -6,14 +6,6 @@ AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyMenuModel,CefMenuModel);
 
 
 ///
- // Create a new MenuModel with the specified |delegate|.
- ///
- /*--cef()--*/
-shrewd_ptr<ProxyMenuModel> ProxyMenuModel::CreateMenuModel(){
-    return new ProxyMenuModel(CefMenuModel::CreateMenuModel(nullptr));
-}
-
-///
 // Returns true if this menu is a submenu.
 ///
 /*--cef()--*/
@@ -30,6 +22,7 @@ bool ProxyMenuModel::Clear(){
     ASSERTQ(false);
     return FORWARD(CefMenuModel)->Clear();
 }
+
 
 ///
 // Returns the number of items in this menu.

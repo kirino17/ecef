@@ -1,6 +1,6 @@
 #pragma once
 #include "../def/def.h"
-#include "ProxyPostData.h"
+#include "ProxyPostDataElement.h"
 
 class AQUADLL ProxyRequest : public refcounted {
 public:
@@ -10,12 +10,6 @@ public:
 public:
     // is valid
     bool IsValid();
-
-	///
-	// Create a new CefRequest object.
-	///
-	/*--cef()--*/
-    static shrewd_ptr<ProxyRequest> Create();
 
 public:
     ///
@@ -70,16 +64,34 @@ public:
      int GetReferrerPolicy();
 
     ///
+    // Get the referrer policy.
+    ///
+    /*--cef(default_retval=REFERRER_POLICY_DEFAULT)--*/
+    int GetPostDataElementCount();
+
+    ///
     // Get the post data.
     ///
     /*--cef()--*/
-     shrewd_ptr<ProxyPostData> GetPostData();
+    shrewd_ptr<ProxyPostDataElement>** GetPostDataElements();
 
     ///
     // Set the post data.
     ///
     /*--cef()--*/
-     void SetPostData(shrewd_ptr<ProxyPostData> postData);
+    void AddPostDataElement(shrewd_ptr<ProxyPostDataElement> element);
+
+    ///
+    // Set the post data.
+    ///
+    /*--cef()--*/
+    void RemovePostDataElement(shrewd_ptr<ProxyPostDataElement> element);
+
+    ///
+    // Set the post data.
+    ///
+    /*--cef()--*/
+    void ClearPostDataElements();
 
     ///
     // Get the header values. Will not include the Referer value if any.
@@ -113,42 +125,6 @@ public:
         const char* value,
         bool overwrite);
 
-    ///
-    // Set all values at one time.
-    ///
-    /*--cef(optional_param=postData)--*/
-     void Set(const char* url,
-        const char* method,
-        shrewd_ptr<ProxyPostData> postData,
-        const char* headerMap);
-
-    ///
-    // Get the flags used in combination with CefURLRequest. See
-    // cef_urlrequest_flags_t for supported values.
-    ///
-    /*--cef(default_retval=UR_FLAG_NONE)--*/
-     int GetFlags();
-
-    ///
-    // Set the flags used in combination with CefURLRequest.  See
-    // cef_urlrequest_flags_t for supported values.
-    ///
-    /*--cef()--*/
-     void SetFlags(int flags);
-
-    ///
-    // Get the URL to the first party for cookies used in combination with
-    // CefURLRequest.
-    ///
-    /*--cef()--*/
-     char* GetFirstPartyForCookies();
-
-    ///
-    // Set the URL to the first party for cookies used in combination with
-    // CefURLRequest.
-    ///
-    /*--cef(optional_param=url)--*/
-     void SetFirstPartyForCookies(const char* url);
 
     ///
     // Get the resource type for this request. Only available in the browser
@@ -158,20 +134,22 @@ public:
      int GetResourceType();
 
     ///
-    // Get the transition type for this request. Only available in the browser
-    // process and only applies to requests that represent a main frame or
-    // sub-frame navigation.
-    ///
-    /*--cef(default_retval=TT_EXPLICIT)--*/
-     int GetTransitionType();
-
-    ///
     // Returns the globally unique identifier for this request or 0 if not
     // specified. Can be used by CefResourceRequestHandler implementations in the
     // browser process to track a single request across multiple callbacks.
     ///
     /*--cef()--*/
      unsigned __int64 GetIdentifier();
+
+     int GetFlags();
+
+     void SetFlags(int flags);
+
+     char* GetFirstPartyForCookies();
+
+     void SetFirstPartyForCookies(const char* url);
+
+     int GetTransitionType();
 
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyRequest);

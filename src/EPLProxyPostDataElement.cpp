@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EPLProxyPostDataElement.h"
 #include <proxy/ProxyBrowser.h>
-#include <proxy/ProxyBrowserHost.h>
 #include <proxy/ProxyFrame.h>
 #include <proxy/ProxyRequest.h>
 #include <proxy/ProxyResponse.h>
 #include <proxy/proxyValue.h>
 #include <proxy/proxyListValue.h>
 #include <proxy/ProxyDictionaryValue.h>
+#include <proxy/ProxyDOMNode.h>
 #include <proxy/ProxyPostDataElement.h>
 
 
@@ -32,18 +32,6 @@ void EDITIONF(ProxyPostDataElement_CopyConstructor)(PMDATA_INF pRetData, INT nAr
 	shrewd_ptr<ProxyPostDataElement> ptr = (ProxyPostDataElement*)*pArgInf[1].m_ppCompoundData;
 	if(ptr){ ptr->retain(); *pArgInf->m_ppCompoundData = ptr.get(); }
 	else { *pArgInf->m_ppCompoundData = NULL; }
-}
-
-extern "C"
-void EDITIONF(ProxyPostDataElement_Create) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
-	shrewd_ptr<ProxyPostDataElement> result = ProxyPostDataElement::Create();
-	if(*pArgInf->m_ppCompoundData){
-		((refcounted*)*pArgInf->m_ppCompoundData)->release();
-	 }
-	if(result){
-		result->retain();
-		*pArgInf->m_ppCompoundData = result.get();
-	}
 }
 
 extern "C"
@@ -121,7 +109,7 @@ void EDITIONF(ProxyPostDataElement_GetFile) (PMDATA_INF pRetData, INT nArgCount,
 extern "C"
 void EDITIONF(ProxyPostDataElement_GetBytesCount) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyPostDataElement> self = (ProxyPostDataElement*)*pArgInf->m_ppCompoundData;
@@ -131,13 +119,11 @@ void EDITIONF(ProxyPostDataElement_GetBytesCount) (PMDATA_INF pRetData, INT nArg
 extern "C"
 void EDITIONF(ProxyPostDataElement_GetBytes) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf){
 	if(NULL == pArgInf->m_pCompoundData || NULL == *pArgInf->m_ppCompoundData){
-		*((DWORD*)pRetData->m_pCompoundData) = NULL;
+		
 		return ;
 	}
 	shrewd_ptr<ProxyPostDataElement> self = (ProxyPostDataElement*)*pArgInf->m_ppCompoundData;
-	int argSize = pArgInf[1].m_int;
-	unsigned char* argBytes = pArgInf[2].m_pBin;
-	pRetData->m_int = self->GetBytes(argSize,argBytes);
+	pRetData->m_pBin = self->GetBytes();
 }
 
 

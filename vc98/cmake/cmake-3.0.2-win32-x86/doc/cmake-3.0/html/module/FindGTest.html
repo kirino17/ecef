@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindGTest &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindGTK2" href="FindGTK2.html" />
+    <link rel="prev" title="FindGnuTLS" href="FindGnuTLS.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindGTK2.html" title="FindGTK2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindGnuTLS.html" title="FindGnuTLS"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findgtest">
+<span id="module:FindGTest"></span><h1>FindGTest<a class="headerlink" href="#findgtest" title="Permalink to this headline">¶</a></h1>
+<p>Locate the Google C++ Testing Framework.</p>
+<p>Defines the following variables:</p>
+<div class="highlight-python"><pre>GTEST_FOUND - Found the Google Testing framework
+GTEST_INCLUDE_DIRS - Include directories</pre>
+</div>
+<p>Also defines the library variables below as normal variables.  These
+contain debug/optimized keywords when a debugging library is found.</p>
+<div class="highlight-python"><pre>GTEST_BOTH_LIBRARIES - Both libgtest &amp; libgtest-main
+GTEST_LIBRARIES - libgtest
+GTEST_MAIN_LIBRARIES - libgtest-main</pre>
+</div>
+<p>Accepts the following variables as input:</p>
+<div class="highlight-python"><pre>GTEST_ROOT - (as a CMake or environment variable)
+             The root directory of the gtest install prefix</pre>
+</div>
+<div class="highlight-python"><pre>GTEST_MSVC_SEARCH - If compiling with MSVC, this variable can be set to
+                    "MD" or "MT" to enable searching a GTest build tree
+                    (defaults: "MD")</pre>
+</div>
+<p>Example Usage:</p>
+<div class="highlight-python"><pre>enable_testing()
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})</pre>
+</div>
+<div class="highlight-python"><pre>add_executable(foo foo.cc)
+target_link_libraries(foo ${GTEST_BOTH_LIBRARIES})</pre>
+</div>
+<div class="highlight-python"><pre>add_test(AllTestsInFoo foo)</pre>
+</div>
+<p>If you would like each Google test to show up in CTest as a test you
+may use the following macro.  NOTE: It will slow down your tests by
+running an executable for each test and test fixture.  You will also
+have to rerun CMake after adding or removing tests or test fixtures.</p>
+<p>GTEST_ADD_TESTS(executable extra_args ARGN)</p>
+<div class="highlight-python"><pre>executable = The path to the test executable
+extra_args = Pass a list of extra arguments to be passed to
+             executable enclosed in quotes (or "" for none)
+ARGN =       A list of source files to search for tests &amp; test
+             fixtures.</pre>
+</div>
+<div class="highlight-python"><pre>Example:
+   set(FooTestArgs --foo 1 --bar 2)
+   add_executable(FooTest FooUnitTest.cc)
+   GTEST_ADD_TESTS(FooTest "${FooTestArgs}" FooUnitTest.cc)</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindGnuTLS.html"
+                        title="previous chapter">FindGnuTLS</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindGTK2.html"
+                        title="next chapter">FindGTK2</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindGTest.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindGTK2.html" title="FindGTK2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindGnuTLS.html" title="FindGnuTLS"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

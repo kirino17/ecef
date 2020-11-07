@@ -7,21 +7,6 @@ public:
 	~ProxyCommandLine();
 
 public:
-
-    ///
-    // Create a new CefCommandLine instance.
-    ///
-    /*--cef(api_hash_check)--*/
-	static shrewd_ptr<ProxyCommandLine> CreateCommandLine();
-
-    ///
-    // Returns the singleton global CefCommandLine object. The returned object
-    // will be read-only.
-    ///
-    /*--cef(api_hash_check)--*/
-	static shrewd_ptr<ProxyCommandLine> GetGlobalCommandLine();
-
-public:
   ///
   // Returns true if this object is valid. Do not call any other methods if this
   // function returns false.
@@ -117,6 +102,7 @@ public:
      void AppendSwitchWithValue(const char* name,
         const char* value);
 
+     
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyCommandLine);
 	AQUA_DECL_PUBLIC_ORIGIN;

@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>string &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="target_compile_definitions" href="target_compile_definitions.html" />
+    <link rel="prev" title="source_group" href="source_group.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="target_compile_definitions.html" title="target_compile_definitions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="source_group.html" title="source_group"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="string">
+<span id="command:string"></span><h1>string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h1>
+<p>String operations.</p>
+<div class="highlight-python"><pre>string(REGEX MATCH &lt;regular_expression&gt;
+       &lt;output variable&gt; &lt;input&gt; [&lt;input&gt;...])
+string(REGEX MATCHALL &lt;regular_expression&gt;
+       &lt;output variable&gt; &lt;input&gt; [&lt;input&gt;...])
+string(REGEX REPLACE &lt;regular_expression&gt;
+       &lt;replace_expression&gt; &lt;output variable&gt;
+       &lt;input&gt; [&lt;input&gt;...])
+string(REPLACE &lt;match_string&gt;
+       &lt;replace_string&gt; &lt;output variable&gt;
+       &lt;input&gt; [&lt;input&gt;...])
+string(CONCAT &lt;output variable&gt; [&lt;input&gt;...])
+string(&lt;MD5|SHA1|SHA224|SHA256|SHA384|SHA512&gt;
+       &lt;output variable&gt; &lt;input&gt;)
+string(COMPARE EQUAL &lt;string1&gt; &lt;string2&gt; &lt;output variable&gt;)
+string(COMPARE NOTEQUAL &lt;string1&gt; &lt;string2&gt; &lt;output variable&gt;)
+string(COMPARE LESS &lt;string1&gt; &lt;string2&gt; &lt;output variable&gt;)
+string(COMPARE GREATER &lt;string1&gt; &lt;string2&gt; &lt;output variable&gt;)
+string(ASCII &lt;number&gt; [&lt;number&gt; ...] &lt;output variable&gt;)
+string(CONFIGURE &lt;string1&gt; &lt;output variable&gt;
+       [@ONLY] [ESCAPE_QUOTES])
+string(TOUPPER &lt;string1&gt; &lt;output variable&gt;)
+string(TOLOWER &lt;string1&gt; &lt;output variable&gt;)
+string(LENGTH &lt;string&gt; &lt;output variable&gt;)
+string(SUBSTRING &lt;string&gt; &lt;begin&gt; &lt;length&gt; &lt;output variable&gt;)
+string(STRIP &lt;string&gt; &lt;output variable&gt;)
+string(RANDOM [LENGTH &lt;length&gt;] [ALPHABET &lt;alphabet&gt;]
+       [RANDOM_SEED &lt;seed&gt;] &lt;output variable&gt;)
+string(FIND &lt;string&gt; &lt;substring&gt; &lt;output variable&gt; [REVERSE])
+string(TIMESTAMP &lt;output variable&gt; [&lt;format string&gt;] [UTC])
+string(MAKE_C_IDENTIFIER &lt;input string&gt; &lt;output variable&gt;)</pre>
+</div>
+<p>REGEX MATCH will match the regular expression once and store the match
+in the output variable.</p>
+<p>REGEX MATCHALL will match the regular expression as many times as
+possible and store the matches in the output variable as a list.</p>
+<p>REGEX REPLACE will match the regular expression as many times as
+possible and substitute the replacement expression for the match in
+the output.  The replace expression may refer to paren-delimited
+subexpressions of the match using 1, 2, ..., 9.  Note that two
+backslashes (\1) are required in CMake code to get a backslash
+through argument parsing.</p>
+<p>REPLACE will replace all occurrences of match_string in the input with
+replace_string and store the result in the output.</p>
+<p>CONCAT will concatenate all the input arguments together and store
+the result in the named output variable.</p>
+<p>MD5, SHA1, SHA224, SHA256, SHA384, and SHA512 will compute a
+cryptographic hash of the input string.</p>
+<p>COMPARE EQUAL/NOTEQUAL/LESS/GREATER will compare the strings and store
+true or false in the output variable.</p>
+<p>ASCII will convert all numbers into corresponding ASCII characters.</p>
+<p>CONFIGURE will transform a string like CONFIGURE_FILE transforms a
+file.</p>
+<p>TOUPPER/TOLOWER will convert string to upper/lower characters.</p>
+<p>LENGTH will return a given string&#8217;s length.</p>
+<p>SUBSTRING will return a substring of a given string.  If length is -1
+the remainder of the string starting at begin will be returned.</p>
+<p>STRIP will return a substring of a given string with leading and
+trailing spaces removed.</p>
+<p>RANDOM will return a random string of given length consisting of
+characters from the given alphabet.  Default length is 5 characters
+and default alphabet is all numbers and upper and lower case letters.
+If an integer RANDOM_SEED is given, its value will be used to seed the
+random number generator.</p>
+<p>FIND will return the position where the given substring was found in
+the supplied string.  If the REVERSE flag was used, the command will
+search for the position of the last occurrence of the specified
+substring.</p>
+<p>The following characters have special meaning in regular expressions:</p>
+<div class="highlight-python"><pre>^         Matches at beginning of input
+$         Matches at end of input
+.         Matches any single character
+[ ]       Matches any character(s) inside the brackets
+[^ ]      Matches any character(s) not inside the brackets
+ -        Inside brackets, specifies an inclusive range between
+          characters on either side e.g. [a-f] is [abcdef]
+          To match a literal - using brackets, make it the first
+          or the last character e.g. [+*/-] matches basic
+          mathematical operators.
+*         Matches preceding pattern zero or more times
++         Matches preceding pattern one or more times
+?         Matches preceding pattern zero or once only
+|         Matches a pattern on either side of the |
+()        Saves a matched subexpression, which can be referenced
+          in the REGEX REPLACE operation. Additionally it is saved
+          by all regular expression-related commands, including
+          e.g. if( MATCHES ), in the variables CMAKE_MATCH_(0..9).</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">*</span></tt>, <tt class="docutils literal"><span class="pre">+</span></tt> and <tt class="docutils literal"><span class="pre">?</span></tt> have higher precedence than concatenation.  | has lower
+precedence than concatenation.  This means that the regular expression
+&#8220;^ab+d$&#8221; matches &#8220;abbd&#8221; but not &#8220;ababd&#8221;, and the regular expression
+&#8220;^(ab|cd)$&#8221; matches &#8220;ab&#8221; but not &#8220;abd&#8221;.</p>
+<p>TIMESTAMP will write a string representation of the current date
+and/or time to the output variable.</p>
+<p>Should the command be unable to obtain a timestamp the output variable
+will be set to the empty string &#8220;&#8221;.</p>
+<p>The optional UTC flag requests the current date/time representation to
+be in Coordinated Universal Time (UTC) rather than local time.</p>
+<p>The optional &lt;format string&gt; may contain the following format
+specifiers:</p>
+<div class="highlight-python"><pre>%d        The day of the current month (01-31).
+%H        The hour on a 24-hour clock (00-23).
+%I        The hour on a 12-hour clock (01-12).
+%j        The day of the current year (001-366).
+%m        The month of the current year (01-12).
+%M        The minute of the current hour (00-59).
+%S        The second of the current minute.
+          60 represents a leap second. (00-60)
+%U        The week number of the current year (00-53).
+%w        The day of the current week. 0 is Sunday. (0-6)
+%y        The last two digits of the current year (00-99)
+%Y        The current year.</pre>
+</div>
+<p>Unknown format specifiers will be ignored and copied to the output
+as-is.</p>
+<p>If no explicit &lt;format string&gt; is given it will default to:</p>
+<div class="highlight-python"><pre>%Y-%m-%dT%H:%M:%S    for local time.
+%Y-%m-%dT%H:%M:%SZ   for UTC.</pre>
+</div>
+<p>MAKE_C_IDENTIFIER will write a string which can be used as an
+identifier in C.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="source_group.html"
+                        title="previous chapter">source_group</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="target_compile_definitions.html"
+                        title="next chapter">target_compile_definitions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/string.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="target_compile_definitions.html" title="target_compile_definitions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="source_group.html" title="source_group"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

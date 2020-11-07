@@ -17,8 +17,8 @@ LIST(APPEND CMAKE_MODULE_PATH ${MSVCCMAKE_PCH})
 INCLUDE(msvcpch)
 
 
-set(EXECUTABLE_OUTPUT_PATH  ${PROJECT_SOURCE_DIR}/../out)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../out)
+set(EXECUTABLE_OUTPUT_PATH  ${PROJECT_SOURCE_DIR}/../out/runtime)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../out/runtime)
 aux_source_directory(./ SOURCES)
 
 #############################################################

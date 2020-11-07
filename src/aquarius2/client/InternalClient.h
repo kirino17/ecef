@@ -4,18 +4,18 @@
 #include "../proxy/ProxyClient.h"
 #include "include/cef_request_context_handler.h"
 #include "include/cef_task.h"
+#include "include/wrapper/cef_message_router.h"
 
 class InternalClient : public CefClient,
 	public CefLifeSpanHandler,
     public CefLoadHandler,
     public CefDisplayHandler,
-    public CefFocusHandler,
     public CefJSDialogHandler,
     public CefRequestHandler,
     public CefResourceRequestHandler,
     public CefDialogHandler,
-    public CefContextMenuHandler,
-    public CefDownloadHandler
+    public CefDownloadHandler,
+    public CefContextMenuHandler
 {
 public:
 	InternalClient(shrewd_ptr<ProxyClient> client = NULL);
@@ -32,13 +32,11 @@ public:
 	virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override { return this; }
     virtual CefRefPtr<CefLoadHandler> GetLoadHandler() override { return this; }
     virtual CefRefPtr<CefDisplayHandler> GetDisplayHandler() override { return this; }
-    virtual CefRefPtr<CefFocusHandler> GetFocusHandler() override { return this; }
     virtual CefRefPtr<CefJSDialogHandler> GetJSDialogHandler() override { return this; }
     virtual CefRefPtr<CefRequestHandler> GetRequestHandler() override { return this; }
     virtual CefRefPtr<CefDialogHandler> GetDialogHandler() override { return this; }
-    virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() override { return this; }
     virtual CefRefPtr<CefDownloadHandler> GetDownloadHandler() override { return this; }
-
+    virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() override { return this; }
 public:
     virtual bool OnBeforePopup(CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefFrame> frame,
@@ -79,6 +77,27 @@ public:
         const CefString& failedUrl) OVERRIDE;
 
 public:
+    virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
+        CefRefPtr<CefFrame> frame,
+        CefRefPtr<CefContextMenuParams> params,
+        CefRefPtr<CefMenuModel> model) OVERRIDE;
+
+    virtual bool RunContextMenu(CefRefPtr<CefBrowser> browser,
+        CefRefPtr<CefFrame> frame,
+        CefRefPtr<CefContextMenuParams> params,
+        CefRefPtr<CefMenuModel> model,
+        CefRefPtr<CefRunContextMenuCallback> callback) OVERRIDE;
+
+    virtual bool OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
+        CefRefPtr<CefFrame> frame,
+        CefRefPtr<CefContextMenuParams> params,
+        int command_id,
+        EventFlags event_flags) OVERRIDE;
+
+    virtual void OnContextMenuDismissed(CefRefPtr<CefBrowser> browser,
+        CefRefPtr<CefFrame> frame) OVERRIDE;
+
+public:
     virtual void OnAddressChange(CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefFrame> frame,
         const CefString& url) OVERRIDE;
@@ -88,9 +107,6 @@ public:
 
     virtual void OnFaviconURLChange(CefRefPtr<CefBrowser> browser,
         const std::vector<CefString>& icon_urls) OVERRIDE;
-
-    virtual void OnFullscreenModeChange(CefRefPtr<CefBrowser> browser,
-        bool fullscreen) OVERRIDE;
 
     virtual bool OnTooltip(CefRefPtr<CefBrowser> browser, CefString& text) OVERRIDE;
 
@@ -110,12 +126,6 @@ public:
         double progress) OVERRIDE;
 
 public:
-    virtual void OnTakeFocus(CefRefPtr<CefBrowser> browser, bool next) override;
-
-    virtual bool OnSetFocus(CefRefPtr<CefBrowser> browser, FocusSource source) override;
-
-    virtual void OnGotFocus(CefRefPtr<CefBrowser> browser) OVERRIDE;
-public:
     virtual bool OnJSDialog(CefRefPtr<CefBrowser> browser,
         const CefString& origin_url,
         JSDialogType dialog_type,
@@ -134,18 +144,6 @@ public:
     virtual void OnDialogClosed(CefRefPtr<CefBrowser> browser) override;
 
 public:
-    virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
-        CefRefPtr<CefFrame> frame,
-        CefRefPtr<CefRequest> request,
-        bool user_gesture,
-        bool is_redirect) override;
-
-    virtual bool OnOpenURLFromTab(CefRefPtr<CefBrowser> browser,
-        CefRefPtr<CefFrame> frame,
-        const CefString& target_url,
-        CefRequestHandler::WindowOpenDisposition target_disposition,
-        bool user_gesture) override;
-
     virtual CefRefPtr<CefResourceRequestHandler> GetResourceRequestHandler(
         CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefFrame> frame,
@@ -223,27 +221,6 @@ public:
         CefRefPtr<CefFileDialogCallback> callback) OVERRIDE;
 
 public:
-    virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
-        CefRefPtr<CefFrame> frame,
-        CefRefPtr<CefContextMenuParams> params,
-        CefRefPtr<CefMenuModel> model) OVERRIDE;
-
-    virtual bool RunContextMenu(CefRefPtr<CefBrowser> browser,
-        CefRefPtr<CefFrame> frame,
-        CefRefPtr<CefContextMenuParams> params,
-        CefRefPtr<CefMenuModel> model,
-        CefRefPtr<CefRunContextMenuCallback> callback) OVERRIDE;
-
-    virtual bool OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
-        CefRefPtr<CefFrame> frame,
-        CefRefPtr<CefContextMenuParams> params,
-        int command_id,
-        EventFlags event_flags) OVERRIDE;
-
-    virtual void OnContextMenuDismissed(CefRefPtr<CefBrowser> browser,
-        CefRefPtr<CefFrame> frame) OVERRIDE;
-
-public:
     virtual void OnBeforeDownload(
         CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefDownloadItem> download_item,
@@ -254,6 +231,28 @@ public:
         CefRefPtr<CefDownloadItem> download_item,
         CefRefPtr<CefDownloadItemCallback> callback) OVERRIDE;
 
+    virtual void OnFullscreenModeChange(CefRefPtr<CefBrowser> browser,
+        bool fullscreen) OVERRIDE;
+
+    ///
+    // Called on the UI thread before browser navigation. Return true to cancel
+    // the navigation or false to allow the navigation to proceed. The |request|
+    // object cannot be modified in this callback.
+    // CefLoadHandler::OnLoadingStateChange will be called twice in all cases.
+    // If the navigation is allowed CefLoadHandler::OnLoadStart and
+    // CefLoadHandler::OnLoadEnd will be called. If the navigation is canceled
+    // CefLoadHandler::OnLoadError will be called with an |errorCode| value of
+    // ERR_ABORTED. The |user_gesture| value will be true if the browser
+    // navigated via explicit user gesture (e.g. clicking a link) or false if it
+    // navigated automatically (e.g. via the DomContentLoaded event).
+    ///
+    /*--cef()--*/
+    virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
+        CefRefPtr<CefFrame> frame,
+        CefRefPtr<CefRequest> request,
+        bool user_gesture,
+        bool is_redirect) OVERRIDE;
+
 public:
     virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefFrame> frame,
@@ -261,7 +260,7 @@ public:
         CefRefPtr<CefProcessMessage> message) OVERRIDE;
 
 public:
-    void DispatchResult(CefRefPtr<CefBrowser> browser, 
+    void DispatchJsResult(CefRefPtr<CefBrowser> browser, 
         CefRefPtr<CefFrame> frame,
         CefRefPtr<CefListValue> arguments);
 
@@ -270,4 +269,5 @@ public:
 
 private:
 	shrewd_ptr<ProxyClient> _proxyClient;
+    CefRefPtr<CefMessageRouterBrowserSide> _messageRouter;
 };

@@ -1,8 +1,30 @@
 #include "ProxyDownloadItem.h"
 #include "include/cef_download_item.h"
 #include <atlconv.h>
+#include "include/cef_download_handler.h"
 
-AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyDownloadItem,CefDownloadItem);
+
+ProxyDownloadItem::ProxyDownloadItem(void* ptr):
+	_rawptr(ptr),
+	_beforeDownloadCallback(nullptr),
+	_downloadCallback(nullptr)
+{
+	if (_rawptr) {
+		((CefDownloadItem*)_rawptr)->AddRef();
+	}
+}
+
+ProxyDownloadItem::~ProxyDownloadItem() {
+	if (_rawptr) {
+		((CefDownloadItem*)_rawptr)->Release();
+	}
+	if (_beforeDownloadCallback) {
+		((CefBeforeDownloadCallback*)_beforeDownloadCallback)->Release();
+	}
+	if (_downloadCallback) {
+		((CefDownloadItemCallback*)_downloadCallback)->Release();
+	}
+}
 
 ///
 // Returns true if this object is valid. Do not call any other methods if this
@@ -82,18 +104,18 @@ __int64 ProxyDownloadItem::GetReceivedBytes(){
 // Returns the time that the download started.
 ///
 /*--cef()--*/
-shrewd_ptr<ProxyTime> ProxyDownloadItem::GetStartTime(){
+double ProxyDownloadItem::GetStartTime(){
 	ASSERTQ(NULL);
-	return new ProxyTime(new CefTime(FORWARD(CefDownloadItem)->GetStartTime()));
+	return FORWARD(CefDownloadItem)->GetStartTime().GetDoubleT();
 }
 
 ///
 // Returns the time that the download ended.
 ///
 /*--cef()--*/
-shrewd_ptr<ProxyTime> ProxyDownloadItem::GetEndTime(){
+double ProxyDownloadItem::GetEndTime(){
 	ASSERTQ(NULL);
-	return new ProxyTime(new CefTime(FORWARD(CefDownloadItem)->GetEndTime()));
+	return FORWARD(CefDownloadItem)->GetEndTime().GetDoubleT();
 }
 
 ///
@@ -182,4 +204,68 @@ char* ProxyDownloadItem::GetMimeType(){
 		return NULL;
 	}
 	return ToAnsi(string.c_str(), string.length());
+}
+
+///
+// Call to continue the download. Set |download_path| to the full file path
+// for the download including the file name or leave blank to use the
+// suggested name and the default temp directory. Set |show_dialog| to true
+// if you do wish to show the default "Save As" dialog.
+///
+/*--cef(capi_name=cont,optional_param=download_path)--*/
+void ProxyDownloadItem::SaveTo(const char* download_path, bool show_dialog) {
+	if(_beforeDownloadCallback) {
+		USES_CONVERSION;
+		((CefBeforeDownloadCallback*)_beforeDownloadCallback)->Continue(download_path ? A2W(download_path) : L"", show_dialog);
+	}
+}
+
+///
+// Call to cancel the download.
+///
+/*--cef()--*/
+void ProxyDownloadItem::CancelDownload() {
+	if (_downloadCallback) {
+		((CefDownloadItemCallback*)_downloadCallback)->Cancel();
+	}
+}
+
+///
+// Call to pause the download.
+///
+/*--cef()--*/
+void ProxyDownloadItem::PauseDownload() {
+	if (_downloadCallback) {
+		((CefDownloadItemCallback*)_downloadCallback)->Pause();
+	}
+}
+
+///
+// Call to resume the download.
+///
+/*--cef()--*/
+void ProxyDownloadItem::ResumeDownload() {
+	if (_downloadCallback) {
+		((CefDownloadItemCallback*)_downloadCallback)->Resume();
+	}
+}
+
+///
+// 保存下载回调
+///
+/*--cef()--*/
+void ProxyDownloadItem::SetBeforeDownloadCallback(void* ptr) INTERNAL_METHOD {
+	ASSERTN();
+	if (ptr) ((CefBeforeDownloadCallback*)ptr)->AddRef();
+	_beforeDownloadCallback = ptr;
+}
+
+///
+// 保存下载回调
+///
+/*--cef()--*/
+void ProxyDownloadItem::SetDownloadCallback(void* ptr) INTERNAL_METHOD {
+	ASSERTN();
+	if (ptr) ((CefDownloadItemCallback*)ptr)->AddRef();
+	_downloadCallback = ptr;
 }

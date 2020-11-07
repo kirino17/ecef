@@ -12,15 +12,6 @@ public:
 
 public:
 
-
-	///
-	// Creates a new object that is not owned by any other object.
-	///
-	/*--cef()--*/
-	static shrewd_ptr<ProxyListValue> Create();
-
-public:
-
     ///
     // Returns true if this object is valid. This object may become invalid if
     // the underlying data is owned by another object (e.g. list or dictionary)

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>configure_file &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="create_test_sourcelist" href="create_test_sourcelist.html" />
+    <link rel="prev" title="cmake_policy" href="cmake_policy.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="create_test_sourcelist.html" title="create_test_sourcelist"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmake_policy.html" title="cmake_policy"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="configure-file">
+<span id="command:configure_file"></span><h1>configure_file<a class="headerlink" href="#configure-file" title="Permalink to this headline">¶</a></h1>
+<p>Copy a file to another location and modify its contents.</p>
+<div class="highlight-python"><pre>configure_file(&lt;input&gt; &lt;output&gt;
+               [COPYONLY] [ESCAPE_QUOTES] [@ONLY]
+               [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])</pre>
+</div>
+<p>Copies a file &lt;input&gt; to file &lt;output&gt; and substitutes variable values
+referenced in the file content.  If &lt;input&gt; is a relative path it is
+evaluated with respect to the current source directory.  The &lt;input&gt;
+must be a file, not a directory.  If &lt;output&gt; is a relative path it is
+evaluated with respect to the current binary directory.  If &lt;output&gt;
+names an existing directory the input file is placed in that directory
+with its original name.</p>
+<p>If the &lt;input&gt; file is modified the build system will re-run CMake to
+re-configure the file and generate the build system again.</p>
+<p>This command replaces any variables in the input file referenced as
+${VAR} or &#64;VAR&#64; with their values as determined by CMake.  If a
+variable is not defined, it will be replaced with nothing.  If
+COPYONLY is specified, then no variable expansion will take place.  If
+ESCAPE_QUOTES is specified then any substituted quotes will be C-style
+escaped.  The file will be configured with the current values of CMake
+variables.  If &#64;ONLY is specified, only variables of the form &#64;VAR&#64;
+will be replaced and ${VAR} will be ignored.  This is useful for
+configuring scripts that use ${VAR}.</p>
+<p>Input file lines of the form &#8220;#cmakedefine VAR ...&#8221; will be replaced
+with either &#8220;#define VAR ...&#8221; or <tt class="docutils literal"><span class="pre">/*</span> <span class="pre">#undef</span> <span class="pre">VAR</span> <span class="pre">*/</span></tt> depending on
+whether VAR is set in CMake to any value not considered a false
+constant by the if() command.  (Content of &#8221;...&#8221;, if any, is processed
+as above.) Input file lines of the form &#8220;#cmakedefine01 VAR&#8221; will be
+replaced with either &#8220;#define VAR 1&#8221; or &#8220;#define VAR 0&#8221; similarly.</p>
+<p>With NEWLINE_STYLE the line ending could be adjusted:</p>
+<div class="highlight-python"><pre>'UNIX' or 'LF' for \n, 'DOS', 'WIN32' or 'CRLF' for \r\n.</pre>
+</div>
+<p>COPYONLY must not be used with NEWLINE_STYLE.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmake_policy.html"
+                        title="previous chapter">cmake_policy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="create_test_sourcelist.html"
+                        title="next chapter">create_test_sourcelist</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/configure_file.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="create_test_sourcelist.html" title="create_test_sourcelist"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmake_policy.html" title="cmake_policy"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

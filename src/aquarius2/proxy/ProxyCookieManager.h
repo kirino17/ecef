@@ -12,34 +12,12 @@ public:
     bool IsValid();
 
     ///
-    // Returns the global cookie manager. By default data will be stored at
-    // CefSettings.cache_path if specified or in memory otherwise. If |callback|
-    // is non-NULL it will be executed asnychronously on the UI thread after the
-    // manager's storage has been initialized. Using this method is equivalent to
-    // calling CefRequestContext::GetGlobalContext()->GetDefaultCookieManager().
-    ///
-    /*--cef(optional_param=callback)--*/
-    static shrewd_ptr<ProxyCookieManager> GetGlobalManager();
-
-    ///
-    // Set the schemes supported by this manager. If |include_defaults| is true
-    // the default schemes ("http", "https", "ws" and "wss") will also be
-    // supported. Calling this method with an empty |schemes| value and
-    // |include_defaults| set to false will disable all loading and saving of
-    // cookies for this manager. If |callback| is non-NULL it will be executed
-    // asnychronously on the UI thread after the change has been applied. Must be
-    // called before any cookies are accessed.
-    ///
-    /*--cef(optional_param=callback)--*/
-    void SetSupportedSchemes(const char* schemes, bool include_defaults);
-
-    ///
     // Visit all cookies on the UI thread. The returned cookies are ordered by
     // longest path, then by earliest creation date. Returns false if cookies
     // cannot be accessed.
     ///
     /*--cef()--*/
-    bool VisitAllCookies();
+    shrewd_ptr<ProxyCookie>** VisitAllCookies();
 
     ///
     // Visit a subset of cookies on the UI thread. The results are filtered by the
@@ -49,7 +27,7 @@ public:
     // Returns false if cookies cannot be accessed.
     ///
     /*--cef()--*/
-    bool VisitUrlCookies(const char* url, bool includeHttpOnly);
+    shrewd_ptr<ProxyCookie>** VisitUrlCookies(const char* url, bool includeHttpOnly);
 
     ///
     // Sets a cookie given a valid URL and explicit user-provided cookie
@@ -61,7 +39,7 @@ public:
     // false if an invalid URL is specified or if cookies cannot be accessed.
     ///
     /*--cef(optional_param=callback)--*/
-    bool SetCookie(const char* url, shrewd_ptr<ProxyCookie> cookie);
+    bool SetCookie(const char* url, const char* domain, const char* name, const char* value);
 
     ///
     // Delete all cookies that match the specified parameters. If both |url| and
@@ -85,6 +63,21 @@ public:
     ///
     /*--cef(optional_param=callback)--*/
     bool FlushStore();
+
+    ///
+    //  ExtractToString
+    ///
+    char* ExtractToString();
+
+    ///
+    //  ReduceFromString
+    ///
+    void ReduceFromString(const char* string);
+
+    ///
+    //  ExtractToHTTP
+    ///
+    char* ExtractToHTTP(const char* url);
 
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyCookieManager);

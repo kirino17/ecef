@@ -3,9 +3,26 @@
 #include "ProxySettings.h"
 #include "ProxyListValue.h"
 #include "ProxyValue.h"
+#include "ProxyBrowserSettings.h"
+#include "ProxyCookie.h"
+#include "ProxyCommandLine.h"
+#include "ProxyCookieManager.h"
+#include "ProxyRequest.h"
+#include "ProxyResponse.h"
+#include "ProxyURLRequest.h"
+#include "ProxyBrowser.h"
+#include "ProxyWindowInfo.h"
+#include "ProxyServer.h"
+#include "ProxyWebSocket.h"
+#include "ProxyWaitableEvent.h"
+#include "ProxyMenuModel.h"
+#include "ProxyCollection.h"
 
-#define RENDERER_PROCESS_EXTRA_INFO_V8_INTERCEPTOR		(0x8001)
-#define RENDERER_PROCESS_EXTRA_INFO_V8_OBJECT			(0x8002)
+typedef void*  EPL_STATEMENT;
+
+#define INTERNAL_TOOL_CALL	\
+	static void \
+		ExportResourceToDir(const char* inDir);
 
 class AQUADLL ProxyBase : public refcounted {
 public:
@@ -13,23 +30,6 @@ public:
 	~ProxyBase();
 
 public:
-
-	///
-	// This function should be called from the application entry point function to
-	// execute a secondary process. It can be used to run secondary processes from
-	// the browser client executable (default behavior) or from a separate
-	// executable specified by the CefSettings.browser_subprocess_path value. If
-	// called for the browser process (identified by no "type" command-line value)
-	// it will return immediately with a value of -1. If called for a recognized
-	// secondary process it will block until the process should exit and then return
-	// the process exit code. The |application| parameter may be empty. The
-	// |windows_sandbox_info| parameter is only used on Windows and may be NULL (see
-	// cef_sandbox_win.h for details).
-	///
-	/*--cef(api_hash_check,optional_param=application,
-			optional_param=windows_sandbox_info)--*/
-	static int ExecuteProcess(unsigned int client);
-
 
 	///
 	// This function should be called on the main application thread to initialize
@@ -46,73 +46,149 @@ public:
 	);
 
 	///
-	// This function should be called on the main application thread to shut down
-	// the CEF browser process before the application exits.
+	//	Base64Encode
 	///
-	/*--cef()--*/
-	static void Shutdown();
+	static char* Base64Encode(unsigned char* data, size_t size);
 
 	///
-	// Perform a single iteration of CEF message loop processing. This function is
-	// provided for cases where the CEF message loop must be integrated into an
-	// existing application message loop. Use of this function is not recommended
-	// for most users; use either the CefRunMessageLoop() function or
-	// CefSettings.multi_threaded_message_loop if possible. When using this function
-	// care must be taken to balance performance against excessive CPU usage. It is
-	// recommended to enable the CefSettings.external_message_pump option when using
-	// this function so that CefBrowserProcessHandler::OnScheduleMessagePumpWork()
-	// callbacks can facilitate the scheduling process. This function should only be
-	// called on the main application thread and only if CefInitialize() is called
-	// with a CefSettings.multi_threaded_message_loop value of false. This function
-	// will not block.
+	//	Base64Decode
 	///
-	/*--cef()--*/
-	static void DoMessageLoopWork();
+	static unsigned char* Base64Decode(char* data);
 
 	///
-	// Run the CEF message loop. Use this function instead of an application-
-	// provided message loop to get the best balance between performance and CPU
-	// usage. This function should only be called on the main application thread and
-	// only if CefInitialize() is called with a
-	// CefSettings.multi_threaded_message_loop value of false. This function will
-	// block until a quit message is received by the system.
+	//	UrlEncode
 	///
-	/*--cef()--*/
-	static void RunMessageLoop();
+	static char* UriEncode(char* data, bool use_plus);
 
 	///
-	// Quit the CEF message loop that was started by calling CefRunMessageLoop().
-	// This function should only be called on the main application thread and only
-	// if CefRunMessageLoop() was used.
+	//	UrlEncode
 	///
-	/*--cef()--*/
-	static void QuitMessageLoop();
+	static char* UriDecode(char* data, bool convert_to_utf8, int unescape_rule);
 
 	///
-	// Set to true before calling Windows APIs like TrackPopupMenu that enter a
-	// modal message loop. Set to false after exiting the modal message loop.
+	//	Utf8ToAnsi
 	///
-	/*--cef()--*/
-	static void SetOSModalLoop(bool osModalLoop);
+	static char* Utf8ToBytes(unsigned char* data, size_t length);
 
 	///
-	// Call during process startup to enable High-DPI support on Windows 7 or newer.
-	// Older versions of Windows should be left DPI-unaware because they do not
-	// support DirectWrite and GDI fonts are kerned very badly.
+	//	AnsiToUtf8
 	///
-	/*--cef(capi_name=cef_enable_highdpi_support)--*/
-	static void EnableHighDPISupport();
+	static unsigned char* BytesToUtf8(char* data);
+
+
+	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
 
 	///
-	// SetV8Interceptor
+	//	CreateBrowserSettings
 	///
-	static void SetV8Interceptor(shrewd_ptr<ProxyListValue> extra_info, const char* path, shrewd_ptr<ProxyValue> retval, int attribute);
+	static shrewd_ptr<ProxyBrowserSettings> CreateBrowserSettings();
 
 	///
-	// CreateV8Object
+	//	CreateCommandLine
 	///
-	static void CreateV8Object(shrewd_ptr<ProxyListValue> extra_info, const char* path, int attribute);
+	static shrewd_ptr<ProxyCommandLine> CreateCommandLine();
 
+	///
+	//	CreateCommandLine
+	///
+	static shrewd_ptr<ProxyCommandLine> GetGlobalCommandLine();
+
+	///
+	//	GetGlobalCookieManager
+	///
+	static shrewd_ptr<ProxyCookieManager> GetGlobalCookieManager();
+
+	///
+	//	CreateDictionartyValue
+	///
+	static shrewd_ptr<ProxyDictionaryValue> CreateDictionartyValue();
+
+	///
+	//	CreateListValue
+	///
+	static shrewd_ptr<ProxyListValue> CreateListValue(EPL_ALL value);
+
+	///
+	//	CreatePostDataElement
+	///
+	static shrewd_ptr<ProxyPostDataElement> CreatePostDataElement();
+
+	static shrewd_ptr<ProxyPostDataElement> CreatePostDataElementWithFile(const char* filename);
+
+	static shrewd_ptr<ProxyPostDataElement> CreatePostDataElementWithData(const unsigned char* buffer);
+
+	///
+	//	CreateRequest
+	///
+	static shrewd_ptr<ProxyRequest> CreateRequest(const char* method, const char* url, const char* referrer, const char* headerMaps, shrewd_ptr<ProxyPostDataElement> postData);
+
+	///
+	//	CreateResponse
+	///
+	static shrewd_ptr<ProxyResponse> CreateResponse();
+
+	///
+	//	CreateSetting
+	///
+	static shrewd_ptr<ProxySettings> CreateSetting();
+
+	///
+	//	CreateValue
+	///
+	static shrewd_ptr<ProxyValue> CreateValue(EPL_ALL value);
+
+	///
+	//	CreateWindowInfo
+	///
+	static shrewd_ptr<ProxyWindowInfo> CreateWindowInfo();
+
+	static shrewd_ptr<ProxyWindowInfo> CreateAsChildWindow(int parent, int x, int y, int width, int height);
+
+	static shrewd_ptr<ProxyWindowInfo> CreateAsPopupWindow(int parent, const char* title);
+
+	///
+	//	SendURLRequest
+	///
+	static shrewd_ptr<ProxyURLRequest> SendURLRequest( shrewd_ptr<ProxyRequest> request, bool incognito_mode, const char* proxy_username, const char* proxy_password);
+
+	///
+	//	CreateServer
+	///
+	static void CreateServer(const char* address, int port, int backlog);
+
+	///
+	//	CreateWebSocket
+	///
+	static shrewd_ptr<ProxyWebSocket> CreateWebSocket();
+
+	///
+	//	CreateWaitableEvent
+	///
+	static shrewd_ptr<ProxyWaitableEvent> CreateWaitableEvent();
+
+	///
+	//	Awaking
+	///
+	static void Awaking( shrewd_ptr<ProxyWaitableEvent> waitable);
+
+	///
+	//	TimedAwaking
+	///
+	static bool TimedAwaking(shrewd_ptr<ProxyWaitableEvent> waitable, float max_ms);
+
+	///
+	//	´´½¨²Ëµ¥
+	///
+	static shrewd_ptr<ProxyMenuModel> CreateMenu();
+
+	///
+	//	create collection
+	///
+	static shrewd_ptr<ProxyCollection> CreateCollection(bool shared_cache);
+
+public:
+	INTERNAL_TOOL_CALL;
 
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyBase);

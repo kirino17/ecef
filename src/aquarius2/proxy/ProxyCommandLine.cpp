@@ -6,23 +6,6 @@
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyCommandLine,CefCommandLine);
 
 ///
-// Create a new CefCommandLine instance.
-///
-/*--cef(api_hash_check)--*/
-shrewd_ptr<ProxyCommandLine> ProxyCommandLine::CreateCommandLine() {
-	return new ProxyCommandLine(CefCommandLine::CreateCommandLine());
-}
-
-///
-// Returns the singleton global CefCommandLine object. The returned object
-// will be read-only.
-///
-/*--cef(api_hash_check)--*/
-shrewd_ptr<ProxyCommandLine> ProxyCommandLine::GetGlobalCommandLine() {
-	return new ProxyCommandLine(CefCommandLine::GetGlobalCommandLine());
-}
-
-///
 // Returns true if this object is valid. Do not call any other methods if this
 // function returns false.
 ///
@@ -78,18 +61,12 @@ void ProxyCommandLine::Reset() {
 ///
 /*--cef()--*/
 char** ProxyCommandLine::GetArgv() {
-	ASSERTQ(0);
+	ASSERTARRAY(char);
 	assert(NewBuffer);
 	std::vector<CefString> stringArrays;
 	FORWARD(CefCommandLine)->GetArgv(stringArrays);
 	size_t count = stringArrays.size();
-	DWORD* pointer = (DWORD*)NewBuffer( sizeof(INT) * (2 + count) );
-	*(pointer + 0) = 1;
-	*(pointer + 1) = count;
-	for (size_t i = 0; i < stringArrays.size(); i++){
-		*(pointer + i + 2) = (DWORD)ToAnsi(stringArrays[i].c_str(), stringArrays[i].length());
-	}
-	return (char**)pointer;
+	return CreateEPLStringArray(stringArrays);
 }
 
 ///

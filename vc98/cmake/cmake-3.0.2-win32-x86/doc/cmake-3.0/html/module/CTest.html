@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CTest &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="CTestScriptMode" href="CTestScriptMode.html" />
+    <link rel="prev" title="CPackWIX" href="CPackWIX.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CTestScriptMode.html" title="CTestScriptMode"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CPackWIX.html" title="CPackWIX"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ctest">
+<span id="module:CTest"></span><h1>CTest<a class="headerlink" href="#ctest" title="Permalink to this headline">¶</a></h1>
+<p>Configure a project for testing with CTest/CDash</p>
+<p>Include this module in the top CMakeLists.txt file of a project to
+enable testing with CTest and dashboard submissions to CDash:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">project</span><span class="p">(</span><span class="n">MyProject</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">include</span><span class="p">(</span><span class="n">CTest</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The module automatically creates a BUILD_TESTING option that selects
+whether to enable testing support (ON by default).  After including
+the module, use code like</p>
+<div class="highlight-python"><pre>if(BUILD_TESTING)
+  # ... CMake code to create tests ...
+endif()</pre>
+</div>
+<p>to creating tests when testing is enabled.</p>
+<p>To enable submissions to a CDash server, create a CTestConfig.cmake
+file at the top of the project with content such as</p>
+<div class="highlight-python"><pre>set(CTEST_PROJECT_NAME "MyProject")
+set(CTEST_NIGHTLY_START_TIME "01:00:00 UTC")
+set(CTEST_DROP_METHOD "http")
+set(CTEST_DROP_SITE "my.cdash.org")
+set(CTEST_DROP_LOCATION "/submit.php?project=MyProject")
+set(CTEST_DROP_SITE_CDASH TRUE)</pre>
+</div>
+<p>(the CDash server can provide the file to a project administrator who
+configures &#8216;MyProject&#8217;).  Settings in the config file are shared by
+both this CTest module and the CTest command-line tool&#8217;s dashboard
+script mode (ctest -S).</p>
+<p>While building a project for submission to CDash, CTest scans the
+build output for errors and warnings and reports them with surrounding
+context from the build log.  This generic approach works for all build
+tools, but does not give details about the command invocation that
+produced a given problem.  One may get more detailed reports by adding</p>
+<div class="highlight-python"><pre>set(CTEST_USE_LAUNCHERS 1)</pre>
+</div>
+<p>to the CTestConfig.cmake file.  When this option is enabled, the CTest
+module tells CMake&#8217;s Makefile generators to invoke every command in
+the generated build system through a CTest launcher program.
+(Currently the CTEST_USE_LAUNCHERS option is ignored on non-Makefile
+generators.) During a manual build each launcher transparently runs
+the command it wraps.  During a CTest-driven build for submission to
+CDash each launcher reports detailed information when its command
+fails or warns.  (Setting CTEST_USE_LAUNCHERS in CTestConfig.cmake is
+convenient, but also adds the launcher overhead even for manual
+builds.  One may instead set it in a CTest dashboard script and add it
+to the CMake cache for the build tree.)</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CPackWIX.html"
+                        title="previous chapter">CPackWIX</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CTestScriptMode.html"
+                        title="next chapter">CTestScriptMode</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/CTest.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CTestScriptMode.html" title="CTestScriptMode"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CPackWIX.html" title="CPackWIX"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

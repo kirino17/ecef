@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>try_run &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="unset" href="unset.html" />
+    <link rel="prev" title="try_compile" href="try_compile.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="unset.html" title="unset"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="try_compile.html" title="try_compile"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="try-run">
+<span id="command:try_run"></span><h1>try_run<a class="headerlink" href="#try-run" title="Permalink to this headline">¶</a></h1>
+<p>Try compiling and then running some code.</p>
+<div class="highlight-python"><pre>try_run(RUN_RESULT_VAR COMPILE_RESULT_VAR
+        bindir srcfile [CMAKE_FLAGS &lt;Flags&gt;]
+        [COMPILE_DEFINITIONS &lt;flags&gt;]
+        [COMPILE_OUTPUT_VARIABLE comp]
+        [RUN_OUTPUT_VARIABLE run]
+        [OUTPUT_VARIABLE var]
+        [ARGS &lt;arg1&gt; &lt;arg2&gt;...])</pre>
+</div>
+<p>Try compiling a srcfile.  Return TRUE or FALSE for success or failure
+in COMPILE_RESULT_VAR.  Then if the compile succeeded, run the
+executable and return its exit code in RUN_RESULT_VAR.  If the
+executable was built, but failed to run, then RUN_RESULT_VAR will be
+set to FAILED_TO_RUN.  COMPILE_OUTPUT_VARIABLE specifies the variable
+where the output from the compile step goes.  RUN_OUTPUT_VARIABLE
+specifies the variable where the output from the running executable
+goes.</p>
+<p>For compatibility reasons OUTPUT_VARIABLE is still supported, which
+gives you the output from the compile and run step combined.</p>
+<p>Cross compiling issues</p>
+<p>When cross compiling, the executable compiled in the first step
+usually cannot be run on the build host.  try_run() checks the
+CMAKE_CROSSCOMPILING variable to detect whether CMake is in
+crosscompiling mode.  If that&#8217;s the case, it will still try to compile
+the executable, but it will not try to run the executable.  Instead it
+will create cache variables which must be filled by the user or by
+presetting them in some CMake script file to the values the executable
+would have produced if it had been run on its actual target platform.
+These variables are RUN_RESULT_VAR (explanation see above) and if
+RUN_OUTPUT_VARIABLE (or OUTPUT_VARIABLE) was used, an additional cache
+variable RUN_RESULT_VAR__COMPILE_RESULT_VAR__TRYRUN_OUTPUT.This is
+intended to hold stdout and stderr from the executable.</p>
+<p>In order to make cross compiling your project easier, use try_run only
+if really required.  If you use try_run, use RUN_OUTPUT_VARIABLE (or
+OUTPUT_VARIABLE) only if really required.  Using them will require
+that when crosscompiling, the cache variables will have to be set
+manually to the output of the executable.  You can also &#8220;guard&#8221; the
+calls to try_run with if(CMAKE_CROSSCOMPILING) and provide an
+easy-to-preset alternative for this case.</p>
+<p>Set variable CMAKE_TRY_COMPILE_CONFIGURATION to choose a build
+configuration.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="try_compile.html"
+                        title="previous chapter">try_compile</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="unset.html"
+                        title="next chapter">unset</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/try_run.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="unset.html" title="unset"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="try_compile.html" title="try_compile"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

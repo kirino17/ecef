@@ -8,16 +8,6 @@
 AQUA_PROXY_AUTO_CONSTRUCTOR(ProxyDictionaryValue,CefDictionaryValue);
 
 ///
-// Creates a new object that is not owned by any other object.
-///
-/*--cef()--*/
-shrewd_ptr<ProxyDictionaryValue> ProxyDictionaryValue::Create(){
-	return new ProxyDictionaryValue( CefDictionaryValue::Create() );
-}
-
-
-
-///
 // Returns true if this object is valid. This object may become invalid if
 // the underlying data is owned by another object (e.g. list or dictionary)
 // and that other object is then modified or destroyed. Do not call any other
@@ -114,7 +104,7 @@ bool ProxyDictionaryValue::Clear(){
 bool ProxyDictionaryValue::HasKey(const char* key){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -126,7 +116,7 @@ bool ProxyDictionaryValue::HasKey(const char* key){
 ///
 /*--cef()--*/
 char** ProxyDictionaryValue::GetKeys(){
-	ASSERTQ(NULL);
+	ASSERTARRAY(char);
 	std::vector<CefString> keyList;
 	bool result = FORWARD(CefDictionaryValue)->GetKeys(keyList);
 	return CreateEPLStringArray(keyList);
@@ -140,7 +130,7 @@ char** ProxyDictionaryValue::GetKeys(){
 bool ProxyDictionaryValue::Remove(const char* key){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -154,7 +144,7 @@ bool ProxyDictionaryValue::Remove(const char* key){
 int ProxyDictionaryValue::GetType(const char* key){
 	ASSERTQ(0);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -172,7 +162,7 @@ int ProxyDictionaryValue::GetType(const char* key){
 shrewd_ptr<ProxyValue> ProxyDictionaryValue::GetValue(const char* key){
 	ASSERTQ(NULL);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -190,7 +180,7 @@ shrewd_ptr<ProxyValue> ProxyDictionaryValue::GetValue(const char* key){
 bool ProxyDictionaryValue::GetBool(const char* key){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -204,7 +194,7 @@ bool ProxyDictionaryValue::GetBool(const char* key){
 int ProxyDictionaryValue::GetInt(const char* key){
 	ASSERTQ(0);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -218,7 +208,7 @@ int ProxyDictionaryValue::GetInt(const char* key){
 double ProxyDictionaryValue::GetDouble(const char* key){
 	ASSERTQ(0.0f);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -233,7 +223,7 @@ char* ProxyDictionaryValue::GetString(const char* key){
 	ASSERTQ(NULL);
 	assert(NewBuffer);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -241,6 +231,9 @@ char* ProxyDictionaryValue::GetString(const char* key){
 	if (string.empty()) {
 		return NULL;
 	}
+	
+
+
 	return ToAnsi(string.c_str(),string.length());
 }
 
@@ -253,7 +246,7 @@ unsigned char* ProxyDictionaryValue::GetBinary(const char* key){
 	ASSERTQ(0);
 	assert(NewBuffer);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -278,7 +271,7 @@ unsigned char* ProxyDictionaryValue::GetBinary(const char* key){
 shrewd_ptr<ProxyDictionaryValue> ProxyDictionaryValue::GetDictionary(const char* key){
 	ASSERTQ(NULL);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -298,7 +291,7 @@ shrewd_ptr<ProxyDictionaryValue> ProxyDictionaryValue::GetDictionary(const char*
 shrewd_ptr<ProxyListValue> ProxyDictionaryValue::GetList(const char* key){
 	ASSERTQ(NULL);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -321,7 +314,7 @@ shrewd_ptr<ProxyListValue> ProxyDictionaryValue::GetList(const char* key){
 bool ProxyDictionaryValue::SetValue(const char* key, shrewd_ptr<ProxyValue> value){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -339,7 +332,7 @@ bool ProxyDictionaryValue::SetValue(const char* key, shrewd_ptr<ProxyValue> valu
 bool ProxyDictionaryValue::SetNull(const char* key){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -354,7 +347,7 @@ bool ProxyDictionaryValue::SetNull(const char* key){
 bool ProxyDictionaryValue::SetBool(const char* key, bool value){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -369,7 +362,7 @@ bool ProxyDictionaryValue::SetBool(const char* key, bool value){
 bool ProxyDictionaryValue::SetInt(const char* key, int value){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -387,7 +380,7 @@ bool ProxyDictionaryValue::SetInt(const char* key, int value){
 bool ProxyDictionaryValue::SetDouble(const char* key, double value){
 	ASSERTQ(false);
 	CefString originKey;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -404,10 +397,10 @@ bool ProxyDictionaryValue::SetString(const char* key, const char* value){
 	CefString originKey;
 	CefString originValue;
 	USES_CONVERSION;
-	if (!key) {
+	if (key) {
 		originKey = A2W(key);
 	}
-	if (!value) {
+	if (value) {
 		wchar_t* buffer = ToUnicode(value, strlen(value));
 		originValue = buffer;
 		DeleteBuffer(buffer);
@@ -427,11 +420,11 @@ bool ProxyDictionaryValue::SetBinary(const char* key, unsigned char* value, size
 	ASSERTQ(false);
 	CefString originKey;
 	CefRefPtr<CefBinaryValue> binary = NULL;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
-	if (!value) {
+	if (value) {
 		binary = CefBinaryValue::Create(&value[8], length);
 	}
 	return FORWARD(CefDictionaryValue)->SetBinary(originKey, binary);
@@ -450,7 +443,7 @@ bool ProxyDictionaryValue::SetDictionary(const char* key,
 	ASSERTQ(false);
 	CefString originKey;
 	CefRefPtr<CefDictionaryValue> dictionary = NULL;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}
@@ -472,7 +465,7 @@ bool ProxyDictionaryValue::SetList(const char* key, shrewd_ptr<ProxyListValue> v
 	ASSERTQ(false);
 	CefString originKey;
 	CefRefPtr<CefListValue> listValue = NULL;
-	if (!key) {
+	if (key) {
 		USES_CONVERSION;
 		originKey = A2W(key);
 	}

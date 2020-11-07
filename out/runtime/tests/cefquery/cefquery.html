@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://www.tl8.in/iframe/ifr-1.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>CefQuery</title>
+</head>
+
+<body>
+<p>cefquery 提供了异步访问浏览器的支持。使用方法请看本页面HTML代码。</p>
+
+<div> 
+    <button onclick="callBrowser()"> 点我呼叫浏览器 </button> 
+</div>
+</br>
+<div> 
+    <button onclick="denyBrowser()"> 点我被浏览器拒绝 </button> 
+</div>
+
+<script>
+
+function callBrowser(){
+    (function (){
+        window.cefQuery({
+            request: "hello call from javascript!!!", /*向浏览器发送的请求信息, string 类型*/
+            persistent: false, /* 是否持久化 */
+            onSuccess: function(response){
+                /*呼叫被浏览器接收后的回调方法, response 字符串类型*/
+                alert(response);
+            },
+            onFailure: function(code, msg){
+                /*呼叫被浏览器拒绝的回调方法, code 为错误代码, msg 为错误信息。*/
+                alert(code + " - " + msg);
+            }
+        });
+    })();
+
+    /* 取消查询调用 cefQueryCancel() 方法 */
+}
+
+function denyBrowser(){
+    (function (){
+        window.cefQuery({
+            request: "xxxxx", /*向浏览器发送的请求信息, string 类型*/
+            persistent: false, /* 是否持久化 */
+            onSuccess: function(response){
+                /*呼叫被浏览器接收后的回调方法, response 字符串类型*/
+                alert(response);
+            },
+            onFailure: function(code, msg){
+                /*呼叫被浏览器拒绝的回调方法, code 为错误代码, msg 为错误信息。*/
+                alert(code + " - " + msg);
+            }
+        });
+    })();
+}
+
+</script>
+
+
+</body></html>

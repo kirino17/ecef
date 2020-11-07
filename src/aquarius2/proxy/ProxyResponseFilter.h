@@ -36,7 +36,7 @@ public:
 	///
 	// set buffer
 	///
-	void SetResource(unsigned char* buffer, int length);
+	void SetResource(unsigned char* buffer, int length) INTERNAL_CALL;
 
 public:
 	PRIME_IMPLEMENT_REFCOUNTING(ProxyResponseFilter);

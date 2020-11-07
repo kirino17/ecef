@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\Wanna\Github\cef_binary_80.1.15+g7b802c9+chromium-80.0.3987.163_windows32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\simple\tools\credentials\protocol;E:\Wanna\Github\cef_binary_80.1.15+g7b802c9+chromium-80.0.3987.163_windows32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,9 +121,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;AQUARIUS_SRC;_INTERNAL_VER_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;AQUARIUS_SRC;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\cef\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\simple\tools\credentials\protocol;$(ProjectDir)..\..\cef\;$(ProjectDir)thrid_party;$(ProjectDir)third_party/openssl/include;$(ProjectDir)third_party/tbb/include;$(ProjectDir)third_party/zlib/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -131,8 +131,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\cef\release;$(ProjectDir)..\..\cef\build\libcef_dll_wrapper\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libcef.lib;libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\cef\release;$(ProjectDir)..\..\cef\build\libcef_dll_wrapper\release;$(ProjectDir)third_party\zlib\lib;$(ProjectDir)third_party\tbb\lib;$(ProjectDir)third_party\openssl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcef.lib;libcef_dll_wrapper.lib;libeay32MT.lib;ssleay32MT.lib;zlib-vc140-mt.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
       <Command>setlocal
@@ -170,109 +173,150 @@ if %errorlevel% neq 0 goto :VCEnd
     <ClCompile Include="aquarius2.cpp" />
     <ClCompile Include="client\InternalCalculationVisitor.cpp" />
     <ClCompile Include="client\InternalClient.cpp" />
+    <ClCompile Include="client\InternalCollection.cpp" />
     <ClCompile Include="client\InternalCookieVisitor.cpp" />
+    <ClCompile Include="client\InternalCookieStoreVisitor.cpp" />
     <ClCompile Include="client\InternalCreateBrowser.cpp" />
     <ClCompile Include="client\InternalDevToolsClient.cpp" />
+    <ClCompile Include="client\InternalDOMDocument.cpp" />
+    <ClCompile Include="client\InternalExtensionClient.cpp" />
+    <ClCompile Include="client\InternalMessageRouterHandler.cpp" />
+    <ClCompile Include="client\InternalRequestClient.cpp" />
     <ClCompile Include="client\InternalResponseFilter.cpp" />
+    <ClCompile Include="client\InternalServerClient.cpp" />
+    <ClCompile Include="client\InternalServerTask.cpp" />
     <ClCompile Include="client\InternalStringVisitor.cpp" />
     <ClCompile Include="client\InternalProgram.cpp" />
     <ClCompile Include="client\InternalTaskVisitor.cpp" />
     <ClCompile Include="client\InternalV8Interceptor.cpp" />
     <ClCompile Include="def\def.cpp" />
     <ClCompile Include="def\internalDef.cpp" />
+    <ClCompile Include="def\InternalPower.cpp" />
+    <ClCompile Include="def\Power.cpp" />
     <ClCompile Include="def\utilityDef.cpp" />
+    <ClCompile Include="proxy\ProxyActiveBrowserCallback.cpp" />
+    <ClCompile Include="proxy\ProxyCollection.cpp" />
+    <ClCompile Include="proxy\ProxyContextMenuParams.cpp" />
+    <ClCompile Include="proxy\ProxyDOMDocument.cpp" />
+    <ClCompile Include="proxy\ProxyExtension.cpp" />
+    <ClCompile Include="proxy\ProxyGetExtensionResourceCallback.cpp" />
+    <ClCompile Include="proxy\ProxyMenuModel.cpp" />
+    <ClCompile Include="proxy\ProxyDOMNode.cpp" />
+    <ClCompile Include="proxy\ProxyPostDataElement.cpp" />
+    <ClCompile Include="proxy\ProxyQueryCallback.cpp" />
     <ClCompile Include="proxy\ProxyResponseFilter.cpp" />
-    <ClCompile Include="proxy\ProxyTaskRunner.cpp" />
     <ClCompile Include="proxy\ProxyAuthCallback.cpp" />
     <ClCompile Include="proxy\ProxyBase.cpp" />
-    <ClCompile Include="proxy\ProxyBeforeDownloadCallback.cpp" />
     <ClCompile Include="proxy\ProxyBrowser.cpp" />
-    <ClCompile Include="proxy\ProxyBrowserHost.cpp" />
     <ClCompile Include="proxy\ProxyBrowserSettings.cpp" />
     <ClCompile Include="proxy\ProxyClient.cpp" />
     <ClCompile Include="proxy\ProxyCommandLine.cpp" />
-    <ClCompile Include="proxy\ProxyContextMenuParams.cpp" />
     <ClCompile Include="proxy\ProxyCookie.cpp" />
     <ClCompile Include="proxy\ProxyCookieManager.cpp" />
     <ClCompile Include="proxy\ProxyDictionaryValue.cpp" />
     <ClCompile Include="proxy\ProxyDownloadItem.cpp" />
-    <ClCompile Include="proxy\ProxyDownloadItemCallback.cpp" />
     <ClCompile Include="proxy\ProxyFileDialogCallback.cpp" />
     <ClCompile Include="proxy\ProxyFrame.cpp" />
     <ClCompile Include="proxy\ProxyJSDialogCallback.cpp" />
-    <ClCompile Include="proxy\ProxyKeyEvent.cpp" />
     <ClCompile Include="proxy\ProxyListValue.cpp" />
-    <ClCompile Include="proxy\ProxyMenuModel.cpp" />
-    <ClCompile Include="proxy\ProxyMouseEvent.cpp" />
-    <ClCompile Include="proxy\ProxyPopupFeatures.cpp" />
-    <ClCompile Include="proxy\ProxyPostData.cpp" />
-    <ClCompile Include="proxy\ProxyPostDataElement.cpp" />
     <ClCompile Include="proxy\ProxyRequest.cpp" />
-    <ClCompile Include="proxy\ProxyRequestCallback.cpp" />
-    <ClCompile Include="proxy\ProxyRequestContext.cpp" />
-    <ClCompile Include="proxy\ProxyRequestContextSettings.cpp" />
     <ClCompile Include="proxy\ProxyResponse.cpp" />
     <ClCompile Include="proxy\ProxyRunContextMenuCallback.cpp" />
+    <ClCompile Include="proxy\ProxyServer.cpp" />
     <ClCompile Include="proxy\ProxySettings.cpp" />
-    <ClCompile Include="proxy\ProxyTime.cpp" />
-    <ClCompile Include="proxy\ProxyTouchEvent.cpp" />
+    <ClCompile Include="proxy\ProxyURLRequest.cpp" />
     <ClCompile Include="proxy\ProxyValue.cpp" />
+    <ClCompile Include="proxy\ProxyWaitableEvent.cpp" />
+    <ClCompile Include="proxy\ProxyWebSocket.cpp" />
     <ClCompile Include="proxy\ProxyWindowInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\InternalCalculationVisitor.h" />
     <ClInclude Include="client\InternalClient.h" />
+    <ClInclude Include="client\InternalCollection.h" />
+    <ClInclude Include="client\InternalCookieStoreVisitor.h" />
     <ClInclude Include="client\InternalCookieVisitor.h" />
     <ClInclude Include="client\InternalCreateBrowser.h" />
     <ClInclude Include="client\InternalDevToolsClient.h" />
+    <ClInclude Include="client\InternalDOMDocument.h" />
+    <ClInclude Include="client\InternalExtensionClient.h" />
+    <ClInclude Include="client\InternalMessageRouterHandler.h" />
+    <ClInclude Include="client\InternalRequestClient.h" />
     <ClInclude Include="client\InternalResponseFilter.h" />
+    <ClInclude Include="client\InternalServerClient.h" />
+    <ClInclude Include="client\InternalServerTask.h" />
     <ClInclude Include="client\InternalStringVisitor.h" />
     <ClInclude Include="client\InternalProgram.h" />
     <ClInclude Include="client\InternalTaskVisitor.h" />
     <ClInclude Include="client\InternalV8Interceptor.h" />
     <ClInclude Include="def\def.h" />
     <ClInclude Include="def\internalDef.h" />
+    <ClInclude Include="def\InternalPage.h" />
+    <ClInclude Include="def\InternalPower.h" />
+    <ClInclude Include="def\Power.h" />
     <ClInclude Include="def\refcounted.h" />
     <ClInclude Include="def\utilityDef.h" />
+    <ClInclude Include="proxy\ProxyActiveBrowserCallback.h" />
     <ClInclude Include="proxy\ProxyAuthCallback.h" />
     <ClInclude Include="proxy\ProxyBase.h" />
-    <ClInclude Include="proxy\ProxyBeforeDownloadCallback.h" />
     <ClInclude Include="proxy\ProxyBrowser.h" />
-    <ClInclude Include="proxy\ProxyBrowserHost.h" />
     <ClInclude Include="proxy\ProxyBrowserSettings.h" />
     <ClInclude Include="proxy\ProxyClient.h" />
+    <ClInclude Include="proxy\ProxyCollection.h" />
     <ClInclude Include="proxy\ProxyCommandLine.h" />
     <ClInclude Include="proxy\ProxyContextMenuParams.h" />
     <ClInclude Include="proxy\ProxyCookie.h" />
     <ClInclude Include="proxy\ProxyCookieManager.h" />
     <ClInclude Include="proxy\ProxyDictionaryValue.h" />
+    <ClInclude Include="proxy\ProxyDOMDocument.h" />
     <ClInclude Include="proxy\ProxyDownloadItem.h" />
-    <ClInclude Include="proxy\ProxyDownloadItemCallback.h" />
+    <ClInclude Include="proxy\ProxyExtension.h" />
     <ClInclude Include="proxy\ProxyFileDialogCallback.h" />
     <ClInclude Include="proxy\ProxyFrame.h" />
+    <ClInclude Include="proxy\ProxyGetExtensionResourceCallback.h" />
     <ClInclude Include="proxy\ProxyJSDialogCallback.h" />
-    <ClInclude Include="proxy\ProxyKeyEvent.h" />
     <ClInclude Include="proxy\ProxyListValue.h" />
     <ClInclude Include="proxy\ProxyMenuModel.h" />
-    <ClInclude Include="proxy\ProxyMouseEvent.h" />
-    <ClInclude Include="proxy\ProxyPopupFeatures.h" />
-    <ClInclude Include="proxy\ProxyPostData.h" />
+    <ClInclude Include="proxy\ProxyDOMNode.h" />
     <ClInclude Include="proxy\ProxyPostDataElement.h" />
+    <ClInclude Include="proxy\ProxyQueryCallback.h" />
     <ClInclude Include="proxy\ProxyRequest.h" />
-    <ClInclude Include="proxy\ProxyRequestCallback.h" />
-    <ClInclude Include="proxy\ProxyRequestContext.h" />
-    <ClInclude Include="proxy\ProxyRequestContextSettings.h" />
     <ClInclude Include="proxy\ProxyResponse.h" />
     <ClInclude Include="proxy\ProxyResponseFilter.h" />
     <ClInclude Include="proxy\ProxyRunContextMenuCallback.h" />
+    <ClInclude Include="proxy\ProxyServer.h" />
     <ClInclude Include="proxy\ProxySettings.h" />
-    <ClInclude Include="proxy\ProxyTaskRunner.h" />
-    <ClInclude Include="proxy\ProxyTime.h" />
-    <ClInclude Include="proxy\ProxyTouchEvent.h" />
+    <ClInclude Include="proxy\ProxyURLRequest.h" />
     <ClInclude Include="proxy\ProxyValue.h" />
+    <ClInclude Include="proxy\ProxyWaitableEvent.h" />
+    <ClInclude Include="proxy\ProxyWebSocket.h" />
     <ClInclude Include="proxy\ProxyWindowInfo.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="aquarius2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\boost.1.72.0.0\build\boost.targets" Condition="Exists('packages\boost.1.72.0.0\build\boost.targets')" />
+    <Import Project="packages\boost_chrono-vc140.1.72.0.0\build\boost_chrono-vc140.targets" Condition="Exists('packages\boost_chrono-vc140.1.72.0.0\build\boost_chrono-vc140.targets')" />
+    <Import Project="packages\boost_system-vc140.1.72.0.0\build\boost_system-vc140.targets" Condition="Exists('packages\boost_system-vc140.1.72.0.0\build\boost_system-vc140.targets')" />
+    <Import Project="packages\boost_date_time-vc140.1.72.0.0\build\boost_date_time-vc140.targets" Condition="Exists('packages\boost_date_time-vc140.1.72.0.0\build\boost_date_time-vc140.targets')" />
+    <Import Project="packages\boost_thread-vc140.1.72.0.0\build\boost_thread-vc140.targets" Condition="Exists('packages\boost_thread-vc140.1.72.0.0\build\boost_thread-vc140.targets')" />
+    <Import Project="packages\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.2.10.12\build\native\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.targets" Condition="Exists('packages\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.2.10.12\build\native\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\boost.1.72.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost.1.72.0.0\build\boost.targets'))" />
+    <Error Condition="!Exists('packages\boost_chrono-vc140.1.72.0.0\build\boost_chrono-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_chrono-vc140.1.72.0.0\build\boost_chrono-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_system-vc140.1.72.0.0\build\boost_system-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_system-vc140.1.72.0.0\build\boost_system-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_date_time-vc140.1.72.0.0\build\boost_date_time-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_date_time-vc140.1.72.0.0\build\boost_date_time-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_thread-vc140.1.72.0.0\build\boost_thread-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_thread-vc140.1.72.0.0\build\boost_thread-vc140.targets'))" />
+    <Error Condition="!Exists('packages\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.2.10.12\build\native\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.2.10.12\build\native\cpprestsdk.v140.windesktop.msvcstl.static.rt-static.targets'))" />
+  </Target>
 </Project>
