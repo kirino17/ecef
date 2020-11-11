@@ -36,4 +36,4 @@
 
 -------------------------------------------------
 
-![资助](https://raw.githubusercontent.com/kirino17/ecef/master/book/image/support.png)
+![资助](https://s1.ax1x.com/2020/11/11/BjTdyR.png)
