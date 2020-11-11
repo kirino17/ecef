@@ -36,4 +36,4 @@
 
 -------------------------------------------------
 
-![资助](\book\image\support.ng)
+![资助](https://raw.githubusercontent.com/kirino17/ecef/master/book/image/support.png)
