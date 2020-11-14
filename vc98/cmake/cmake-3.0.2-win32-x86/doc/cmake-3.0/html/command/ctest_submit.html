@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ctest_submit &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="ctest_test" href="ctest_test.html" />
+    <link rel="prev" title="ctest_start" href="ctest_start.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ctest_test.html" title="ctest_test"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ctest_start.html" title="ctest_start"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ctest-submit">
+<span id="command:ctest_submit"></span><h1>ctest_submit<a class="headerlink" href="#ctest-submit" title="Permalink to this headline">¶</a></h1>
+<p>Submit results to a dashboard server.</p>
+<div class="highlight-python"><pre>ctest_submit([PARTS ...] [FILES ...] [RETRY_COUNT count]                [RETRY_DELAY delay][RETURN_VALUE res])</pre>
+</div>
+<p>By default all available parts are submitted if no PARTS or FILES are
+specified.  The PARTS option lists a subset of parts to be submitted.
+Valid part names are:</p>
+<div class="highlight-python"><pre>Start      = nothing
+Update     = ctest_update results, in Update.xml
+Configure  = ctest_configure results, in Configure.xml
+Build      = ctest_build results, in Build.xml
+Test       = ctest_test results, in Test.xml
+Coverage   = ctest_coverage results, in Coverage.xml
+MemCheck   = ctest_memcheck results, in DynamicAnalysis.xml
+Notes      = Files listed by CTEST_NOTES_FILES, in Notes.xml
+ExtraFiles = Files listed by CTEST_EXTRA_SUBMIT_FILES
+Upload     = Files prepared for upload by ctest_upload(), in Upload.xml
+Submit     = nothing</pre>
+</div>
+<p>The FILES option explicitly lists specific files to be submitted.
+Each individual file must exist at the time of the call.</p>
+<p>The RETRY_DELAY option specifies how long in seconds to wait after a
+timed-out submission before attempting to re-submit.</p>
+<p>The RETRY_COUNT option specifies how many times to retry a timed-out
+submission.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ctest_start.html"
+                        title="previous chapter">ctest_start</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ctest_test.html"
+                        title="next chapter">ctest_test</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/ctest_submit.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ctest_test.html" title="ctest_test"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ctest_start.html" title="ctest_start"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMakeParseArguments &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="CMakePrintHelpers" href="CMakePrintHelpers.html" />
+    <link rel="prev" title="CMakePackageConfigHelpers" href="CMakePackageConfigHelpers.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMakePrintHelpers.html" title="CMakePrintHelpers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMakePackageConfigHelpers.html" title="CMakePackageConfigHelpers"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmakeparsearguments">
+<span id="module:CMakeParseArguments"></span><h1>CMakeParseArguments<a class="headerlink" href="#cmakeparsearguments" title="Permalink to this headline">¶</a></h1>
+<p>CMAKE_PARSE_ARGUMENTS(&lt;prefix&gt; &lt;options&gt; &lt;one_value_keywords&gt;
+&lt;multi_value_keywords&gt; args...)</p>
+<p>CMAKE_PARSE_ARGUMENTS() is intended to be used in macros or functions
+for parsing the arguments given to that macro or function.  It
+processes the arguments and defines a set of variables which hold the
+values of the respective options.</p>
+<p>The &lt;options&gt; argument contains all options for the respective macro,
+i.e.  keywords which can be used when calling the macro without any
+value following, like e.g.  the OPTIONAL keyword of the install()
+command.</p>
+<p>The &lt;one_value_keywords&gt; argument contains all keywords for this macro
+which are followed by one value, like e.g.  DESTINATION keyword of the
+install() command.</p>
+<p>The &lt;multi_value_keywords&gt; argument contains all keywords for this
+macro which can be followed by more than one value, like e.g.  the
+TARGETS or FILES keywords of the install() command.</p>
+<p>When done, CMAKE_PARSE_ARGUMENTS() will have defined for each of the
+keywords listed in &lt;options&gt;, &lt;one_value_keywords&gt; and
+&lt;multi_value_keywords&gt; a variable composed of the given &lt;prefix&gt;
+followed by &#8220;_&#8221; and the name of the respective keyword.  These
+variables will then hold the respective value from the argument list.
+For the &lt;options&gt; keywords this will be TRUE or FALSE.</p>
+<p>All remaining arguments are collected in a variable
+&lt;prefix&gt;_UNPARSED_ARGUMENTS, this can be checked afterwards to see
+whether your macro was called with unrecognized parameters.</p>
+<p>As an example here a my_install() macro, which takes similar arguments
+as the real install() command:</p>
+<div class="highlight-python"><pre>function(MY_INSTALL)
+  set(options OPTIONAL FAST)
+  set(oneValueArgs DESTINATION RENAME)
+  set(multiValueArgs TARGETS CONFIGURATIONS)
+  cmake_parse_arguments(MY_INSTALL "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+  ...</pre>
+</div>
+<p>Assume my_install() has been called like this:</p>
+<div class="highlight-python"><pre>my_install(TARGETS foo bar DESTINATION bin OPTIONAL blub)</pre>
+</div>
+<p>After the cmake_parse_arguments() call the macro will have set the
+following variables:</p>
+<div class="highlight-python"><pre>MY_INSTALL_OPTIONAL = TRUE
+MY_INSTALL_FAST = FALSE (this option was not used when calling my_install()
+MY_INSTALL_DESTINATION = "bin"
+MY_INSTALL_RENAME = "" (was not used)
+MY_INSTALL_TARGETS = "foo;bar"
+MY_INSTALL_CONFIGURATIONS = "" (was not used)
+MY_INSTALL_UNPARSED_ARGUMENTS = "blub" (no value expected after "OPTIONAL"</pre>
+</div>
+<p>You can then continue and process these variables.</p>
+<p>Keywords terminate lists of values, e.g.  if directly after a
+one_value_keyword another recognized keyword follows, this is
+interpreted as the beginning of the new option.  E.g.
+my_install(TARGETS foo DESTINATION OPTIONAL) would result in
+MY_INSTALL_DESTINATION set to &#8220;OPTIONAL&#8221;, but MY_INSTALL_DESTINATION
+would be empty and MY_INSTALL_OPTIONAL would be set to TRUE therefor.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMakePackageConfigHelpers.html"
+                        title="previous chapter">CMakePackageConfigHelpers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMakePrintHelpers.html"
+                        title="next chapter">CMakePrintHelpers</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/CMakeParseArguments.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMakePrintHelpers.html" title="CMakePrintHelpers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMakePackageConfigHelpers.html" title="CMakePackageConfigHelpers"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

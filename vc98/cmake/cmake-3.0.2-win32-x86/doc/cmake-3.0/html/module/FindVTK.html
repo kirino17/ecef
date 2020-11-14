@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindVTK &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindWget" href="FindWget.html" />
+    <link rel="prev" title="FindUnixCommands" href="FindUnixCommands.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindWget.html" title="FindWget"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindUnixCommands.html" title="FindUnixCommands"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findvtk">
+<span id="module:FindVTK"></span><h1>FindVTK<a class="headerlink" href="#findvtk" title="Permalink to this headline">¶</a></h1>
+<p>Find a VTK installation or build tree.</p>
+<p>The following variables are set if VTK is found.  If VTK is not found,
+VTK_FOUND is set to false.</p>
+<div class="highlight-python"><pre>VTK_FOUND         - Set to true when VTK is found.
+VTK_USE_FILE      - CMake file to use VTK.
+VTK_MAJOR_VERSION - The VTK major version number.
+VTK_MINOR_VERSION - The VTK minor version number
+                     (odd non-release).
+VTK_BUILD_VERSION - The VTK patch level
+                     (meaningless for odd minor).
+VTK_INCLUDE_DIRS  - Include directories for VTK
+VTK_LIBRARY_DIRS  - Link directories for VTK libraries
+VTK_KITS          - List of VTK kits, in CAPS
+                    (COMMON,IO,) etc.
+VTK_LANGUAGES     - List of wrapped languages, in CAPS
+                    (TCL, PYHTON,) etc.</pre>
+</div>
+<p>The following cache entries must be set by the user to locate VTK:</p>
+<div class="highlight-python"><pre>VTK_DIR  - The directory containing VTKConfig.cmake.
+           This is either the root of the build tree,
+           or the lib/vtk directory.  This is the
+           only cache entry.</pre>
+</div>
+<p>The following variables are set for backward compatibility and should
+not be used in new code:</p>
+<div class="highlight-python"><pre>USE_VTK_FILE - The full path to the UseVTK.cmake file.
+               This is provided for backward
+               compatibility.  Use VTK_USE_FILE
+               instead.</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindUnixCommands.html"
+                        title="previous chapter">FindUnixCommands</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindWget.html"
+                        title="next chapter">FindWget</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindVTK.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindWget.html" title="FindWget"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindUnixCommands.html" title="FindUnixCommands"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

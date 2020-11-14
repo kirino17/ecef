@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FeatureSummary &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindALSA" href="FindALSA.html" />
+    <link rel="prev" title="ExternalProject" href="ExternalProject.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindALSA.html" title="FindALSA"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ExternalProject.html" title="ExternalProject"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="featuresummary">
+<span id="module:FeatureSummary"></span><h1>FeatureSummary<a class="headerlink" href="#featuresummary" title="Permalink to this headline">¶</a></h1>
+<p>Macros for generating a summary of enabled/disabled features</p>
+<p>This module provides the macros feature_summary(),
+set_package_properties() and add_feature_info().  For compatibility it
+also still provides set_package_info(), set_feature_info(),
+print_enabled_features() and print_disabled_features().</p>
+<p>These macros can be used to generate a summary of enabled and disabled
+packages and/or feature for a build tree:</p>
+<div class="highlight-python"><pre>-- The following OPTIONAL packages have been found:
+LibXml2 (required version &gt;= 2.4) , XML processing library. , &lt;http://xmlsoft.org&gt;
+   * Enables HTML-import in MyWordProcessor
+   * Enables odt-export in MyWordProcessor
+PNG , A PNG image library. , &lt;http://www.libpng.org/pub/png/&gt;
+   * Enables saving screenshots
+-- The following OPTIONAL packages have not been found:
+Lua51 , The Lua scripting language. , &lt;http://www.lua.org&gt;
+   * Enables macros in MyWordProcessor
+Foo , Foo provides cool stuff.</pre>
+</div>
+<div class="highlight-python"><pre>FEATURE_SUMMARY( [FILENAME &lt;file&gt;]
+                 [APPEND]
+                 [VAR &lt;variable_name&gt;]
+                 [INCLUDE_QUIET_PACKAGES]
+                 [FATAL_ON_MISSING_REQUIRED_PACKAGES]
+                 [DESCRIPTION "Found packages:"]
+                 WHAT (ALL | PACKAGES_FOUND | PACKAGES_NOT_FOUND
+                      | ENABLED_FEATURES | DISABLED_FEATURES]
+               )</pre>
+</div>
+<p>The FEATURE_SUMMARY() macro can be used to print information about
+enabled or disabled packages or features of a project.  By default,
+only the names of the features/packages will be printed and their
+required version when one was specified.  Use SET_PACKAGE_PROPERTIES()
+to add more useful information, like e.g.  a download URL for the
+respective package or their purpose in the project.</p>
+<p>The WHAT option is the only mandatory option.  Here you specify what
+information will be printed:</p>
+<div class="highlight-python"><pre>ALL: print everything
+ENABLED_FEATURES: the list of all features which are enabled
+DISABLED_FEATURES: the list of all features which are disabled
+PACKAGES_FOUND: the list of all packages which have been found
+PACKAGES_NOT_FOUND: the list of all packages which have not been found
+OPTIONAL_PACKAGES_FOUND: only those packages which have been found which have the type OPTIONAL
+OPTIONAL_PACKAGES_NOT_FOUND: only those packages which have not been found which have the type OPTIONAL
+RECOMMENDED_PACKAGES_FOUND: only those packages which have been found which have the type RECOMMENDED
+RECOMMENDED_PACKAGES_NOT_FOUND: only those packages which have not been found which have the type RECOMMENDED
+REQUIRED_PACKAGES_FOUND: only those packages which have been found which have the type REQUIRED
+REQUIRED_PACKAGES_NOT_FOUND: only those packages which have not been found which have the type REQUIRED
+RUNTIME_PACKAGES_FOUND: only those packages which have been found which have the type RUNTIME
+RUNTIME_PACKAGES_NOT_FOUND: only those packages which have not been found which have the type RUNTIME</pre>
+</div>
+<p>If a FILENAME is given, the information is printed into this file.  If
+APPEND is used, it is appended to this file, otherwise the file is
+overwritten if it already existed.  If the VAR option is used, the
+information is &#8220;printed&#8221; into the specified variable.  If FILENAME is
+not used, the information is printed to the terminal.  Using the
+DESCRIPTION option a description or headline can be set which will be
+printed above the actual content.  If INCLUDE_QUIET_PACKAGES is given,
+packages which have been searched with find_package(...  QUIET) will
+also be listed.  By default they are skipped.  If
+FATAL_ON_MISSING_REQUIRED_PACKAGES is given, CMake will abort if a
+package which is marked as REQUIRED has not been found.</p>
+<p>Example 1, append everything to a file:</p>
+<div class="highlight-python"><pre>feature_summary(WHAT ALL
+                FILENAME ${CMAKE_BINARY_DIR}/all.log APPEND)</pre>
+</div>
+<p>Example 2, print the enabled features into the variable
+enabledFeaturesText, including QUIET packages:</p>
+<div class="highlight-python"><pre>feature_summary(WHAT ENABLED_FEATURES
+                INCLUDE_QUIET_PACKAGES
+                DESCRIPTION "Enabled Features:"
+                VAR enabledFeaturesText)
+message(STATUS "${enabledFeaturesText}")</pre>
+</div>
+<div class="highlight-python"><pre>SET_PACKAGE_PROPERTIES(&lt;name&gt; PROPERTIES [ URL &lt;url&gt; ]
+                                         [ DESCRIPTION &lt;description&gt; ]
+                                         [ TYPE (RUNTIME|OPTIONAL|RECOMMENDED|REQUIRED) ]
+                                         [ PURPOSE &lt;purpose&gt; ]
+                      )</pre>
+</div>
+<p>Use this macro to set up information about the named package, which
+can then be displayed via FEATURE_SUMMARY().  This can be done either
+directly in the Find-module or in the project which uses the module
+after the find_package() call.  The features for which information can
+be set are added automatically by the find_package() command.</p>
+<p>URL: this should be the homepage of the package, or something similar.
+Ideally this is set already directly in the Find-module.</p>
+<p>DESCRIPTION: A short description what that package is, at most one
+sentence.  Ideally this is set already directly in the Find-module.</p>
+<p>TYPE: What type of dependency has the using project on that package.
+Default is OPTIONAL.  In this case it is a package which can be used
+by the project when available at buildtime, but it also work without.
+RECOMMENDED is similar to OPTIONAL, i.e.  the project will build if
+the package is not present, but the functionality of the resulting
+binaries will be severly limited.  If a REQUIRED package is not
+available at buildtime, the project may not even build.  This can be
+combined with the FATAL_ON_MISSING_REQUIRED_PACKAGES argument for
+feature_summary().  Last, a RUNTIME package is a package which is
+actually not used at all during the build, but which is required for
+actually running the resulting binaries.  So if such a package is
+missing, the project can still be built, but it may not work later on.
+If set_package_properties() is called multiple times for the same
+package with different TYPEs, the TYPE is only changed to higher TYPEs
+( RUNTIME &lt; OPTIONAL &lt; RECOMMENDED &lt; REQUIRED ), lower TYPEs are
+ignored.  The TYPE property is project-specific, so it cannot be set
+by the Find-module, but must be set in the project.</p>
+<p>PURPOSE: This describes which features this package enables in the
+project, i.e.  it tells the user what functionality he gets in the
+resulting binaries.  If set_package_properties() is called multiple
+times for a package, all PURPOSE properties are appended to a list of
+purposes of the package in the project.  As the TYPE property, also
+the PURPOSE property is project-specific, so it cannot be set by the
+Find-module, but must be set in the project.</p>
+<p>Example for setting the info for a package:</p>
+<div class="highlight-python"><pre>find_package(LibXml2)
+set_package_properties(LibXml2 PROPERTIES DESCRIPTION "A XML processing library."
+                                          URL "http://xmlsoft.org/")</pre>
+</div>
+<div class="highlight-python"><pre>set_package_properties(LibXml2 PROPERTIES TYPE RECOMMENDED
+                                          PURPOSE "Enables HTML-import in MyWordProcessor")
+...
+set_package_properties(LibXml2 PROPERTIES TYPE OPTIONAL
+                                          PURPOSE "Enables odt-export in MyWordProcessor")</pre>
+</div>
+<div class="highlight-python"><pre>find_package(DBUS)
+set_package_properties(DBUS PROPERTIES TYPE RUNTIME
+                                          PURPOSE "Necessary to disable the screensaver during a presentation" )</pre>
+</div>
+<div class="highlight-python"><pre>ADD_FEATURE_INFO(&lt;name&gt; &lt;enabled&gt; &lt;description&gt;)</pre>
+</div>
+<p>Use this macro to add information about a feature with the given
+&lt;name&gt;.  &lt;enabled&gt; contains whether this feature is enabled or not,
+&lt;description&gt; is a text describing the feature.  The information can
+be displayed using feature_summary() for ENABLED_FEATURES and
+DISABLED_FEATURES respectively.</p>
+<p>Example for setting the info for a feature:</p>
+<div class="highlight-python"><pre>option(WITH_FOO "Help for foo" ON)
+add_feature_info(Foo WITH_FOO "The Foo feature provides very cool stuff.")</pre>
+</div>
+<p>The following macros are provided for compatibility with previous
+CMake versions:</p>
+<div class="highlight-python"><pre>SET_PACKAGE_INFO(&lt;name&gt; &lt;description&gt; [&lt;url&gt; [&lt;purpose&gt;] ] )</pre>
+</div>
+<p>Use this macro to set up information about the named package, which
+can then be displayed via FEATURE_SUMMARY().  This can be done either
+directly in the Find-module or in the project which uses the module
+after the find_package() call.  The features for which information can
+be set are added automatically by the find_package() command.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">PRINT_ENABLED_FEATURES</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Does the same as FEATURE_SUMMARY(WHAT ENABLED_FEATURES DESCRIPTION
+&#8220;Enabled features:&#8221;)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">PRINT_DISABLED_FEATURES</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Does the same as FEATURE_SUMMARY(WHAT DISABLED_FEATURES DESCRIPTION
+&#8220;Disabled features:&#8221;)</p>
+<div class="highlight-python"><pre>SET_FEATURE_INFO(&lt;name&gt; &lt;description&gt; [&lt;url&gt;] )</pre>
+</div>
+<p>Does the same as SET_PACKAGE_INFO(&lt;name&gt; &lt;description&gt; &lt;url&gt; )</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ExternalProject.html"
+                        title="previous chapter">ExternalProject</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindALSA.html"
+                        title="next chapter">FindALSA</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FeatureSummary.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindALSA.html" title="FindALSA"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ExternalProject.html" title="ExternalProject"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

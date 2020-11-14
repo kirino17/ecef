@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cmake-generator-expressions(7) &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="next" title="cmake-generators(7)" href="cmake-generators.7.html" />
+    <link rel="prev" title="cmake-developer(7)" href="cmake-developer.7.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cmake-generators.7.html" title="cmake-generators(7)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmake-developer.7.html" title="cmake-developer(7)"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="manual:cmake-generator-expressions(7)"></span><div class="section" id="cmake-generator-expressions-7">
+<h1><a class="toc-backref" href="#id1">cmake-generator-expressions(7)</a><a class="headerlink" href="#cmake-generator-expressions-7" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cmake-generator-expressions-7" id="id1">cmake-generator-expressions(7)</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#logical-expressions" id="id3">Logical Expressions</a></li>
+<li><a class="reference internal" href="#informational-expressions" id="id4">Informational Expressions</a></li>
+<li><a class="reference internal" href="#output-expressions" id="id5">Output Expressions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Generator expressions are evaluated during build system generation to produce
+information specific to each build configuration.</p>
+<p>Generator expressions are allowed in the context of many target properties,
+such as <a class="reference internal" href="../prop_tgt/LINK_LIBRARIES.html#prop_tgt:LINK_LIBRARIES" title="LINK_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_LIBRARIES</span></tt></a>, <a class="reference internal" href="../prop_tgt/INCLUDE_DIRECTORIES.html#prop_tgt:INCLUDE_DIRECTORIES" title="INCLUDE_DIRECTORIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INCLUDE_DIRECTORIES</span></tt></a>,
+<a class="reference internal" href="../prop_tgt/COMPILE_DEFINITIONS.html#prop_tgt:COMPILE_DEFINITIONS" title="COMPILE_DEFINITIONS"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">COMPILE_DEFINITIONS</span></tt></a> and others.  They may also be used when using
+commands to populate those properties, such as <a class="reference internal" href="../command/target_link_libraries.html#command:target_link_libraries" title="target_link_libraries"><tt class="xref cmake cmake-command docutils literal"><span class="pre">target_link_libraries()</span></tt></a>,
+<a class="reference internal" href="../command/target_include_directories.html#command:target_include_directories" title="target_include_directories"><tt class="xref cmake cmake-command docutils literal"><span class="pre">target_include_directories()</span></tt></a>, <a class="reference internal" href="../command/target_compile_definitions.html#command:target_compile_definitions" title="target_compile_definitions"><tt class="xref cmake cmake-command docutils literal"><span class="pre">target_compile_definitions()</span></tt></a>
+and others.</p>
+<p>This means that they enable conditional linking, conditional
+definitions used when compiling, and conditional include directories and
+more.  The conditions may be based on the build configuration, target
+properties, platform information or any other queryable information.</p>
+</div>
+<div class="section" id="logical-expressions">
+<h2><a class="toc-backref" href="#id3">Logical Expressions</a><a class="headerlink" href="#logical-expressions" title="Permalink to this headline">¶</a></h2>
+<p>Logical expressions are used to create conditional output.  The basic
+expressions are the <tt class="docutils literal"><span class="pre">0</span></tt> and <tt class="docutils literal"><span class="pre">1</span></tt> expressions.  Because other logical
+expressions evaluate to either <tt class="docutils literal"><span class="pre">0</span></tt> or <tt class="docutils literal"><span class="pre">1</span></tt>, they can be composed to
+create conditional output:</p>
+<div class="highlight-python"><pre>$&lt;$&lt;CONFIG:Debug&gt;:DEBUG_MODE&gt;</pre>
+</div>
+<p>expands to <tt class="docutils literal"><span class="pre">DEBUG_MODE</span></tt> when the <tt class="docutils literal"><span class="pre">Debug</span></tt> configuration is used, and
+otherwise expands to nothing.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">$&lt;0:...&gt;</span></tt></dt>
+<dd>Empty string (ignores <tt class="docutils literal"><span class="pre">...</span></tt>)</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;1:...&gt;</span></tt></dt>
+<dd>Content of <tt class="docutils literal"><span class="pre">...</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;BOOL:...&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the <tt class="docutils literal"><span class="pre">...</span></tt> is true, else <tt class="docutils literal"><span class="pre">0</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;AND:?[,?]...&gt;</span></tt></dt>
+<dd><p class="first"><tt class="docutils literal"><span class="pre">1</span></tt> if all <tt class="docutils literal"><span class="pre">?</span></tt> are <tt class="docutils literal"><span class="pre">1</span></tt>, else <tt class="docutils literal"><span class="pre">0</span></tt></p>
+<p class="last">The <tt class="docutils literal"><span class="pre">?</span></tt> must always be either <tt class="docutils literal"><span class="pre">0</span></tt> or <tt class="docutils literal"><span class="pre">1</span></tt> in boolean expressions.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;OR:?[,?]...&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">0</span></tt> if all <tt class="docutils literal"><span class="pre">?</span></tt> are <tt class="docutils literal"><span class="pre">0</span></tt>, else <tt class="docutils literal"><span class="pre">1</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;NOT:?&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">0</span></tt> if <tt class="docutils literal"><span class="pre">?</span></tt> is <tt class="docutils literal"><span class="pre">1</span></tt>, else <tt class="docutils literal"><span class="pre">1</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;STREQUAL:a,b&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if <tt class="docutils literal"><span class="pre">a</span></tt> is STREQUAL <tt class="docutils literal"><span class="pre">b</span></tt>, else <tt class="docutils literal"><span class="pre">0</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;EQUAL:a,b&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if <tt class="docutils literal"><span class="pre">a</span></tt> is EQUAL <tt class="docutils literal"><span class="pre">b</span></tt> in a numeric comparison, else <tt class="docutils literal"><span class="pre">0</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;CONFIG:cfg&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if config is <tt class="docutils literal"><span class="pre">cfg</span></tt>, else <tt class="docutils literal"><span class="pre">0</span></tt>. This is a case-insensitive comparison.
+The mapping in <a class="reference internal" href="../prop_tgt/MAP_IMPORTED_CONFIG_CONFIG.html#prop_tgt:MAP_IMPORTED_CONFIG_&lt;CONFIG&gt;" title="MAP_IMPORTED_CONFIG_&lt;CONFIG&gt;"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">MAP_IMPORTED_CONFIG_&lt;CONFIG&gt;</span></tt></a> is also considered by
+this expression when it is evaluated on a property on an <a class="reference internal" href="../prop_tgt/IMPORTED.html#prop_tgt:IMPORTED" title="IMPORTED"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">IMPORTED</span></tt></a>
+target.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;PLATFORM_ID:comp&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the CMake-id of the platform matches <tt class="docutils literal"><span class="pre">comp</span></tt>, otherwise <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;C_COMPILER_ID:comp&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the CMake-id of the C compiler matches <tt class="docutils literal"><span class="pre">comp</span></tt>, otherwise <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;CXX_COMPILER_ID:comp&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the CMake-id of the CXX compiler matches <tt class="docutils literal"><span class="pre">comp</span></tt>, otherwise <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;VERSION_GREATER:v1,v2&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if <tt class="docutils literal"><span class="pre">v1</span></tt> is a version greater than <tt class="docutils literal"><span class="pre">v2</span></tt>, else <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;VERSION_LESS:v1,v2&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if <tt class="docutils literal"><span class="pre">v1</span></tt> is a version less than <tt class="docutils literal"><span class="pre">v2</span></tt>, else <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;VERSION_EQUAL:v1,v2&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if <tt class="docutils literal"><span class="pre">v1</span></tt> is the same version as <tt class="docutils literal"><span class="pre">v2</span></tt>, else <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;C_COMPILER_VERSION:ver&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the version of the C compiler matches <tt class="docutils literal"><span class="pre">ver</span></tt>, otherwise <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;CXX_COMPILER_VERSION:ver&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the version of the CXX compiler matches <tt class="docutils literal"><span class="pre">ver</span></tt>, otherwise <tt class="docutils literal"><span class="pre">0</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_POLICY:pol&gt;</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">1</span></tt> if the policy <tt class="docutils literal"><span class="pre">pol</span></tt> was NEW when the &#8216;head&#8217; target was created,
+else <tt class="docutils literal"><span class="pre">0</span></tt>.  If the policy was not set, the warning message for the policy
+will be emitted. This generator expression only works for a subset of
+policies.</dd>
+</dl>
+</div>
+<div class="section" id="informational-expressions">
+<h2><a class="toc-backref" href="#id4">Informational Expressions</a><a class="headerlink" href="#informational-expressions" title="Permalink to this headline">¶</a></h2>
+<p>These expressions expand to some information. The information may be used
+directly, eg:</p>
+<div class="highlight-python"><pre>include_directories(/usr/include/$&lt;CXX_COMPILER_ID&gt;/)</pre>
+</div>
+<p>expands to <tt class="docutils literal"><span class="pre">/usr/include/GNU/</span></tt> or <tt class="docutils literal"><span class="pre">/usr/include/Clang/</span></tt> etc, depending on
+the Id of the compiler.</p>
+<p>These expressions may also may be combined with logical expressions:</p>
+<div class="highlight-python"><pre>$&lt;$&lt;VERSION_LESS:$&lt;CXX_COMPILER_VERSION&gt;,4.2.0&gt;:OLD_COMPILER&gt;</pre>
+</div>
+<p>expands to <tt class="docutils literal"><span class="pre">OLD_COMPILER</span></tt> if the
+<a class="reference internal" href="../variable/CMAKE_LANG_COMPILER_VERSION.html#variable:CMAKE_&lt;LANG&gt;_COMPILER_VERSION" title="CMAKE_&lt;LANG&gt;_COMPILER_VERSION"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_CXX_COMPILER_VERSION</span></tt></a> is less
+than 4.2.0.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">$&lt;CONFIGURATION&gt;</span></tt></dt>
+<dd>Configuration name. Deprecated. Use <tt class="docutils literal"><span class="pre">CONFIG</span></tt> instead.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;CONFIG&gt;</span></tt></dt>
+<dd>Configuration name</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;PLATFORM_ID&gt;</span></tt></dt>
+<dd>The CMake-id of the platform</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;C_COMPILER_ID&gt;</span></tt></dt>
+<dd>The CMake-id of the C compiler used.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;CXX_COMPILER_ID&gt;</span></tt></dt>
+<dd>The CMake-id of the CXX compiler used.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;C_COMPILER_VERSION&gt;</span></tt></dt>
+<dd>The version of the C compiler used.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;CXX_COMPILER_VERSION&gt;</span></tt></dt>
+<dd>The version of the CXX compiler used.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_FILE:tgt&gt;</span></tt></dt>
+<dd>Full path to main file (.exe, .so.1.2, .a) where <tt class="docutils literal"><span class="pre">tgt</span></tt> is the name of a target.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_FILE_NAME:tgt&gt;</span></tt></dt>
+<dd>Name of main file (.exe, .so.1.2, .a).</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_FILE_DIR:tgt&gt;</span></tt></dt>
+<dd>Directory of main file (.exe, .so.1.2, .a).</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_LINKER_FILE:tgt&gt;</span></tt></dt>
+<dd>File used to link (.a, .lib, .so) where <tt class="docutils literal"><span class="pre">tgt</span></tt> is the name of a target.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_LINKER_FILE_NAME:tgt&gt;</span></tt></dt>
+<dd>Name of file used to link (.a, .lib, .so).</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_LINKER_FILE_DIR:tgt&gt;</span></tt></dt>
+<dd>Directory of file used to link (.a, .lib, .so).</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_SONAME_FILE:tgt&gt;</span></tt></dt>
+<dd>File with soname (.so.3) where <tt class="docutils literal"><span class="pre">tgt</span></tt> is the name of a target.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_SONAME_FILE_NAME:tgt&gt;</span></tt></dt>
+<dd>Name of file with soname (.so.3).</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_SONAME_FILE_DIR:tgt&gt;</span></tt></dt>
+<dd>Directory of with soname (.so.3).</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_PROPERTY:tgt,prop&gt;</span></tt></dt>
+<dd><p class="first">Value of the property <tt class="docutils literal"><span class="pre">prop</span></tt> on the target <tt class="docutils literal"><span class="pre">tgt</span></tt>.</p>
+<p class="last">Note that <tt class="docutils literal"><span class="pre">tgt</span></tt> is not added as a dependency of the target this
+expression is evaluated on.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_PROPERTY:prop&gt;</span></tt></dt>
+<dd>Value of the property <tt class="docutils literal"><span class="pre">prop</span></tt> on the target on which the generator
+expression is evaluated.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;INSTALL_PREFIX&gt;</span></tt></dt>
+<dd>Content of the install prefix when the target is exported via
+<a class="reference internal" href="../command/install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(EXPORT)</span></tt></a> and empty otherwise.</dd>
+</dl>
+</div>
+<div class="section" id="output-expressions">
+<h2><a class="toc-backref" href="#id5">Output Expressions</a><a class="headerlink" href="#output-expressions" title="Permalink to this headline">¶</a></h2>
+<p>These expressions generate output, in some cases depending on an input. These
+expressions may be combined with other expressions for information or logical
+comparison:</p>
+<div class="highlight-python"><pre>-I$&lt;JOIN:$&lt;TARGET_PROPERTY:INCLUDE_DIRECTORIES&gt;, -I&gt;</pre>
+</div>
+<p>generates a string of the entries in the <a class="reference internal" href="../prop_tgt/INCLUDE_DIRECTORIES.html#prop_tgt:INCLUDE_DIRECTORIES" title="INCLUDE_DIRECTORIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INCLUDE_DIRECTORIES</span></tt></a> target
+property with each entry preceeded by <tt class="docutils literal"><span class="pre">-I</span></tt>. Note that a more-complete use
+in this situation would require first checking if the INCLUDE_DIRECTORIES
+property is non-empty:</p>
+<div class="highlight-python"><pre>$&lt;$&lt;BOOL:$&lt;TARGET_PROPERTY:INCLUDE_DIRECTORIES&gt;&gt;:-I$&lt;JOIN:$&lt;TARGET_PROPERTY:INCLUDE_DIRECTORIES&gt;, -I&gt;&gt;</pre>
+</div>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">$&lt;JOIN:list,...&gt;</span></tt></dt>
+<dd>Joins the list with the content of <tt class="docutils literal"><span class="pre">...</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;ANGLE-R&gt;</span></tt></dt>
+<dd>A literal <tt class="docutils literal"><span class="pre">&gt;</span></tt>. Used to compare strings which contain a <tt class="docutils literal"><span class="pre">&gt;</span></tt> for example.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;COMMA&gt;</span></tt></dt>
+<dd>A literal <tt class="docutils literal"><span class="pre">,</span></tt>. Used to compare strings which contain a <tt class="docutils literal"><span class="pre">,</span></tt> for example.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;SEMICOLON&gt;</span></tt></dt>
+<dd>A literal <tt class="docutils literal"><span class="pre">;</span></tt>. Used to prevent list expansion on an argument with <tt class="docutils literal"><span class="pre">;</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;TARGET_NAME:...&gt;</span></tt></dt>
+<dd>Marks <tt class="docutils literal"><span class="pre">...</span></tt> as being the name of a target.  This is required if exporting
+targets to multiple dependent export sets.  The <tt class="docutils literal"><span class="pre">...</span></tt> must be a literal
+name of a target- it may not contain generator expressions.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;INSTALL_INTERFACE:...&gt;</span></tt></dt>
+<dd>Content of <tt class="docutils literal"><span class="pre">...</span></tt> when the property is exported using <a class="reference internal" href="../command/install.html#command:install" title="install"><tt class="xref cmake cmake-command docutils literal"><span class="pre">install(EXPORT)</span></tt></a>,
+and empty otherwise.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;BUILD_INTERFACE:...&gt;</span></tt></dt>
+<dd>Content of <tt class="docutils literal"><span class="pre">...</span></tt> when the property is exported using <a class="reference internal" href="../command/export.html#command:export" title="export"><tt class="xref cmake cmake-command docutils literal"><span class="pre">export()</span></tt></a>, or
+when the target is used by another target in the same buildsystem. Expands to
+the empty string otherwise.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;LOWER_CASE:...&gt;</span></tt></dt>
+<dd>Content of <tt class="docutils literal"><span class="pre">...</span></tt> converted to lower case.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;UPPER_CASE:...&gt;</span></tt></dt>
+<dd>Content of <tt class="docutils literal"><span class="pre">...</span></tt> converted to upper case.</dd>
+<dt><tt class="docutils literal"><span class="pre">$&lt;MAKE_C_IDENTIFIER:...&gt;</span></tt></dt>
+<dd>Content of <tt class="docutils literal"><span class="pre">...</span></tt> converted to a C identifier.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cmake-generator-expressions(7)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#logical-expressions">Logical Expressions</a></li>
+<li><a class="reference internal" href="#informational-expressions">Informational Expressions</a></li>
+<li><a class="reference internal" href="#output-expressions">Output Expressions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmake-developer.7.html"
+                        title="previous chapter">cmake-developer(7)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cmake-generators.7.html"
+                        title="next chapter">cmake-generators(7)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/manual/cmake-generator-expressions.7.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cmake-generators.7.html" title="cmake-generators(7)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmake-developer.7.html" title="cmake-developer(7)"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

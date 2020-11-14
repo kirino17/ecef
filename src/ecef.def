@@ -1,0 +1,5 @@
+LIBRARY      "ecef"
+DESCRIPTION  'ecef Library'
+
+EXPORTS
+    GetNewInf

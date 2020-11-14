@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMAKE_FIND_ROOT_PATH_MODE_PACKAGE &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-variables(7)" href="../manual/cmake-variables.7.html" />
+    <link rel="next" title="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM" href="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM.html" />
+    <link rel="prev" title="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY" href="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM.html" title="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY.html" title="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" accesskey="U">cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmake-find-root-path-mode-package">
+<span id="variable:CMAKE_FIND_ROOT_PATH_MODE_PACKAGE"></span><h1>CMAKE_FIND_ROOT_PATH_MODE_PACKAGE<a class="headerlink" href="#cmake-find-root-path-mode-package" title="Permalink to this headline">¶</a></h1>
+<p>This variable controls whether the <a class="reference internal" href="CMAKE_FIND_ROOT_PATH.html#variable:CMAKE_FIND_ROOT_PATH" title="CMAKE_FIND_ROOT_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_FIND_ROOT_PATH</span></tt></a> and
+<a class="reference internal" href="CMAKE_SYSROOT.html#variable:CMAKE_SYSROOT" title="CMAKE_SYSROOT"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_SYSROOT</span></tt></a> are used by <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a>.</p>
+<p>If set to <tt class="docutils literal"><span class="pre">ONLY</span></tt>, then only the roots in <a class="reference internal" href="CMAKE_FIND_ROOT_PATH.html#variable:CMAKE_FIND_ROOT_PATH" title="CMAKE_FIND_ROOT_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_FIND_ROOT_PATH</span></tt></a>
+will be searched. If set to <tt class="docutils literal"><span class="pre">NEVER</span></tt>, then the roots in
+<a class="reference internal" href="CMAKE_FIND_ROOT_PATH.html#variable:CMAKE_FIND_ROOT_PATH" title="CMAKE_FIND_ROOT_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_FIND_ROOT_PATH</span></tt></a> will be ignored and only the host system
+root will be used. If set to <tt class="docutils literal"><span class="pre">BOTH</span></tt>, then the host system paths and the
+paths in <a class="reference internal" href="CMAKE_FIND_ROOT_PATH.html#variable:CMAKE_FIND_ROOT_PATH" title="CMAKE_FIND_ROOT_PATH"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_FIND_ROOT_PATH</span></tt></a> will be searched.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY.html"
+                        title="previous chapter">CMAKE_FIND_ROOT_PATH_MODE_LIBRARY</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM.html"
+                        title="next chapter">CMAKE_FIND_ROOT_PATH_MODE_PROGRAM</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/variable/CMAKE_FIND_ROOT_PATH_MODE_PACKAGE.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM.html" title="CMAKE_FIND_ROOT_PATH_MODE_PROGRAM"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY.html" title="CMAKE_FIND_ROOT_PATH_MODE_LIBRARY"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" >cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

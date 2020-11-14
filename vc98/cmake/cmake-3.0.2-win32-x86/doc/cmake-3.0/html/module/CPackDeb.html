@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CPackDeb &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="CPackDMG" href="CPackDMG.html" />
+    <link rel="prev" title="CPackCygwin" href="CPackCygwin.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CPackDMG.html" title="CPackDMG"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CPackCygwin.html" title="CPackCygwin"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cpackdeb">
+<span id="module:CPackDeb"></span><h1>CPackDeb<a class="headerlink" href="#cpackdeb" title="Permalink to this headline">¶</a></h1>
+<p>The builtin (binary) CPack Deb generator (Unix only)</p>
+<div class="section" id="variables-specific-to-cpack-debian-deb-generator">
+<h2>Variables specific to CPack Debian (DEB) generator<a class="headerlink" href="#variables-specific-to-cpack-debian-deb-generator" title="Permalink to this headline">¶</a></h2>
+<p>CPackDeb may be used to create Deb package using CPack.
+CPackDeb is a CPack generator thus it uses the CPACK_XXX variables
+used by CPack : <a class="reference external" href="http://www.cmake.org/Wiki/CMake:CPackConfiguration">http://www.cmake.org/Wiki/CMake:CPackConfiguration</a>.
+CPackDeb generator should work on any linux host but it will produce
+better deb package when Debian specific tools &#8216;dpkg-xxx&#8217; are usable on
+the build system.</p>
+<p>CPackDeb has specific features which are controlled by the specifics
+CPACK_DEBIAN_XXX variables.You&#8217;ll find a detailed usage on the wiki:
+<a class="reference external" href="http://www.cmake.org/Wiki/CMake:CPackPackageGenerators#DEB_.28UNIX_only.29">http://www.cmake.org/Wiki/CMake:CPackPackageGenerators#DEB_.28UNIX_only.29</a></p>
+<p>However as a handy reminder here comes the list of specific variables:</p>
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_NAME">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_NAME</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : CPACK_PACKAGE_NAME (lower case)</li>
+</ul>
+<p>The debian package summary</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_VERSION">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_VERSION</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_VERSION" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : CPACK_PACKAGE_VERSION</li>
+</ul>
+<p>The debian package version</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_ARCHITECTURE">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_ARCHITECTURE</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_ARCHITECTURE" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : Output of dpkg &#8211;print-architecture (or i386 if dpkg is not found)</li>
+</ul>
+<p>The debian package architecture</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_DEPENDS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_DEPENDS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_DEPENDS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>May be used to set deb dependencies.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_MAINTAINER">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_MAINTAINER</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_MAINTAINER" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : CPACK_PACKAGE_CONTACT</li>
+</ul>
+<p>The debian package maintainer</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_DESCRIPTION">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_DESCRIPTION</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : CPACK_PACKAGE_DESCRIPTION_SUMMARY</li>
+</ul>
+<p>The debian package description</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_SECTION">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_SECTION</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_SECTION" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : &#8216;devel&#8217;</li>
+</ul>
+<p>The debian package section</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_PRIORITY">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_PRIORITY</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_PRIORITY" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : YES</li>
+<li>Default   : &#8216;optional&#8217;</li>
+</ul>
+<p>The debian package priority</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_HOMEPAGE">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_HOMEPAGE</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_HOMEPAGE" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>The URL of the web site for this package, preferably (when applicable) the
+site from which the original source can be obtained and any additional
+upstream documentation or information may be found.
+The content of this field is a simple URL without any surrounding
+characters such as &lt;&gt;.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_SHLIBDEPS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_SHLIBDEPS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_SHLIBDEPS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : OFF</li>
+</ul>
+<p>May be set to ON in order to use dpkg-shlibdeps to generate
+better package dependency list.
+You may need set CMAKE_INSTALL_RPATH toi appropriate value
+if you use this feature, because if you don&#8217;t dpkg-shlibdeps
+may fail to find your own shared libs.
+See <a class="reference external" href="http://www.cmake.org/Wiki/CMake_RPATH_handling">http://www.cmake.org/Wiki/CMake_RPATH_handling</a>.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_DEBUG">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_DEBUG</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>May be set when invoking cpack in order to trace debug information
+during CPackDeb run.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_PREDEPENDS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_PREDEPENDS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_PREDEPENDS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+This field is like Depends, except that it also forces dpkg to complete installation of
+the packages named before even starting the installation of the package which declares
+the pre-dependency.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_ENHANCES">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_ENHANCES</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_ENHANCES" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+This field is similar to Suggests but works in the opposite direction.
+It is used to declare that a package can enhance the functionality of another package.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_BREAKS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_BREAKS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_BREAKS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+When one binary package declares that it breaks another, dpkg will refuse to allow the
+package which declares Breaks be installed unless the broken package is deconfigured first,
+and it will refuse to allow the broken package to be reconfigured.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_CONFLICTS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_CONFLICTS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_CONFLICTS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+When one binary package declares a conflict with another using a Conflicts field,
+dpkg will refuse to allow them to be installed on the system at the same time.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_PROVIDES">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_PROVIDES</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_PROVIDES" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+A virtual package is one which appears in the Provides control field of another package.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_REPLACES">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_REPLACES</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_REPLACES" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+Packages can declare in their control file that they should overwrite
+files in certain other packages, or completely replace other packages.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_RECOMMENDS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_RECOMMENDS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_RECOMMENDS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+Allows packages to declare a strong, but not absolute, dependency on other packages.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_SUGGESTS">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_SUGGESTS</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_SUGGESTS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>see <a class="reference external" href="http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps">http://www.debian.org/doc/debian-policy/ch-relationships.html#s-binarydeps</a>
+Allows packages to declare a suggested package install grouping.</p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="variable:CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA">
+<tt class="descname">CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA</tt><a class="headerlink" href="#variable:CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Mandatory : NO</li>
+<li>Default   : -</li>
+</ul>
+<p>This variable allow advanced user to add custom script to the
+control.tar.gz Typical usage is for conffiles, postinst, postrm, prerm.
+Usage:</p>
+<div class="highlight-python"><pre>set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
+    "${CMAKE_CURRENT_SOURCE_DIR/prerm;${CMAKE_CURRENT_SOURCE_DIR}/postrm")</pre>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CPackDeb</a><ul>
+<li><a class="reference internal" href="#variables-specific-to-cpack-debian-deb-generator">Variables specific to CPack Debian (DEB) generator</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CPackCygwin.html"
+                        title="previous chapter">CPackCygwin</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CPackDMG.html"
+                        title="next chapter">CPackDMG</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/CPackDeb.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CPackDMG.html" title="CPackDMG"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CPackCygwin.html" title="CPackCygwin"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

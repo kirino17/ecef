@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMP0000 &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-policies(7)" href="../manual/cmake-policies.7.html" />
+    <link rel="next" title="CMP0001" href="CMP0001.html" />
+    <link rel="prev" title="cmake-policies(7)" href="../manual/cmake-policies.7.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMP0001.html" title="CMP0001"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../manual/cmake-policies.7.html" title="cmake-policies(7)"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-policies.7.html" accesskey="U">cmake-policies(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmp0000">
+<span id="policy:CMP0000"></span><h1>CMP0000<a class="headerlink" href="#cmp0000" title="Permalink to this headline">¶</a></h1>
+<p>A minimum required CMake version must be specified.</p>
+<p>CMake requires that projects specify the version of CMake to which
+they have been written.  This policy has been put in place so users
+trying to build the project may be told when they need to update their
+CMake.  Specifying a version also helps the project build with CMake
+versions newer than that specified.  Use the cmake_minimum_required
+command at the top of your main CMakeLists.txt file:</p>
+<div class="highlight-python"><pre>cmake_minimum_required(VERSION &lt;major&gt;.&lt;minor&gt;)</pre>
+</div>
+<p>where &#8220;&lt;major&gt;.&lt;minor&gt;&#8221; is the version of CMake you want to support
+(such as &#8220;2.6&#8221;).  The command will ensure that at least the given
+version of CMake is running and help newer versions be compatible with
+the project.  See documentation of cmake_minimum_required for details.</p>
+<p>Note that the command invocation must appear in the CMakeLists.txt
+file itself; a call in an included file is not sufficient.  However,
+the cmake_policy command may be called to set policy CMP0000 to OLD or
+NEW behavior explicitly.  The OLD behavior is to silently ignore the
+missing invocation.  The NEW behavior is to issue an error instead of
+a warning.  An included file may set CMP0000 explicitly to affect how
+this policy is enforced for the main CMakeLists.txt file.</p>
+<p>This policy was introduced in CMake version 2.6.0.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../manual/cmake-policies.7.html"
+                        title="previous chapter">cmake-policies(7)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMP0001.html"
+                        title="next chapter">CMP0001</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/policy/CMP0000.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMP0001.html" title="CMP0001"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../manual/cmake-policies.7.html" title="cmake-policies(7)"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-policies.7.html" >cmake-policies(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

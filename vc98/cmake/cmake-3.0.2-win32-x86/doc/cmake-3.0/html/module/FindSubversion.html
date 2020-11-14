@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindSubversion &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindSWIG" href="FindSWIG.html" />
+    <link rel="prev" title="FindSquish" href="FindSquish.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindSWIG.html" title="FindSWIG"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindSquish.html" title="FindSquish"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findsubversion">
+<span id="module:FindSubversion"></span><h1>FindSubversion<a class="headerlink" href="#findsubversion" title="Permalink to this headline">¶</a></h1>
+<p>Extract information from a subversion working copy</p>
+<p>The module defines the following variables:</p>
+<div class="highlight-python"><pre>Subversion_SVN_EXECUTABLE - path to svn command line client
+Subversion_VERSION_SVN - version of svn command line client
+Subversion_FOUND - true if the command line client was found
+SUBVERSION_FOUND - same as Subversion_FOUND, set for compatiblity reasons</pre>
+</div>
+<p>The minimum required version of Subversion can be specified using the
+standard syntax, e.g.  find_package(Subversion 1.4)</p>
+<p>If the command line client executable is found two macros are defined:</p>
+<div class="highlight-python"><pre>Subversion_WC_INFO(&lt;dir&gt; &lt;var-prefix&gt;)
+Subversion_WC_LOG(&lt;dir&gt; &lt;var-prefix&gt;)</pre>
+</div>
+<p>Subversion_WC_INFO extracts information of a subversion working copy
+at a given location.  This macro defines the following variables:</p>
+<div class="highlight-python"><pre>&lt;var-prefix&gt;_WC_URL - url of the repository (at &lt;dir&gt;)
+&lt;var-prefix&gt;_WC_ROOT - root url of the repository
+&lt;var-prefix&gt;_WC_REVISION - current revision
+&lt;var-prefix&gt;_WC_LAST_CHANGED_AUTHOR - author of last commit
+&lt;var-prefix&gt;_WC_LAST_CHANGED_DATE - date of last commit
+&lt;var-prefix&gt;_WC_LAST_CHANGED_REV - revision of last commit
+&lt;var-prefix&gt;_WC_INFO - output of command `svn info &lt;dir&gt;'</pre>
+</div>
+<p>Subversion_WC_LOG retrieves the log message of the base revision of a
+subversion working copy at a given location.  This macro defines the
+variable:</p>
+<div class="highlight-python"><pre>&lt;var-prefix&gt;_LAST_CHANGED_LOG - last log of base revision</pre>
+</div>
+<p>Example usage:</p>
+<div class="highlight-python"><pre>find_package(Subversion)
+if(SUBVERSION_FOUND)
+  Subversion_WC_INFO(${PROJECT_SOURCE_DIR} Project)
+  message("Current revision is ${Project_WC_REVISION}")
+  Subversion_WC_LOG(${PROJECT_SOURCE_DIR} Project)
+  message("Last changed log is ${Project_LAST_CHANGED_LOG}")
+endif()</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindSquish.html"
+                        title="previous chapter">FindSquish</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindSWIG.html"
+                        title="next chapter">FindSWIG</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindSubversion.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindSWIG.html" title="FindSWIG"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindSquish.html" title="FindSquish"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

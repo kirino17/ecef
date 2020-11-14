@@ -1,0 +1,430 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "CMAKE" "1" "September 11, 2014" "3.0.2" "CMake"
+.SH NAME
+cmake \- CMake Command-Line Reference
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.SH SYNOPSIS
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+cmake [<options>] (<path\-to\-source> | <path\-to\-existing\-build>)
+cmake [(\-D<var>=<value>)...] \-P <cmake\-script\-file>
+cmake \-\-build <dir> [<options>] [\-\- <build\-tool\-options>...]
+cmake \-E <command> [<options>]
+cmake \-\-find\-package <options>...
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SH DESCRIPTION
+.sp
+The "cmake" executable is the CMake command\-line interface.  It may be
+used to configure projects in scripts.  Project configuration settings
+may be specified on the command line with the \-D option.
+.sp
+CMake is a cross\-platform build system generator.  Projects specify
+their build process with platform\-independent CMake listfiles included
+in each directory of a source tree with the name CMakeLists.txt.
+Users build a project by using CMake to generate a build system for a
+native tool on their platform.
+.SH OPTIONS
+.INDENT 0.0
+.TP
+.B \fB\-C <initial\-cache>\fP
+Pre\-load a script to populate the cache.
+.sp
+When cmake is first run in an empty build tree, it creates a
+CMakeCache.txt file and populates it with customizable settings for
+the project.  This option may be used to specify a file from which
+to load cache entries before the first pass through the project\(aqs
+cmake listfiles.  The loaded entries take priority over the
+project\(aqs default values.  The given file should be a CMake script
+containing SET commands that use the CACHE option, not a
+cache\-format file.
+.TP
+.B \fB\-D <var>:<type>=<value>\fP
+Create a cmake cache entry.
+.sp
+When cmake is first run in an empty build tree, it creates a
+CMakeCache.txt file and populates it with customizable settings for
+the project.  This option may be used to specify a setting that
+takes priority over the project\(aqs default value.  The option may be
+repeated for as many cache entries as desired.
+.TP
+.B \fB\-U <globbing_expr>\fP
+Remove matching entries from CMake cache.
+.sp
+This option may be used to remove one or more variables from the
+CMakeCache.txt file, globbing expressions using * and ? are
+supported.  The option may be repeated for as many cache entries as
+desired.
+.sp
+Use with care, you can make your CMakeCache.txt non\-working.
+.TP
+.B \fB\-G <generator\-name>\fP
+Specify a build system generator.
+.sp
+CMake may support multiple native build systems on certain
+platforms.  A generator is responsible for generating a particular
+build system.  Possible generator names are specified in the
+Generators section.
+.TP
+.B \fB\-T <toolset\-name>\fP
+Specify toolset name if supported by generator.
+.sp
+Some CMake generators support a toolset name to be given to the
+native build system to choose a compiler.  This is supported only on
+specific generators:
+.INDENT 7.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+Visual Studio >= 10
+Xcode >= 3.0
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+See native build system documentation for allowed toolset names.
+.TP
+.B \fB\-Wno\-dev\fP
+Suppress developer warnings.
+.sp
+Suppress warnings that are meant for the author of the
+CMakeLists.txt files.
+.TP
+.B \fB\-Wdev\fP
+Enable developer warnings.
+.sp
+Enable warnings that are meant for the author of the CMakeLists.txt
+files.
+.TP
+.B \fB\-E\fP
+CMake command mode.
+.sp
+For true platform independence, CMake provides a list of commands
+that can be used on all systems.  Run with \-E help for the usage
+information.  Commands available are: chdir, compare_files, copy,
+copy_directory, copy_if_different, echo, echo_append, environment,
+make_directory, md5sum, remove, remove_directory, rename, sleep, tar, time,
+touch, touch_nocreate.  In addition, some platform specific commands
+are available.  On Windows: delete_regv, write_regv.  On
+UNIX: create_symlink.
+.TP
+.B \fB\-L[A][H]\fP
+List non\-advanced cached variables.
+.sp
+List cache variables will run CMake and list all the variables from
+the CMake cache that are not marked as INTERNAL or ADVANCED.  This
+will effectively display current CMake settings, which can then be
+changed with \-D option.  Changing some of the variables may result
+in more variables being created.  If A is specified, then it will
+display also advanced variables.  If H is specified, it will also
+display help for each variable.
+.TP
+.B \fB\-\-build <dir>\fP
+Build a CMake\-generated project binary tree.
+.sp
+This abstracts a native build tool\(aqs command\-line interface with the
+following options:
+.INDENT 7.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+<dir>          = Project binary directory to be built.
+\-\-target <tgt> = Build <tgt> instead of default targets.
+\-\-config <cfg> = For multi\-configuration tools, choose <cfg>.
+\-\-clean\-first  = Build target \(aqclean\(aq first, then build.
+                 (To clean only, use \-\-target \(aqclean\(aq.)
+\-\-use\-stderr   = Ignored.  Behavior is default in CMake >= 3.0.
+\-\-             = Pass remaining options to the native tool.
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Run cmake \-\-build with no options for quick help.
+.TP
+.B \fB\-N\fP
+View mode only.
+.sp
+Only load the cache.  Do not actually run configure and generate
+steps.
+.TP
+.B \fB\-P <file>\fP
+Process script mode.
+.sp
+Process the given cmake file as a script written in the CMake
+language.  No configure or generate step is performed and the cache
+is not modified.  If variables are defined using \-D, this must be
+done before the \-P argument.
+.TP
+.B \fB\-\-find\-package\fP
+Run in pkg\-config like mode.
+.sp
+Search a package using find_package() and print the resulting flags
+to stdout.  This can be used to use cmake instead of pkg\-config to
+find installed libraries in plain Makefile\-based projects or in
+autoconf\-based projects (via share/aclocal/cmake.m4).
+.TP
+.B \fB\-\-graphviz=[file]\fP
+Generate graphviz of dependencies, see CMakeGraphVizOptions.cmake for more.
+.sp
+Generate a graphviz input file that will contain all the library and
+executable dependencies in the project.  See the documentation for
+CMakeGraphVizOptions.cmake for more details.
+.TP
+.B \fB\-\-system\-information [file]\fP
+Dump information about this system.
+.sp
+Dump a wide range of information about the current system.  If run
+from the top of a binary tree for a CMake project it will dump
+additional information such as the cache, log files etc.
+.TP
+.B \fB\-\-debug\-trycompile\fP
+Do not delete the try_compile build tree. Only useful on one try_compile at a time.
+.sp
+Do not delete the files and directories created for try_compile
+calls.  This is useful in debugging failed try_compiles.  It may
+however change the results of the try\-compiles as old junk from a
+previous try\-compile may cause a different test to either pass or
+fail incorrectly.  This option is best used for one try\-compile at a
+time, and only when debugging.
+.TP
+.B \fB\-\-debug\-output\fP
+Put cmake in a debug mode.
+.sp
+Print extra stuff during the cmake run like stack traces with
+message(send_error ) calls.
+.TP
+.B \fB\-\-trace\fP
+Put cmake in trace mode.
+.sp
+Print a trace of all calls made and from where with
+message(send_error ) calls.
+.TP
+.B \fB\-\-warn\-uninitialized\fP
+Warn about uninitialized values.
+.sp
+Print a warning when an uninitialized variable is used.
+.TP
+.B \fB\-\-warn\-unused\-vars\fP
+Warn about unused variables.
+.sp
+Find variables that are declared or set, but not used.
+.TP
+.B \fB\-\-no\-warn\-unused\-cli\fP
+Don\(aqt warn about command line options.
+.sp
+Don\(aqt find variables that are declared on the command line, but not
+used.
+.TP
+.B \fB\-\-check\-system\-vars\fP
+Find problems with variable usage in system files.
+.sp
+Normally, unused and uninitialized variables are searched for only
+in CMAKE_SOURCE_DIR and CMAKE_BINARY_DIR.  This flag tells CMake to
+warn about other files as well.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \fB\-\-help,\-help,\-usage,\-h,\-H,/?\fP
+Print usage information and exit.
+.sp
+Usage describes the basic command line interface and its options.
+.TP
+.B \fB\-\-version,\-version,/V [<f>]\fP
+Show program name/version banner and exit.
+.sp
+If a file is specified, the version is written into it.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-full [<f>]\fP
+Print all help manuals and exit.
+.sp
+All manuals are printed in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-manual <man> [<f>]\fP
+Print one help manual and exit.
+.sp
+The specified manual is printed in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-manual\-list [<f>]\fP
+List help manuals available and exit.
+.sp
+The list contains all manuals for which help may be obtained by
+using the \fB\-\-help\-manual\fP option followed by a manual name.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-command <cmd> [<f>]\fP
+Print help for one command and exit.
+.sp
+The \fBcmake\-commands(7)\fP manual entry for \fB<cmd>\fP is
+printed in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-command\-list [<f>]\fP
+List commands with help available and exit.
+.sp
+The list contains all commands for which help may be obtained by
+using the \fB\-\-help\-command\fP option followed by a command name.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-commands [<f>]\fP
+Print cmake\-commands manual and exit.
+.sp
+The \fBcmake\-commands(7)\fP manual is printed in a
+human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-module <mod> [<f>]\fP
+Print help for one module and exit.
+.sp
+The \fBcmake\-modules(7)\fP manual entry for \fB<mod>\fP is printed
+in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-module\-list [<f>]\fP
+List modules with help available and exit.
+.sp
+The list contains all modules for which help may be obtained by
+using the \fB\-\-help\-module\fP option followed by a module name.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-modules [<f>]\fP
+Print cmake\-modules manual and exit.
+.sp
+The \fBcmake\-modules(7)\fP manual is printed in a human\-readable
+text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-policy <cmp> [<f>]\fP
+Print help for one policy and exit.
+.sp
+The \fBcmake\-policies(7)\fP manual entry for \fB<cmp>\fP is
+printed in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-policy\-list [<f>]\fP
+List policies with help available and exit.
+.sp
+The list contains all policies for which help may be obtained by
+using the \fB\-\-help\-policy\fP option followed by a policy name.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-policies [<f>]\fP
+Print cmake\-policies manual and exit.
+.sp
+The \fBcmake\-policies(7)\fP manual is printed in a
+human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-property <prop> [<f>]\fP
+Print help for one property and exit.
+.sp
+The \fBcmake\-properties(7)\fP manual entries for \fB<prop>\fP are
+printed in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-property\-list [<f>]\fP
+List properties with help available and exit.
+.sp
+The list contains all properties for which help may be obtained by
+using the \fB\-\-help\-property\fP option followed by a property name.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-properties [<f>]\fP
+Print cmake\-properties manual and exit.
+.sp
+The \fBcmake\-properties(7)\fP manual is printed in a
+human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-variable <var> [<f>]\fP
+Print help for one variable and exit.
+.sp
+The \fBcmake\-variables(7)\fP manual entry for \fB<var>\fP is
+printed in a human\-readable text format.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-variable\-list [<f>]\fP
+List variables with help available and exit.
+.sp
+The list contains all variables for which help may be obtained by
+using the \fB\-\-help\-variable\fP option followed by a variable name.
+The help is printed to a named <f>ile if given.
+.TP
+.B \fB\-\-help\-variables [<f>]\fP
+Print cmake\-variables manual and exit.
+.sp
+The \fBcmake\-variables(7)\fP manual is printed in a
+human\-readable text format.
+The help is printed to a named <f>ile if given.
+.UNINDENT
+.SH SEE ALSO
+.sp
+The following resources are available to get help using CMake:
+.INDENT 0.0
+.TP
+.B Home Page
+\fI\%http://www.cmake.org\fP
+.sp
+The primary starting point for learning about CMake.
+.TP
+.B Frequently Asked Questions
+\fI\%http://www.cmake.org/Wiki/CMake_FAQ\fP
+.sp
+A Wiki is provided containing answers to frequently asked questions.
+.TP
+.B Online Documentation
+\fI\%http://www.cmake.org/HTML/Documentation.html\fP
+.sp
+Links to available documentation may be found on this web page.
+.TP
+.B Mailing List
+\fI\%http://www.cmake.org/HTML/MailingLists.html\fP
+.sp
+For help and discussion about using cmake, a mailing list is
+provided at \fI\%cmake@cmake.org\fP\&.  The list is member\-post\-only but one
+may sign up on the CMake web page.  Please first read the full
+documentation at \fI\%http://www.cmake.org\fP before posting questions to
+the list.
+.UNINDENT
+.SH COPYRIGHT
+2000-2014 Kitware, Inc.
+.\" Generated by docutils manpage writer.
+.

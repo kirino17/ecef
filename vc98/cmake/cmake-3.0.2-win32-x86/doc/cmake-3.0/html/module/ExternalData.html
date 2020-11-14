@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ExternalData &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="ExternalProject" href="ExternalProject.html" />
+    <link rel="prev" title="Documentation" href="Documentation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ExternalProject.html" title="ExternalProject"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Documentation.html" title="Documentation"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="externaldata">
+<span id="module:ExternalData"></span><h1>ExternalData<a class="headerlink" href="#externaldata" title="Permalink to this headline">¶</a></h1>
+<p>Manage data files stored outside source tree</p>
+<p>Use this module to unambiguously reference data files stored outside
+the source tree and fetch them at build time from arbitrary local and
+remote content-addressed locations.  Functions provided by this module
+recognize arguments with the syntax <tt class="docutils literal"><span class="pre">DATA{&lt;name&gt;}</span></tt> as references to
+external data, replace them with full paths to local copies of those
+data, and create build rules to fetch and update the local copies.</p>
+<p>The <tt class="docutils literal"><span class="pre">DATA{}</span></tt> syntax is literal and the <tt class="docutils literal"><span class="pre">&lt;name&gt;</span></tt> is a full or relative path
+within the source tree.  The source tree must contain either a real
+data file at <tt class="docutils literal"><span class="pre">&lt;name&gt;</span></tt> or a &#8220;content link&#8221; at <tt class="docutils literal"><span class="pre">&lt;name&gt;&lt;ext&gt;</span></tt> containing a
+hash of the real file using a hash algorithm corresponding to <tt class="docutils literal"><span class="pre">&lt;ext&gt;</span></tt>.
+For example, the argument <tt class="docutils literal"><span class="pre">DATA{img.png}</span></tt> may be satisfied by either a
+real <tt class="docutils literal"><span class="pre">img.png</span></tt> file in the current source directory or a <tt class="docutils literal"><span class="pre">img.png.md5</span></tt>
+file containing its MD5 sum.</p>
+<p>The <tt class="docutils literal"><span class="pre">ExternalData_Expand_Arguments</span></tt> function evaluates <tt class="docutils literal"><span class="pre">DATA{}</span></tt>
+references in its arguments and constructs a new list of arguments:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">ExternalData_Expand_Arguments</span><span class="p">(</span>
+  <span class="s">&lt;target&gt;</span>   <span class="c"># Name of data management target</span>
+  <span class="s">&lt;outVar&gt;</span>   <span class="c"># Output variable</span>
+  <span class="s">[args...]</span>  <span class="c"># Input arguments, DATA{} allowed</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+<p>It replaces each <tt class="docutils literal"><span class="pre">DATA{}</span></tt> reference in an argument with the full path of
+a real data file on disk that will exist after the <tt class="docutils literal"><span class="pre">&lt;target&gt;</span></tt> builds.</p>
+<p>The <tt class="docutils literal"><span class="pre">ExternalData_Add_Test</span></tt> function wraps around the CMake
+<a class="reference internal" href="../command/add_test.html#command:add_test" title="add_test"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_test()</span></tt></a> command but supports <tt class="docutils literal"><span class="pre">DATA{}</span></tt> references in
+its arguments:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">ExternalData_Add_Test</span><span class="p">(</span>
+  <span class="s">&lt;target&gt;</span>   <span class="c"># Name of data management target</span>
+  <span class="s">...</span>        <span class="c"># Arguments of add_test(), DATA{} allowed</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+<p>It passes its arguments through <tt class="docutils literal"><span class="pre">ExternalData_Expand_Arguments</span></tt> and then
+invokes the <a class="reference internal" href="../command/add_test.html#command:add_test" title="add_test"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_test()</span></tt></a> command using the results.</p>
+<p>The <tt class="docutils literal"><span class="pre">ExternalData_Add_Target</span></tt> function creates a custom target to
+manage local instances of data files stored externally:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">ExternalData_Add_Target</span><span class="p">(</span>
+  <span class="s">&lt;target&gt;</span>   <span class="c"># Name of data management target</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+<p>It creates custom commands in the target as necessary to make data
+files available for each <tt class="docutils literal"><span class="pre">DATA{}</span></tt> reference previously evaluated by
+other functions provided by this module.  A list of URL templates may
+be provided in the variable <tt class="docutils literal"><span class="pre">ExternalData_URL_TEMPLATES</span></tt> using the
+placeholders <tt class="docutils literal"><span class="pre">%(algo)</span></tt> and <tt class="docutils literal"><span class="pre">%(hash)</span></tt> in each template.  Data fetch
+rules try each URL template in order by substituting the hash
+algorithm name for <tt class="docutils literal"><span class="pre">%(algo)</span></tt> and the hash value for <tt class="docutils literal"><span class="pre">%(hash)</span></tt>.</p>
+<p>The following hash algorithms are supported:</p>
+<div class="highlight-python"><pre>%(algo)     &lt;ext&gt;     Description
+-------     -----     -----------
+MD5         .md5      Message-Digest Algorithm 5, RFC 1321
+SHA1        .sha1     US Secure Hash Algorithm 1, RFC 3174
+SHA224      .sha224   US Secure Hash Algorithms, RFC 4634
+SHA256      .sha256   US Secure Hash Algorithms, RFC 4634
+SHA384      .sha384   US Secure Hash Algorithms, RFC 4634
+SHA512      .sha512   US Secure Hash Algorithms, RFC 4634</pre>
+</div>
+<p>Note that the hashes are used only for unique data identification and
+download verification.  This is not security software.</p>
+<p>Example usage:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">ExternalData</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">ExternalData_URL_TEMPLATES</span> <span class="s2">&quot;file:///local/%(algo)/%(hash)&quot;</span>
+                               <span class="s2">&quot;file:////host/share/%(algo)/%(hash)&quot;</span>
+                               <span class="s2">&quot;http://data.org/%(algo)/%(hash)&quot;</span><span class="p">)</span>
+<span class="nb">ExternalData_Add_Test</span><span class="p">(</span><span class="s">MyData</span>
+  <span class="s">NAME</span> <span class="s">MyTest</span>
+  <span class="s">COMMAND</span> <span class="s">MyExe</span> <span class="s">DATA{MyInput.png}</span>
+  <span class="p">)</span>
+<span class="nb">ExternalData_Add_Target</span><span class="p">(</span><span class="s">MyData</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When test <tt class="docutils literal"><span class="pre">MyTest</span></tt> runs the <tt class="docutils literal"><span class="pre">DATA{MyInput.png}</span></tt> argument will be
+replaced by the full path to a real instance of the data file
+<tt class="docutils literal"><span class="pre">MyInput.png</span></tt> on disk.  If the source tree contains a content link
+such as <tt class="docutils literal"><span class="pre">MyInput.png.md5</span></tt> then the <tt class="docutils literal"><span class="pre">MyData</span></tt> target creates a real
+<tt class="docutils literal"><span class="pre">MyInput.png</span></tt> in the build tree.</p>
+<p>The <tt class="docutils literal"><span class="pre">DATA{}</span></tt> syntax can be told to fetch a file series using the form
+<tt class="docutils literal"><span class="pre">DATA{&lt;name&gt;,:}</span></tt>, where the <tt class="docutils literal"><span class="pre">:</span></tt> is literal.  If the source tree
+contains a group of files or content links named like a series then a
+reference to one member adds rules to fetch all of them.  Although all
+members of a series are fetched, only the file originally named by the
+<tt class="docutils literal"><span class="pre">DATA{}</span></tt> argument is substituted for it.  The default configuration
+recognizes file series names ending with <tt class="docutils literal"><span class="pre">#.ext</span></tt>, <tt class="docutils literal"><span class="pre">_#.ext</span></tt>, <tt class="docutils literal"><span class="pre">.#.ext</span></tt>,
+or <tt class="docutils literal"><span class="pre">-#.ext</span></tt> where <tt class="docutils literal"><span class="pre">#</span></tt> is a sequence of decimal digits and <tt class="docutils literal"><span class="pre">.ext</span></tt> is
+any single extension.  Configure it with a regex that parses <tt class="docutils literal"><span class="pre">&lt;number&gt;</span></tt>
+and <tt class="docutils literal"><span class="pre">&lt;suffix&gt;</span></tt> parts from the end of <tt class="docutils literal"><span class="pre">&lt;name&gt;</span></tt>:</p>
+<div class="highlight-python"><pre>ExternalData_SERIES_PARSE = regex of the form (&lt;number&gt;)(&lt;suffix&gt;)$</pre>
+</div>
+<p>For more complicated cases set:</p>
+<div class="highlight-python"><pre>ExternalData_SERIES_PARSE = regex with at least two () groups
+ExternalData_SERIES_PARSE_PREFIX = &lt;prefix&gt; regex group number, if any
+ExternalData_SERIES_PARSE_NUMBER = &lt;number&gt; regex group number
+ExternalData_SERIES_PARSE_SUFFIX = &lt;suffix&gt; regex group number</pre>
+</div>
+<p>Configure series number matching with a regex that matches the
+<tt class="docutils literal"><span class="pre">&lt;number&gt;</span></tt> part of series members named <tt class="docutils literal"><span class="pre">&lt;prefix&gt;&lt;number&gt;&lt;suffix&gt;</span></tt>:</p>
+<div class="highlight-python"><pre>ExternalData_SERIES_MATCH = regex matching &lt;number&gt; in all series members</pre>
+</div>
+<p>Note that the <tt class="docutils literal"><span class="pre">&lt;suffix&gt;</span></tt> of a series does not include a hash-algorithm
+extension.</p>
+<p>The <tt class="docutils literal"><span class="pre">DATA{}</span></tt> syntax can alternatively match files associated with the
+named file and contained in the same directory.  Associated files may
+be specified by options using the syntax
+<tt class="docutils literal"><span class="pre">DATA{&lt;name&gt;,&lt;opt1&gt;,&lt;opt2&gt;,...}</span></tt>.  Each option may specify one file by
+name or specify a regular expression to match file names using the
+syntax <tt class="docutils literal"><span class="pre">REGEX:&lt;regex&gt;</span></tt>.  For example, the arguments:</p>
+<div class="highlight-python"><pre>DATA{MyData/MyInput.mhd,MyInput.img}                   # File pair
+DATA{MyData/MyFrames00.png,REGEX:MyFrames[0-9]+\\.png} # Series</pre>
+</div>
+<p>will pass <tt class="docutils literal"><span class="pre">MyInput.mha</span></tt> and <tt class="docutils literal"><span class="pre">MyFrames00.png</span></tt> on the command line but
+ensure that the associated files are present next to them.</p>
+<p>The <tt class="docutils literal"><span class="pre">DATA{}</span></tt> syntax may reference a directory using a trailing slash and
+a list of associated files.  The form <tt class="docutils literal"><span class="pre">DATA{&lt;name&gt;/,&lt;opt1&gt;,&lt;opt2&gt;,...}</span></tt>
+adds rules to fetch any files in the directory that match one of the
+associated file options.  For example, the argument
+<tt class="docutils literal"><span class="pre">DATA{MyDataDir/,REGEX:.*}</span></tt> will pass the full path to a <tt class="docutils literal"><span class="pre">MyDataDir</span></tt>
+directory on the command line and ensure that the directory contains
+files corresponding to every file or content link in the <tt class="docutils literal"><span class="pre">MyDataDir</span></tt>
+source directory.</p>
+<p>The variable <tt class="docutils literal"><span class="pre">ExternalData_LINK_CONTENT</span></tt> may be set to the name of a
+supported hash algorithm to enable automatic conversion of real data
+files referenced by the <tt class="docutils literal"><span class="pre">DATA{}</span></tt> syntax into content links.  For each
+such <tt class="docutils literal"><span class="pre">&lt;file&gt;</span></tt> a content link named <tt class="docutils literal"><span class="pre">&lt;file&gt;&lt;ext&gt;</span></tt> is created.  The
+original file is renamed to the form <tt class="docutils literal"><span class="pre">.ExternalData_&lt;algo&gt;_&lt;hash&gt;</span></tt> to
+stage it for future transmission to one of the locations in the list
+of URL templates (by means outside the scope of this module).  The
+data fetch rule created for the content link will use the staged
+object if it cannot be found using any URL template.</p>
+<p>The variable <tt class="docutils literal"><span class="pre">ExternalData_OBJECT_STORES</span></tt> may be set to a list of local
+directories that store objects using the layout <tt class="docutils literal"><span class="pre">&lt;dir&gt;/%(algo)/%(hash)</span></tt>.
+These directories will be searched first for a needed object.  If the
+object is not available in any store then it will be fetched remotely
+using the URL templates and added to the first local store listed.  If
+no stores are specified the default is a location inside the build
+tree.</p>
+<p>The variable <tt class="docutils literal"><span class="pre">ExternalData_SOURCE_ROOT</span></tt> may be set to the highest source
+directory containing any path named by a <tt class="docutils literal"><span class="pre">DATA{}</span></tt> reference.  The
+default is <tt class="docutils literal"><span class="pre">CMAKE_SOURCE_DIR</span></tt>.  <tt class="docutils literal"><span class="pre">ExternalData_SOURCE_ROOT</span></tt> and
+<tt class="docutils literal"><span class="pre">CMAKE_SOURCE_DIR</span></tt> must refer to directories within a single source
+distribution (e.g.  they come together in one tarball).</p>
+<p>The variable <tt class="docutils literal"><span class="pre">ExternalData_BINARY_ROOT</span></tt> may be set to the directory to
+hold the real data files named by expanded <tt class="docutils literal"><span class="pre">DATA{}</span></tt> references.  The
+default is <tt class="docutils literal"><span class="pre">CMAKE_BINARY_DIR</span></tt>.  The directory layout will mirror that of
+content links under <tt class="docutils literal"><span class="pre">ExternalData_SOURCE_ROOT</span></tt>.</p>
+<p>Variables <tt class="docutils literal"><span class="pre">ExternalData_TIMEOUT_INACTIVITY</span></tt> and
+<tt class="docutils literal"><span class="pre">ExternalData_TIMEOUT_ABSOLUTE</span></tt> set the download inactivity and absolute
+timeouts, in seconds.  The defaults are 60 seconds and 300 seconds,
+respectively.  Set either timeout to 0 seconds to disable enforcement.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Documentation.html"
+                        title="previous chapter">Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ExternalProject.html"
+                        title="next chapter">ExternalProject</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/ExternalData.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ExternalProject.html" title="ExternalProject"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Documentation.html" title="Documentation"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>target_link_libraries &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="try_compile" href="try_compile.html" />
+    <link rel="prev" title="target_include_directories" href="target_include_directories.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="try_compile.html" title="try_compile"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="target_include_directories.html" title="target_include_directories"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="target-link-libraries">
+<span id="command:target_link_libraries"></span><h1>target_link_libraries<a class="headerlink" href="#target-link-libraries" title="Permalink to this headline">¶</a></h1>
+<p>Link a target to given libraries.</p>
+<div class="highlight-python"><pre>target_link_libraries(&lt;target&gt; [item1 [item2 [...]]]
+                      [[debug|optimized|general] &lt;item&gt;] ...)</pre>
+</div>
+<p>Specify libraries or flags to use when linking a given target.  The
+named <tt class="docutils literal"><span class="pre">&lt;target&gt;</span></tt> must have been created in the current directory by a
+command such as <a class="reference internal" href="add_executable.html#command:add_executable" title="add_executable"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_executable()</span></tt></a> or <a class="reference internal" href="add_library.html#command:add_library" title="add_library"><tt class="xref cmake cmake-command docutils literal"><span class="pre">add_library()</span></tt></a>.  The
+remaining arguments specify library names or flags.  Repeated calls for
+the same <tt class="docutils literal"><span class="pre">&lt;target&gt;</span></tt> append items in the order called.</p>
+<p>If a library name matches that of another target in the project a
+dependency will automatically be added in the build system to make sure
+the library being linked is up-to-date before the target links. Item names
+starting with <tt class="docutils literal"><span class="pre">-</span></tt>, but not <tt class="docutils literal"><span class="pre">-l</span></tt> or <tt class="docutils literal"><span class="pre">-framework</span></tt>, are treated as
+linker flags.</p>
+<p>A <tt class="docutils literal"><span class="pre">debug</span></tt>, <tt class="docutils literal"><span class="pre">optimized</span></tt>, or <tt class="docutils literal"><span class="pre">general</span></tt> keyword indicates that the
+library immediately following it is to be used only for the
+corresponding build configuration.  The <tt class="docutils literal"><span class="pre">debug</span></tt> keyword corresponds to
+the Debug configuration (or to configurations named in the
+<a class="reference internal" href="../prop_gbl/DEBUG_CONFIGURATIONS.html#prop_gbl:DEBUG_CONFIGURATIONS" title="DEBUG_CONFIGURATIONS"><tt class="xref cmake cmake-prop_gbl docutils literal"><span class="pre">DEBUG_CONFIGURATIONS</span></tt></a> global property if it is set).  The
+<tt class="docutils literal"><span class="pre">optimized</span></tt> keyword corresponds to all other configurations.  The
+<tt class="docutils literal"><span class="pre">general</span></tt> keyword corresponds to all configurations, and is purely
+optional (assumed if omitted).  Higher granularity may be achieved for
+per-configuration rules by creating and linking to
+<a class="reference internal" href="../manual/cmake-buildsystem.7.html#imported-targets"><em>IMPORTED library targets</em></a>.</p>
+<p>Library dependencies are transitive by default with this signature.
+When this target is linked into another target then the libraries
+linked to this target will appear on the link line for the other
+target too.  This transitive &#8220;link interface&#8221; is stored in the
+<a class="reference internal" href="../prop_tgt/INTERFACE_LINK_LIBRARIES.html#prop_tgt:INTERFACE_LINK_LIBRARIES" title="INTERFACE_LINK_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_LINK_LIBRARIES</span></tt></a> target property and may be overridden
+by setting the property directly.  When <a class="reference internal" href="../policy/CMP0022.html#policy:CMP0022" title="CMP0022"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0022</span></tt></a> is not set to
+<tt class="docutils literal"><span class="pre">NEW</span></tt>, transitive linking is built in but may be overridden by the
+<a class="reference internal" href="../prop_tgt/LINK_INTERFACE_LIBRARIES.html#prop_tgt:LINK_INTERFACE_LIBRARIES" title="LINK_INTERFACE_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES</span></tt></a> property.  Calls to other signatures
+of this command may set the property making any libraries linked
+exclusively by this signature private.</p>
+<p>CMake will also propagate <a class="reference internal" href="../manual/cmake-buildsystem.7.html#target-usage-requirements"><em>usage requirements</em></a>
+from linked library targets.  Usage requirements of dependencies affect
+compilation of sources in the <tt class="docutils literal"><span class="pre">&lt;target&gt;</span></tt>.</p>
+<p>If an <tt class="docutils literal"><span class="pre">&lt;item&gt;</span></tt> is a library in a Mac OX framework, the <tt class="docutils literal"><span class="pre">Headers</span></tt>
+directory of the framework will also be processed as a
+<a class="reference internal" href="../manual/cmake-buildsystem.7.html#target-usage-requirements"><em>usage requirement</em></a>.  This has the same
+effect as passing the framework directory as an include directory.</p>
+<hr class="docutils" />
+<div class="highlight-python"><pre>target_link_libraries(&lt;target&gt;
+                    &lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;lib&gt; ...
+                    [&lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;lib&gt; ... ] ...])</pre>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">PUBLIC</span></tt>, <tt class="docutils literal"><span class="pre">PRIVATE</span></tt> and <tt class="docutils literal"><span class="pre">INTERFACE</span></tt> keywords can be used to
+specify both the link dependencies and the link interface in one command.
+Libraries and targets following <tt class="docutils literal"><span class="pre">PUBLIC</span></tt> are linked to, and are made
+part of the link interface.  Libraries and targets following <tt class="docutils literal"><span class="pre">PRIVATE</span></tt>
+are linked to, but are not made part of the link interface.  Libraries
+following <tt class="docutils literal"><span class="pre">INTERFACE</span></tt> are appended to the link interface and are not
+used for linking <tt class="docutils literal"><span class="pre">&lt;target&gt;</span></tt>.</p>
+<hr class="docutils" />
+<div class="highlight-python"><pre>target_link_libraries(&lt;target&gt; LINK_INTERFACE_LIBRARIES
+                      [[debug|optimized|general] &lt;lib&gt;] ...)</pre>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES</span></tt> mode appends the libraries to the
+<a class="reference internal" href="../prop_tgt/INTERFACE_LINK_LIBRARIES.html#prop_tgt:INTERFACE_LINK_LIBRARIES" title="INTERFACE_LINK_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_LINK_LIBRARIES</span></tt></a> target property instead of using them
+for linking.  If policy <a class="reference internal" href="../policy/CMP0022.html#policy:CMP0022" title="CMP0022"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0022</span></tt></a> is not <tt class="docutils literal"><span class="pre">NEW</span></tt>, then this mode
+also appends libraries to the <a class="reference internal" href="../prop_tgt/LINK_INTERFACE_LIBRARIES.html#prop_tgt:LINK_INTERFACE_LIBRARIES" title="LINK_INTERFACE_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES</span></tt></a> and its
+per-configuration equivalent.</p>
+<p>This signature is for compatibility only.  Prefer the <tt class="docutils literal"><span class="pre">INTERFACE</span></tt> mode
+instead.</p>
+<p>Libraries specified as <tt class="docutils literal"><span class="pre">debug</span></tt> are wrapped in a generator expression to
+correspond to debug builds.  If policy <a class="reference internal" href="../policy/CMP0022.html#policy:CMP0022" title="CMP0022"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0022</span></tt></a> is
+not <tt class="docutils literal"><span class="pre">NEW</span></tt>, the libraries are also appended to the
+<a class="reference internal" href="../prop_tgt/LINK_INTERFACE_LIBRARIES_CONFIG.html#prop_tgt:LINK_INTERFACE_LIBRARIES_&lt;CONFIG&gt;" title="LINK_INTERFACE_LIBRARIES_&lt;CONFIG&gt;"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES_DEBUG</span></tt></a>
+property (or to the properties corresponding to configurations listed in
+the <a class="reference internal" href="../prop_gbl/DEBUG_CONFIGURATIONS.html#prop_gbl:DEBUG_CONFIGURATIONS" title="DEBUG_CONFIGURATIONS"><tt class="xref cmake cmake-prop_gbl docutils literal"><span class="pre">DEBUG_CONFIGURATIONS</span></tt></a> global property if it is set).
+Libraries specified as <tt class="docutils literal"><span class="pre">optimized</span></tt> are appended to the
+<a class="reference internal" href="../prop_tgt/INTERFACE_LINK_LIBRARIES.html#prop_tgt:INTERFACE_LINK_LIBRARIES" title="INTERFACE_LINK_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_LINK_LIBRARIES</span></tt></a> property.  If policy <a class="reference internal" href="../policy/CMP0022.html#policy:CMP0022" title="CMP0022"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0022</span></tt></a>
+is not <tt class="docutils literal"><span class="pre">NEW</span></tt>, they are also appended to the
+<a class="reference internal" href="../prop_tgt/LINK_INTERFACE_LIBRARIES.html#prop_tgt:LINK_INTERFACE_LIBRARIES" title="LINK_INTERFACE_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES</span></tt></a> property.  Libraries specified as
+<tt class="docutils literal"><span class="pre">general</span></tt> (or without any keyword) are treated as if specified for both
+<tt class="docutils literal"><span class="pre">debug</span></tt> and <tt class="docutils literal"><span class="pre">optimized</span></tt>.</p>
+<hr class="docutils" />
+<div class="highlight-python"><pre>target_link_libraries(&lt;target&gt;
+                      &lt;LINK_PRIVATE|LINK_PUBLIC&gt;
+                        [[debug|optimized|general] &lt;lib&gt;] ...
+                      [&lt;LINK_PRIVATE|LINK_PUBLIC&gt;
+                        [[debug|optimized|general] &lt;lib&gt;] ...])</pre>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">LINK_PUBLIC</span></tt> and <tt class="docutils literal"><span class="pre">LINK_PRIVATE</span></tt> modes can be used to specify both
+the link dependencies and the link interface in one command.</p>
+<p>This signature is for compatibility only.  Prefer the <tt class="docutils literal"><span class="pre">PUBLIC</span></tt> or
+<tt class="docutils literal"><span class="pre">PRIVATE</span></tt> keywords instead.</p>
+<p>Libraries and targets following <tt class="docutils literal"><span class="pre">LINK_PUBLIC</span></tt> are linked to, and are
+made part of the <a class="reference internal" href="../prop_tgt/INTERFACE_LINK_LIBRARIES.html#prop_tgt:INTERFACE_LINK_LIBRARIES" title="INTERFACE_LINK_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_LINK_LIBRARIES</span></tt></a>.  If policy
+<a class="reference internal" href="../policy/CMP0022.html#policy:CMP0022" title="CMP0022"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0022</span></tt></a> is not <tt class="docutils literal"><span class="pre">NEW</span></tt>, they are also made part of the
+<a class="reference internal" href="../prop_tgt/LINK_INTERFACE_LIBRARIES.html#prop_tgt:LINK_INTERFACE_LIBRARIES" title="LINK_INTERFACE_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES</span></tt></a>.  Libraries and targets following
+<tt class="docutils literal"><span class="pre">LINK_PRIVATE</span></tt> are linked to, but are not made part of the
+<a class="reference internal" href="../prop_tgt/INTERFACE_LINK_LIBRARIES.html#prop_tgt:INTERFACE_LINK_LIBRARIES" title="INTERFACE_LINK_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">INTERFACE_LINK_LIBRARIES</span></tt></a> (or <a class="reference internal" href="../prop_tgt/LINK_INTERFACE_LIBRARIES.html#prop_tgt:LINK_INTERFACE_LIBRARIES" title="LINK_INTERFACE_LIBRARIES"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">LINK_INTERFACE_LIBRARIES</span></tt></a>).</p>
+<p>The library dependency graph is normally acyclic (a DAG), but in the case
+of mutually-dependent <tt class="docutils literal"><span class="pre">STATIC</span></tt> libraries CMake allows the graph to
+contain cycles (strongly connected components).  When another target links
+to one of the libraries, CMake repeats the entire connected component.
+For example, the code</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">add_library</span><span class="p">(</span><span class="s">A</span> <span class="s">STATIC</span> <span class="s">a.c</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">B</span> <span class="s">STATIC</span> <span class="s">b.c</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">A</span> <span class="s">B</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">B</span> <span class="s">A</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">main</span> <span class="s">main.c</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">main</span> <span class="s">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>links <tt class="docutils literal"><span class="pre">main</span></tt> to <tt class="docutils literal"><span class="pre">A</span> <span class="pre">B</span> <span class="pre">A</span> <span class="pre">B</span></tt>.  While one repetition is usually
+sufficient, pathological object file and symbol arrangements can require
+more.  One may handle such cases by manually repeating the component in
+the last <tt class="docutils literal"><span class="pre">target_link_libraries</span></tt> call.  However, if two archives are
+really so interdependent they should probably be combined into a single
+archive.</p>
+<p>Arguments to target_link_libraries may use &#8220;generator expressions&#8221;
+with the syntax <tt class="docutils literal"><span class="pre">$&lt;...&gt;</span></tt>.  Note however, that generator expressions
+will not be used in OLD handling of <a class="reference internal" href="../policy/CMP0003.html#policy:CMP0003" title="CMP0003"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0003</span></tt></a> or <a class="reference internal" href="../policy/CMP0004.html#policy:CMP0004" title="CMP0004"><tt class="xref cmake cmake-policy docutils literal"><span class="pre">CMP0004</span></tt></a>.
+See the <a class="reference internal" href="../manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7)" title="cmake-generator-expressions(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-generator-expressions(7)</span></tt></a> manual for available
+expressions.  See the <a class="reference internal" href="../manual/cmake-buildsystem.7.html#manual:cmake-buildsystem(7)" title="cmake-buildsystem(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-buildsystem(7)</span></tt></a> manual for more on
+defining buildsystem properties.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="target_include_directories.html"
+                        title="previous chapter">target_include_directories</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="try_compile.html"
+                        title="next chapter">try_compile</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/target_link_libraries.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="try_compile.html" title="try_compile"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="target_include_directories.html" title="target_include_directories"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

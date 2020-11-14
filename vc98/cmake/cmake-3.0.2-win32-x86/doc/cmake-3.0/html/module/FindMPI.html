@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindMPI &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindOpenAL" href="FindOpenAL.html" />
+    <link rel="prev" title="FindMPEG" href="FindMPEG.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindOpenAL.html" title="FindOpenAL"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindMPEG.html" title="FindMPEG"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findmpi">
+<span id="module:FindMPI"></span><h1>FindMPI<a class="headerlink" href="#findmpi" title="Permalink to this headline">¶</a></h1>
+<p>Find a Message Passing Interface (MPI) implementation</p>
+<p>The Message Passing Interface (MPI) is a library used to write
+high-performance distributed-memory parallel applications, and is
+typically deployed on a cluster.  MPI is a standard interface (defined
+by the MPI forum) for which many implementations are available.  All
+of them have somewhat different include paths, libraries to link
+against, etc., and this module tries to smooth out those differences.</p>
+<p>=== Variables ===</p>
+<p>This module will set the following variables per language in your
+project, where &lt;lang&gt; is one of C, CXX, or Fortran:</p>
+<div class="highlight-python"><pre>MPI_&lt;lang&gt;_FOUND           TRUE if FindMPI found MPI flags for &lt;lang&gt;
+MPI_&lt;lang&gt;_COMPILER        MPI Compiler wrapper for &lt;lang&gt;
+MPI_&lt;lang&gt;_COMPILE_FLAGS   Compilation flags for MPI programs
+MPI_&lt;lang&gt;_INCLUDE_PATH    Include path(s) for MPI header
+MPI_&lt;lang&gt;_LINK_FLAGS      Linking flags for MPI programs
+MPI_&lt;lang&gt;_LIBRARIES       All libraries to link MPI programs against</pre>
+</div>
+<p>Additionally, FindMPI sets the following variables for running MPI
+programs from the command line:</p>
+<div class="highlight-python"><pre>MPIEXEC                    Executable for running MPI programs
+MPIEXEC_NUMPROC_FLAG       Flag to pass to MPIEXEC before giving
+                           it the number of processors to run on
+MPIEXEC_PREFLAGS           Flags to pass to MPIEXEC directly
+                           before the executable to run.
+MPIEXEC_POSTFLAGS          Flags to pass to MPIEXEC after other flags</pre>
+</div>
+<p>=== Usage ===</p>
+<p>To use this module, simply call FindMPI from a CMakeLists.txt file, or
+run find_package(MPI), then run CMake.  If you are happy with the
+auto- detected configuration for your language, then you&#8217;re done.  If
+not, you have two options:</p>
+<div class="highlight-python"><pre>1. Set MPI_&lt;lang&gt;_COMPILER to the MPI wrapper (mpicc, etc.) of your
+   choice and reconfigure.  FindMPI will attempt to determine all the
+   necessary variables using THAT compiler's compile and link flags.
+2. If this fails, or if your MPI implementation does not come with
+   a compiler wrapper, then set both MPI_&lt;lang&gt;_LIBRARIES and
+   MPI_&lt;lang&gt;_INCLUDE_PATH.  You may also set any other variables
+   listed above, but these two are required.  This will circumvent
+   autodetection entirely.</pre>
+</div>
+<p>When configuration is successful, MPI_&lt;lang&gt;_COMPILER will be set to
+the compiler wrapper for &lt;lang&gt;, if it was found.  MPI_&lt;lang&gt;_FOUND
+and other variables above will be set if any MPI implementation was
+found for &lt;lang&gt;, regardless of whether a compiler was found.</p>
+<p>When using MPIEXEC to execute MPI applications, you should typically
+use all of the MPIEXEC flags as follows:</p>
+<div class="highlight-python"><pre>${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} PROCS
+  ${MPIEXEC_PREFLAGS} EXECUTABLE ${MPIEXEC_POSTFLAGS} ARGS</pre>
+</div>
+<p>where PROCS is the number of processors on which to execute the
+program, EXECUTABLE is the MPI program, and ARGS are the arguments to
+pass to the MPI program.</p>
+<p>=== Backward Compatibility ===</p>
+<p>For backward compatibility with older versions of FindMPI, these
+variables are set, but deprecated:</p>
+<div class="highlight-python"><pre>MPI_FOUND           MPI_COMPILER        MPI_LIBRARY
+MPI_COMPILE_FLAGS   MPI_INCLUDE_PATH    MPI_EXTRA_LIBRARY
+MPI_LINK_FLAGS      MPI_LIBRARIES</pre>
+</div>
+<p>In new projects, please use the MPI_&lt;lang&gt;_XXX equivalents.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindMPEG.html"
+                        title="previous chapter">FindMPEG</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindOpenAL.html"
+                        title="next chapter">FindOpenAL</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindMPI.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindOpenAL.html" title="FindOpenAL"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindMPEG.html" title="FindMPEG"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

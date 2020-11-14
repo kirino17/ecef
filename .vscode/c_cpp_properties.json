@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/vc98/vc60/vc98/Include/**",
+                "${workspaceFolder}/vc98/vc60/vc98/ATL/Include/**",
+                "${workspaceFolder}/vc98/vc60/vc98/MFC/Include/**",
+                "${workspaceFolder}/src/aquarius2/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "__E_STATIC_LIBS"
+            ],
+            "windowsSdkVersion": "10.0.18362.0",
+            "compilerPath": "D:/8086k/Visual Studio 2019/Community/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c89",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "msvc-x86"
+        }
+    ],
+    "version": 4
+}

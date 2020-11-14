@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cmake-policies(7) &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="next" title="CMP0000" href="../policy/CMP0000.html" />
+    <link rel="prev" title="cmake-packages(7)" href="cmake-packages.7.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../policy/CMP0000.html" title="CMP0000"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmake-packages.7.html" title="cmake-packages(7)"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="manual:cmake-policies(7)"></span><div class="section" id="cmake-policies-7">
+<h1><a class="toc-backref" href="#id1">cmake-policies(7)</a><a class="headerlink" href="#cmake-policies-7" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cmake-policies-7" id="id1">cmake-policies(7)</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#all-policies" id="id3">All Policies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Policies in CMake are used to preserve backward compatible behavior
+across multiple releases.  When a new policy is introduced, newer CMake
+versions will begin to warn about the backward compatible behavior.  It
+is possible to disable the warning by explicitly requesting the OLD, or
+backward compatible behavior using the <a class="reference internal" href="../command/cmake_policy.html#command:cmake_policy" title="cmake_policy"><tt class="xref cmake cmake-command docutils literal"><span class="pre">cmake_policy()</span></tt></a> command.
+It is also possible to request <tt class="docutils literal"><span class="pre">NEW</span></tt>, or non-backward compatible behavior
+for a policy, also avoiding the warning.  Each policy can also be set to
+either <tt class="docutils literal"><span class="pre">NEW</span></tt> or <tt class="docutils literal"><span class="pre">OLD</span></tt> behavior explicitly on the command line with the
+<a class="reference internal" href="../variable/CMAKE_POLICY_DEFAULT_CMPNNNN.html#variable:CMAKE_POLICY_DEFAULT_CMP&lt;NNNN&gt;" title="CMAKE_POLICY_DEFAULT_CMP&lt;NNNN&gt;"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_POLICY_DEFAULT_CMP&lt;NNNN&gt;</span></tt></a> variable.</p>
+<p>The <a class="reference internal" href="../command/cmake_minimum_required.html#command:cmake_minimum_required" title="cmake_minimum_required"><tt class="xref cmake cmake-command docutils literal"><span class="pre">cmake_minimum_required()</span></tt></a> command does more than report an
+error if a too-old version of CMake is used to build a project.  It
+also sets all policies introduced in that CMake version or earlier to
+<tt class="docutils literal"><span class="pre">NEW</span></tt> behavior.  To manage policies without increasing the minimum required
+CMake version, the <a class="reference internal" href="../command/if.html#command:if" title="if"><tt class="xref cmake cmake-command docutils literal"><span class="pre">if(POLICY)</span></tt></a> command may be used:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">if</span><span class="p">(</span><span class="s">POLICY</span> <span class="s">CMP0990</span><span class="p">)</span>
+  <span class="nb">cmake_policy</span><span class="p">(</span><span class="s">SET</span> <span class="s">CMP0990</span> <span class="s">NEW</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This has the effect of using the <tt class="docutils literal"><span class="pre">NEW</span></tt> behavior with newer CMake releases which
+users may be using and not issuing a compatibility warning.</p>
+<p>The setting of a policy is confined in some cases to not propagate to the
+parent scope.  For example, if the files read by the <a class="reference internal" href="../command/include.html#command:include" title="include"><tt class="xref cmake cmake-command docutils literal"><span class="pre">include()</span></tt></a> command
+or the <a class="reference internal" href="../command/find_package.html#command:find_package" title="find_package"><tt class="xref cmake cmake-command docutils literal"><span class="pre">find_package()</span></tt></a> command contain a use of <a class="reference internal" href="../command/cmake_policy.html#command:cmake_policy" title="cmake_policy"><tt class="xref cmake cmake-command docutils literal"><span class="pre">cmake_policy()</span></tt></a>,
+that policy setting will not affect the caller by default.  Both commands accept
+an optional <tt class="docutils literal"><span class="pre">NO_POLICY_SCOPE</span></tt> keyword to control this behavior.</p>
+<p>The <a class="reference internal" href="../variable/CMAKE_MINIMUM_REQUIRED_VERSION.html#variable:CMAKE_MINIMUM_REQUIRED_VERSION" title="CMAKE_MINIMUM_REQUIRED_VERSION"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_MINIMUM_REQUIRED_VERSION</span></tt></a> variable may also be used
+to determine whether to report an error on use of deprecated macros or
+functions.</p>
+</div>
+<div class="section" id="all-policies">
+<h2><a class="toc-backref" href="#id3">All Policies</a><a class="headerlink" href="#all-policies" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0000.html">CMP0000</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0001.html">CMP0001</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0002.html">CMP0002</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0003.html">CMP0003</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0004.html">CMP0004</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0005.html">CMP0005</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0006.html">CMP0006</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0007.html">CMP0007</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0008.html">CMP0008</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0009.html">CMP0009</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0010.html">CMP0010</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0011.html">CMP0011</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0012.html">CMP0012</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0013.html">CMP0013</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0014.html">CMP0014</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0015.html">CMP0015</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0016.html">CMP0016</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0017.html">CMP0017</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0018.html">CMP0018</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0019.html">CMP0019</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0020.html">CMP0020</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0021.html">CMP0021</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0022.html">CMP0022</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0023.html">CMP0023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0024.html">CMP0024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0025.html">CMP0025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0026.html">CMP0026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0027.html">CMP0027</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0028.html">CMP0028</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0029.html">CMP0029</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0030.html">CMP0030</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0031.html">CMP0031</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0032.html">CMP0032</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0033.html">CMP0033</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0034.html">CMP0034</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0035.html">CMP0035</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0036.html">CMP0036</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0037.html">CMP0037</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0038.html">CMP0038</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0039.html">CMP0039</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0040.html">CMP0040</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0041.html">CMP0041</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0042.html">CMP0042</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0043.html">CMP0043</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0044.html">CMP0044</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0045.html">CMP0045</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0046.html">CMP0046</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0047.html">CMP0047</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0048.html">CMP0048</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0049.html">CMP0049</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../policy/CMP0050.html">CMP0050</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cmake-policies(7)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#all-policies">All Policies</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmake-packages.7.html"
+                        title="previous chapter">cmake-packages(7)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../policy/CMP0000.html"
+                        title="next chapter">CMP0000</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/manual/cmake-policies.7.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../policy/CMP0000.html" title="CMP0000"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmake-packages.7.html" title="cmake-packages(7)"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

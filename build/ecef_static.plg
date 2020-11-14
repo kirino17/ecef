@@ -1,0 +1,443 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ecef - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Release/ecef.res" /i "E:\ecef\src\aquarius2" /i "\ecef\src" /d "NDEBUG" "E:\ecef\src\ecef.rc"" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP5BE4.tmp" with contents
+[
+/nologo /MT /W3 /GR /GX /O2 /Ob2 /I "E:\ecef\src\aquarius2" /D "WIN32" /D "_WINDOWS" /D "_USRDLL" /D "ecef_EXPORTS" /D "_MBCS" /D "NDEBUG" /D CMAKE_INTDIR=\"Release\" /Fo"Release/" /Fd"Release/" /FD /Zm1000   /TP /c 
+"E:\ecef\src\ecef.cpp"
+"E:\ecef\src\EPLChromium.cpp"
+"E:\ecef\src\EPLMain.cpp"
+"E:\ecef\src\EPLProxyActiveBrowserCallback.cpp"
+"E:\ecef\src\EPLProxyAuthCallback.cpp"
+"E:\ecef\src\EPLProxyBase.cpp"
+"E:\ecef\src\EPLProxyBrowser.cpp"
+"E:\ecef\src\EPLProxyBrowserSettings.cpp"
+"E:\ecef\src\EPLProxyCollection.cpp"
+"E:\ecef\src\EPLProxyCommandLine.cpp"
+"E:\ecef\src\EPLProxyContextMenuParams.cpp"
+"E:\ecef\src\EPLProxyCookie.cpp"
+"E:\ecef\src\EPLProxyCookieManager.cpp"
+"E:\ecef\src\EPLProxyDictionaryValue.cpp"
+"E:\ecef\src\EPLProxyDOMDocument.cpp"
+"E:\ecef\src\EPLProxyDOMNode.cpp"
+"E:\ecef\src\EPLProxyDownloadItem.cpp"
+"E:\ecef\src\EPLProxyExtension.cpp"
+"E:\ecef\src\EPLProxyFileDialogCallback.cpp"
+"E:\ecef\src\EPLProxyFrame.cpp"
+"E:\ecef\src\EPLProxyGetExtensionResourceCallback.cpp"
+"E:\ecef\src\EPLProxyJSDialogCallback.cpp"
+"E:\ecef\src\EPLProxyListValue.cpp"
+"E:\ecef\src\EPLProxyMenuModel.cpp"
+"E:\ecef\src\EPLProxyPostDataElement.cpp"
+"E:\ecef\src\EPLProxyQueryCallback.cpp"
+"E:\ecef\src\EPLProxyRequest.cpp"
+"E:\ecef\src\EPLProxyResponse.cpp"
+"E:\ecef\src\EPLProxyResponseFilter.cpp"
+"E:\ecef\src\EPLProxyRunContextMenuCallback.cpp"
+"E:\ecef\src\EPLProxyServer.cpp"
+"E:\ecef\src\EPLProxySettings.cpp"
+"E:\ecef\src\EPLProxyURLRequest.cpp"
+"E:\ecef\src\EPLProxyValue.cpp"
+"E:\ecef\src\EPLProxyWaitableEvent.cpp"
+"E:\ecef\src\EPLProxyWebSocket.cpp"
+"E:\ecef\src\EPLProxyWindowInfo.cpp"
+"E:\ecef\src\untshare.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP5BE4.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP5BE5.tmp" with contents
+[
+/nologo /MT /W3 /GR /GX /O2 /Ob2 /I "E:\ecef\src\aquarius2" /D "WIN32" /D "_WINDOWS" /D "_USRDLL" /D "ecef_EXPORTS" /D "_MBCS" /D "NDEBUG" /D CMAKE_INTDIR=\"Release\" /Fp"Release/ecef.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /Zm1000   /TP /c 
+"E:\ecef\src\stdafx.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP5BE5.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP5BE6.tmp" with contents
+[
+aquarius2.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:0.0 /dll /incremental:no /pdb:"E:\ecef\out\runtime\Release/ecef.pdb" /machine:I386 /def:"..\src\ecef.def" /out:"E:\ecef\out\runtime\Release/ecef.fne" /implib:"E:\ecef\out\runtime\Release/ecef.lib" /libpath:"E:\ecef\src\..\out\runtime\.\Release" /libpath:"E:\ecef\src\..\out\runtime" /machine:X86 
+.\Release\ecef.obj
+.\Release\EPLChromium.obj
+.\Release\EPLMain.obj
+.\Release\EPLProxyActiveBrowserCallback.obj
+.\Release\EPLProxyAuthCallback.obj
+.\Release\EPLProxyBase.obj
+.\Release\EPLProxyBrowser.obj
+.\Release\EPLProxyBrowserSettings.obj
+.\Release\EPLProxyCollection.obj
+.\Release\EPLProxyCommandLine.obj
+.\Release\EPLProxyContextMenuParams.obj
+.\Release\EPLProxyCookie.obj
+.\Release\EPLProxyCookieManager.obj
+.\Release\EPLProxyDictionaryValue.obj
+.\Release\EPLProxyDOMDocument.obj
+.\Release\EPLProxyDOMNode.obj
+.\Release\EPLProxyDownloadItem.obj
+.\Release\EPLProxyExtension.obj
+.\Release\EPLProxyFileDialogCallback.obj
+.\Release\EPLProxyFrame.obj
+.\Release\EPLProxyGetExtensionResourceCallback.obj
+.\Release\EPLProxyJSDialogCallback.obj
+.\Release\EPLProxyListValue.obj
+.\Release\EPLProxyMenuModel.obj
+.\Release\EPLProxyPostDataElement.obj
+.\Release\EPLProxyQueryCallback.obj
+.\Release\EPLProxyRequest.obj
+.\Release\EPLProxyResponse.obj
+.\Release\EPLProxyResponseFilter.obj
+.\Release\EPLProxyRunContextMenuCallback.obj
+.\Release\EPLProxyServer.obj
+.\Release\EPLProxySettings.obj
+.\Release\EPLProxyURLRequest.obj
+.\Release\EPLProxyValue.obj
+.\Release\EPLProxyWaitableEvent.obj
+.\Release\EPLProxyWebSocket.obj
+.\Release\EPLProxyWindowInfo.obj
+.\Release\stdafx.obj
+.\Release\untshare.obj
+.\Release\ecef.res
+]
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP5BE6.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+stdafx.cpp
+Compiling...
+ecef.cpp
+EPLChromium.cpp
+E:\ecef\src\EPLChromium.cpp(343) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(391) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(545) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(579) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(658) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(707) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(780) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(810) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(880) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(914) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1003) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1035) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1106) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1279) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1448) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1489) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1520) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1576) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1613) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1655) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1667) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1746) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1799) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1907) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLMain.cpp
+E:\ecef\src\EPLMain.cpp(86) : warning C4101: 'buffer' : unreferenced local variable
+EPLProxyActiveBrowserCallback.cpp
+EPLProxyAuthCallback.cpp
+EPLProxyBase.cpp
+E:\ecef\src\EPLProxyBase.cpp(42) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBase.cpp(49) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBase.cpp(318) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBase.cpp(398) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyBrowser.cpp
+E:\ecef\src\EPLProxyBrowser.cpp(295) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(305) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(365) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(377) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(389) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(425) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(439) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(483) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(511) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(602) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(664) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(802) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyBrowserSettings.cpp
+EPLProxyCollection.cpp
+EPLProxyCommandLine.cpp
+EPLProxyContextMenuParams.cpp
+EPLProxyCookie.cpp
+EPLProxyCookieManager.cpp
+E:\ecef\src\EPLProxyCookieManager.cpp(71) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyDictionaryValue.cpp
+E:\ecef\src\EPLProxyDictionaryValue.cpp(96) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyDictionaryValue.cpp(321) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyDOMDocument.cpp
+EPLProxyDOMNode.cpp
+EPLProxyDownloadItem.cpp
+E:\ecef\src\EPLProxyDownloadItem.cpp(214) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyExtension.cpp
+EPLProxyFileDialogCallback.cpp
+EPLProxyFrame.cpp
+E:\ecef\src\EPLProxyFrame.cpp(352) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+Generating Code...
+Compiling...
+EPLProxyGetExtensionResourceCallback.cpp
+EPLProxyJSDialogCallback.cpp
+E:\ecef\src\EPLProxyJSDialogCallback.cpp(43) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyListValue.cpp
+E:\ecef\src\EPLProxyListValue.cpp(307) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyMenuModel.cpp
+E:\ecef\src\EPLProxyMenuModel.cpp(448) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(460) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(494) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(506) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(540) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(552) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(587) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(588) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(589) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(602) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(603) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(604) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyPostDataElement.cpp
+EPLProxyQueryCallback.cpp
+EPLProxyRequest.cpp
+E:\ecef\src\EPLProxyRequest.cpp(222) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyResponse.cpp
+E:\ecef\src\EPLProxyResponse.cpp(176) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyResponseFilter.cpp
+EPLProxyRunContextMenuCallback.cpp
+EPLProxyServer.cpp
+EPLProxySettings.cpp
+EPLProxyURLRequest.cpp
+EPLProxyValue.cpp
+E:\ecef\src\EPLProxyValue.cpp(223) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyWaitableEvent.cpp
+EPLProxyWebSocket.cpp
+EPLProxyWindowInfo.cpp
+untshare.cpp
+Generating Code...
+Linking...
+   Creating library E:\ecef\out\runtime\Release/ecef.lib and object E:\ecef\out\runtime\Release/ecef.exp
+LINK : warning LNK4089: all references to "SHELL32.dll" discarded by /OPT:REF
+<h3>
+--------------------Configuration: ecef_static - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP879A.tmp" with contents
+[
+/nologo /MT /W3 /GR /GX /O2 /Ob2 /I "E:\ecef\src\aquarius2" /FI"stdafx.h" /D "NDEBUG" /D "WIN32" /D "_LIB" /D "_WINDOWS" /D "_MBCS" /D "__E_STATIC_LIB" /D CMAKE_INTDIR=\"Release\" /Fp"Release/ecef_static.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /Zm1000 /FpE:/ecef/build/PCH/stdafx.pch  /FpE:/ecef/build/PCH/stdafx.pch  /TP /c 
+"E:\ecef\src\ecef.cpp"
+"E:\ecef\src\EPLChromium.cpp"
+"E:\ecef\src\EPLMain.cpp"
+"E:\ecef\src\EPLProxyActiveBrowserCallback.cpp"
+"E:\ecef\src\EPLProxyAuthCallback.cpp"
+"E:\ecef\src\EPLProxyBase.cpp"
+"E:\ecef\src\EPLProxyBrowser.cpp"
+"E:\ecef\src\EPLProxyBrowserSettings.cpp"
+"E:\ecef\src\EPLProxyCollection.cpp"
+"E:\ecef\src\EPLProxyCommandLine.cpp"
+"E:\ecef\src\EPLProxyContextMenuParams.cpp"
+"E:\ecef\src\EPLProxyCookie.cpp"
+"E:\ecef\src\EPLProxyCookieManager.cpp"
+"E:\ecef\src\EPLProxyDictionaryValue.cpp"
+"E:\ecef\src\EPLProxyDOMDocument.cpp"
+"E:\ecef\src\EPLProxyDOMNode.cpp"
+"E:\ecef\src\EPLProxyDownloadItem.cpp"
+"E:\ecef\src\EPLProxyExtension.cpp"
+"E:\ecef\src\EPLProxyFileDialogCallback.cpp"
+"E:\ecef\src\EPLProxyFrame.cpp"
+"E:\ecef\src\EPLProxyGetExtensionResourceCallback.cpp"
+"E:\ecef\src\EPLProxyJSDialogCallback.cpp"
+"E:\ecef\src\EPLProxyListValue.cpp"
+"E:\ecef\src\EPLProxyMenuModel.cpp"
+"E:\ecef\src\EPLProxyPostDataElement.cpp"
+"E:\ecef\src\EPLProxyQueryCallback.cpp"
+"E:\ecef\src\EPLProxyRequest.cpp"
+"E:\ecef\src\EPLProxyResponse.cpp"
+"E:\ecef\src\EPLProxyResponseFilter.cpp"
+"E:\ecef\src\EPLProxyRunContextMenuCallback.cpp"
+"E:\ecef\src\EPLProxyServer.cpp"
+"E:\ecef\src\EPLProxySettings.cpp"
+"E:\ecef\src\EPLProxyURLRequest.cpp"
+"E:\ecef\src\EPLProxyValue.cpp"
+"E:\ecef\src\EPLProxyWaitableEvent.cpp"
+"E:\ecef\src\EPLProxyWebSocket.cpp"
+"E:\ecef\src\EPLProxyWindowInfo.cpp"
+"E:\ecef\src\untshare.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP879A.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP879B.tmp" with contents
+[
+/nologo /MT /W3 /GR /GX /O2 /Ob2 /I "E:\ecef\src\aquarius2" /FI"stdafx.h" /D "NDEBUG" /D "WIN32" /D "_LIB" /D "_WINDOWS" /D "_MBCS" /D "__E_STATIC_LIB" /D CMAKE_INTDIR=\"Release\" /Fp"Release/ecef_static.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /Zm1000 /FpE:/ecef/build/PCH/stdafx.pch  /FpE:/ecef/build/PCH/stdafx.pch  /TP /c 
+"E:\ecef\src\stdafx.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP879B.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP879C.bat" with contents
+[
+@echo off
+E:\ecef\vc98\cmake\cmake-3.0.2-win32-x86\bin\cmake.exe -E make_directory E:/ecef/out/runtime/Release
+if errorlevel 1 goto :VCReportError
+]
+Creating command line "C:\Users\ADMINI~1\AppData\Local\Temp\RSP879C.bat"
+Compiling...
+Command line warning D4025 : overriding '/FpRelease/ecef_static.pch' with '/FpE:/ecef/build/PCH/stdafx.pch'
+stdafx.cpp
+Compiling...
+Command line warning D4025 : overriding '/FpRelease/ecef_static.pch' with '/FpE:/ecef/build/PCH/stdafx.pch'
+ecef.cpp
+EPLChromium.cpp
+E:\ecef\src\EPLChromium.cpp(343) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(391) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(545) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(579) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(658) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(707) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(780) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(810) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(880) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(914) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1003) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1035) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1106) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1279) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1448) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1489) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1520) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1576) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1613) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1655) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1667) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1746) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1799) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLChromium.cpp(1907) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLMain.cpp
+E:\ecef\src\EPLMain.cpp(86) : warning C4101: 'buffer' : unreferenced local variable
+EPLProxyActiveBrowserCallback.cpp
+EPLProxyAuthCallback.cpp
+EPLProxyBase.cpp
+E:\ecef\src\EPLProxyBase.cpp(42) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBase.cpp(49) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBase.cpp(318) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBase.cpp(398) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyBrowser.cpp
+E:\ecef\src\EPLProxyBrowser.cpp(295) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(305) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(365) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(377) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(389) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(425) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(439) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(483) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(511) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(602) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(664) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyBrowser.cpp(802) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyBrowserSettings.cpp
+EPLProxyCollection.cpp
+EPLProxyCommandLine.cpp
+EPLProxyContextMenuParams.cpp
+EPLProxyCookie.cpp
+EPLProxyCookieManager.cpp
+E:\ecef\src\EPLProxyCookieManager.cpp(71) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyDictionaryValue.cpp
+E:\ecef\src\EPLProxyDictionaryValue.cpp(96) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyDictionaryValue.cpp(321) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyDOMDocument.cpp
+EPLProxyDOMNode.cpp
+EPLProxyDownloadItem.cpp
+E:\ecef\src\EPLProxyDownloadItem.cpp(214) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyExtension.cpp
+EPLProxyFileDialogCallback.cpp
+EPLProxyFrame.cpp
+E:\ecef\src\EPLProxyFrame.cpp(352) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+Generating Code...
+Compiling...
+EPLProxyGetExtensionResourceCallback.cpp
+EPLProxyJSDialogCallback.cpp
+E:\ecef\src\EPLProxyJSDialogCallback.cpp(43) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyListValue.cpp
+E:\ecef\src\EPLProxyListValue.cpp(307) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyMenuModel.cpp
+E:\ecef\src\EPLProxyMenuModel.cpp(448) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(460) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(494) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(506) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(540) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(552) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(587) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(588) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(589) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(602) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(603) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+E:\ecef\src\EPLProxyMenuModel.cpp(604) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyPostDataElement.cpp
+EPLProxyQueryCallback.cpp
+EPLProxyRequest.cpp
+E:\ecef\src\EPLProxyRequest.cpp(222) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyResponse.cpp
+E:\ecef\src\EPLProxyResponse.cpp(176) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyResponseFilter.cpp
+EPLProxyRunContextMenuCallback.cpp
+EPLProxyServer.cpp
+EPLProxySettings.cpp
+EPLProxyURLRequest.cpp
+EPLProxyValue.cpp
+E:\ecef\src\EPLProxyValue.cpp(223) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+EPLProxyWaitableEvent.cpp
+EPLProxyWebSocket.cpp
+EPLProxyWindowInfo.cpp
+untshare.cpp
+Generating Code...
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP8F8D.tmp" with contents
+[
+/nologo /out:"E:\ecef\out\runtime\Release\ecef_static.lib" 
+.\Release\ecef.obj
+.\Release\EPLChromium.obj
+.\Release\EPLMain.obj
+.\Release\EPLProxyActiveBrowserCallback.obj
+.\Release\EPLProxyAuthCallback.obj
+.\Release\EPLProxyBase.obj
+.\Release\EPLProxyBrowser.obj
+.\Release\EPLProxyBrowserSettings.obj
+.\Release\EPLProxyCollection.obj
+.\Release\EPLProxyCommandLine.obj
+.\Release\EPLProxyContextMenuParams.obj
+.\Release\EPLProxyCookie.obj
+.\Release\EPLProxyCookieManager.obj
+.\Release\EPLProxyDictionaryValue.obj
+.\Release\EPLProxyDOMDocument.obj
+.\Release\EPLProxyDOMNode.obj
+.\Release\EPLProxyDownloadItem.obj
+.\Release\EPLProxyExtension.obj
+.\Release\EPLProxyFileDialogCallback.obj
+.\Release\EPLProxyFrame.obj
+.\Release\EPLProxyGetExtensionResourceCallback.obj
+.\Release\EPLProxyJSDialogCallback.obj
+.\Release\EPLProxyListValue.obj
+.\Release\EPLProxyMenuModel.obj
+.\Release\EPLProxyPostDataElement.obj
+.\Release\EPLProxyQueryCallback.obj
+.\Release\EPLProxyRequest.obj
+.\Release\EPLProxyResponse.obj
+.\Release\EPLProxyResponseFilter.obj
+.\Release\EPLProxyRunContextMenuCallback.obj
+.\Release\EPLProxyServer.obj
+.\Release\EPLProxySettings.obj
+.\Release\EPLProxyURLRequest.obj
+.\Release\EPLProxyValue.obj
+.\Release\EPLProxyWaitableEvent.obj
+.\Release\EPLProxyWebSocket.obj
+.\Release\EPLProxyWindowInfo.obj
+.\Release\stdafx.obj
+.\Release\untshare.obj
+]
+Creating command line "link.exe -lib @C:\Users\ADMINI~1\AppData\Local\Temp\RSP8F8D.tmp"
+
+<h3>Output Window</h3>
+Creating library...
+<h3>
+--------------------Configuration: ALL_BUILD - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+ALL_BUILD - 0 error(s), 129 warning(s)
+</pre>
+</body>
+</html>

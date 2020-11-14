@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>macro &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="mark_as_advanced" href="mark_as_advanced.html" />
+    <link rel="prev" title="load_command" href="load_command.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mark_as_advanced.html" title="mark_as_advanced"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="load_command.html" title="load_command"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="macro">
+<span id="command:macro"></span><h1>macro<a class="headerlink" href="#macro" title="Permalink to this headline">¶</a></h1>
+<p>Start recording a macro for later invocation as a command.</p>
+<div class="highlight-python"><pre>macro(&lt;name&gt; [arg1 [arg2 [arg3 ...]]])
+  COMMAND1(ARGS ...)
+  COMMAND2(ARGS ...)
+  ...
+endmacro(&lt;name&gt;)</pre>
+</div>
+<p>Define a macro named &lt;name&gt; that takes arguments named arg1 arg2 arg3
+(...).  Commands listed after macro, but before the matching endmacro,
+are not invoked until the macro is invoked.  When it is invoked, the
+commands recorded in the macro are first modified by replacing formal
+parameters (<tt class="docutils literal"><span class="pre">${arg1}</span></tt>) with the arguments passed, and then invoked as
+normal commands.  In addition to referencing the formal parameters you
+can reference the values <tt class="docutils literal"><span class="pre">${ARGC}</span></tt> which will be set to the number of
+arguments passed into the function as well as <tt class="docutils literal"><span class="pre">${ARGV0}</span></tt> <tt class="docutils literal"><span class="pre">${ARGV1}</span></tt>
+<tt class="docutils literal"><span class="pre">${ARGV2}</span></tt> ...  which will have the actual values of the arguments
+passed in.  This facilitates creating macros with optional arguments.
+Additionally <tt class="docutils literal"><span class="pre">${ARGV}</span></tt> holds the list of all arguments given to the
+macro and <tt class="docutils literal"><span class="pre">${ARGN}</span></tt> holds the list of arguments past the last expected
+argument.</p>
+<p>See the cmake_policy() command documentation for the behavior of
+policies inside macros.</p>
+<div class="section" id="macro-argument-caveats">
+<h2>Macro Argument Caveats<a class="headerlink" href="#macro-argument-caveats" title="Permalink to this headline">¶</a></h2>
+<p>Note that the parameters to a macro and values such as <tt class="docutils literal"><span class="pre">ARGN</span></tt> are
+not variables in the usual CMake sense.  They are string
+replacements much like the C preprocessor would do with a macro.
+Therefore you will NOT be able to use commands like:</p>
+<div class="highlight-python"><pre>if(ARGV1) # ARGV1 is not a variable
+foreach(loop_var IN LISTS ARGN) # ARGN is not a variable</pre>
+</div>
+<p>In the first case you can use <tt class="docutils literal"><span class="pre">if(${ARGV1})</span></tt>, in the second case, you can
+use <tt class="docutils literal"><span class="pre">foreach(loop_var</span> <span class="pre">${ARGN})</span></tt> but this will skip empty arguments.
+If you need to include them, you can use:</p>
+<div class="highlight-python"><pre>set(list_var "${ARGN}")
+foreach(loop_var IN LISTS list_var)</pre>
+</div>
+<p>Note that if you have a variable with the same name in the scope from
+which the macro is called, using unreferenced names will use the
+existing variable instead of the arguments. For example:</p>
+<div class="highlight-python"><pre>macro(_BAR)
+  foreach(arg IN LISTS ARGN)
+    [...]
+  endforeach()
+endmacro()
+
+function(_FOO)
+  _bar(x y z)
+endfunction()
+
+_foo(a b c)</pre>
+</div>
+<p>Will loop over <tt class="docutils literal"><span class="pre">a;b;c</span></tt> and not over <tt class="docutils literal"><span class="pre">x;y;z</span></tt> as one might be expecting.
+If you want true CMake variables and/or better CMake scope control you
+should look at the function command.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">macro</a><ul>
+<li><a class="reference internal" href="#macro-argument-caveats">Macro Argument Caveats</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="load_command.html"
+                        title="previous chapter">load_command</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mark_as_advanced.html"
+                        title="next chapter">mark_as_advanced</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/macro.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mark_as_advanced.html" title="mark_as_advanced"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="load_command.html" title="load_command"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

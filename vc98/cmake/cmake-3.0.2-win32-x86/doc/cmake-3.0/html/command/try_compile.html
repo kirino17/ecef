@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>try_compile &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="try_run" href="try_run.html" />
+    <link rel="prev" title="target_link_libraries" href="target_link_libraries.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="try_run.html" title="try_run"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="target_link_libraries.html" title="target_link_libraries"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="try-compile">
+<span id="command:try_compile"></span><h1>try_compile<a class="headerlink" href="#try-compile" title="Permalink to this headline">¶</a></h1>
+<p>Try building some code.</p>
+<div class="highlight-python"><pre>try_compile(RESULT_VAR &lt;bindir&gt; &lt;srcdir&gt;
+            &lt;projectName&gt; [targetName] [CMAKE_FLAGS flags...]
+            [OUTPUT_VARIABLE &lt;var&gt;])</pre>
+</div>
+<p>Try building a project.  In this form, srcdir should contain a
+complete CMake project with a CMakeLists.txt file and all sources.
+The bindir and srcdir will not be deleted after this command is run.
+Specify targetName to build a specific target instead of the &#8216;all&#8217; or
+&#8216;ALL_BUILD&#8217; target.</p>
+<div class="highlight-python"><pre>try_compile(RESULT_VAR &lt;bindir&gt; &lt;srcfile|SOURCES srcfile...&gt;
+            [CMAKE_FLAGS flags...]
+            [COMPILE_DEFINITIONS flags...]
+            [LINK_LIBRARIES libs...]
+            [OUTPUT_VARIABLE &lt;var&gt;]
+            [COPY_FILE &lt;fileName&gt; [COPY_FILE_ERROR &lt;var&gt;]])</pre>
+</div>
+<p>Try building an executable from one or more source files.  In this
+form the user need only supply one or more source files that include a
+definition for &#8216;main&#8217;.  CMake will create a CMakeLists.txt file to
+build the source(s) as an executable.  Specify COPY_FILE to get a copy
+of the linked executable at the given fileName and optionally
+COPY_FILE_ERROR to capture any error.</p>
+<p>In this version all files in bindir/CMakeFiles/CMakeTmp will be
+cleaned automatically.  For debugging, &#8211;debug-trycompile can be
+passed to cmake to avoid this clean.  However, multiple sequential
+try_compile operations reuse this single output directory.  If you use
+&#8211;debug-trycompile, you can only debug one try_compile call at a time.
+The recommended procedure is to configure with cmake all the way
+through once, then delete the cache entry associated with the
+try_compile call of interest, and then re-run cmake again with
+&#8211;debug-trycompile.</p>
+<p>Some extra flags that can be included are, INCLUDE_DIRECTORIES,
+LINK_DIRECTORIES, and LINK_LIBRARIES.  COMPILE_DEFINITIONS are
+-Ddefinition that will be passed to the compile line.</p>
+<p>The srcfile signature also accepts a LINK_LIBRARIES argument which may
+contain a list of libraries or IMPORTED targets which will be linked
+to in the generated project.  If LINK_LIBRARIES is specified as a
+parameter to try_compile, then any LINK_LIBRARIES passed as
+CMAKE_FLAGS will be ignored.</p>
+<p>try_compile creates a CMakeList.txt file on the fly that looks like
+this:</p>
+<div class="highlight-python"><pre>add_definitions( &lt;expanded COMPILE_DEFINITIONS from calling cmake&gt;)
+include_directories(${INCLUDE_DIRECTORIES})
+link_directories(${LINK_DIRECTORIES})
+add_executable(cmTryCompileExec sources)
+target_link_libraries(cmTryCompileExec ${LINK_LIBRARIES})</pre>
+</div>
+<p>In both versions of the command, if OUTPUT_VARIABLE is specified, then
+the output from the build process is stored in the given variable.
+The success or failure of the try_compile, i.e.  TRUE or FALSE
+respectively, is returned in RESULT_VAR.  CMAKE_FLAGS can be used to
+pass -DVAR:TYPE=VALUE flags to the cmake that is run during the build.
+Set variable CMAKE_TRY_COMPILE_CONFIGURATION to choose a build
+configuration.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="target_link_libraries.html"
+                        title="previous chapter">target_link_libraries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="try_run.html"
+                        title="next chapter">try_run</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/try_compile.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="try_run.html" title="try_run"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="target_link_libraries.html" title="target_link_libraries"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

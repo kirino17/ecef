@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GNUInstallDirs &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="InstallRequiredSystemLibraries" href="InstallRequiredSystemLibraries.html" />
+    <link rel="prev" title="GetPrerequisites" href="GetPrerequisites.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="InstallRequiredSystemLibraries.html" title="InstallRequiredSystemLibraries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="GetPrerequisites.html" title="GetPrerequisites"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="gnuinstalldirs">
+<span id="module:GNUInstallDirs"></span><h1>GNUInstallDirs<a class="headerlink" href="#gnuinstalldirs" title="Permalink to this headline">¶</a></h1>
+<p>Define GNU standard installation directories</p>
+<p>Provides install directory variables as defined for GNU software:</p>
+<div class="highlight-python"><pre>http://www.gnu.org/prep/standards/html_node/Directory-Variables.html</pre>
+</div>
+<p>Inclusion of this module defines the following variables:</p>
+<div class="highlight-python"><pre>CMAKE_INSTALL_&lt;dir&gt;      - destination for files of a given type
+CMAKE_INSTALL_FULL_&lt;dir&gt; - corresponding absolute path</pre>
+</div>
+<p>where &lt;dir&gt; is one of:</p>
+<div class="highlight-python"><pre>BINDIR           - user executables (bin)
+SBINDIR          - system admin executables (sbin)
+LIBEXECDIR       - program executables (libexec)
+SYSCONFDIR       - read-only single-machine data (etc)
+SHAREDSTATEDIR   - modifiable architecture-independent data (com)
+LOCALSTATEDIR    - modifiable single-machine data (var)
+LIBDIR           - object code libraries (lib or lib64 or lib/&lt;multiarch-tuple&gt; on Debian)
+INCLUDEDIR       - C header files (include)
+OLDINCLUDEDIR    - C header files for non-gcc (/usr/include)
+DATAROOTDIR      - read-only architecture-independent data root (share)
+DATADIR          - read-only architecture-independent data (DATAROOTDIR)
+INFODIR          - info documentation (DATAROOTDIR/info)
+LOCALEDIR        - locale-dependent data (DATAROOTDIR/locale)
+MANDIR           - man documentation (DATAROOTDIR/man)
+DOCDIR           - documentation root (DATAROOTDIR/doc/PROJECT_NAME)</pre>
+</div>
+<p>Each CMAKE_INSTALL_&lt;dir&gt; value may be passed to the DESTINATION
+options of install() commands for the corresponding file type.  If the
+includer does not define a value the above-shown default will be used
+and the value will appear in the cache for editing by the user.  Each
+CMAKE_INSTALL_FULL_&lt;dir&gt; value contains an absolute path constructed
+from the corresponding destination by prepending (if necessary) the
+value of CMAKE_INSTALL_PREFIX.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="GetPrerequisites.html"
+                        title="previous chapter">GetPrerequisites</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="InstallRequiredSystemLibraries.html"
+                        title="next chapter">InstallRequiredSystemLibraries</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/GNUInstallDirs.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="InstallRequiredSystemLibraries.html" title="InstallRequiredSystemLibraries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="GetPrerequisites.html" title="GetPrerequisites"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

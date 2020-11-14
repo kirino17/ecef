@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>set_target_properties &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-commands(7)" href="../manual/cmake-commands.7.html" />
+    <link rel="next" title="set_tests_properties" href="set_tests_properties.html" />
+    <link rel="prev" title="set_source_files_properties" href="set_source_files_properties.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="set_tests_properties.html" title="set_tests_properties"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="set_source_files_properties.html" title="set_source_files_properties"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" accesskey="U">cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="set-target-properties">
+<span id="command:set_target_properties"></span><h1>set_target_properties<a class="headerlink" href="#set-target-properties" title="Permalink to this headline">¶</a></h1>
+<p>Targets can have properties that affect how they are built.</p>
+<div class="highlight-python"><pre>set_target_properties(target1 target2 ...
+                      PROPERTIES prop1 value1
+                      prop2 value2 ...)</pre>
+</div>
+<p>Set properties on a target.  The syntax for the command is to list all
+the files you want to change, and then provide the values you want to
+set next.  You can use any prop value pair you want and extract it
+later with the GET_TARGET_PROPERTY command.</p>
+<p>Properties that affect the name of a target&#8217;s output file are as
+follows.  The PREFIX and SUFFIX properties override the default target
+name prefix (such as &#8220;lib&#8221;) and suffix (such as &#8221;.so&#8221;).  IMPORT_PREFIX
+and IMPORT_SUFFIX are the equivalent properties for the import library
+corresponding to a DLL (for SHARED library targets).  OUTPUT_NAME sets
+the real name of a target when it is built and can be used to help
+create two targets of the same name even though CMake requires unique
+logical target names.  There is also a &lt;CONFIG&gt;_OUTPUT_NAME that can
+set the output name on a per-configuration basis.  &lt;CONFIG&gt;_POSTFIX
+sets a postfix for the real name of the target when it is built under
+the configuration named by &lt;CONFIG&gt; (in upper-case, such as
+&#8220;DEBUG_POSTFIX&#8221;).  The value of this property is initialized when the
+target is created to the value of the variable CMAKE_&lt;CONFIG&gt;_POSTFIX
+(except for executable targets because earlier CMake versions which
+did not use this variable for executables).</p>
+<p>The LINK_FLAGS property can be used to add extra flags to the link
+step of a target.  LINK_FLAGS_&lt;CONFIG&gt; will add to the configuration
+&lt;CONFIG&gt;, for example, DEBUG, RELEASE, MINSIZEREL, RELWITHDEBINFO.
+DEFINE_SYMBOL sets the name of the preprocessor symbol defined when
+compiling sources in a shared library.  If not set here then it is set
+to target_EXPORTS by default (with some substitutions if the target is
+not a valid C identifier).  This is useful for headers to know whether
+they are being included from inside their library or outside to
+properly setup dllexport/dllimport decorations.  The COMPILE_FLAGS
+property sets additional compiler flags used to build sources within
+the target.  It may also be used to pass additional preprocessor
+definitions.</p>
+<p>The LINKER_LANGUAGE property is used to change the tool used to link
+an executable or shared library.  The default is set the language to
+match the files in the library.  CXX and C are common values for this
+property.</p>
+<p>For shared libraries VERSION and SOVERSION can be used to specify the
+build version and API version respectively.  When building or
+installing appropriate symlinks are created if the platform supports
+symlinks and the linker supports so-names.  If only one of both is
+specified the missing is assumed to have the same version number.  For
+executables VERSION can be used to specify the build version.  When
+building or installing appropriate symlinks are created if the
+platform supports symlinks.  For shared libraries and executables on
+Windows the VERSION attribute is parsed to extract a &#8220;major.minor&#8221;
+version number.  These numbers are used as the image version of the
+binary.</p>
+<p>There are a few properties used to specify RPATH rules.  INSTALL_RPATH
+is a semicolon-separated list specifying the rpath to use in installed
+targets (for platforms that support it).  INSTALL_RPATH_USE_LINK_PATH
+is a boolean that if set to true will append directories in the linker
+search path and outside the project to the INSTALL_RPATH.
+SKIP_BUILD_RPATH is a boolean specifying whether to skip automatic
+generation of an rpath allowing the target to run from the build tree.
+BUILD_WITH_INSTALL_RPATH is a boolean specifying whether to link the
+target in the build tree with the INSTALL_RPATH.  This takes
+precedence over SKIP_BUILD_RPATH and avoids the need for relinking
+before installation.  INSTALL_NAME_DIR is a string specifying the
+directory portion of the &#8220;install_name&#8221; field of shared libraries on
+Mac OSX to use in the installed targets.  When the target is created
+the values of the variables CMAKE_INSTALL_RPATH,
+CMAKE_INSTALL_RPATH_USE_LINK_PATH, CMAKE_SKIP_BUILD_RPATH,
+CMAKE_BUILD_WITH_INSTALL_RPATH, and CMAKE_INSTALL_NAME_DIR are used to
+initialize these properties.</p>
+<p>PROJECT_LABEL can be used to change the name of the target in an IDE
+like visual studio.  VS_KEYWORD can be set to change the visual studio
+keyword, for example Qt integration works better if this is set to
+Qt4VSv1.0.</p>
+<p>VS_SCC_PROJECTNAME, VS_SCC_LOCALPATH, VS_SCC_PROVIDER and
+VS_SCC_AUXPATH can be set to add support for source control bindings
+in a Visual Studio project file.</p>
+<p>VS_GLOBAL_&lt;variable&gt; can be set to add a Visual Studio
+project-specific global variable.  Qt integration works better if
+VS_GLOBAL_QtVersion is set to the Qt version FindQt4.cmake found.  For
+example, &#8220;4.7.3&#8221;</p>
+<p>The PRE_INSTALL_SCRIPT and POST_INSTALL_SCRIPT properties are the old
+way to specify CMake scripts to run before and after installing a
+target.  They are used only when the old INSTALL_TARGETS command is
+used to install the target.  Use the INSTALL command instead.</p>
+<p>The EXCLUDE_FROM_DEFAULT_BUILD property is used by the visual studio
+generators.  If it is set to 1 the target will not be part of the
+default build when you select &#8220;Build Solution&#8221;.  This can also be set
+on a per-configuration basis using
+EXCLUDE_FROM_DEFAULT_BUILD_&lt;CONFIG&gt;.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="set_source_files_properties.html"
+                        title="previous chapter">set_source_files_properties</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="set_tests_properties.html"
+                        title="next chapter">set_tests_properties</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/command/set_target_properties.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="set_tests_properties.html" title="set_tests_properties"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="set_source_files_properties.html" title="set_source_files_properties"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-commands.7.html" >cmake-commands(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

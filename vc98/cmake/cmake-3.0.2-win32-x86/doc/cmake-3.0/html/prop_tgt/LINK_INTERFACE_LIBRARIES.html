@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>LINK_INTERFACE_LIBRARIES &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-properties(7)" href="../manual/cmake-properties.7.html" />
+    <link rel="next" title="LINK_INTERFACE_MULTIPLICITY_&lt;CONFIG&gt;" href="LINK_INTERFACE_MULTIPLICITY_CONFIG.html" />
+    <link rel="prev" title="LINK_INTERFACE_LIBRARIES_&lt;CONFIG&gt;" href="LINK_INTERFACE_LIBRARIES_CONFIG.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LINK_INTERFACE_MULTIPLICITY_CONFIG.html" title="LINK_INTERFACE_MULTIPLICITY_&lt;CONFIG&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="LINK_INTERFACE_LIBRARIES_CONFIG.html" title="LINK_INTERFACE_LIBRARIES_&lt;CONFIG&gt;"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" accesskey="U">cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="link-interface-libraries">
+<span id="prop_tgt:LINK_INTERFACE_LIBRARIES"></span><h1>LINK_INTERFACE_LIBRARIES<a class="headerlink" href="#link-interface-libraries" title="Permalink to this headline">¶</a></h1>
+<p>List public interface libraries for a shared library or executable.</p>
+<p>By default linking to a shared library target transitively links to
+targets with which the library itself was linked.  For an executable
+with exports (see the ENABLE_EXPORTS property) no default transitive
+link dependencies are used.  This property replaces the default
+transitive link dependencies with an explicit list.  When the target
+is linked into another target the libraries listed (and recursively
+their link interface libraries) will be provided to the other target
+also.  If the list is empty then no transitive link dependencies will
+be incorporated when this target is linked into another target even if
+the default set is non-empty.  This property is initialized by the
+value of the variable CMAKE_LINK_INTERFACE_LIBRARIES if it is set when
+a target is created.  This property is ignored for STATIC libraries.</p>
+<p>This property is overridden by the INTERFACE_LINK_LIBRARIES property if
+policy CMP0022 is NEW.</p>
+<p>This property is deprecated.  Use INTERFACE_LINK_LIBRARIES instead.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="LINK_INTERFACE_LIBRARIES_CONFIG.html"
+                        title="previous chapter">LINK_INTERFACE_LIBRARIES_&lt;CONFIG&gt;</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="LINK_INTERFACE_MULTIPLICITY_CONFIG.html"
+                        title="next chapter">LINK_INTERFACE_MULTIPLICITY_&lt;CONFIG&gt;</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/prop_tgt/LINK_INTERFACE_LIBRARIES.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LINK_INTERFACE_MULTIPLICITY_CONFIG.html" title="LINK_INTERFACE_MULTIPLICITY_&lt;CONFIG&gt;"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="LINK_INTERFACE_LIBRARIES_CONFIG.html" title="LINK_INTERFACE_LIBRARIES_&lt;CONFIG&gt;"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" >cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

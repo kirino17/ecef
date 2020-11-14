@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FindHDF5 &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-modules(7)" href="../manual/cmake-modules.7.html" />
+    <link rel="next" title="FindHg" href="FindHg.html" />
+    <link rel="prev" title="FindGTK" href="FindGTK.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FindHg.html" title="FindHg"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FindGTK.html" title="FindGTK"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" accesskey="U">cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="findhdf5">
+<span id="module:FindHDF5"></span><h1>FindHDF5<a class="headerlink" href="#findhdf5" title="Permalink to this headline">¶</a></h1>
+<p>Find HDF5, a library for reading and writing self describing array data.</p>
+<p>This module invokes the HDF5 wrapper compiler that should be installed
+alongside HDF5.  Depending upon the HDF5 Configuration, the wrapper
+compiler is called either h5cc or h5pcc.  If this succeeds, the module
+will then call the compiler with the -show argument to see what flags
+are used when compiling an HDF5 client application.</p>
+<p>The module will optionally accept the COMPONENTS argument.  If no
+COMPONENTS are specified, then the find module will default to finding
+only the HDF5 C library.  If one or more COMPONENTS are specified, the
+module will attempt to find the language bindings for the specified
+components.  The only valid components are C, CXX, Fortran, HL, and
+Fortran_HL.  If the COMPONENTS argument is not given, the module will
+attempt to find only the C bindings.</p>
+<p>On UNIX systems, this module will read the variable
+HDF5_USE_STATIC_LIBRARIES to determine whether or not to prefer a
+static link to a dynamic link for HDF5 and all of it&#8217;s dependencies.
+To use this feature, make sure that the HDF5_USE_STATIC_LIBRARIES
+variable is set before the call to find_package.</p>
+<p>To provide the module with a hint about where to find your HDF5
+installation, you can set the environment variable HDF5_ROOT.  The
+Find module will then look in this path when searching for HDF5
+executables, paths, and libraries.</p>
+<p>In addition to finding the includes and libraries required to compile
+an HDF5 client application, this module also makes an effort to find
+tools that come with the HDF5 distribution that may be useful for
+regression testing.</p>
+<p>This module will define the following variables:</p>
+<div class="highlight-python"><pre>HDF5_INCLUDE_DIRS - Location of the hdf5 includes
+HDF5_INCLUDE_DIR - Location of the hdf5 includes (deprecated)
+HDF5_DEFINITIONS - Required compiler definitions for HDF5
+HDF5_C_LIBRARIES - Required libraries for the HDF5 C bindings.
+HDF5_CXX_LIBRARIES - Required libraries for the HDF5 C++ bindings
+HDF5_Fortran_LIBRARIES - Required libraries for the HDF5 Fortran bindings
+HDF5_HL_LIBRARIES - Required libraries for the HDF5 high level API
+HDF5_Fortran_HL_LIBRARIES - Required libraries for the high level Fortran
+                            bindings.
+HDF5_LIBRARIES - Required libraries for all requested bindings
+HDF5_FOUND - true if HDF5 was found on the system
+HDF5_LIBRARY_DIRS - the full set of library directories
+HDF5_IS_PARALLEL - Whether or not HDF5 was found with parallel IO support
+HDF5_C_COMPILER_EXECUTABLE - the path to the HDF5 C wrapper compiler
+HDF5_CXX_COMPILER_EXECUTABLE - the path to the HDF5 C++ wrapper compiler
+HDF5_Fortran_COMPILER_EXECUTABLE - the path to the HDF5 Fortran wrapper compiler
+HDF5_DIFF_EXECUTABLE - the path to the HDF5 dataset comparison tool</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FindGTK.html"
+                        title="previous chapter">FindGTK</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FindHg.html"
+                        title="next chapter">FindHg</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/module/FindHDF5.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FindHg.html" title="FindHg"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FindGTK.html" title="FindGTK"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-modules.7.html" >cmake-modules(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

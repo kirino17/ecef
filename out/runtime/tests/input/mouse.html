@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  width: 200px;
+  height: 100px;
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<div onmousemove="mouseMove(event)" onmouseout="clearCoor()" onmousedown=""></div>
+
+<p>将鼠标悬停在上方的矩形上，并获取鼠标指针的坐标。</p>
+
+<p id="demo"></p>
+
+<p>当鼠标移到div上方时，p元素将显示鼠标指针的水平和垂直坐标，其值是从鼠标指针的clientX和clientY属性返回的。
+    MouseEvent对象。</p>
+
+<p id="mouse-p" onmousedown="mouseDown(event)" onmouseup="mouseUp()">点击这段文字! 当在此段落上按下鼠标按钮时, 将触发mouseDown()函数, 并将文本的颜色设置为红色。 释放鼠标按钮时将触发mouseUp()函数, 并将文本的颜色设置为绿色。</p>
+
+<p id="mouse-wheel-p">在这段文字上滑动滚轮字体将放大!</p>
+
+<script>
+function mouseMove(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  var coor = "坐标: (" + x + "," + y + ")";
+  document.getElementById("demo").innerHTML = coor;
+}
+
+function clearCoor() {
+  document.getElementById("demo").innerHTML = "";
+}
+
+function mouseDown(event) {
+  document.getElementById("mouse-p").style.color = "red";
+
+    console.log(event)
+
+}
+
+function mouseUp() {
+  document.getElementById("mouse-p").style.color = "green";
+}
+
+document.getElementById("mouse-wheel-p").addEventListener("wheel", mouseWheel);
+
+function mouseWheel(event){
+    if(event.deltaY > 0){
+        this.style.fontSize = "35px";
+    }
+    else {
+        this.style.fontSize = "15px";
+    }
+}
+
+</script>
+
+</body>
+</html>

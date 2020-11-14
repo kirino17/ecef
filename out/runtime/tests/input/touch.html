@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body ontouchstart="myFunction()">
+
+<h1>DOM touchstart Event</h1>
+
+<p id="show-p"></p>
+
+<script>
+    var tap_count = 0;
+function myFunction() {
+    tap_count++;
+    document.getElementById("show-p").innerText = "touched!! count: " + tap_count;
+}
+</script>
+
+</body>
+</html>

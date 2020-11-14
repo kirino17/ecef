@@ -1,0 +1,1358 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>静态方法 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ProxyClient.html" />
+    
+    
+    <link rel="prev" href="../apidocs.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">简介</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Update.html">
+            
+                <a href="../Update.html">
+            
+                    
+                    更新日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Release.html">
+            
+                <a href="../Release.html">
+            
+                    
+                    发布程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../FileExplainAndCulling.html">
+            
+                <a href="../FileExplainAndCulling.html">
+            
+                    
+                    裁剪支持库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">支持库手册</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../apidocs.html">
+            
+                <a href="../apidocs.html">
+            
+                    
+                    Api Docs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1.1" data-path="ProxyBase.html">
+            
+                <a href="ProxyBase.html">
+            
+                    
+                    静态方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="ProxyClient.html">
+            
+                <a href="ProxyClient.html">
+            
+                    
+                    水星铬浏览框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="ProxyActiveBrowserCallback.html">
+            
+                <a href="ProxyActiveBrowserCallback.html">
+            
+                    
+                    水星获取活动浏览器回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="ProxyAuth.md">
+            
+                <span>
+            
+                    
+                    水星认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="ProxyBrowser.html">
+            
+                <a href="ProxyBrowser.html">
+            
+                    
+                    水星浏览器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="ProxyBrowserSettings.html">
+            
+                <a href="ProxyBrowserSettings.html">
+            
+                    
+                    水星浏览器设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="ProxyCollection.html">
+            
+                <a href="ProxyCollection.html">
+            
+                    
+                    水星网页驱动器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" data-path="ProxyCommandLine.html">
+            
+                <a href="ProxyCommandLine.html">
+            
+                    
+                    水星命令行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" data-path="ProxyContextMenuParams.html">
+            
+                <a href="ProxyContextMenuParams.html">
+            
+                    
+                    水星菜单信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" data-path="ProxyCookie.html">
+            
+                <a href="ProxyCookie.html">
+            
+                    
+                    水星会话凭证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.11" data-path="ProxyCookieManager.html">
+            
+                <a href="ProxyCookieManager.html">
+            
+                    
+                    水星会话凭证管理器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.12" data-path="ProxyDictionaryValue.html">
+            
+                <a href="ProxyDictionaryValue.html">
+            
+                    
+                    水星字典型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.13" data-path="ProxyDOMDocument.html">
+            
+                <a href="ProxyDOMDocument.html">
+            
+                    
+                    水星网页文档对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.14" data-path="ProxyDOMNode.html">
+            
+                <a href="ProxyDOMNode.html">
+            
+                    
+                    水星网页文档元素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.15" data-path="ProxyDownloadItem.html">
+            
+                <a href="ProxyDownloadItem.html">
+            
+                    
+                    水星下载项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.16" data-path="ProxyExtension.html">
+            
+                <a href="ProxyExtension.html">
+            
+                    
+                    水星扩展程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.17" data-path="ProxyFileDialogCallback.html">
+            
+                <a href="ProxyFileDialogCallback.html">
+            
+                    
+                    水星文件选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.18" data-path="ProxyFrame.html">
+            
+                <a href="ProxyFrame.html">
+            
+                    
+                    水星框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.19" data-path="ProxyGetExtensionResourceCallback.html">
+            
+                <a href="ProxyGetExtensionResourceCallback.html">
+            
+                    
+                    水星扩展程序资源获取回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.20" data-path="ProxyJsDialogCallback.html">
+            
+                <a href="ProxyJsDialogCallback.html">
+            
+                    
+                    水星脚本对话框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.21" data-path="ProxyListValue.html">
+            
+                <a href="ProxyListValue.html">
+            
+                    
+                    水星列表型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.22" data-path="ProxyMenuModel.html">
+            
+                <a href="ProxyMenuModel.html">
+            
+                    
+                    水星菜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.23" data-path="ProxyPostDataElement.html">
+            
+                <a href="ProxyPostDataElement.html">
+            
+                    
+                    水星提交元素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.24" data-path="ProxyRequest.html">
+            
+                <a href="ProxyRequest.html">
+            
+                    
+                    水星请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.25" data-path="ProxyResponse.html">
+            
+                <a href="ProxyResponse.html">
+            
+                    
+                    水星响应
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.26" data-path="ProxyResponseFilter.html">
+            
+                <a href="ProxyResponseFilter.html">
+            
+                    
+                    水星资源过滤器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.27" data-path="ProxyRunContextMenuCallback.html">
+            
+                <a href="ProxyRunContextMenuCallback.html">
+            
+                    
+                    水星菜单回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.28" data-path="ProxyServer.html">
+            
+                <a href="ProxyServer.html">
+            
+                    
+                    水星服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.29" data-path="ProxySettings.html">
+            
+                <a href="ProxySettings.html">
+            
+                    
+                    水星初始化设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.30" data-path="ProxyURLRequest.html">
+            
+                <a href="ProxyURLRequest.html">
+            
+                    
+                    水星URL请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.31" data-path="ProxyValue.html">
+            
+                <a href="ProxyValue.html">
+            
+                    
+                    水星通用型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.32" data-path="ProxyWaitableEvent.html">
+            
+                <a href="ProxyWaitableEvent.html">
+            
+                    
+                    水星等待事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.33" data-path="ProxyWebSocket.html">
+            
+                <a href="ProxyWebSocket.html">
+            
+                    
+                    水星网页套接字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.34" data-path="ProxyWindowInfo.html">
+            
+                <a href="ProxyWindowInfo.html">
+            
+                    
+                    水星窗口设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见问题</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >静态方法</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x9759;&#x6001;&#x65B9;&#x6CD5;">&#x9759;&#x6001;&#x65B9;&#x6CD5;</h1>
+<h6 id="&#x9002;&#x7528;&#x4E8E;&#x5168;&#x5C40;&#x7684;&#x9759;&#x6001;&#x51FD;&#x6570;&#x96C6;&#x5408;&#x3002;">&#x9002;&#x7528;&#x4E8E;&#x5168;&#x5C40;&#x7684;&#x9759;&#x6001;&#x51FD;&#x6570;&#x96C6;&#x5408;&#x3002;</h6>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><code>Quick Links</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#Initialize" style="color:rgb(128,0,0)">&#x8FDB;&#x7A0B;&#x521D;&#x59CB;&#x5316;</a> , <a href="#Base64Encode" style="color:rgb(128,0,0)">BASE64&#x7F16;&#x7801;</a> , <a href="#Base64Decode" style="color:rgb(128,0,0)">BASE64&#x89E3;&#x7801;</a> , <a href="#UriEncode" style="color:rgb(128,0,0)">URI&#x7F16;&#x7801;</a> , <a href="#UriDecode" style="color:rgb(128,0,0)">URI&#x89E3;&#x7801;</a> , <a href="#Utf8ToBytes" style="color:rgb(128,0,0)">UTF8&#x89E3;&#x7801;</a> , <a href="#BytesToUtf8" style="color:rgb(128,0,0)">UTF8&#x7F16;&#x7801;</a> , <a href="#CreateBrowserSettings" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x6D4F;&#x89C8;&#x5668;&#x8BBE;&#x7F6E;</a> , <a href="#CreateCommandLine" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x547D;&#x4EE4;&#x884C;</a> , <a href="#GetGlobalCommandLine" style="color:rgb(128,0,0)">&#x53D6;&#x5168;&#x5C40;&#x547D;&#x4EE4;&#x884C;</a> , <a href="#GetGlobalCookieManager" style="color:rgb(128,0,0)">&#x53D6;&#x5168;&#x5C40;&#x4F1A;&#x8BDD;&#x51ED;&#x8BC1;&#x7BA1;&#x7406;&#x5668;</a> , <a href="#CreateDictionartyValue" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x5B57;&#x5178;&#x503C;</a> , <a href="#CreateListValue" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x5217;&#x8868;&#x503C;</a> , <a href="#CreatePostDataElement" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a> , <a href="#CreatePostDataElementWithFile" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a> , <a href="#CreatePostDataElementWithData" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x5B57;&#x8282;&#x96C6;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a> , <a href="#CreateRequest" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x8BF7;&#x6C42;</a> , <a href="#CreateResponse" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x54CD;&#x5E94;</a> , <a href="#CreateSetting" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E;</a> , <a href="#CreateValue" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x901A;&#x7528;&#x503C;</a> , <a href="#CreateWindowInfo" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</a> , <a href="#CreateAsChildWindow" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x5B50;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</a> , <a href="#CreateAsPopupWindow" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x5F39;&#x51FA;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</a> , <a href="#SendURLRequest" style="color:rgb(128,0,0)">&#x53D1;&#x9001;URL&#x8BF7;&#x6C42;</a> , <a href="#CreateServer" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x670D;&#x52A1;&#x5668;</a> , <a href="#CreateWebSocket" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x7F51;&#x9875;&#x5957;&#x63A5;&#x5B57;</a> , <a href="#CreateWaitableEvent" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</a> , <a href="#Awaking" style="color:rgb(128,0,0)">&#x7B49;&#x5F85;&#x5524;&#x9192;</a> , <a href="#TimedAwaking" style="color:rgb(128,0,0)">&#x7B49;&#x5F85;&#x5524;&#x9192;2</a> , <a href="#CreateMenu" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x83DC;&#x5355;</a> , <a href="#CreateCollection" style="color:rgb(128,0,0)">&#x521B;&#x5EFA;&#x7F51;&#x9875;&#x9A71;&#x52A8;&#x5668;</a> ,</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p> <code>&#x529F;&#x80FD;&#x51FD;&#x6570;</code> <br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="Initialize">&#x8FDB;&#x7A0B;&#x521D;&#x59CB;&#x5316;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x6B64;&#x51FD;&#x6570;&#x5E94;&#x8BE5;&#x5728;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x4F4D;&#x7F6E;&#x8C03;&#x7528;, &#x4E14;&#x5E94;&#x8BE5;&#x4E8E;&#x6D4F;&#x89C8;&#x5668;&#x8FDB;&#x7A0B;&#x4E2D;&#x6267;&#x884C;, &#x6267;&#x884C;&#x6B64;&#x51FD;&#x6570;&#x4EE5;&#x521D;&#x59CB;&#x5316;Chromium&#x6D4F;&#x89C8;&#x5668;&#x8FDB;&#x7A0B;&#x3002;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#x8FD4;&#x56DE;&#x771F;, &#x5931;&#x8D25;&#x8FD4;&#x56DE;&#x5047;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <a href="ProxySettings.html" style="color: blue">&#x6C34;&#x661F;&#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E;</a> &#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E; <span style="color: rgb(0, 128, 0)">&#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x4FDD;&#x7559; <span style="color: rgb(0, 128, 0)">&#x4FDD;&#x7559;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x903B;&#x8F91;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="Base64Encode">BASE64&#x7F16;&#x7801;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x5C06;&#x5B57;&#x8282;&#x96C6;&#x6570;&#x636E;&#x7F16;&#x7801;&#x4E3A;Base64&#x5B57;&#x7B26;&#x4E32;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x5B57;&#x8282;&#x96C6;&#x578B;</span> &#x5F85;&#x7F16;&#x7801;&#x7684;&#x6570;&#x636E; <span style="color: rgb(0, 128, 0)">&#x5F85;&#x7F16;&#x7801;&#x7684;&#x6570;&#x636E;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x6570;&#x636E;&#x957F;&#x5EA6; <span style="color: rgb(0, 128, 0)">&#x6570;&#x636E;&#x957F;&#x5EA6;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="Base64Decode">BASE64&#x89E3;&#x7801;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x5C06;Base64&#x5B57;&#x7B26;&#x4E32;&#x89E3;&#x7801;&#x4E3A;&#x5B57;&#x8282;&#x96C6;&#x6570;&#x636E;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x7F16;&#x7801;&#x5B57;&#x7B26;&#x4E32; <span style="color: rgb(0, 128, 0)">&#x7F16;&#x7801;&#x5B57;&#x7B26;&#x4E32;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x5B57;&#x8282;&#x96C6;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="UriEncode">URI&#x7F16;&#x7801;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x6267;&#x884C;URI&#x5B57;&#x7B26;&#x8F6C;&#x4E49;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x8F6C;&#x4E49;&#x7684;&#x5B57;&#x7B26;&#x4E32; <span style="color: rgb(0, 128, 0)">&#x8F6C;&#x4E49;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x903B;&#x8F91;&#x578B;</span> &#x7A7A;&#x683C;&#x8F6C;&#x4E49;&#x4E3A;&#x52A0;&#x53F7; <span style="color: rgb(0, 128, 0)">&#x7A7A;&#x683C;&#x8F6C;&#x4E49;&#x4E3A;&#x52A0;&#x53F7;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="UriDecode">URI&#x89E3;&#x7801;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x8FD8;&#x539F;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;URI&#x8F6C;&#x4E49;&#x5B57;&#x7B26;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x5F85;&#x89E3;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32; <span style="color: rgb(0, 128, 0)">&#x5F85;&#x89E3;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x903B;&#x8F91;&#x578B;</span> &#x8F6C;&#x6362;&#x5230;UTF8 <span style="color: rgb(0, 128, 0)">&#x8F6C;&#x6362;&#x5230;UTF8</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x8F6C;&#x4E49;&#x89C4;&#x5219; <span style="color: rgb(0, 128, 0)">&#x8F6C;&#x4E49;&#x89C4;&#x5219;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="Utf8ToBytes">UTF8&#x89E3;&#x7801;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x5C06;UTF-8&#x7F16;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x89E3;&#x7801;&#x4E3A;&#x591A;&#x5B57;&#x8282;&#x7F16;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x5B57;&#x8282;&#x96C6;&#x578B;</span> &#x5F85;&#x89E3;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32; <span style="color: rgb(0, 128, 0)">&#x5F85;&#x89E3;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x5B57;&#x8282;&#x957F;&#x5EA6; <span style="color: rgb(0, 128, 0)">&#x5B57;&#x8282;&#x957F;&#x5EA6;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="BytesToUtf8">UTF8&#x7F16;&#x7801;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x5C06;&#x591A;&#x5B57;&#x8282;&#x7F16;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x7F16;&#x7801;&#x4E3A;UTF-8&#x7F16;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x5F85;&#x7F16;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32; <span style="color: rgb(0, 128, 0)">&#x5F85;&#x7F16;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x5B57;&#x8282;&#x96C6;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateBrowserSettings">&#x521B;&#x5EFA;&#x6D4F;&#x89C8;&#x5668;&#x8BBE;&#x7F6E;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyBrowserSettings.html" style="color: blue">&#x6C34;&#x661F;&#x6D4F;&#x89C8;&#x5668;&#x8BBE;&#x7F6E;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateCommandLine">&#x521B;&#x5EFA;&#x547D;&#x4EE4;&#x884C;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyCommandLine.html" style="color: blue">&#x6C34;&#x661F;&#x547D;&#x4EE4;&#x884C;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="GetGlobalCommandLine">&#x53D6;&#x5168;&#x5C40;&#x547D;&#x4EE4;&#x884C;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x4ECE;&#x5168;&#x5C40;&#x83B7;&#x53D6;&#x547D;&#x4EE4;&#x884C;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyCommandLine.html" style="color: blue">&#x6C34;&#x661F;&#x547D;&#x4EE4;&#x884C;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="GetGlobalCookieManager">&#x53D6;&#x5168;&#x5C40;&#x4F1A;&#x8BDD;&#x51ED;&#x8BC1;&#x7BA1;&#x7406;&#x5668;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x4ECE;&#x5168;&#x5C40;&#x83B7;&#x53D6;&#x4F1A;&#x8BDD;&#x51ED;&#x8BC1;&#x7BA1;&#x7406;&#x5668;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyCookieManager.html" style="color: blue">&#x6C34;&#x661F;&#x4F1A;&#x8BDD;&#x7BA1;&#x7406;&#x5668;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateDictionartyValue">&#x521B;&#x5EFA;&#x5B57;&#x5178;&#x503C;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5B57;&#x5178;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyDictionaryValue.html" style="color: blue">&#x6C34;&#x661F;&#x5B57;&#x5178;&#x578B;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateListValue">&#x521B;&#x5EFA;&#x5217;&#x8868;&#x503C;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5217;&#x8868;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x521D;&#x59CB;&#x5316;&#x503C; <span style="color: rgb(0, 128, 0)">&#x521D;&#x59CB;&#x5316;&#x503C;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyListValue.html" style="color: blue">&#x6C34;&#x661F;&#x5217;&#x8868;&#x578B;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreatePostDataElement">&#x521B;&#x5EFA;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#x5143;&#x7D20;(Post Data Element)&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyPostDataElement.html" style="color: blue">&#x6C34;&#x661F;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreatePostDataElementWithFile">&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4EE3;&#x8868;&#x6587;&#x4EF6;&#x7684;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#x5143;&#x7D20;(Post Data Element)&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x6587;&#x4EF6;&#x540D; <span style="color: rgb(0, 128, 0)">&#x6587;&#x4EF6;&#x540D;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyPostDataElement.html" style="color: blue">&#x6C34;&#x661F;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreatePostDataElementWithData">&#x521B;&#x5EFA;&#x5B57;&#x8282;&#x96C6;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4EE3;&#x8868;&#x5B57;&#x8282;&#x96C6;&#x7684;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#x5143;&#x7D20;(Post Data Element)&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x5B57;&#x8282;&#x96C6;&#x6570;&#x636E; <span style="color: rgb(0, 128, 0)">&#x5B57;&#x8282;&#x96C6;&#x6570;&#x636E;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyPostDataElement.html" style="color: blue">&#x6C34;&#x661F;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateRequest">&#x521B;&#x5EFA;&#x8BF7;&#x6C42;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x8BF7;&#x6C42;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x65B9;&#x6CD5; <span style="color: rgb(0, 128, 0)">&#x65B9;&#x6CD5;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> url <span style="color: rgb(0, 128, 0)">url</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x6765;&#x6E90;&#x5730;&#x5740; <span style="color: rgb(0, 128, 0)">&#x6765;&#x6E90;&#x5730;&#x5740;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x6807;&#x5934;&#x5B57;&#x7B26;&#x4E32; <span style="color: rgb(0, 128, 0)">&#x6807;&#x5934;&#x5B57;&#x7B26;&#x4E32;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <a href="ProxyPostDataElement.html" style="color: blue">&#x6C34;&#x661F;&#x63D0;&#x4EA4;&#x5143;&#x7D20;</a> &#x63D0;&#x4EA4;&#x6570;&#x636E; <span style="color: rgb(0, 128, 0)">&#x63D0;&#x4EA4;&#x6570;&#x636E;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyRequest.html" style="color: blue">&#x6C34;&#x661F;&#x8BF7;&#x6C42;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateResponse">&#x521B;&#x5EFA;&#x54CD;&#x5E94;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x54CD;&#x5E94;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyResponse.html" style="color: blue">&#x6C34;&#x661F;&#x54CD;&#x5E94;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateSetting">&#x521B;&#x5EFA;&#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxySettings.html" style="color: blue">&#x6C34;&#x661F;&#x521D;&#x59CB;&#x5316;&#x8BBE;&#x7F6E;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateValue">&#x521B;&#x5EFA;&#x901A;&#x7528;&#x503C;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x901A;&#x7528;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x521D;&#x59CB;&#x5316;&#x503C; <span style="color: rgb(0, 128, 0)">&#x521D;&#x59CB;&#x5316;&#x503C;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyValue.html" style="color: blue">&#x6C34;&#x661F;&#x901A;&#x7528;&#x578B;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateWindowInfo">&#x521B;&#x5EFA;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyWindowInfo.html" style="color: blue">&#x6C34;&#x661F;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateAsChildWindow">&#x521B;&#x5EFA;&#x5B50;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;, &#x5E76;&#x5C06;&#x5176;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x5B50;&#x7A97;&#x53E3;&#x6A21;&#x5F0F;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x7236;&#x7A97;&#x53E3; <span style="color: rgb(0, 128, 0)">&#x7236;&#x7A97;&#x53E3;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> x <span style="color: rgb(0, 128, 0)">x</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> y <span style="color: rgb(0, 128, 0)">y</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x5BBD;&#x5EA6; <span style="color: rgb(0, 128, 0)">&#x5BBD;&#x5EA6;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x9AD8;&#x5EA6; <span style="color: rgb(0, 128, 0)">&#x9AD8;&#x5EA6;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyWindowInfo.html" style="color: blue">&#x6C34;&#x661F;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateAsPopupWindow">&#x521B;&#x5EFA;&#x5F39;&#x51FA;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;, &#x5E76;&#x5C06;&#x5176;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x5F39;&#x51FA;&#x7A97;&#x53E3;&#x6A21;&#x5F0F;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x7236;&#x7A97;&#x53E3; <span style="color: rgb(0, 128, 0)">&#x7236;&#x7A97;&#x53E3;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x6807;&#x9898; <span style="color: rgb(0, 128, 0)">&#x6807;&#x9898;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyWindowInfo.html" style="color: blue">&#x6C34;&#x661F;&#x7A97;&#x53E3;&#x8BBE;&#x7F6E;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="SendURLRequest">&#x53D1;&#x9001;URL&#x8BF7;&#x6C42;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x53D1;&#x8D77;HTTP&#x8BF7;&#x6C42;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <a href="ProxyRequest.html" style="color: blue">&#x6C34;&#x661F;&#x8BF7;&#x6C42;</a> &#x8BF7;&#x6C42; <span style="color: rgb(0, 128, 0)">&#x8BF7;&#x6C42;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x903B;&#x8F91;&#x578B;</span> &#x9690;&#x8EAB;&#x6A21;&#x5F0F; <span style="color: rgb(0, 128, 0)">&#x9690;&#x8EAB;&#x6A21;&#x5F0F;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x8BA4;&#x8BC1;&#x7528;&#x6237;&#x540D; <span style="color: rgb(0, 128, 0)">&#x8BA4;&#x8BC1;&#x7528;&#x6237;&#x540D;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x8BA4;&#x8BC1;&#x5BC6;&#x7801; <span style="color: rgb(0, 128, 0)">&#x8BA4;&#x8BC1;&#x5BC6;&#x7801;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyURLRequest.html" style="color: blue">&#x6C34;&#x661F;URL&#x8BF7;&#x6C42;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateServer">&#x521B;&#x5EFA;&#x670D;&#x52A1;&#x5668;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;HTTP&#x670D;&#x52A1;&#x5668;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6587;&#x672C;&#x578B;</span> &#x76D1;&#x542C;&#x5730;&#x5740; <span style="color: rgb(0, 128, 0)">&#x76D1;&#x542C;&#x5730;&#x5740;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x7AEF;&#x53E3;&#x53F7; <span style="color: rgb(0, 128, 0)">&#x7AEF;&#x53E3;&#x53F7;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x6574;&#x6570;&#x578B;</span> &#x8FDE;&#x63A5;&#x6570; <span style="color: rgb(0, 128, 0)">&#x8FDE;&#x63A5;&#x6570;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x65E0;&#x8FD4;&#x56DE;&#x503C;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateWebSocket">&#x521B;&#x5EFA;&#x7F51;&#x9875;&#x5957;&#x63A5;&#x5B57;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Websocket&#x5957;&#x63A5;&#x5B57;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyWebSocket.html" style="color: blue">&#x6C34;&#x661F;&#x7F51;&#x9875;&#x5957;&#x63A5;&#x5B57;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateWaitableEvent">&#x521B;&#x5EFA;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;&#x3002; &#x7B49;&#x5F85;&#x4E8B;&#x4EF6;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;, &#x5B83;&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5B8C;&#x6210;&#x67D0;&#x4E9B;&#x4E8B;&#x4EF6;&#x540E;&#x5728;&#x7EE7;&#x7EED;&#x5DE5;&#x4F5C;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyWaitableEvent.html" style="color: blue">&#x6C34;&#x661F;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="Awaking">&#x7B49;&#x5F85;&#x5524;&#x9192;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x6302;&#x8D77;&#x4E00;&#x4E2A;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;&#x76F4;&#x5230;&#x88AB;&#x7F6E;&#x4E3A;&#x6709;&#x4FE1;&#x53F7;&#x72B6;&#x6001;&#x3002;&#x672C;&#x65B9;&#x6CD5;&#x52A0;&#x5165;&#x4E86;&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;&#x5904;&#x7406;&#x4E0D;&#x4F1A;&#x963B;&#x585E;UI&#x7EBF;&#x7A0B;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <a href="ProxyWaitableEvent.html" style="color: blue">&#x6C34;&#x661F;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</a> &#x7B49;&#x5F85;&#x4E8B;&#x4EF6; <span style="color: rgb(0, 128, 0)">&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x65E0;&#x8FD4;&#x56DE;&#x503C;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="TimedAwaking">&#x7B49;&#x5F85;&#x5524;&#x9192;2</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x6302;&#x8D77;&#x4E00;&#x4E2A;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;&#x76F4;&#x5230;&#x88AB;&#x7F6E;&#x4E3A;&#x6709;&#x4FE1;&#x53F7;&#x72B6;&#x6001;&#x6216;&#x8005;&#x8D85;&#x8FC7;&#x4E8B;&#x65F6;&#x95F4;&#x3002;&#x672C;&#x65B9;&#x6CD5;&#x52A0;&#x5165;&#x4E86;&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;&#x5904;&#x7406;&#x4E0D;&#x4F1A;&#x963B;&#x585E;UI&#x7EBF;&#x7A0B;&#x3002;&#x8FD4;&#x56DE;&#x771F;&#x8868;&#x793A;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;&#x5DF2;&#x6388;&#x4FE1;, &#x8FD4;&#x56DE;&#x5047;&#x8868;&#x793A;&#x5DF2;&#x8D85;&#x8FC7;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <a href="ProxyWaitableEvent.html" style="color: blue">&#x6C34;&#x661F;&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</a> &#x7B49;&#x5F85;&#x4E8B;&#x4EF6; <span style="color: rgb(0, 128, 0)">&#x7B49;&#x5F85;&#x4E8B;&#x4EF6;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@param</span> <span style="color: blue">&#x5C0F;&#x6570;&#x578B;</span> &#x8D85;&#x65F6;&#x65F6;&#x95F4; <span style="color: rgb(0, 128, 0)">&#x8D85;&#x65F6;&#x65F6;&#x95F4;</span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <span style="color: blue">&#x903B;&#x8F91;&#x578B;</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateMenu">&#x521B;&#x5EFA;&#x83DC;&#x5355;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x83DC;&#x5355;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyMenuModel.html" style="color: blue">&#x6C34;&#x661F;&#x83DC;&#x5355;</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><span style="color:rgb(128,0,0)" id="CreateCollection">&#x521B;&#x5EFA;&#x7F51;&#x9875;&#x9A71;&#x52A8;&#x5668;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="color:rgb(0,128,0)">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7F51;&#x9875;&#x9A71;&#x52A8;&#x5668;&#x3002;<span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="color: rgb(117, 110, 200)">@return </span> <a href="ProxyCollection.html" style="color: blue">&#x6C34;&#x661F;&#x7F51;&#x9875;&#x9A71;&#x52A8;&#x5668;</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><link rel="stylesheet" href="../gitalk.min.css"></p>
+<script src="../gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'd17d49be2e680b77a84d',
+        clientSecret:'9364cb456dda6401cb71d65092489e75c9f11872',
+        repo: 'ecef_comment',
+        owner: 'kirino17',
+        admin: ['kirino17'],
+        id: location.pathname
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../apidocs.html" class="navigation navigation-prev " aria-label="Previous page: Api Docs">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ProxyClient.html" class="navigation navigation-next " aria-label="Next page: 水星铬浏览框">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"静态方法","level":"2.1.1","depth":2,"next":{"title":"水星铬浏览框","level":"2.1.2","depth":2,"path":"manual/ProxyClient.md","ref":"manual/ProxyClient.md","articles":[]},"previous":{"title":"Api Docs","level":"2.1","depth":1,"path":"apidocs.md","ref":"apidocs.md","articles":[{"title":"静态方法","level":"2.1.1","depth":2,"path":"manual/ProxyBase.md","ref":"manual/ProxyBase.md","articles":[]},{"title":"水星铬浏览框","level":"2.1.2","depth":2,"path":"manual/ProxyClient.md","ref":"manual/ProxyClient.md","articles":[]},{"title":"水星获取活动浏览器回调","level":"2.1.3","depth":2,"path":"manual/ProxyActiveBrowserCallback.md","ref":"manual/ProxyActiveBrowserCallback.md","articles":[]},{"title":"水星认证","level":"2.1.4","depth":2,"path":"manual/ProxyAuth.md","ref":"manual/ProxyAuth.md","articles":[]},{"title":"水星浏览器","level":"2.1.5","depth":2,"path":"manual/ProxyBrowser.md","ref":"manual/ProxyBrowser.md","articles":[]},{"title":"水星浏览器设置","level":"2.1.6","depth":2,"path":"manual/ProxyBrowserSettings.md","ref":"manual/ProxyBrowserSettings.md","articles":[]},{"title":"水星网页驱动器","level":"2.1.7","depth":2,"path":"manual/ProxyCollection.md","ref":"manual/ProxyCollection.md","articles":[]},{"title":"水星命令行","level":"2.1.8","depth":2,"path":"manual/ProxyCommandLine.md","ref":"manual/ProxyCommandLine.md","articles":[]},{"title":"水星菜单信息","level":"2.1.9","depth":2,"path":"manual/ProxyContextMenuParams.md","ref":"manual/ProxyContextMenuParams.md","articles":[]},{"title":"水星会话凭证","level":"2.1.10","depth":2,"path":"manual/ProxyCookie.md","ref":"manual/ProxyCookie.md","articles":[]},{"title":"水星会话凭证管理器","level":"2.1.11","depth":2,"path":"manual/ProxyCookieManager.md","ref":"manual/ProxyCookieManager.md","articles":[]},{"title":"水星字典型","level":"2.1.12","depth":2,"path":"manual/ProxyDictionaryValue.md","ref":"manual/ProxyDictionaryValue.md","articles":[]},{"title":"水星网页文档对象","level":"2.1.13","depth":2,"path":"manual/ProxyDOMDocument.md","ref":"manual/ProxyDOMDocument.md","articles":[]},{"title":"水星网页文档元素","level":"2.1.14","depth":2,"path":"manual/ProxyDOMNode.md","ref":"manual/ProxyDOMNode.md","articles":[]},{"title":"水星下载项","level":"2.1.15","depth":2,"path":"manual/ProxyDownloadItem.md","ref":"manual/ProxyDownloadItem.md","articles":[]},{"title":"水星扩展程序","level":"2.1.16","depth":2,"path":"manual/ProxyExtension.md","ref":"manual/ProxyExtension.md","articles":[]},{"title":"水星文件选择器","level":"2.1.17","depth":2,"path":"manual/ProxyFileDialogCallback.md","ref":"manual/ProxyFileDialogCallback.md","articles":[]},{"title":"水星框架","level":"2.1.18","depth":2,"path":"manual/ProxyFrame.md","ref":"manual/ProxyFrame.md","articles":[]},{"title":"水星扩展程序资源获取回调","level":"2.1.19","depth":2,"path":"manual/ProxyGetExtensionResourceCallback.md","ref":"manual/ProxyGetExtensionResourceCallback.md","articles":[]},{"title":"水星脚本对话框","level":"2.1.20","depth":2,"path":"manual/ProxyJsDialogCallback.md","ref":"manual/ProxyJsDialogCallback.md","articles":[]},{"title":"水星列表型","level":"2.1.21","depth":2,"path":"manual/ProxyListValue.md","ref":"manual/ProxyListValue.md","articles":[]},{"title":"水星菜单","level":"2.1.22","depth":2,"path":"manual/ProxyMenuModel.md","ref":"manual/ProxyMenuModel.md","articles":[]},{"title":"水星提交元素","level":"2.1.23","depth":2,"path":"manual/ProxyPostDataElement.md","ref":"manual/ProxyPostDataElement.md","articles":[]},{"title":"水星请求","level":"2.1.24","depth":2,"path":"manual/ProxyRequest.md","ref":"manual/ProxyRequest.md","articles":[]},{"title":"水星响应","level":"2.1.25","depth":2,"path":"manual/ProxyResponse.md","ref":"manual/ProxyResponse.md","articles":[]},{"title":"水星资源过滤器","level":"2.1.26","depth":2,"path":"manual/ProxyResponseFilter.md","ref":"manual/ProxyResponseFilter.md","articles":[]},{"title":"水星菜单回调","level":"2.1.27","depth":2,"path":"manual/ProxyRunContextMenuCallback.md","ref":"manual/ProxyRunContextMenuCallback.md","articles":[]},{"title":"水星服务器","level":"2.1.28","depth":2,"path":"manual/ProxyServer.md","ref":"manual/ProxyServer.md","articles":[]},{"title":"水星初始化设置","level":"2.1.29","depth":2,"path":"manual/ProxySettings.md","ref":"manual/ProxySettings.md","articles":[]},{"title":"水星URL请求","level":"2.1.30","depth":2,"path":"manual/ProxyURLRequest.md","ref":"manual/ProxyURLRequest.md","articles":[]},{"title":"水星通用型","level":"2.1.31","depth":2,"path":"manual/ProxyValue.md","ref":"manual/ProxyValue.md","articles":[]},{"title":"水星等待事件","level":"2.1.32","depth":2,"path":"manual/ProxyWaitableEvent.md","ref":"manual/ProxyWaitableEvent.md","articles":[]},{"title":"水星网页套接字","level":"2.1.33","depth":2,"path":"manual/ProxyWebSocket.md","ref":"manual/ProxyWebSocket.md","articles":[]},{"title":"水星窗口设置","level":"2.1.34","depth":2,"path":"manual/ProxyWindowInfo.md","ref":"manual/ProxyWindowInfo.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"manual/ProxyBase.md","mtime":"2020-11-05T07:41:09.090Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-07T13:06:05.236Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

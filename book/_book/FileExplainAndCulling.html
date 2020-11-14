@@ -1,0 +1,821 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>裁剪支持库 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="apidocs.html" />
+    
+    
+    <link rel="prev" href="Release.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">简介</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Update.html">
+            
+                <a href="Update.html">
+            
+                    
+                    更新日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Release.html">
+            
+                <a href="Release.html">
+            
+                    
+                    发布程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="FileExplainAndCulling.html">
+            
+                <a href="FileExplainAndCulling.html">
+            
+                    
+                    裁剪支持库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">支持库手册</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="apidocs.html">
+            
+                <a href="apidocs.html">
+            
+                    
+                    Api Docs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="manual/ProxyBase.html">
+            
+                <a href="manual/ProxyBase.html">
+            
+                    
+                    静态方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="manual/ProxyClient.html">
+            
+                <a href="manual/ProxyClient.html">
+            
+                    
+                    水星铬浏览框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="manual/ProxyActiveBrowserCallback.html">
+            
+                <a href="manual/ProxyActiveBrowserCallback.html">
+            
+                    
+                    水星获取活动浏览器回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="manual/ProxyAuth.md">
+            
+                <span>
+            
+                    
+                    水星认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="manual/ProxyBrowser.html">
+            
+                <a href="manual/ProxyBrowser.html">
+            
+                    
+                    水星浏览器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="manual/ProxyBrowserSettings.html">
+            
+                <a href="manual/ProxyBrowserSettings.html">
+            
+                    
+                    水星浏览器设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="manual/ProxyCollection.html">
+            
+                <a href="manual/ProxyCollection.html">
+            
+                    
+                    水星网页驱动器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" data-path="manual/ProxyCommandLine.html">
+            
+                <a href="manual/ProxyCommandLine.html">
+            
+                    
+                    水星命令行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" data-path="manual/ProxyContextMenuParams.html">
+            
+                <a href="manual/ProxyContextMenuParams.html">
+            
+                    
+                    水星菜单信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" data-path="manual/ProxyCookie.html">
+            
+                <a href="manual/ProxyCookie.html">
+            
+                    
+                    水星会话凭证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.11" data-path="manual/ProxyCookieManager.html">
+            
+                <a href="manual/ProxyCookieManager.html">
+            
+                    
+                    水星会话凭证管理器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.12" data-path="manual/ProxyDictionaryValue.html">
+            
+                <a href="manual/ProxyDictionaryValue.html">
+            
+                    
+                    水星字典型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.13" data-path="manual/ProxyDOMDocument.html">
+            
+                <a href="manual/ProxyDOMDocument.html">
+            
+                    
+                    水星网页文档对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.14" data-path="manual/ProxyDOMNode.html">
+            
+                <a href="manual/ProxyDOMNode.html">
+            
+                    
+                    水星网页文档元素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.15" data-path="manual/ProxyDownloadItem.html">
+            
+                <a href="manual/ProxyDownloadItem.html">
+            
+                    
+                    水星下载项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.16" data-path="manual/ProxyExtension.html">
+            
+                <a href="manual/ProxyExtension.html">
+            
+                    
+                    水星扩展程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.17" data-path="manual/ProxyFileDialogCallback.html">
+            
+                <a href="manual/ProxyFileDialogCallback.html">
+            
+                    
+                    水星文件选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.18" data-path="manual/ProxyFrame.html">
+            
+                <a href="manual/ProxyFrame.html">
+            
+                    
+                    水星框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.19" data-path="manual/ProxyGetExtensionResourceCallback.html">
+            
+                <a href="manual/ProxyGetExtensionResourceCallback.html">
+            
+                    
+                    水星扩展程序资源获取回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.20" data-path="manual/ProxyJsDialogCallback.html">
+            
+                <a href="manual/ProxyJsDialogCallback.html">
+            
+                    
+                    水星脚本对话框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.21" data-path="manual/ProxyListValue.html">
+            
+                <a href="manual/ProxyListValue.html">
+            
+                    
+                    水星列表型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.22" data-path="manual/ProxyMenuModel.html">
+            
+                <a href="manual/ProxyMenuModel.html">
+            
+                    
+                    水星菜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.23" data-path="manual/ProxyPostDataElement.html">
+            
+                <a href="manual/ProxyPostDataElement.html">
+            
+                    
+                    水星提交元素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.24" data-path="manual/ProxyRequest.html">
+            
+                <a href="manual/ProxyRequest.html">
+            
+                    
+                    水星请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.25" data-path="manual/ProxyResponse.html">
+            
+                <a href="manual/ProxyResponse.html">
+            
+                    
+                    水星响应
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.26" data-path="manual/ProxyResponseFilter.html">
+            
+                <a href="manual/ProxyResponseFilter.html">
+            
+                    
+                    水星资源过滤器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.27" data-path="manual/ProxyRunContextMenuCallback.html">
+            
+                <a href="manual/ProxyRunContextMenuCallback.html">
+            
+                    
+                    水星菜单回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.28" data-path="manual/ProxyServer.html">
+            
+                <a href="manual/ProxyServer.html">
+            
+                    
+                    水星服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.29" data-path="manual/ProxySettings.html">
+            
+                <a href="manual/ProxySettings.html">
+            
+                    
+                    水星初始化设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.30" data-path="manual/ProxyURLRequest.html">
+            
+                <a href="manual/ProxyURLRequest.html">
+            
+                    
+                    水星URL请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.31" data-path="manual/ProxyValue.html">
+            
+                <a href="manual/ProxyValue.html">
+            
+                    
+                    水星通用型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.32" data-path="manual/ProxyWaitableEvent.html">
+            
+                <a href="manual/ProxyWaitableEvent.html">
+            
+                    
+                    水星等待事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.33" data-path="manual/ProxyWebSocket.html">
+            
+                <a href="manual/ProxyWebSocket.html">
+            
+                    
+                    水星网页套接字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.34" data-path="manual/ProxyWindowInfo.html">
+            
+                <a href="manual/ProxyWindowInfo.html">
+            
+                    
+                    水星窗口设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见问题</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >裁剪支持库</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x6587;&#x4EF6;&#x8BF4;&#x660E;&#x4E0E;&#x53EF;&#x88C1;&#x526A;&#x6027;">&#x6587;&#x4EF6;&#x8BF4;&#x660E;&#x4E0E;&#x53EF;&#x88C1;&#x526A;&#x6027;</h1>
+<p>&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x6C34;&#x661F;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x5E03;&#x8D44;&#x6E90;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-bash">    /swiftshader
+    /locales
+    aquarius2.dll
+    cef.pak
+    cef_100_percent.pak
+    cef_200_percent.pak
+    cef_extensions.pak
+    chrome_elf.dll
+    d3dcompiler_47.dll
+    devtools_resources.pak
+    libcef.dll
+    libEGL.dll
+    libGLESv2.dll
+    icudtl.dat
+    snapshot_blob.bin
+    spare-proc.exe
+    v8_context_snapshot.bin
+</code></pre>
+<p>&#x4E0D;&#x53EF;&#x88C1;&#x526A;&#x8D44;&#x6E90;:<br></p>
+<p><code>libcef.dll</code><br>
+CEF &#x6838;&#x5FC3;&#x52A8;&#x6001;&#x5E93;&#x6587;&#x4EF6;<br></p>
+<p><code>chrome_elf.dll</code><br>
+&#x7528;&#x4E8E;&#x62A5;&#x544A;&#x5D29;&#x6E83;&#x4FE1;&#x606F;&#x7684;&#x52A8;&#x6001;&#x5E93;&#x6587;&#x4EF6;<br></p>
+<p><code>icudlt.dat</code><br>
+Unicode&#x652F;&#x6301;&#x6570;&#x636E;<br></p>
+<p><code>snapshot_blob.bin</code><br>
+<code>v8_context_snapshot.bin</code> <br>
+V8 &#x5FEB;&#x7167;&#x6570;&#x636E;<br></p>
+<p><code>locales/</code><br>
+Unicode&#x652F;&#x6301;&#x6570;&#x636E;<br></p>
+<p><code>aquarius2.dll/</code><br>
+&#x652F;&#x6301;&#x5E93;CEF&#x9002;&#x914D;&#x63A5;&#x53E3;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x5E93;&#x6587;&#x4EF6;<br></p>
+<p><code>spare-proc.exe/</code><br>
+&#x652F;&#x6301;&#x5E93;&#x591A;&#x8FDB;&#x7A0B;&#x6A21;&#x5F0F;&#x4E0B;&#x63D0;&#x4F9B;&#x7684;&#x9ED8;&#x8BA4;&#x5B50;&#x8FDB;&#x7A0B;&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;<br></p>
+<hr>
+<p>&#x53EF;&#x88C1;&#x526A;&#x8D44;&#x6E90;( &#x5982;&#x679C;&#x4EE5;&#x4E0B;&#x8FD9;&#x4E9B;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x4E22;&#x5931;,&#x5C06;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5230;CEF&#x7684;&#x8FD0;&#x884C;, &#x4F46;&#x4E0E;&#x6B64;&#x76F8;&#x5173;&#x7684;&#x6240;&#x6709;&#x529F;&#x80FD;&#x53EF;&#x80FD;&#x4F1A;&#x635F;&#x574F;&#x6216;&#x8005;&#x65E0;&#x6CD5;&#x4F7F;&#x7528; ):<br></p>
+<p><code>*&#x672C;&#x5730;&#x5316;&#x8D44;&#x6E90;</code><br>
+&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B8C;&#x5168;&#x7981;&#x7528;&#x533A;&#x57DF;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x52A0;&#x8F7D;, <code>CefSettings.pack_loading_disabled</code>(&#x5BF9;&#x5E94;&#x652F;&#x6301;&#x5E93;&#x547D;&#x4EE4;&#x4E3A;: <code>Chromium&#x8FDB;&#x7A0B;&#x8BBE;&#x7F6E;.&#x8BBE;&#x7F6E;&#x7981;&#x6B62;&#x52A0;&#x8F7D;&#x8D44;&#x6E90;</code>)&#x3002;<br></p>
+<p><code>*locales/</code><br>
+&#x5305;&#x542B;CEF, Chromium&#x548C;Blink&#x4F7F;&#x7528;&#x7684;&#x672C;&#x5730;&#x5316;&#x8D44;&#x6E90;&#x7684;&#x76EE;&#x5F55;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x4E2A;<code>.pak</code>&#x6587;&#x4EF6;&#x4EE3;&#x8868;&#x4E00;&#x79CD;&#x8BED;&#x8A00;&#x73AF;&#x5883;, CEF&#x5C06;&#x6839;&#x636E;CefSettings.locale&#x7684;&#x503C;&#x4ECE;&#x6B64;&#x76EE;&#x5F55;&#x4E2D;&#x52A0;&#x8F7D;( &#x5BF9;&#x5E94;&#x652F;&#x6301;&#x5E93;&#x547D;&#x4EE4;&#x4E3A;: <code>Chromium&#x8FDB;&#x7A0B;&#x8BBE;&#x7F6E;.&#x8BBE;&#x7F6E;&#x8BED;&#x8A00;&#x73AF;&#x5883;</code> )&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x8BE5;&#x503C;,&#x5C06;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x8BED;&#x8A00;&#x73AF;&#x5883;&quot;en-US&quot;&#x3002;&#x6CA1;&#x6709;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x6240;&#x6709;&#x7684;Web&#x7EC4;&#x4EF6;&#x53EF;&#x80FD;&#x663E;&#x793A;&#x4E0D;&#x6B63;&#x786E;&#x3002;<br></p>
+<p><code>*&#x5176;&#x5B83;&#x8D44;&#x6E90;</code><br>
+&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B8C;&#x5168;&#x7981;&#x7528;&#x6253;&#x5305;&#x6587;&#x4EF6;&#x7684;&#x52A0;&#x8F7D;, <code>CefSettings.pack_loading_disabled</code>(&#x5BF9;&#x5E94;&#x652F;&#x6301;&#x5E93;&#x547D;&#x4EE4;&#x4E3A;: <code>Chromium&#x8FDB;&#x7A0B;&#x8BBE;&#x7F6E;.&#x8BBE;&#x7F6E;&#x7981;&#x6B62;&#x52A0;&#x8F7D;&#x8D44;&#x6E90;</code>)&#x3002;<br></p>
+<p><code>*cef.pak</code><br>
+<code>*cef_100_percent.pak</code><br>
+<code>*cef_200_percent.pak</code><br>
+&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x5305;&#x542B;CEF, Chromium&#x548C;Blink&#x4F7F;&#x7528;&#x7684;&#x975E;&#x672C;&#x5730;&#x5316;&#x8D44;&#x6E90;&#x3002;&#x6CA1;&#x6709;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;, &#x6240;&#x6709;&#x7684;Web&#x7EC4;&#x4EF6;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x6B63;&#x786E;&#x663E;&#x793A;&#x3002;<br></p>
+<p><code>*cef_extensions.pak</code><br>
+&#x6B64;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x52A0;&#x8F7D;&#x6269;&#x5C55;&#x6240;&#x9700;&#x7684;&#x975E;&#x672C;&#x5730;&#x5316;&#x8D44;&#x6E90;&#x3002;&#x4F20;&#x9012;<code>--disable-extensions</code>&#x547D;&#x4EE4;&#x884C;&#x6807;&#x5FD7;&#x53EF;&#x4EE5;&#x7981;&#x7528;&#x6B64;&#x529F;&#x80FD;&#x6587;&#x4EF6;&#x3002;&#x5982;&#x679C;&#x6269;&#x5C55;&#x7CFB;&#x7EDF;&#x7F3A;&#x5C11;&#x6B64;&#x6587;&#x4EF6;&#x5219;&#x7EC4;&#x4EF6;(&#x4F8B;&#x5982;: PDF viewer)&#x5C06;&#x65E0;&#x6CD5;&#x8FD0;&#x4F5C;&#x3002;<br></p>
+<p><code>*devtools_resources.pak</code><br>
+&#x6B64;&#x6587;&#x4EF6;&#x5305;&#x542B;Chrome&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;&#x6240;&#x9700;&#x8981;&#x7684;&#x975E;&#x672C;&#x5730;&#x5316;&#x8D44;&#x6E90;&#x3002;&#x6CA1;&#x6709;&#x8BE5;&#x6587;&#x4EF6;,Chrome&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;&#x5C06;&#x65E0;&#x6CD5;&#x8FD0;&#x884C;&#x3002;<br></p>
+<p><code>*&#x89D2;&#x5EA6;&#x548C;Direct3D&#x652F;&#x6301;</code><br>
+<code>*d3dcompiler_47.dll</code> (Windows Vista &#x548C; &#x66F4;&#x9AD8;&#x7684;&#x7248;&#x672C;&#x9700;&#x8981;)<br>
+<code>*libEGL.dll</code><br>
+<code>*libGLESv2.dll</code><br>
+&#x6CA1;&#x6709;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;, &#x5C06;&#x65E0;&#x6CD5;&#x52A0;&#x901F;HTML5&#x3001;2D&#x753B;&#x5E03;, 3D CSS&#x548C;WebGL&#x7B49;&#x5185;&#x5BB9;&#x7684;&#x8FD0;&#x884C;&#x3002;<br></p>
+<p><code>*SwitfShader&#x652F;&#x6301;</code><br>
+<code>*switfshader/libEGL.dll</code><br>
+<code>*switfshader/libGLESv2.dll</code><br>
+&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;,&#x5219;&#x5F53;GPU&#x4E0D;&#x53EF;&#x7528;&#x65F6;, WebGL&#x5C06;&#x65E0;&#x6CD5;&#x5728;&#x7EAF;&#x8F6F;&#x4EF6;&#x6A21;&#x5F0F;&#x4E0B;&#x8FD0;&#x884C;&#x3002;</p>
+<hr>
+<p><link rel="stylesheet" href="gitalk.min.css"></p>
+<script src="gitalk.min.js"></script>
+<div id="gitalk-containerfileexpandcul"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'd17d49be2e680b77a84d',
+        clientSecret:'9364cb456dda6401cb71d65092489e75c9f11872',
+        repo: 'ecef_comment',
+        owner: 'kirino17',
+        admin: ['kirino17'],
+        id: location.pathname
+    });
+    gitalk.render('gitalk-containerfileexpandcul');
+</script>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Release.html" class="navigation navigation-prev " aria-label="Previous page: 发布程序">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="apidocs.html" class="navigation navigation-next " aria-label="Next page: Api Docs">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"裁剪支持库","level":"1.4","depth":1,"next":{"title":"Api Docs","level":"2.1","depth":1,"path":"apidocs.md","ref":"apidocs.md","articles":[{"title":"静态方法","level":"2.1.1","depth":2,"path":"manual/ProxyBase.md","ref":"manual/ProxyBase.md","articles":[]},{"title":"水星铬浏览框","level":"2.1.2","depth":2,"path":"manual/ProxyClient.md","ref":"manual/ProxyClient.md","articles":[]},{"title":"水星获取活动浏览器回调","level":"2.1.3","depth":2,"path":"manual/ProxyActiveBrowserCallback.md","ref":"manual/ProxyActiveBrowserCallback.md","articles":[]},{"title":"水星认证","level":"2.1.4","depth":2,"path":"manual/ProxyAuth.md","ref":"manual/ProxyAuth.md","articles":[]},{"title":"水星浏览器","level":"2.1.5","depth":2,"path":"manual/ProxyBrowser.md","ref":"manual/ProxyBrowser.md","articles":[]},{"title":"水星浏览器设置","level":"2.1.6","depth":2,"path":"manual/ProxyBrowserSettings.md","ref":"manual/ProxyBrowserSettings.md","articles":[]},{"title":"水星网页驱动器","level":"2.1.7","depth":2,"path":"manual/ProxyCollection.md","ref":"manual/ProxyCollection.md","articles":[]},{"title":"水星命令行","level":"2.1.8","depth":2,"path":"manual/ProxyCommandLine.md","ref":"manual/ProxyCommandLine.md","articles":[]},{"title":"水星菜单信息","level":"2.1.9","depth":2,"path":"manual/ProxyContextMenuParams.md","ref":"manual/ProxyContextMenuParams.md","articles":[]},{"title":"水星会话凭证","level":"2.1.10","depth":2,"path":"manual/ProxyCookie.md","ref":"manual/ProxyCookie.md","articles":[]},{"title":"水星会话凭证管理器","level":"2.1.11","depth":2,"path":"manual/ProxyCookieManager.md","ref":"manual/ProxyCookieManager.md","articles":[]},{"title":"水星字典型","level":"2.1.12","depth":2,"path":"manual/ProxyDictionaryValue.md","ref":"manual/ProxyDictionaryValue.md","articles":[]},{"title":"水星网页文档对象","level":"2.1.13","depth":2,"path":"manual/ProxyDOMDocument.md","ref":"manual/ProxyDOMDocument.md","articles":[]},{"title":"水星网页文档元素","level":"2.1.14","depth":2,"path":"manual/ProxyDOMNode.md","ref":"manual/ProxyDOMNode.md","articles":[]},{"title":"水星下载项","level":"2.1.15","depth":2,"path":"manual/ProxyDownloadItem.md","ref":"manual/ProxyDownloadItem.md","articles":[]},{"title":"水星扩展程序","level":"2.1.16","depth":2,"path":"manual/ProxyExtension.md","ref":"manual/ProxyExtension.md","articles":[]},{"title":"水星文件选择器","level":"2.1.17","depth":2,"path":"manual/ProxyFileDialogCallback.md","ref":"manual/ProxyFileDialogCallback.md","articles":[]},{"title":"水星框架","level":"2.1.18","depth":2,"path":"manual/ProxyFrame.md","ref":"manual/ProxyFrame.md","articles":[]},{"title":"水星扩展程序资源获取回调","level":"2.1.19","depth":2,"path":"manual/ProxyGetExtensionResourceCallback.md","ref":"manual/ProxyGetExtensionResourceCallback.md","articles":[]},{"title":"水星脚本对话框","level":"2.1.20","depth":2,"path":"manual/ProxyJsDialogCallback.md","ref":"manual/ProxyJsDialogCallback.md","articles":[]},{"title":"水星列表型","level":"2.1.21","depth":2,"path":"manual/ProxyListValue.md","ref":"manual/ProxyListValue.md","articles":[]},{"title":"水星菜单","level":"2.1.22","depth":2,"path":"manual/ProxyMenuModel.md","ref":"manual/ProxyMenuModel.md","articles":[]},{"title":"水星提交元素","level":"2.1.23","depth":2,"path":"manual/ProxyPostDataElement.md","ref":"manual/ProxyPostDataElement.md","articles":[]},{"title":"水星请求","level":"2.1.24","depth":2,"path":"manual/ProxyRequest.md","ref":"manual/ProxyRequest.md","articles":[]},{"title":"水星响应","level":"2.1.25","depth":2,"path":"manual/ProxyResponse.md","ref":"manual/ProxyResponse.md","articles":[]},{"title":"水星资源过滤器","level":"2.1.26","depth":2,"path":"manual/ProxyResponseFilter.md","ref":"manual/ProxyResponseFilter.md","articles":[]},{"title":"水星菜单回调","level":"2.1.27","depth":2,"path":"manual/ProxyRunContextMenuCallback.md","ref":"manual/ProxyRunContextMenuCallback.md","articles":[]},{"title":"水星服务器","level":"2.1.28","depth":2,"path":"manual/ProxyServer.md","ref":"manual/ProxyServer.md","articles":[]},{"title":"水星初始化设置","level":"2.1.29","depth":2,"path":"manual/ProxySettings.md","ref":"manual/ProxySettings.md","articles":[]},{"title":"水星URL请求","level":"2.1.30","depth":2,"path":"manual/ProxyURLRequest.md","ref":"manual/ProxyURLRequest.md","articles":[]},{"title":"水星通用型","level":"2.1.31","depth":2,"path":"manual/ProxyValue.md","ref":"manual/ProxyValue.md","articles":[]},{"title":"水星等待事件","level":"2.1.32","depth":2,"path":"manual/ProxyWaitableEvent.md","ref":"manual/ProxyWaitableEvent.md","articles":[]},{"title":"水星网页套接字","level":"2.1.33","depth":2,"path":"manual/ProxyWebSocket.md","ref":"manual/ProxyWebSocket.md","articles":[]},{"title":"水星窗口设置","level":"2.1.34","depth":2,"path":"manual/ProxyWindowInfo.md","ref":"manual/ProxyWindowInfo.md","articles":[]}]},"previous":{"title":"发布程序","level":"1.3","depth":1,"path":"Release.md","ref":"Release.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"FileExplainAndCulling.md","mtime":"2020-10-04T15:19:56.588Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-07T13:06:05.236Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

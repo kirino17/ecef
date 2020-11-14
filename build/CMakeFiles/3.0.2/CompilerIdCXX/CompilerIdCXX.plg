@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CompilerIdCXX - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP3CF2.tmp" with contents
+[
+/nologo /MDd /Fo"Debug/" /c 
+"E:\ecef\build\CMakeFiles\3.0.2\CompilerIdCXX\CMakeCXXCompilerId.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP3CF2.tmp" 
+Creating command line "link.exe /nologo /version:0.0 /subsystem:console /incremental:yes /pdb:"./CompilerIdCXX.pdb" /machine:IX86 /out:"CompilerIdCXX.exe" /machine:x86 /IGNORE:4089  .\Debug\CMakeCXXCompilerId.obj "
+<h3>Output Window</h3>
+Compiling...
+CMakeCXXCompilerId.cpp
+Linking...
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP40DB.bat" with contents
+[
+@echo off
+for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+]
+Creating command line "C:\Users\ADMINI~1\AppData\Local\Temp\RSP40DB.bat"
+
+CMAKE_CXX_COMPILER=E:\ecef\vc98\vc60\VC98\Bin\CL.EXE
+
+
+
+<h3>Results</h3>
+CompilerIdCXX.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

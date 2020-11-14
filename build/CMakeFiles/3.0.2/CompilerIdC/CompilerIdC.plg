@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CompilerIdC - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP2BEB.tmp" with contents
+[
+/nologo /MDd /Fo"Debug/" /c 
+"E:\ecef\build\CMakeFiles\3.0.2\CompilerIdC\CMakeCCompilerId.c"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP2BEB.tmp" 
+Creating command line "link.exe /nologo /version:0.0 /subsystem:console /incremental:yes /pdb:"./CompilerIdC.pdb" /machine:IX86 /out:"CompilerIdC.exe" /machine:x86 /IGNORE:4089  .\Debug\CMakeCCompilerId.obj "
+<h3>Output Window</h3>
+Compiling...
+CMakeCCompilerId.c
+Linking...
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP37B3.bat" with contents
+[
+@echo off
+for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+]
+Creating command line "C:\Users\ADMINI~1\AppData\Local\Temp\RSP37B3.bat"
+
+CMAKE_C_COMPILER=E:\ecef\vc98\vc60\VC98\Bin\CL.EXE
+
+
+
+<h3>Results</h3>
+CompilerIdC.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

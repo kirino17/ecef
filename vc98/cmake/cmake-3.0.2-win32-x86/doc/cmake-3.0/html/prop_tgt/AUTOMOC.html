@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AUTOMOC &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-properties(7)" href="../manual/cmake-properties.7.html" />
+    <link rel="next" title="AUTOUIC" href="AUTOUIC.html" />
+    <link rel="prev" title="AUTOMOC_MOC_OPTIONS" href="AUTOMOC_MOC_OPTIONS.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="AUTOUIC.html" title="AUTOUIC"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AUTOMOC_MOC_OPTIONS.html" title="AUTOMOC_MOC_OPTIONS"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" accesskey="U">cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="automoc">
+<span id="prop_tgt:AUTOMOC"></span><h1>AUTOMOC<a class="headerlink" href="#automoc" title="Permalink to this headline">¶</a></h1>
+<p>Should the target be processed with automoc (for Qt projects).</p>
+<p>AUTOMOC is a boolean specifying whether CMake will handle the Qt <tt class="docutils literal"><span class="pre">moc</span></tt>
+preprocessor automatically, i.e.  without having to use the
+<a class="reference internal" href="../module/FindQt4.html#module:FindQt4" title="FindQt4"><tt class="xref cmake cmake-module docutils literal"><span class="pre">QT4_WRAP_CPP()</span></tt></a> or QT5_WRAP_CPP() macro.  Currently Qt4 and Qt5 are
+supported.  When this property is set <tt class="docutils literal"><span class="pre">ON</span></tt>, CMake will scan the
+source files at build time and invoke moc accordingly.  If an <tt class="docutils literal"><span class="pre">#include</span></tt>
+statement like <tt class="docutils literal"><span class="pre">#include</span> <span class="pre">&quot;moc_foo.cpp&quot;</span></tt> is found, the <tt class="docutils literal"><span class="pre">Q_OBJECT</span></tt> class
+declaration is expected in the header, and <tt class="docutils literal"><span class="pre">moc</span></tt> is run on the header
+file.  If an <tt class="docutils literal"><span class="pre">#include</span></tt> statement like <tt class="docutils literal"><span class="pre">#include</span> <span class="pre">&quot;foo.moc&quot;</span></tt> is found, then
+a <tt class="docutils literal"><span class="pre">Q_OBJECT</span></tt> is expected in the current source file and <tt class="docutils literal"><span class="pre">moc</span></tt> is run on
+the file itself.  Additionally, header files with the same base name (like
+<tt class="docutils literal"><span class="pre">foo.h</span></tt>) or <tt class="docutils literal"><span class="pre">_p</span></tt> appended to the base name (like <tt class="docutils literal"><span class="pre">foo_p.h</span></tt>) are parsed
+for <tt class="docutils literal"><span class="pre">Q_OBJECT</span></tt> macros, and if found, <tt class="docutils literal"><span class="pre">moc</span></tt> is also executed on those files.
+<tt class="docutils literal"><span class="pre">AUTOMOC</span></tt> checks multiple header alternative extensions, such as
+<tt class="docutils literal"><span class="pre">hpp</span></tt>, <tt class="docutils literal"><span class="pre">hxx</span></tt> etc when searching for headers.
+The resulting moc files, which are not included as shown above in any
+of the source files are included in a generated
+<tt class="docutils literal"><span class="pre">&lt;targetname&gt;_automoc.cpp</span></tt> file, which is compiled as part of the
+target.  This property is initialized by the value of the
+<a class="reference internal" href="../variable/CMAKE_AUTOMOC.html#variable:CMAKE_AUTOMOC" title="CMAKE_AUTOMOC"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_AUTOMOC</span></tt></a> variable if it is set when a target is created.</p>
+<p>Additional command line options for moc can be set via the
+<a class="reference internal" href="AUTOMOC_MOC_OPTIONS.html#prop_tgt:AUTOMOC_MOC_OPTIONS" title="AUTOMOC_MOC_OPTIONS"><tt class="xref cmake cmake-prop_tgt docutils literal"><span class="pre">AUTOMOC_MOC_OPTIONS</span></tt></a> property.</p>
+<p>By enabling the <a class="reference internal" href="../variable/CMAKE_AUTOMOC_RELAXED_MODE.html#variable:CMAKE_AUTOMOC_RELAXED_MODE" title="CMAKE_AUTOMOC_RELAXED_MODE"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_AUTOMOC_RELAXED_MODE</span></tt></a> variable the
+rules for searching the files which will be processed by moc can be relaxed.
+See the documentation for this variable for more details.</p>
+<p>The global property <a class="reference internal" href="../prop_gbl/AUTOGEN_TARGETS_FOLDER.html#prop_gbl:AUTOGEN_TARGETS_FOLDER" title="AUTOGEN_TARGETS_FOLDER"><tt class="xref cmake cmake-prop_gbl docutils literal"><span class="pre">AUTOGEN_TARGETS_FOLDER</span></tt></a> can be used to group the
+automoc targets together in an IDE, e.g.  in MSVS.</p>
+<p>See the <a class="reference internal" href="../manual/cmake-qt.7.html#manual:cmake-qt(7)" title="cmake-qt(7)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake-qt(7)</span></tt></a> manual for more information on using CMake
+with Qt.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AUTOMOC_MOC_OPTIONS.html"
+                        title="previous chapter">AUTOMOC_MOC_OPTIONS</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AUTOUIC.html"
+                        title="next chapter">AUTOUIC</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/prop_tgt/AUTOMOC.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="AUTOUIC.html" title="AUTOUIC"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AUTOMOC_MOC_OPTIONS.html" title="AUTOMOC_MOC_OPTIONS"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-properties.7.html" >cmake-properties(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

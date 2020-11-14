@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CMAKE_MAKE_PROGRAM &mdash; CMake 3.0.2 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/cmake.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/cmake-favicon.ico"/>
+    <link rel="top" title="CMake 3.0.2 Documentation" href="../index.html" />
+    <link rel="up" title="cmake-variables(7)" href="../manual/cmake-variables.7.html" />
+    <link rel="next" title="CMAKE_MINIMUM_REQUIRED_VERSION" href="CMAKE_MINIMUM_REQUIRED_VERSION.html" />
+    <link rel="prev" title="CMAKE_MAJOR_VERSION" href="CMAKE_MAJOR_VERSION.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CMAKE_MINIMUM_REQUIRED_VERSION.html" title="CMAKE_MINIMUM_REQUIRED_VERSION"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_MAJOR_VERSION.html" title="CMAKE_MAJOR_VERSION"
+             accesskey="P">previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" accesskey="U">cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cmake-make-program">
+<span id="variable:CMAKE_MAKE_PROGRAM"></span><h1>CMAKE_MAKE_PROGRAM<a class="headerlink" href="#cmake-make-program" title="Permalink to this headline">¶</a></h1>
+<p>Tool that can launch the native build system.
+The value may be the full path to an executable or just the tool
+name if it is expected to be in the <tt class="docutils literal"><span class="pre">PATH</span></tt>.</p>
+<p>The tool selected depends on the <a class="reference internal" href="CMAKE_GENERATOR.html#variable:CMAKE_GENERATOR" title="CMAKE_GENERATOR"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_GENERATOR</span></tt></a> used
+to configure the project:</p>
+<ul>
+<li><p class="first">The Makefile generators set this to <tt class="docutils literal"><span class="pre">make</span></tt>, <tt class="docutils literal"><span class="pre">gmake</span></tt>, or
+a generator-specific tool (e.g. <tt class="docutils literal"><span class="pre">nmake</span></tt> for &#8220;NMake Makefiles&#8221;).</p>
+<p>These generators store <tt class="docutils literal"><span class="pre">CMAKE_MAKE_PROGRAM</span></tt> in the CMake cache
+so that it may be edited by the user.</p>
+</li>
+<li><p class="first">The Ninja generator sets this to <tt class="docutils literal"><span class="pre">ninja</span></tt>.</p>
+<p>This generator stores <tt class="docutils literal"><span class="pre">CMAKE_MAKE_PROGRAM</span></tt> in the CMake cache
+so that it may be edited by the user.</p>
+</li>
+<li><p class="first">The Xcode generator sets this to <tt class="docutils literal"><span class="pre">xcodebuild</span></tt> (or possibly an
+otherwise undocumented <tt class="docutils literal"><span class="pre">cmakexbuild</span></tt> wrapper implementing some
+workarounds).</p>
+<p>This generator stores <tt class="docutils literal"><span class="pre">CMAKE_MAKE_PROGRAM</span></tt> in the CMake cache
+so that it may be edited by the user.</p>
+</li>
+<li><p class="first">The Visual Studio generators set this to the full path to
+<tt class="docutils literal"><span class="pre">MSBuild.exe</span></tt> (VS &gt;= 10), <tt class="docutils literal"><span class="pre">devenv.com</span></tt> (VS 7,8,9),
+<tt class="docutils literal"><span class="pre">VCExpress.exe</span></tt> (VS Express 8,9), or <tt class="docutils literal"><span class="pre">msdev.exe</span></tt> (VS 6).
+(See also variables
+<a class="reference internal" href="CMAKE_VS_MSBUILD_COMMAND.html#variable:CMAKE_VS_MSBUILD_COMMAND" title="CMAKE_VS_MSBUILD_COMMAND"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_VS_MSBUILD_COMMAND</span></tt></a>,
+<a class="reference internal" href="CMAKE_VS_DEVENV_COMMAND.html#variable:CMAKE_VS_DEVENV_COMMAND" title="CMAKE_VS_DEVENV_COMMAND"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_VS_DEVENV_COMMAND</span></tt></a>, and
+<a class="reference internal" href="CMAKE_VS_MSDEV_COMMAND.html#variable:CMAKE_VS_MSDEV_COMMAND" title="CMAKE_VS_MSDEV_COMMAND"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_VS_MSDEV_COMMAND</span></tt></a>.)</p>
+<p>These generators prefer to lookup the build tool at build time
+rather than to store <tt class="docutils literal"><span class="pre">CMAKE_MAKE_PROGRAM</span></tt> in the CMake cache
+ahead of time.  This is because the tools are version-specific
+and can be located using the Windows Registry.  It is also
+necessary because the proper build tool may depend on the
+project content (e.g. the Intel Fortran plugin to VS 10 and 11
+requires <tt class="docutils literal"><span class="pre">devenv.com</span></tt> to build its <tt class="docutils literal"><span class="pre">.vfproj</span></tt> project files
+even though <tt class="docutils literal"><span class="pre">MSBuild.exe</span></tt> is normally preferred to support
+the <a class="reference internal" href="CMAKE_GENERATOR_TOOLSET.html#variable:CMAKE_GENERATOR_TOOLSET" title="CMAKE_GENERATOR_TOOLSET"><tt class="xref cmake cmake-variable docutils literal"><span class="pre">CMAKE_GENERATOR_TOOLSET</span></tt></a>).</p>
+<p>For compatibility with versions of CMake prior to 3.0, if
+a user or project explicitly adds <tt class="docutils literal"><span class="pre">CMAKE_MAKE_PROGRAM</span></tt> to
+the CMake cache then CMake will use the specified value if
+possible.</p>
+</li>
+</ul>
+<p>The <tt class="docutils literal"><span class="pre">CMAKE_MAKE_PROGRAM</span></tt> variable is set for use by project code.
+The value is also used by the <a class="reference internal" href="../manual/cmake.1.html#manual:cmake(1)" title="cmake(1)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">cmake(1)</span></tt></a> <tt class="docutils literal"><span class="pre">--build</span></tt> and
+<a class="reference internal" href="../manual/ctest.1.html#manual:ctest(1)" title="ctest(1)"><tt class="xref cmake cmake-manual docutils literal"><span class="pre">ctest(1)</span></tt></a> <tt class="docutils literal"><span class="pre">--build-and-test</span></tt> tools to launch the native
+build process.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMAKE_MAJOR_VERSION.html"
+                        title="previous chapter">CMAKE_MAJOR_VERSION</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CMAKE_MINIMUM_REQUIRED_VERSION.html"
+                        title="next chapter">CMAKE_MINIMUM_REQUIRED_VERSION</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/variable/CMAKE_MAKE_PROGRAM.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CMAKE_MINIMUM_REQUIRED_VERSION.html" title="CMAKE_MINIMUM_REQUIRED_VERSION"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMAKE_MAJOR_VERSION.html" title="CMAKE_MAJOR_VERSION"
+             >previous</a> |</li>
+  <li>
+    <img src="../_static/cmake-logo-16.png" alt=""
+         style="vertical-align: middle; margin-top: -2px" />
+  </li>
+  <li>
+    <a href="http://www.cmake.org/">CMake</a> &raquo;
+  </li>
+  <li>
+    <a href="../index.html">3.0.2 Documentation</a> &raquo;
+  </li>
+
+          <li><a href="../manual/cmake-variables.7.html" >cmake-variables(7)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2000-2014 Kitware, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>
